@@ -1,0 +1,9 @@
+.classpath
+.gradle/
+.project
+.settings/
+*.txt
+bin/
+build/
+eclipse/
+src/api/
