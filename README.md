@@ -1,2 +1,3 @@
 ModTweaker
 ==========
+ModTweaker is an addon for MineTweaker. (Requires MineTweaker 2.3.1). MineTweaker let's you adjust recipes, removals and additions in Minecraft. While MineTweaker supports a bunch of mod recipes itself, there are many more mods that it does not support. Mod Tweaker plans to provide support for as many of these additional mods overtime as possible. ModTweaker currently supports:
