@@ -32,7 +32,6 @@ public class VatValue extends TweakerValue {
 		if(index.equals(ADD_FLUIDS_MAKE_ALL)) return VatAlloyMakesAllFunction.INSTANCE;
 		if(index.equals(ADD_ITEM_FLUID)) return VatDissolveFunction.INSTANCE;
 		if(index.equals(ADD_FLUIDS_ITEM)) return VatSettleFunction.INSTANCE;
-		if(index.equals(RMV_FLUID)) return VatSettleFunction.INSTANCE;
 		if(index.equals(ADD_ITEM)) return VatSoakFunction.INSTANCE;
 		if(index.equals(ADD_ALLOY)) return VatAlloyFunction.INSTANCE;
 		if(index.equals(RMV_ITEM)) return VatRemoveItemRecipeFunction.INSTANCE;
