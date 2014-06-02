@@ -24,4 +24,21 @@ public class ReflectionHelper {
 		}
 		return null;
 	}
+	
+	public static <T> T getPrivateStaticObject(Class cls, String... fieldName) {
+		for (String field : fieldName) {
+			try {
+				Field result = cls.getDeclaredField(field);
+				result.setAccessible(true);
+				return (T) result.get(null);
+			} catch (NoSuchFieldException ex) {
+				
+			} catch (SecurityException ex) {
+				
+			} catch (IllegalAccessException ex) {
+				
+			}
+		}
+		return null;
+	}
 }
