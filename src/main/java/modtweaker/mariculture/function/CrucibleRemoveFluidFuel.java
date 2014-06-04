@@ -1,7 +1,7 @@
 package modtweaker.mariculture.function;
 
-import static modtweaker.helpers.TweakerHelper.getFluid;
-import static modtweaker.helpers.TweakerHelper.throwException;
+import static modtweaker.util.TweakerHelper.getFluid;
+import static modtweaker.util.TweakerHelper.throwException;
 import modtweaker.mariculture.action.CrucibleRemoveFuelAction;
 import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerNameSpace;

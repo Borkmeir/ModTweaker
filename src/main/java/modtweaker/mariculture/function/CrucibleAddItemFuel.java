@@ -1,8 +1,8 @@
 package modtweaker.mariculture.function;
 
-import static modtweaker.helpers.TweakerHelper.getInt;
-import static modtweaker.helpers.TweakerHelper.getItem;
-import static modtweaker.helpers.TweakerHelper.throwException;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.getInt;
+import static modtweaker.util.TweakerHelper.throwException;
 import mariculture.api.core.FuelInfo;
 import modtweaker.mariculture.action.CrucibleAddFuelAction;
 import stanhebben.minetweaker.api.Tweaker;
@@ -19,7 +19,7 @@ public class CrucibleAddItemFuel extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 4) throwException(toString(), 4); 
-		TweakerItemStack item = getItem(0, arguments);
+		TweakerItemStack item = GetItemOld(0, arguments);
 		int max = getInt(1, arguments);
 		int per = getInt(2, arguments);
 		int time = getInt(3, arguments);

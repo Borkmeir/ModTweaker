@@ -1,6 +1,6 @@
 package modtweaker.mariculture.action;
 
-import static modtweaker.helpers.ItemHelper.getName;
+import static modtweaker.util.ItemHelper.getName;
 
 import java.util.Arrays;
 import java.util.List;

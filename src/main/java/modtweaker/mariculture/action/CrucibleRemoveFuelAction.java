@@ -1,6 +1,6 @@
 package modtweaker.mariculture.action;
 
-import static modtweaker.helpers.ItemHelper.getName;
+import static modtweaker.util.ItemHelper.getName;
 import mariculture.api.core.FuelInfo;
 import mariculture.core.helpers.OreDicHelper;
 import modtweaker.mariculture.MaricultureHacks;

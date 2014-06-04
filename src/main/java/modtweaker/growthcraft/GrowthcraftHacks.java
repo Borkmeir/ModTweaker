@@ -1,6 +1,6 @@
 package modtweaker.growthcraft;
 
-import static modtweaker.helpers.ReflectionHelper.getPrivateStaticFinalObject;
+import static modtweaker.util.ReflectionHelper.getPrivateFinalObject;
 import growthcraft.api.fishtrap.FishTrapEntry;
 import growthcraft.api.fishtrap.FishTrapRegistry;
 
@@ -13,9 +13,9 @@ public class GrowthcraftHacks {
 	
 	static {
 		try {
-			fishList = (List<FishTrapEntry>) getPrivateStaticFinalObject(FishTrapRegistry.instance(), "fishList");
-			treasureList = (List<FishTrapEntry>) getPrivateStaticFinalObject(FishTrapRegistry.instance(), "treasureList");
-			junkList = (List<FishTrapEntry>) getPrivateStaticFinalObject(FishTrapRegistry.instance(), "junkList");
+			fishList = (List<FishTrapEntry>) getPrivateFinalObject(FishTrapRegistry.instance(), "fishList");
+			treasureList = (List<FishTrapEntry>) getPrivateFinalObject(FishTrapRegistry.instance(), "treasureList");
+			junkList = (List<FishTrapEntry>) getPrivateFinalObject(FishTrapRegistry.instance(), "junkList");
 		} catch (ClassCastException ex) {
 			ex.printStackTrace();
 		} catch (SecurityException e) {

@@ -1,7 +1,7 @@
 package modtweaker.mariculture;
 
-import static modtweaker.helpers.ReflectionHelper.getPrivateStaticFinalObject;
-import static modtweaker.helpers.ReflectionHelper.getPrivateStaticObject;
+import static modtweaker.util.ReflectionHelper.getPrivateFinalObject;
+import static modtweaker.util.ReflectionHelper.getPrivateStaticObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class MaricultureHacks {
 			vat = MaricultureHandlers.vat.getRecipes();
 			goodLoot = getPrivateStaticObject(registry, "goodies");
 			badLoot = getPrivateStaticObject(registry, "junk");
-			fuels = (Map) getPrivateStaticFinalObject(MaricultureHandlers.smelter, "fuels");
+			fuels = getPrivateFinalObject(MaricultureHandlers.smelter, "fuels");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (ClassCastException ex) {

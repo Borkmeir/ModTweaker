@@ -1,12 +1,12 @@
 package modtweaker.mariculture.function;
 
-import static modtweaker.helpers.TweakerHelper.getBoolean;
-import static modtweaker.helpers.TweakerHelper.getDimension;
-import static modtweaker.helpers.TweakerHelper.getInt;
-import static modtweaker.helpers.TweakerHelper.getItem;
-import static modtweaker.helpers.TweakerHelper.getString;
-import static modtweaker.helpers.TweakerHelper.throwException;
 import static modtweaker.mariculture.MaricultureHelper.getQuality;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.getBoolean;
+import static modtweaker.util.TweakerHelper.getDimension;
+import static modtweaker.util.TweakerHelper.getInt;
+import static modtweaker.util.TweakerHelper.getString;
+import static modtweaker.util.TweakerHelper.throwException;
 import mariculture.api.fishery.Loot;
 import mariculture.api.fishery.Loot.Rarity;
 import modtweaker.mariculture.action.FishingAddLootAction;
@@ -24,7 +24,7 @@ public class FishingAddJunkFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 5) throwException(toString(), 5); 
-		ItemStack input = getItem(0, arguments).get();
+		ItemStack input = GetItemOld(0, arguments).get();
 		int chance = getInt(1, arguments);
 		String quality = getString(2, arguments);
 		boolean exact = getBoolean(3, arguments);

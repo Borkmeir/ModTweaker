@@ -1,8 +1,8 @@
 package modtweaker.mariculture.function;
 
-import static modtweaker.helpers.TweakerHelper.getFluid;
-import static modtweaker.helpers.TweakerHelper.getInt;
-import static modtweaker.helpers.TweakerHelper.getItem;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.getFluid;
+import static modtweaker.util.TweakerHelper.getInt;
 import mariculture.api.core.RecipeSmelter;
 import modtweaker.mariculture.action.CrucibleAddRecipeAction;
 import stanhebben.minetweaker.api.Tweaker;
@@ -22,12 +22,12 @@ public class CrucibleAddMeltingFunction extends TweakerFunction {
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length == 3 || arguments.length == 5) {
 			int temp = Math.max(1, getInt(0, arguments));
-			TweakerItemStack item = getItem(1, arguments);
+			TweakerItemStack item = GetItemOld(1, arguments);
 			TweakerLiquidStack fluid = getFluid(2, arguments);
 			TweakerItemStack output = null;
 			int chance = 0;
 			if(arguments.length == 5) {
-				output = getItem(3, arguments);
+				output = GetItemOld(3, arguments);
 				chance = getInt(4, arguments);
 				if(chance <= 0) output = null;
 			}

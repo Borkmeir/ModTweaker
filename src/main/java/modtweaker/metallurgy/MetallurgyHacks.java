@@ -1,6 +1,6 @@
 package modtweaker.metallurgy;
 
-import static modtweaker.helpers.ReflectionHelper.getPrivateStaticObject;
+import static modtweaker.util.ReflectionHelper.getPrivateStaticObject;
 
 import java.util.Map;
 

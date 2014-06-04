@@ -1,6 +1,6 @@
 package modtweaker.mariculture.action;
 
-import static modtweaker.helpers.ItemHelper.areEqual;
+import static modtweaker.util.ItemHelper.areEqual;
 import mariculture.api.fishery.Loot;
 import modtweaker.mariculture.MaricultureHacks;
 import stanhebben.minetweaker.api.IUndoableAction;

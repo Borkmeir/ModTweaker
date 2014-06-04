@@ -1,9 +1,9 @@
 package modtweaker.mariculture.function;
 
-import static modtweaker.helpers.TweakerHelper.getFluid;
-import static modtweaker.helpers.TweakerHelper.getInt;
-import static modtweaker.helpers.TweakerHelper.getItem;
-import static modtweaker.helpers.TweakerHelper.throwException;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.getFluid;
+import static modtweaker.util.TweakerHelper.getInt;
+import static modtweaker.util.TweakerHelper.throwException;
 import mariculture.api.core.RecipeVat;
 import modtweaker.mariculture.action.VatAddRecipeAction;
 import modtweaker.mariculture.values.VatValue;
@@ -22,9 +22,9 @@ public class VatSoakFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 4) throwException(toString(), 4); 
-		TweakerItemStack input = getItem(0, arguments);
+		TweakerItemStack input = GetItemOld(0, arguments);
 		TweakerLiquidStack fluid = getFluid(1, arguments);
-		TweakerItemStack output = getItem(2, arguments);
+		TweakerItemStack output = GetItemOld(2, arguments);
 		int time = getInt(3, arguments);
 		Tweaker.apply(new VatAddRecipeAction(new RecipeVat(input.get(), fluid.get(), output.get(), time)));
 		return null;

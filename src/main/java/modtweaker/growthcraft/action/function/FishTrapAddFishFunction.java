@@ -1,8 +1,8 @@
 package modtweaker.growthcraft.action.function;
 
-import static modtweaker.helpers.TweakerHelper.getInt;
-import static modtweaker.helpers.TweakerHelper.getItem;
-import static modtweaker.helpers.TweakerHelper.throwException;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.getInt;
+import static modtweaker.util.TweakerHelper.throwException;
 import growthcraft.api.fishtrap.FishTrapEntry;
 import modtweaker.growthcraft.action.FishTrapAddLootAction;
 import modtweaker.growthcraft.action.FishTrapAddLootAction.Rarity;
@@ -20,7 +20,7 @@ public class FishTrapAddFishFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 2) throwException(toString(), 5); 
-		ItemStack fish = getItem(0, arguments).get();
+		ItemStack fish = GetItemOld(0, arguments).get();
 		int weight = getInt(1, arguments);
 		Tweaker.apply(new FishTrapAddLootAction(new FishTrapEntry(fish ,weight), Rarity.FISH));
 		return null;

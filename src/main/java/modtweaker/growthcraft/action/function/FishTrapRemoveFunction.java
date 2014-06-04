@@ -1,7 +1,7 @@
 package modtweaker.growthcraft.action.function;
 
-import static modtweaker.helpers.TweakerHelper.getItem;
-import static modtweaker.helpers.TweakerHelper.throwException;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.throwException;
 import modtweaker.growthcraft.action.FishTrapAddLootAction.Rarity;
 import modtweaker.growthcraft.action.FishTrapRemoveLootAction;
 import stanhebben.minetweaker.api.Tweaker;
@@ -18,7 +18,7 @@ public class FishTrapRemoveFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 1) throwException(toString(), 1);
-		TweakerItemStack output = getItem(0, arguments);
+		TweakerItemStack output = GetItemOld(0, arguments);
 		Tweaker.apply(new FishTrapRemoveLootAction(output, Rarity.FISH));
 		Tweaker.apply(new FishTrapRemoveLootAction(output, Rarity.JUNK));
 		Tweaker.apply(new FishTrapRemoveLootAction(output, Rarity.TREASURE));

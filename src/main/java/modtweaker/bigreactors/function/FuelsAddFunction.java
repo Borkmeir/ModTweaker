@@ -1,9 +1,9 @@
 package modtweaker.bigreactors.function;
 
-import static modtweaker.helpers.TweakerHelper.getBoolean;
-import static modtweaker.helpers.TweakerHelper.getFluid;
-import static modtweaker.helpers.TweakerHelper.getHex;
-import static modtweaker.helpers.TweakerHelper.getString;
+import static modtweaker.util.TweakerHelper.getBoolean;
+import static modtweaker.util.TweakerHelper.getFluid;
+import static modtweaker.util.TweakerHelper.getHex;
+import static modtweaker.util.TweakerHelper.getString;
 import modtweaker.bigreactors.action.FuelsAddAction;
 import net.minecraftforge.fluids.Fluid;
 import stanhebben.minetweaker.api.Tweaker;

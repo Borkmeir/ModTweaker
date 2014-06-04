@@ -1,8 +1,8 @@
 package modtweaker.bigreactors.function;
 
-import static modtweaker.helpers.TweakerHelper.getFloat;
-import static modtweaker.helpers.TweakerHelper.getString;
-import static modtweaker.helpers.TweakerHelper.throwException;
+import static modtweaker.util.TweakerHelper.getFloat;
+import static modtweaker.util.TweakerHelper.getString;
+import static modtweaker.util.TweakerHelper.throwException;
 import modtweaker.bigreactors.action.ReactorInteriorBlockAddAction;
 import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerNameSpace;

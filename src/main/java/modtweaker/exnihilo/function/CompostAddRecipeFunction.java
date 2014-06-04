@@ -1,8 +1,8 @@
 package modtweaker.exnihilo.function;
 
-import static modtweaker.helpers.TweakerHelper.getFloat;
-import static modtweaker.helpers.TweakerHelper.getItem;
-import static modtweaker.helpers.TweakerHelper.getString;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.getFloat;
+import static modtweaker.util.TweakerHelper.getString;
 import modtweaker.exnihilo.action.CompostAddRecipeAction;
 import net.minecraft.item.ItemStack;
 import stanhebben.minetweaker.api.Tweaker;
@@ -21,7 +21,7 @@ public class CompostAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length == 3) {
-			ItemStack input = getItem(0, arguments).get();
+			ItemStack input = GetItemOld(0, arguments).get();
 			float rarity = getFloat(1, arguments);
 			String hex = getString(2, arguments);
 			Tweaker.apply(new CompostAddRecipeAction(new Compostable(input.itemID, input.getItemDamage(), rarity, new Color(hex))));

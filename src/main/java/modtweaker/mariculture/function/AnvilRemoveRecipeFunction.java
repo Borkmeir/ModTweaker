@@ -1,7 +1,7 @@
 package modtweaker.mariculture.function;
 
-import static modtweaker.helpers.TweakerHelper.getItem;
-import static modtweaker.helpers.TweakerHelper.throwException;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.throwException;
 import modtweaker.mariculture.action.AnvilRemoveRecipeAction;
 import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerNameSpace;
@@ -17,7 +17,7 @@ public class AnvilRemoveRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 1) throwException(toString(), 1);
-		TweakerItemStack output = getItem(0, arguments);
+		TweakerItemStack output = GetItemOld(0, arguments);
 		Tweaker.apply(new AnvilRemoveRecipeAction(output));
 		return null;
 	}

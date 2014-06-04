@@ -1,7 +1,7 @@
 package modtweaker.bigreactors.function;
 
-import static modtweaker.helpers.TweakerHelper.getString;
-import static modtweaker.helpers.TweakerHelper.throwException;
+import static modtweaker.util.TweakerHelper.getString;
+import static modtweaker.util.TweakerHelper.throwException;
 import modtweaker.bigreactors.action.ReactorInteriorFluidRemoveAction;
 import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerNameSpace;
@@ -23,6 +23,6 @@ public class ReactorInteriorFluidRemoveFunction extends TweakerFunction {
 
 	@Override
 	public String toString() {
-		return "bigreactors.removeInterioFluid";
+		return "bigreactors.removeInteriorFluid";
 	}
 }

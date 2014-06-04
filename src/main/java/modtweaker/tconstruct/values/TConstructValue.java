@@ -9,7 +9,7 @@ public class TConstructValue extends TweakerValue {
 	
 	@Override
 	public TweakerValue index(String index) {
-		//if(index.equals("crusher")) return CrusherValue.INSTANCE;
+		if(index.equals("smeltery")) return SmelteryValue.INSTANCE;
 		return super.index(index);
 	}
 

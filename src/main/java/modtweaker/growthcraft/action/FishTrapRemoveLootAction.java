@@ -1,6 +1,6 @@
 package modtweaker.growthcraft.action;
 
-import static modtweaker.helpers.ItemHelper.areEqual;
+import static modtweaker.util.ItemHelper.areEqual;
 import growthcraft.api.fishtrap.FishTrapEntry;
 import modtweaker.growthcraft.GrowthcraftHacks;
 import modtweaker.growthcraft.action.FishTrapAddLootAction.Rarity;

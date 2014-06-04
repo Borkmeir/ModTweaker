@@ -1,8 +1,8 @@
 package modtweaker.mariculture.function;
 
-import static modtweaker.helpers.TweakerHelper.getFluid;
-import static modtweaker.helpers.TweakerHelper.getInt;
-import static modtweaker.helpers.TweakerHelper.throwException;
+import static modtweaker.util.TweakerHelper.getFluid;
+import static modtweaker.util.TweakerHelper.getInt;
+import static modtweaker.util.TweakerHelper.throwException;
 import mariculture.api.core.FuelInfo;
 import modtweaker.mariculture.action.CrucibleAddFuelAction;
 import stanhebben.minetweaker.api.Tweaker;

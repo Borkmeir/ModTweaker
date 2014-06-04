@@ -1,6 +1,6 @@
 package modtweaker.exnihilo.action;
 
-import static modtweaker.helpers.ItemHelper.areEqual;
+import static modtweaker.util.ItemHelper.areEqual;
 
 import java.util.Map.Entry;
 

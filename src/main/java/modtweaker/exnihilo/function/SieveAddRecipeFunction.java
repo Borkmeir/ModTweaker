@@ -1,7 +1,7 @@
 package modtweaker.exnihilo.function;
 
-import static modtweaker.helpers.TweakerHelper.getInt;
-import static modtweaker.helpers.TweakerHelper.getItem;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.getInt;
 import modtweaker.exnihilo.action.SieveAddRecipeAction;
 import net.minecraft.item.ItemStack;
 import stanhebben.minetweaker.api.Tweaker;
@@ -19,8 +19,8 @@ public class SieveAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length == 3) {
-			ItemStack input = getItem(0, arguments).get();
-			ItemStack output = getItem(1, arguments).get();
+			ItemStack input = GetItemOld(0, arguments).get();
+			ItemStack output = GetItemOld(1, arguments).get();
 			int rarity = Math.max(1, getInt(2, arguments));
 			Tweaker.apply(new SieveAddRecipeAction(new SiftReward(input.itemID, input.getItemDamage(), output.itemID, output.getItemDamage(), rarity)));
 		} else {

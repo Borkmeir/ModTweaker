@@ -1,4 +1,4 @@
-package modtweaker.helpers;
+package modtweaker.util;
 
 import mariculture.core.helpers.OreDicHelper;
 import net.minecraft.item.ItemStack;

@@ -1,7 +1,7 @@
 package modtweaker.exnihilo.function;
 
-import static modtweaker.helpers.TweakerHelper.getFloat;
-import static modtweaker.helpers.TweakerHelper.getItem;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.getFloat;
 import modtweaker.exnihilo.action.HammerAddRecipeAction;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -20,9 +20,9 @@ public class HammerAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length == 4) {
-			ItemStack input = getItem(0, arguments).get();
+			ItemStack input = GetItemOld(0, arguments).get();
 			if(input.itemID >= 4096 || Block.blocksList[input.itemID] == null) throw new TweakerExecuteException("Block smashing requires the input to be a block");
-			ItemStack output = getItem(1, arguments).get();
+			ItemStack output = GetItemOld(1, arguments).get();
 			float chance = getFloat(2, arguments);
 			float luck = getFloat(3, arguments);
 			Tweaker.apply(new HammerAddRecipeAction(new Smashable(input.itemID, input.getItemDamage(), output.itemID, output.getItemDamage(), chance, luck)));

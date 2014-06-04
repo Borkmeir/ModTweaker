@@ -1,8 +1,8 @@
 package modtweaker.mariculture.function;
 
-import static modtweaker.helpers.TweakerHelper.getInt;
-import static modtweaker.helpers.TweakerHelper.getItem;
-import static modtweaker.helpers.TweakerHelper.throwException;
+import static modtweaker.util.TweakerHelper.GetItemOld;
+import static modtweaker.util.TweakerHelper.getInt;
+import static modtweaker.util.TweakerHelper.throwException;
 import mariculture.api.core.IAnvilHandler.RecipeAnvil;
 import modtweaker.mariculture.action.AnvilAddRecipeAction;
 import net.minecraft.item.ItemStack;
@@ -19,8 +19,8 @@ public class AnvilAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 3) throwException(toString(), 3); 
-		ItemStack input = getItem(0, arguments).get();
-		ItemStack output = getItem(1, arguments).get();
+		ItemStack input = GetItemOld(0, arguments).get();
+		ItemStack output = GetItemOld(1, arguments).get();
 		int hits = getInt(2, arguments);
 		Tweaker.apply(new AnvilAddRecipeAction(new RecipeAnvil(input, output, hits)));
 		return null;
