@@ -2,22 +2,22 @@ package modtweaker.bloodmagic.action;
 
 import static modtweaker.helpers.ItemHelper.areEqual;
 import stanhebben.minetweaker.api.IUndoableAction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 import WayofTime.alchemicalWizardry.api.bindingRegistry.BindingRecipe;
 import WayofTime.alchemicalWizardry.api.bindingRegistry.BindingRegistry;
 
 public class BindingRemoveRecipeAction implements IUndoableAction {
-	private final TweakerItem result;
+	private final TweakerItemStack result;
 	private BindingRecipe recipe;
 	
-	public BindingRemoveRecipeAction(TweakerItem result) {
-		this.result = result;
+	public BindingRemoveRecipeAction(TweakerItemStack output) {
+		this.result = output;
 	}
 
 	@Override
 	public void apply() {		
 		for(BindingRecipe r: BindingRegistry.bindingRecipes) {
-			if(areEqual(result.make(), r.outputItem)) {
+			if(areEqual(result.get(), r.outputItem)) {
 				recipe = r;
 				break;
 			}

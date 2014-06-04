@@ -7,7 +7,7 @@ import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerExecuteException;
 import stanhebben.minetweaker.api.TweakerNameSpace;
 import stanhebben.minetweaker.api.value.TweakerFunction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 import stanhebben.minetweaker.api.value.TweakerValue;
 import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipe;
 
@@ -19,8 +19,8 @@ public class AltarAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length >= 4 && arguments.length <= 6) {
-			TweakerItem input = getItem(0, arguments);
-			TweakerItem output = getItem(1, arguments);
+			TweakerItemStack input = getItem(0, arguments);
+			TweakerItemStack output = getItem(1, arguments);
 			int tier = getInt(2, arguments);
 			int lp = getInt(3, arguments);
 			int consumption = 5;
@@ -32,7 +32,7 @@ public class AltarAddRecipeFunction extends TweakerFunction {
 				}
 			}
 			
-			Tweaker.apply(new AltarAddRecipeAction(new AltarRecipe(output.make(), input.make(), tier, lp, consumption, drain, false)));
+			Tweaker.apply(new AltarAddRecipeAction(new AltarRecipe(output.get(), input.get(), tier, lp, consumption, drain, false)));
 		} else {
 			throw new TweakerExecuteException(toString() + " requires 4 to 6 arguments");
 		}

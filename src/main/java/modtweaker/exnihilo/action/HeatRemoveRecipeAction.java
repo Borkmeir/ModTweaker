@@ -6,23 +6,23 @@ import java.util.Map.Entry;
 
 import net.minecraft.item.ItemStack;
 import stanhebben.minetweaker.api.IUndoableAction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 import exnihilo.registries.HeatRegistry;
 import exnihilo.registries.helpers.HeatSource;
 
 public class HeatRemoveRecipeAction implements IUndoableAction {
-	private final TweakerItem result;
+	private final TweakerItemStack result;
 	private HeatSource recipe;
 	
-	public HeatRemoveRecipeAction(TweakerItem result) {
-		this.result = result;
+	public HeatRemoveRecipeAction(TweakerItemStack output) {
+		this.result = output;
 	}
 
 	@Override
 	public void apply() {		
 		for (Entry<String, HeatSource> registry : HeatRegistry.entries.entrySet()) {
 			HeatSource r = registry.getValue();
-			if(areEqual(result.make(), new ItemStack(r.id, 1, r.meta))) {
+			if(areEqual(result.get(), new ItemStack(r.id, 1, r.meta))) {
 				recipe = r;
 				break;
 			}

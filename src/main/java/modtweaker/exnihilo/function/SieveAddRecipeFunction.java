@@ -19,8 +19,8 @@ public class SieveAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length == 3) {
-			ItemStack input = getItem(0, arguments).make();
-			ItemStack output = getItem(1, arguments).make();
+			ItemStack input = getItem(0, arguments).get();
+			ItemStack output = getItem(1, arguments).get();
 			int rarity = Math.max(1, getInt(2, arguments));
 			Tweaker.apply(new SieveAddRecipeAction(new SiftReward(input.itemID, input.getItemDamage(), output.itemID, output.getItemDamage(), rarity)));
 		} else {

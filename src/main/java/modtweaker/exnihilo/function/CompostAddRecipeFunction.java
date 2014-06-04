@@ -21,7 +21,7 @@ public class CompostAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length == 3) {
-			ItemStack input = getItem(0, arguments).make();
+			ItemStack input = getItem(0, arguments).get();
 			float rarity = getFloat(1, arguments);
 			String hex = getString(2, arguments);
 			Tweaker.apply(new CompostAddRecipeAction(new Compostable(input.itemID, input.getItemDamage(), rarity, new Color(hex))));

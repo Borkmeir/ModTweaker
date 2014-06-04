@@ -6,7 +6,7 @@ import modtweaker.mariculture.action.CrucibleRemoveRecipeAction;
 import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerNameSpace;
 import stanhebben.minetweaker.api.value.TweakerFunction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 import stanhebben.minetweaker.api.value.TweakerValue;
 
 public class CrucibleRemoveAlloyFunction extends TweakerFunction {
@@ -17,8 +17,8 @@ public class CrucibleRemoveAlloyFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 2) throwException(toString(), 2);
-		TweakerItem output = getItem(0, arguments);
-		TweakerItem output2 = getItem(1, arguments);
+		TweakerItemStack output = getItem(0, arguments);
+		TweakerItemStack output2 = getItem(1, arguments);
 		Tweaker.apply(new CrucibleRemoveRecipeAction(output, output2));
 		return null;
 	}

@@ -3,10 +3,10 @@ package modtweaker.bloodmagic;
 import modtweaker.bloodmagic.values.BloodMagicValue;
 import stanhebben.minetweaker.api.MineTweakerInterface;
 
-public class BloodMagicModSupport extends MineTweakerInterface {
-	public static final BloodMagicModSupport INSTANCE = new BloodMagicModSupport();
+public class BloodMagic extends MineTweakerInterface {
+	public static final BloodMagic INSTANCE = new BloodMagic();
 	
-	BloodMagicModSupport() {
+	BloodMagic() {
 		super("bloodmagic", BloodMagicValue.INSTANCE);
 	}
 }

@@ -5,15 +5,15 @@ import growthcraft.api.fishtrap.FishTrapEntry;
 import modtweaker.growthcraft.GrowthcraftHacks;
 import modtweaker.growthcraft.action.FishTrapAddLootAction.Rarity;
 import stanhebben.minetweaker.api.IUndoableAction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 
 public class FishTrapRemoveLootAction implements IUndoableAction {
-	private final TweakerItem result;
+	private final TweakerItemStack result;
 	private final Rarity rarity;
 	private FishTrapEntry entry;
 	
-	public FishTrapRemoveLootAction(TweakerItem result, Rarity rarity) {
-		this.result = result;
+	public FishTrapRemoveLootAction(TweakerItemStack output, Rarity rarity) {
+		this.result = output;
 		this.rarity = rarity;
 	}
 
@@ -21,7 +21,7 @@ public class FishTrapRemoveLootAction implements IUndoableAction {
 	public void apply() {		
 		if(rarity == rarity.FISH) {
 			for(FishTrapEntry e: GrowthcraftHacks.fishList) {
-				if(areEqual(result.make(), e.fishable)) {
+				if(areEqual(result.get(), e.fishable)) {
 					entry = e;
 					break;
 				}
@@ -30,7 +30,7 @@ public class FishTrapRemoveLootAction implements IUndoableAction {
 			GrowthcraftHacks.fishList.remove(entry);
 		} else if(rarity == rarity.JUNK) {
 			for(FishTrapEntry e: GrowthcraftHacks.junkList) {
-				if(areEqual(result.make(), e.fishable)) {
+				if(areEqual(result.get(), e.fishable)) {
 					entry = e;
 					break;
 				}
@@ -39,7 +39,7 @@ public class FishTrapRemoveLootAction implements IUndoableAction {
 			GrowthcraftHacks.junkList.remove(entry);
 		} else if(rarity == rarity.TREASURE) {
 			for(FishTrapEntry e: GrowthcraftHacks.treasureList) {
-				if(areEqual(result.make(), e.fishable)) {
+				if(areEqual(result.get(), e.fishable)) {
 					entry = e;
 					break;
 				}

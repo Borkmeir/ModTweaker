@@ -20,7 +20,7 @@ public class HeatAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length == 2) {
-			ItemStack input = getItem(0, arguments).make();
+			ItemStack input = getItem(0, arguments).get();
 			if(input.itemID >= 4096 || Block.blocksList[input.itemID] == null) throw new TweakerExecuteException("Heat source must be a block");
 			float value = getFloat(1, arguments);
 			Tweaker.apply(new HeatAddRecipeAction(new HeatSource(input.itemID, input.getItemDamage(), value)));

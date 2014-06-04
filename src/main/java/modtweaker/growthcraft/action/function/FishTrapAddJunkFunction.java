@@ -20,7 +20,7 @@ public class FishTrapAddJunkFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 2) throwException(toString(), 5); 
-		ItemStack fish = getItem(0, arguments).make();
+		ItemStack fish = getItem(0, arguments).get();
 		int weight = getInt(1, arguments);
 		Tweaker.apply(new FishTrapAddLootAction(new FishTrapEntry(fish ,weight), Rarity.JUNK));
 		return null;

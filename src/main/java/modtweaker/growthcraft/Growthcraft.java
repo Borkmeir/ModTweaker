@@ -3,10 +3,10 @@ package modtweaker.growthcraft;
 import modtweaker.growthcraft.values.GrowthcraftValue;
 import stanhebben.minetweaker.api.MineTweakerInterface;
 
-public class GrowthcraftModSupport extends MineTweakerInterface {
-	public static final GrowthcraftModSupport INSTANCE = new GrowthcraftModSupport();
+public class Growthcraft extends MineTweakerInterface {
+	public static final Growthcraft INSTANCE = new Growthcraft();
 	
-	GrowthcraftModSupport() {
+	Growthcraft() {
 		super("growthcraft", GrowthcraftValue.INSTANCE);
 	}
 }

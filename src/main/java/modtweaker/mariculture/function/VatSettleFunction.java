@@ -10,7 +10,7 @@ import modtweaker.mariculture.values.VatValue;
 import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerNameSpace;
 import stanhebben.minetweaker.api.value.TweakerFunction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 import stanhebben.minetweaker.api.value.TweakerLiquidStack;
 import stanhebben.minetweaker.api.value.TweakerValue;
 
@@ -24,9 +24,9 @@ public class VatSettleFunction extends TweakerFunction {
 		if(arguments.length != 4) throwException(toString(), 4); 
 		TweakerLiquidStack fluid = getFluid(0, arguments);
 		TweakerLiquidStack fluid2 = getFluid(1, arguments);
-		TweakerItem output = getItem(2, arguments);
+		TweakerItemStack output = getItem(2, arguments);
 		int time = getInt(3, arguments);
-		Tweaker.apply(new VatAddRecipeAction(new RecipeVat(fluid.get(), fluid2.get(), output.make(), time)));
+		Tweaker.apply(new VatAddRecipeAction(new RecipeVat(fluid.get(), fluid2.get(), output.get(), time)));
 		return null;
 	}
 

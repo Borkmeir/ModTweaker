@@ -10,7 +10,7 @@ import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerExecuteException;
 import stanhebben.minetweaker.api.TweakerNameSpace;
 import stanhebben.minetweaker.api.value.TweakerFunction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 import stanhebben.minetweaker.api.value.TweakerLiquidStack;
 import stanhebben.minetweaker.api.value.TweakerValue;
 
@@ -23,10 +23,10 @@ public class CrucibleAddAlloyFunction extends TweakerFunction {
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length == 4 || arguments.length == 6) {
 			int temp = Math.max(1, getInt(0, arguments));
-			TweakerItem item = getItem(1, arguments);
-			TweakerItem item2 = getItem(2, arguments);
+			TweakerItemStack item = getItem(1, arguments);
+			TweakerItemStack item2 = getItem(2, arguments);
 			TweakerLiquidStack fluid = getFluid(3, arguments);
-			TweakerItem output = null;
+			TweakerItemStack output = null;
 			int chance = 0;
 			if(arguments.length == 6) {
 				output = getItemNull(4, arguments);
@@ -35,9 +35,9 @@ public class CrucibleAddAlloyFunction extends TweakerFunction {
 			}
 			
 			if(output == null) {
-				Tweaker.apply(new CrucibleAddRecipeAction(new RecipeSmelter(item.make(), item2.make(), temp, fluid.get(), null, chance)));
+				Tweaker.apply(new CrucibleAddRecipeAction(new RecipeSmelter(item.get(), item2.get(), temp, fluid.get(), null, chance)));
 			} else {
-				Tweaker.apply(new CrucibleAddRecipeAction(new RecipeSmelter(item.make(), item2.make(), temp, fluid.get(), output.make(), chance)));
+				Tweaker.apply(new CrucibleAddRecipeAction(new RecipeSmelter(item.get(), item2.get(), temp, fluid.get(), output.get(), chance)));
 			}		
 		} else {
 			throw new TweakerExecuteException(toString() + " requires 4 or 6 arguments");

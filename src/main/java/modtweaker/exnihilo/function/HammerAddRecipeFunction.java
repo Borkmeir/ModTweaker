@@ -20,9 +20,9 @@ public class HammerAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length == 4) {
-			ItemStack input = getItem(0, arguments).make();
+			ItemStack input = getItem(0, arguments).get();
 			if(input.itemID >= 4096 || Block.blocksList[input.itemID] == null) throw new TweakerExecuteException("Block smashing requires the input to be a block");
-			ItemStack output = getItem(1, arguments).make();
+			ItemStack output = getItem(1, arguments).get();
 			float chance = getFloat(2, arguments);
 			float luck = getFloat(3, arguments);
 			Tweaker.apply(new HammerAddRecipeAction(new Smashable(input.itemID, input.getItemDamage(), output.itemID, output.getItemDamage(), chance, luck)));

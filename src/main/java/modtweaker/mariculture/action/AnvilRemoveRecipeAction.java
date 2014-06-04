@@ -6,14 +6,14 @@ import mariculture.api.core.IAnvilHandler.RecipeAnvil;
 import mariculture.core.helpers.OreDicHelper;
 import modtweaker.mariculture.MaricultureHacks;
 import stanhebben.minetweaker.api.IUndoableAction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 
 public class AnvilRemoveRecipeAction implements IUndoableAction {
-	private final TweakerItem output;
+	private final TweakerItemStack output;
 	private String remove;
 	private RecipeAnvil recipe;
 	
-	public AnvilRemoveRecipeAction(TweakerItem output) {
+	public AnvilRemoveRecipeAction(TweakerItemStack output) {
 		this.output = output;
 	}
 
@@ -22,7 +22,7 @@ public class AnvilRemoveRecipeAction implements IUndoableAction {
 		remove = null;
 		for (Entry<String, RecipeAnvil> anvil : MaricultureHacks.anvil.entrySet()) {
 			RecipeAnvil r = anvil.getValue();
-			if(OreDicHelper.convert(r.output).equals(OreDicHelper.convert(output.make()))) {
+			if(OreDicHelper.convert(r.output).equals(OreDicHelper.convert(output.get()))) {
 				remove = anvil.getKey();
 				break;
 			}

@@ -3,22 +3,22 @@ package modtweaker.exnihilo.action;
 import static modtweaker.helpers.ItemHelper.areEqual;
 import net.minecraft.item.ItemStack;
 import stanhebben.minetweaker.api.IUndoableAction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 import exnihilo.registries.SieveRegistry;
 import exnihilo.registries.helpers.SiftReward;
 
 public class SieveRemoveRecipeAction implements IUndoableAction {
-	private final TweakerItem result;
+	private final TweakerItemStack result;
 	private SiftReward recipe;
 	
-	public SieveRemoveRecipeAction(TweakerItem result) {
-		this.result = result;
+	public SieveRemoveRecipeAction(TweakerItemStack output) {
+		this.result = output;
 	}
 
 	@Override
 	public void apply() {		
 		for(SiftReward r: SieveRegistry.rewards) {
-			if(areEqual(result.make(), new ItemStack(r.id, 1, r.meta))) {
+			if(areEqual(result.get(), new ItemStack(r.id, 1, r.meta))) {
 				recipe = r;
 				break;
 			}

@@ -2,7 +2,7 @@ package modtweaker.helpers;
 
 import stanhebben.minetweaker.api.TweakerExecuteException;
 import stanhebben.minetweaker.api.value.TweakerArray;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 import stanhebben.minetweaker.api.value.TweakerLiquidStack;
 import stanhebben.minetweaker.api.value.TweakerValue;
 
@@ -11,8 +11,8 @@ public class TweakerHelper {
 		return TweakerValue.notNull(value, "argument " + arg + " must not be null");
 	}
 	
-	public static TweakerItem getItem(int arg, TweakerValue... values) {
-		return notNull(values[arg], arg).toItem( "argument " + arg + " must be an item");
+	public static TweakerItemStack getItem(int arg, TweakerValue... values) {
+		return notNull(values[arg], arg).toItemStack( "argument " + arg + " must be an item");
 	}
 	
 	public static TweakerLiquidStack getFluid(int arg, TweakerValue... values) {
@@ -35,8 +35,8 @@ public class TweakerHelper {
 		return notNull(values[arg], arg).toArray("argument " + arg + " must be an array of items");
 	}
 	
-	public static TweakerItem getItemNull(int arg, TweakerValue...values) {
-		return values[arg].asItem();
+	public static TweakerItemStack getItemNull(int arg, TweakerValue...values) {
+		return values[arg].asItemStack();
 	}
 	
 	public static TweakerLiquidStack getFluidNull(int arg, TweakerValue...values) {
@@ -54,6 +54,10 @@ public class TweakerHelper {
 	
 	public static String getString(int arg, TweakerValue... values) {
 		return notNull(values[arg], arg).toBasicString();
+	}
+	
+	public static int getHex(int arg, TweakerValue... values) {
+		return Integer.parseInt(getString(arg, values), 16);
 	}
 	
 	public static void throwException(String label, int args) {

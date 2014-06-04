@@ -18,8 +18,8 @@ public class BindingAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 2) throwException(toString(), 5); 
-		ItemStack input = getItem(0, arguments).make();
-		ItemStack output = getItem(1, arguments).make();
+		ItemStack input = getItem(0, arguments).get();
+		ItemStack output = getItem(1, arguments).get();
 		Tweaker.apply(new BindingAddRecipeAction(new BindingRecipe(output, input)));
 		return null;
 	}

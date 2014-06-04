@@ -10,7 +10,7 @@ import modtweaker.mariculture.values.VatValue;
 import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerNameSpace;
 import stanhebben.minetweaker.api.value.TweakerFunction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 import stanhebben.minetweaker.api.value.TweakerLiquidStack;
 import stanhebben.minetweaker.api.value.TweakerValue;
 
@@ -22,11 +22,11 @@ public class VatDissolveFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 4) throwException(toString(), 4); 
-		TweakerItem input = getItem(0, arguments);
+		TweakerItemStack input = getItem(0, arguments);
 		TweakerLiquidStack fluid = getFluid(1, arguments);
 		TweakerLiquidStack fluid2 = getFluid(2, arguments);
 		int time = getInt(3, arguments);
-		Tweaker.apply(new VatAddRecipeAction(new RecipeVat(input.make(), fluid.get(), fluid2.get(), time)));
+		Tweaker.apply(new VatAddRecipeAction(new RecipeVat(input.get(), fluid.get(), fluid2.get(), time)));
 		return null;
 	}
 

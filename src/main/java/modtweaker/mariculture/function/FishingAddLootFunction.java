@@ -24,7 +24,7 @@ public class FishingAddLootFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 5) throwException(toString(), 5); 
-		ItemStack input = getItem(0, arguments).make();
+		ItemStack input = getItem(0, arguments).get();
 		int chance = Math.max(1, getInt(1, arguments));
 		String quality = getString(2, arguments);
 		boolean exact = getBoolean(3, arguments);

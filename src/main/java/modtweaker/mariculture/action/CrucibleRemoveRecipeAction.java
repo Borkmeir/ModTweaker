@@ -6,17 +6,17 @@ import mariculture.api.core.RecipeSmelter;
 import mariculture.core.helpers.OreDicHelper;
 import modtweaker.mariculture.MaricultureHacks;
 import stanhebben.minetweaker.api.IUndoableAction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 
 public class CrucibleRemoveRecipeAction implements IUndoableAction {
-	private final TweakerItem input;
-	private final TweakerItem input2;
+	private final TweakerItemStack input;
+	private final TweakerItemStack input2;
 	private String remove;
 	private RecipeSmelter recipe;
 	
-	public CrucibleRemoveRecipeAction(TweakerItem input, TweakerItem input2) {
-		this.input = input;
-		this.input2 = input2;
+	public CrucibleRemoveRecipeAction(TweakerItemStack output, TweakerItemStack output2) {
+		this.input = output;
+		this.input2 = output2;
 	}
 
 	@Override
@@ -24,12 +24,12 @@ public class CrucibleRemoveRecipeAction implements IUndoableAction {
 		remove = null;
 		for (Entry<String, RecipeSmelter> crucible : MaricultureHacks.crucible.entrySet()) {
 			RecipeSmelter rep = crucible.getValue();
-			if(OreDicHelper.convert(rep.input).equals(OreDicHelper.convert(input.make()))) {
+			if(OreDicHelper.convert(rep.input).equals(OreDicHelper.convert(input.get()))) {
 				if(rep.input2 == null) {
 					remove = crucible.getKey();
 					break;
 				} else if(input2 != null) {
-					if(OreDicHelper.convert(rep.input2).equals(OreDicHelper.convert(input2.make()))) {
+					if(OreDicHelper.convert(rep.input2).equals(OreDicHelper.convert(input2.get()))) {
 						remove = crucible.getKey();
 						break;
 					}

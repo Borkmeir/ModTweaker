@@ -19,8 +19,8 @@ public class AnvilAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length != 3) throwException(toString(), 3); 
-		ItemStack input = getItem(0, arguments).make();
-		ItemStack output = getItem(1, arguments).make();
+		ItemStack input = getItem(0, arguments).get();
+		ItemStack output = getItem(1, arguments).get();
 		int hits = getInt(2, arguments);
 		Tweaker.apply(new AnvilAddRecipeAction(new RecipeAnvil(input, output, hits)));
 		return null;

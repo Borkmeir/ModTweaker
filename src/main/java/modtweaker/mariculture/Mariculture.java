@@ -3,10 +3,10 @@ package modtweaker.mariculture;
 import modtweaker.mariculture.values.MaricultureValue;
 import stanhebben.minetweaker.api.MineTweakerInterface;
 
-public class MaricultureModSupport extends MineTweakerInterface {
-	public static final MaricultureModSupport INSTANCE = new MaricultureModSupport();
+public class Mariculture extends MineTweakerInterface {
+	public static final Mariculture INSTANCE = new Mariculture();
 	
-	MaricultureModSupport() {
+	Mariculture() {
 		super("mariculture", MaricultureValue.INSTANCE);
 	}
 }

@@ -21,7 +21,7 @@ public class CrucibleAddRecipeFunction extends TweakerFunction {
 	@Override
 	public TweakerValue call(TweakerNameSpace namespace, TweakerValue... arguments) {
 		if(arguments.length == 2) {
-			ItemStack input = getItem(0, arguments).make();
+			ItemStack input = getItem(0, arguments).get();
 			if(input.itemID >= 4096 || Block.blocksList[input.itemID] == null) throw new TweakerExecuteException("Must add a block to Crucible Melting, not items");
 			FluidStack fluid = getFluid(1, arguments).get();
 			Tweaker.apply(new CrucibleAddRecipeAction(new Meltable(input.itemID, input.getItemDamage(), 2000, fluid.getFluid(), fluid.amount, Block.blocksList[input.itemID])));

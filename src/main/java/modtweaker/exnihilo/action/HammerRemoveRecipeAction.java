@@ -3,22 +3,22 @@ package modtweaker.exnihilo.action;
 import static modtweaker.helpers.ItemHelper.areEqual;
 import net.minecraft.item.ItemStack;
 import stanhebben.minetweaker.api.IUndoableAction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 import exnihilo.registries.HammerRegistry;
 import exnihilo.registries.helpers.Smashable;
 
 public class HammerRemoveRecipeAction implements IUndoableAction {
-	private final TweakerItem result;
+	private final TweakerItemStack result;
 	private Smashable recipe;
 	
-	public HammerRemoveRecipeAction(TweakerItem result) {
-		this.result = result;
+	public HammerRemoveRecipeAction(TweakerItemStack output) {
+		this.result = output;
 	}
 
 	@Override
 	public void apply() {		
 		for(Smashable r: HammerRegistry.rewards) {
-			if(areEqual(result.make(), new ItemStack(r.id, 1, r.meta))) {
+			if(areEqual(result.get(), new ItemStack(r.id, 1, r.meta))) {
 				recipe = r;
 				break;
 			}

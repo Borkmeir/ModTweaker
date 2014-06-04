@@ -4,14 +4,14 @@ import static modtweaker.helpers.ItemHelper.areEqual;
 import mariculture.api.fishery.Loot;
 import modtweaker.mariculture.MaricultureHacks;
 import stanhebben.minetweaker.api.IUndoableAction;
-import stanhebben.minetweaker.api.value.TweakerItem;
+import stanhebben.minetweaker.api.value.TweakerItemStack;
 
 public class FishingRemoveLootAction implements IUndoableAction {
-	private final TweakerItem output;
+	private final TweakerItemStack output;
 	private boolean bad;
 	private Loot loot;
 	
-	public FishingRemoveLootAction(TweakerItem output) {
+	public FishingRemoveLootAction(TweakerItemStack output) {
 		this.output = output;
 	}
 
@@ -20,7 +20,7 @@ public class FishingRemoveLootAction implements IUndoableAction {
 		int removed = -1;
 		for(int i = 0; i < MaricultureHacks.badLoot.size(); i++) {
 			if(MaricultureHacks.badLoot.get(i) != null) {
-				if(areEqual(output.make(), MaricultureHacks.badLoot.get(i).loot)) {
+				if(areEqual(output.get(), MaricultureHacks.badLoot.get(i).loot)) {
 					bad = true;
 					loot = MaricultureHacks.badLoot.get(i);
 					removed = i;
@@ -32,7 +32,7 @@ public class FishingRemoveLootAction implements IUndoableAction {
 		if(removed < 0) {
 			for(int i = 0; i < MaricultureHacks.goodLoot.size(); i++) {
 				if(MaricultureHacks.goodLoot.get(i) != null) {
-					if(areEqual(output.make(), MaricultureHacks.goodLoot.get(i).loot)) {
+					if(areEqual(output.get(), MaricultureHacks.goodLoot.get(i).loot)) {
 						bad = false;
 						loot = MaricultureHacks.goodLoot.get(i);
 						removed = i;
