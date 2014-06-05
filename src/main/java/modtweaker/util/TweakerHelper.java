@@ -1,6 +1,7 @@
 package modtweaker.util;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 import stanhebben.minetweaker.api.TweakerExecuteException;
 import stanhebben.minetweaker.api.value.TweakerArray;
 import stanhebben.minetweaker.api.value.TweakerItemStack;
@@ -109,6 +110,31 @@ public class TweakerHelper {
 			ItemStack[] input = new ItemStack[array.size()];
 			for (int i = 0; i < array.size(); i++) {
 				input[i] = array.get(0).asItemStack().get();
+			}
+			
+			index++;
+			
+			return input;
+		} else return null;
+	}
+	
+	/* Returns an fluidstack, if it's not null then it will increase the index */
+	public static FluidStack getFluid() {
+		FluidStack stack = notNull(arguments[index], index).toFluidStack( "argument " + index + " must be a fluid").get();
+		if(stack != null) {
+			index++;
+		}
+		
+		return stack;
+	}
+	
+	/* return a list of fluidstack **/
+	public static FluidStack[] getFluids() {
+		TweakerArray array = notNull(arguments[index], index).toArray("argument " + index + " must be an array of fluids");
+		if(array != null) {
+			FluidStack[] input = new FluidStack[array.size()];
+			for (int i = 0; i < array.size(); i++) {
+				input[i] = array.get(0).asFluidStack().get();
 			}
 			
 			index++;

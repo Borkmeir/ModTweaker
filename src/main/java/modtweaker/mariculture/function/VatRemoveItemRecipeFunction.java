@@ -1,7 +1,7 @@
 package modtweaker.mariculture.function;
 
+import modtweaker.mariculture.Mariculture.VatValue;
 import modtweaker.mariculture.action.VatRemoveItemRecipeAction;
-import modtweaker.mariculture.values.VatValue;
 import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerExecuteException;
 import stanhebben.minetweaker.api.TweakerNameSpace;

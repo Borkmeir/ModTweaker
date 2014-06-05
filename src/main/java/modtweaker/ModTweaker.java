@@ -5,6 +5,7 @@ import modtweaker.exnihilo.ExNihilo;
 import modtweaker.growthcraft.Growthcraft;
 import modtweaker.mariculture.Mariculture;
 import modtweaker.metallurgy.Metallurgy;
+import modtweaker.steelworks.Steelworks;
 import modtweaker.tconstruct.TConstruct;
 import stanhebben.minetweaker.api.Tweaker;
 import cpw.mods.fml.common.Loader;
@@ -38,6 +39,10 @@ public class ModTweaker {
 		
 		if (Loader.isModLoaded("TConstruct")) {
 			Tweaker.registerModInterface(TConstruct.INSTANCE);
+		}
+		
+		if (Loader.isModLoaded("TSteelworks")) {
+			Tweaker.registerModInterface(Steelworks.INSTANCE);
 		}
 	}
 }

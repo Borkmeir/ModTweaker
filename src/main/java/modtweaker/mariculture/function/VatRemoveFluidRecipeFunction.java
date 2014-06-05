@@ -2,8 +2,8 @@ package modtweaker.mariculture.function;
 
 import static modtweaker.util.TweakerHelper.getFluid;
 import static modtweaker.util.TweakerHelper.throwException;
+import modtweaker.mariculture.Mariculture.VatValue;
 import modtweaker.mariculture.action.VatRemoveFluidRecipeAction;
-import modtweaker.mariculture.values.VatValue;
 import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.TweakerNameSpace;
 import stanhebben.minetweaker.api.value.TweakerFunction;
