@@ -8,6 +8,7 @@ import modtweaker.util.TweakerBaseFunction;
 import net.minecraftforge.fluids.FluidStack;
 import stanhebben.minetweaker.api.IUndoableAction;
 import stanhebben.minetweaker.api.Tweaker;
+import stanhebben.minetweaker.api.TweakerExecuteException;
 import stanhebben.minetweaker.api.value.TweakerValue;
 import tconstruct.library.crafting.AlloyMix;
 import tconstruct.library.crafting.Smeltery;

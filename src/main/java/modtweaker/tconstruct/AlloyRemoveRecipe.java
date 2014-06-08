@@ -9,7 +9,6 @@ import stanhebben.minetweaker.api.IUndoableAction;
 import stanhebben.minetweaker.api.Tweaker;
 import stanhebben.minetweaker.api.value.TweakerValue;
 import tconstruct.library.crafting.AlloyMix;
-import tconstruct.library.crafting.Smeltery;
 
 public class AlloyRemoveRecipe extends TweakerBaseFunction {
 	public static final AlloyRemoveRecipe INSTANCE = new AlloyRemoveRecipe();
@@ -27,23 +26,21 @@ public class AlloyRemoveRecipe extends TweakerBaseFunction {
 	
 	private static class Action implements IUndoableAction {
 		private final FluidStack output;
-		private FluidStack[] mixers;
+		private AlloyMix recipe;
 		public Action(FluidStack output) {
 			this.output = output;
 		}
 
 		@Override
 		public void apply() {
-			int k;
-			for (k = 0; k < TConstructHacks.alloys.size(); k++) {
-				AlloyMix mix = TConstructHacks.alloys.get(k);
-				if (mix.result.isFluidStackIdentical(output)) {
-					mixers = (FluidStack[]) mix.mixers.toArray();
+			for(AlloyMix mix: TConstructHacks.alloys) {
+				if(mix.result.isFluidStackIdentical(output)) {
+					recipe = mix;
 					break;
 				}
 			}
-
-			TConstructHacks.alloys.remove(k);
+			
+			TConstructHacks.alloys.remove(recipe);
 		}
 
 		@Override
@@ -53,7 +50,7 @@ public class AlloyRemoveRecipe extends TweakerBaseFunction {
 
 		@Override
 		public void undo() {
-			Smeltery.instance.addAlloyMixing(output, mixers);
+			TConstructHacks.alloys.add(recipe);
 
 		}
 

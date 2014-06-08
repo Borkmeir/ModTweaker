@@ -109,7 +109,7 @@ public class TweakerHelper {
 		if(array != null) {
 			ItemStack[] input = new ItemStack[array.size()];
 			for (int i = 0; i < array.size(); i++) {
-				input[i] = array.get(0).asItemStack().get();
+				input[i] = array.get(i).asItemStack().get();
 			}
 			
 			index++;
@@ -134,7 +134,7 @@ public class TweakerHelper {
 		if(array != null) {
 			FluidStack[] input = new FluidStack[array.size()];
 			for (int i = 0; i < array.size(); i++) {
-				input[i] = array.get(0).asFluidStack().get();
+				input[i] = array.get(i).asFluidStack().get();
 			}
 			
 			index++;
