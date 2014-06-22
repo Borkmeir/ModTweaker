@@ -7,13 +7,16 @@ import modtweaker.mariculture.Mariculture;
 import modtweaker.metallurgy.Metallurgy;
 import modtweaker.steelworks.Steelworks;
 import modtweaker.tconstruct.TConstruct;
+import modtweaker.thermalexpansion.ThermalExpansion;
+import stanhebben.minetweaker.MineTweaker;
 import stanhebben.minetweaker.api.Tweaker;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 
-@Mod(modid = "ModTweaker", name = "ModTweaker", dependencies = "required-after:MineTweaker")
+@Mod(modid = "ModTweaker", name = "ModTweaker", dependencies = "required-after:MineTweaker; after:ThermalExpansion")
 public class ModTweaker {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
@@ -43,6 +46,10 @@ public class ModTweaker {
 		
 		if (Loader.isModLoaded("TSteelworks")) {
 			Tweaker.registerModInterface(Steelworks.INSTANCE);
+		}
+		
+		if (Loader.isModLoaded("ThermalExpansion")) {
+			Tweaker.registerModInterface(ThermalExpansion.INSTANCE);
 		}
 	}
 }
