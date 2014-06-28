@@ -41,12 +41,12 @@ public class TEHacks {
 
 			// Smelter
 			smelter = getPrivateStaticObject(Class.forName("thermalexpansion.util.crafting.SmelterManager"), "recipeMap");
-			smelterValidation = getPrivateStaticObject(Class.forName("thermalexpansion.util.crafting.SmelterManager"), "validation");
+			smelterValidation = getPrivateStaticObject(Class.forName("thermalexpansion.util.crafting.SmelterManager"), "validationSet");
 
 			// Transposer
 			transposerFill = getPrivateStaticObject(Class.forName("thermalexpansion.util.crafting.TransposerManager"), "recipeMapFill");
-			transposerExtract = getPrivateStaticObject(Class.forName("thermalexpansion.util.crafting.TransposerManager"), "recipeMapExtract");
-			transposerValidation = getPrivateStaticObject(Class.forName("thermalexpansion.util.crafting.TransposerManager"), "validation");
+			transposerExtract = getPrivateStaticObject(Class.forName("thermalexpansion.util.crafting.TransposerManager"), "recipeMapExtraction");
+			transposerValidation = getPrivateStaticObject(Class.forName("thermalexpansion.util.crafting.TransposerManager"), "validationSet");
 		} catch (ClassCastException ex) {
 			ex.printStackTrace();
 		} catch (SecurityException e) {
