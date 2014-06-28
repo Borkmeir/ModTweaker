@@ -103,9 +103,17 @@ public class TweakerHelper {
 		index++;
 		return i;
 	}
+	
+	public static double getDouble() {
+		double i = notNull(arguments[index], index).toDouble("argument " + index + " must be a double").get();
+		index++;
+		return i;
+	}
 
 	public static String getString() {
-		return notNull(arguments[index], index).toBasicString();
+		String s = notNull(arguments[index], index).toBasicString();
+		index++;
+		return s;
 	}
 
 	/* returns a list of itemstacks */

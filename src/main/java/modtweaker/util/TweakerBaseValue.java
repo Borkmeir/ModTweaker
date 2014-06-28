@@ -1,5 +1,6 @@
 package modtweaker.util;
 
+import modtweaker.mekanism.Combiner;
 import stanhebben.minetweaker.api.value.TweakerValue;
 
 public abstract class TweakerBaseValue extends TweakerValue {

@@ -39,7 +39,7 @@ public class ThermalExpansion extends MineTweakerInterface {
 		@Override
 		public TweakerValue index(String index) {
 			if(index.equals("addRecipe"))    return CrucibleAddRecipe.INSTANCE;
-			//if(index.equals("removeRecipe")) return CrucibleRemoveRecipe.INSTANCE;
+			if(index.equals("removeRecipe")) return CrucibleRemoveRecipe.INSTANCE;
 			return super.index(index);
 		}
 	}
@@ -53,7 +53,7 @@ public class ThermalExpansion extends MineTweakerInterface {
 		@Override
 		public TweakerValue index(String index) {
 			if(index.equals("addRecipe"))    return FurnaceAddRecipe.INSTANCE;
-			//if(index.equals("removeRecipe")) return FurnaceRemoveRecipe.INSTANCE;
+			if(index.equals("removeRecipe")) return FurnaceRemoveRecipe.INSTANCE;
 			return super.index(index);
 		}
 	}
@@ -67,7 +67,7 @@ public class ThermalExpansion extends MineTweakerInterface {
 		@Override
 		public TweakerValue index(String index) {
 			if(index.equals("addRecipe"))    return PulverizerAddRecipe.INSTANCE;
-			//if(index.equals("removeRecipe")) return PulverizerRemoveRecipe.INSTANCE;
+			if(index.equals("removeRecipe")) return PulverizerRemoveRecipe.INSTANCE;
 			return super.index(index);
 		}
 	}
@@ -81,7 +81,7 @@ public class ThermalExpansion extends MineTweakerInterface {
 		@Override
 		public TweakerValue index(String index) {
 			if(index.equals("addRecipe"))    return SawmillAddRecipe.INSTANCE;
-			//if(index.equals("removeRecipe")) return SawmillRemoveRecipe.INSTANCE;
+			if(index.equals("removeRecipe")) return SawmillRemoveRecipe.INSTANCE;
 			return super.index(index);
 		}
 	}
@@ -95,7 +95,7 @@ public class ThermalExpansion extends MineTweakerInterface {
 		@Override
 		public TweakerValue index(String index) {
 			if(index.equals("addRecipe"))    return SmelterAddRecipe.INSTANCE;
-			//if(index.equals("removeRecipe")) return SmelterRemoveRecipe.INSTANCE;
+			if(index.equals("removeRecipe")) return SmelterRemoveRecipe.INSTANCE;
 			return super.index(index);
 		}
 	}
@@ -109,9 +109,9 @@ public class ThermalExpansion extends MineTweakerInterface {
 		@Override
 		public TweakerValue index(String index) {
 			if(index.equals("addFillRecipe"))    	return TransposerAddFillRecipe.INSTANCE;
-			//if(index.equals("removeFillRecipe")) 	return TransposerRemoveFillRecipe.INSTANCE;
+			if(index.equals("removeFillRecipe")) 	return TransposerRemoveFillRecipe.INSTANCE;
 			if(index.equals("addExtractRecipe"))    return TransposerAddExtractRecipe.INSTANCE;
-			//if(index.equals("removeExtractRecipe")) return TransposerRemoveExtractRecipe.INSTANCE;
+			if(index.equals("removeExtractRecipe")) return TransposerRemoveExtractRecipe.INSTANCE;
 			return super.index(index);
 		}
 	}
