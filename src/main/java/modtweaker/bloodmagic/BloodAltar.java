@@ -7,6 +7,7 @@ import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.NotNull;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipe;
@@ -16,12 +17,10 @@ import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 public class BloodAltar {
 	//Adding a Blood Magic Altar recipe
 	@ZenMethod
-	public static void addRecipe(@NotNull IItemStack output, @NotNull IItemStack input, @NotNull int tier, @NotNull int lp) {
-		MineTweakerAPI.tweaker.apply(new Add(new AltarRecipe(ItemStack(output), ItemStack(input), tier, lp, 20, 20, false)));
-	}
-	
-	@ZenMethod
-	public static void addRecipe(@NotNull IItemStack output, @NotNull IItemStack input, @NotNull int tier, @NotNull int lp, @NotNull int consume, @NotNull int drain) {
+	public static void addRecipe(@NotNull IItemStack output, @NotNull IItemStack input, @NotNull int tier, @NotNull int lp, @Optional int consume, @Optional int drain) {
+		consume = consume > 0? consume: 20;
+		drain = drain > 0? drain: 20;
+		
 		MineTweakerAPI.tweaker.apply(new Add(new AltarRecipe(ItemStack(output), ItemStack(input), tier, lp, consume, drain, false)));
 	}
 	
