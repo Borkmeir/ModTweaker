@@ -1,25 +1,45 @@
 package modtweaker.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import tconstruct.library.crafting.AlloyMix;
 import minetweaker.IUndoableAction;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 public abstract class BaseListRemoval implements IUndoableAction {
+	protected final String description;
 	protected final List list;
+	protected final FluidStack fluid;
 	protected final ItemStack stack;
 	protected Object recipe;
-	protected String description;
+	
+	public BaseListRemoval(String description, List list, ItemStack stack, FluidStack fluid) {
+		this.list = list;
+		this.stack = stack;
+		this.description = description;
+		this.fluid = fluid;
+	}
 	
 	public BaseListRemoval(String description, List list, ItemStack stack) {
-		this(list, stack);
-		this.description = description;
+		this(description, list, stack, null);
+	}
+	
+	public BaseListRemoval(String description, List list, FluidStack fluid) {
+		this(description, list, null, fluid);
 	}
 	
 	public BaseListRemoval(List list, ItemStack stack) {
-		this.list = list;
-		this.stack = stack;
+		this(null, list, stack);
+	}
+	
+	public BaseListRemoval(List list, FluidStack stack) {
+		this(null, list, stack);
+	}
+
+	public BaseListRemoval(String description, List list) {
+		this(description, list, null, null);
 	}
 
 	@Override
