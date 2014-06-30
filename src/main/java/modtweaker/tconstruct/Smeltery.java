@@ -2,6 +2,7 @@ package modtweaker.tconstruct;
 
 import static modtweaker.util.Helper.FluidStack;
 import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.isABlock;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +15,6 @@ import modtweaker.util.BaseDescriptionRemoval;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import stanhebben.zenscript.annotations.NotNull;
@@ -85,8 +85,7 @@ public class Smeltery {
     @ZenMethod
     public static void addMelting(@NotNull IItemStack input, @NotNull ILiquidStack output, @NotNull int temp, @Optional IItemStack block) {
         if (block == null) block = input;
-        if (!(ItemStack(block).getItem() instanceof ItemBlock)) MineTweakerAPI.logger.logError("Item must be a block, or you must specify a block to render as when adding a TConstruct Melting recipe");
-        else {
+        if(isABlock(block)) {
             Block theBlock = Block.getBlockFromItem(ItemStack(block).getItem());
             int theMeta = ItemStack(block).getItemDamage();
             MineTweakerAPI.tweaker.apply(new AddMelting(ItemStack(input), theBlock, theMeta, temp, FluidStack(output)));

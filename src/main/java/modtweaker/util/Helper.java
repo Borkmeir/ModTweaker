@@ -1,16 +1,28 @@
 package modtweaker.util;
 
+import static modtweaker.util.Helper.ItemStack;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class Helper {
+    //Generic Error thrower
+    public static boolean isABlock(IItemStack block) {
+        if (!(ItemStack(block).getItem() instanceof ItemBlock)) {
+            MineTweakerAPI.logger.logError("Item must be a block, or you must specify a block to render as when adding a TConstruct Melting recipe");
+            return false;
+        } else return true;
+    }
+    
 	//Conversion helpers for ItemStacks
 	public static ItemStack ItemStack(IItemStack iStack) {
 		return (ItemStack) iStack.getInternal();

@@ -33,6 +33,8 @@ public class TConstructHacks {
 
     private TConstructHacks() {}
     
+    
+    //Returns a Drying Recipe, using reflection as the constructor is not visible
     public static DryingRecipe getDryingRecipe(ItemStack input, int time, ItemStack output) {
         try {
             Constructor constructor = DryingRecipe.class.getDeclaredConstructor(ItemStack.class, int.class, ItemStack.class);
