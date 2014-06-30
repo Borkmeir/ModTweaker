@@ -10,14 +10,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = "ModTweaker", name = "ModTweaker", dependencies = "required-after:MineTweaker3")
 public class ModTweaker {
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		return;
-	}
-	
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		TweakerPlugin.register("AWWayofTime", BloodMagic.class);
-		TweakerPlugin.register("TConstruct", TConstruct.class);
-	}
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        return;
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+        TweakerPlugin.register("AWWayofTime", BloodMagic.class);
+        TweakerPlugin.register("TConstruct", TConstruct.class);
+    }
 }
