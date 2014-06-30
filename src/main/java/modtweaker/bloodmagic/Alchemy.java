@@ -2,7 +2,6 @@ package modtweaker.bloodmagic;
 
 import static modtweaker.util.Helper.ItemStack;
 import minetweaker.MineTweakerAPI;
-import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;

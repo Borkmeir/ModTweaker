@@ -1,7 +1,5 @@
 package modtweaker.util;
 
-import static modtweaker.util.Helper.ItemStack;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 

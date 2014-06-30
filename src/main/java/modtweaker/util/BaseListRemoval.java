@@ -1,9 +1,7 @@
 package modtweaker.util;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import tconstruct.library.crafting.AlloyMix;
 import minetweaker.IUndoableAction;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
