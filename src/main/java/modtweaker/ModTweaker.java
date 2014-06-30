@@ -1,6 +1,7 @@
 package modtweaker;
 
 import modtweaker.bloodmagic.BloodMagic;
+import modtweaker.tconstruct.TConstruct;
 import modtweaker.util.TweakerPlugin;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -11,11 +12,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class ModTweaker {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		
+		return;
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		TweakerPlugin.register("AWWayofTime", BloodMagic.class);
+		TweakerPlugin.register("TConstruct", TConstruct.class);
 	}
 }

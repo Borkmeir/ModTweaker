@@ -8,6 +8,7 @@ import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class Helper {
 	//Conversion helpers for ItemStacks
@@ -70,5 +71,9 @@ public class Helper {
 		}
 		
 		return null;
+	}
+	
+	public static void setPrivateValue(Class cls, String field, int var) {
+		ReflectionHelper.setPrivateValue(cls, null, var, field);
 	}
 }
