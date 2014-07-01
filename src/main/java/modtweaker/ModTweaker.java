@@ -2,6 +2,7 @@ package modtweaker;
 
 import modtweaker.bloodmagic.BloodMagic;
 import modtweaker.exnihilo.ExNihilo;
+import modtweaker.mariculture.Mariculture;
 import modtweaker.tconstruct.TConstruct;
 import modtweaker.util.TweakerPlugin;
 import cpw.mods.fml.common.Mod;
@@ -14,6 +15,7 @@ public class ModTweaker {
     public void init(FMLInitializationEvent event) {
         TweakerPlugin.register("AWWayofTime", BloodMagic.class);
         TweakerPlugin.register("exnihilo", ExNihilo.class);
+        TweakerPlugin.register("Mariculture", Mariculture.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
     }
 }

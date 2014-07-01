@@ -11,7 +11,7 @@ import tconstruct.library.tools.ToolCore;
 public class TiCTweaks {
     //Set the maximum RF
     @ZenMethod
-    public static void setRFCapacity(@NotNull int capacity) {
+    public static void setRFCapacity(int capacity) {
         MineTweakerAPI.tweaker.apply(new AdjustRF(capacity));
     }
 

@@ -9,6 +9,7 @@ import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
@@ -23,6 +24,7 @@ public class Helper {
     
 	//Conversion helpers for ItemStacks
 	public static ItemStack ItemStack(IItemStack iStack) {
+	    if(iStack == null) MineTweakerAPI.logger.logError("Invalid ItemStack found");
 		return (ItemStack) iStack.getInternal();
 	}
 	
@@ -40,7 +42,8 @@ public class Helper {
 	
 	//Conversion helps for FluidStacks
 	public static FluidStack FluidStack(ILiquidStack iStack) {
-		return (FluidStack) iStack.getInternal();
+	    if(iStack == null) MineTweakerAPI.logger.logError("Invalid FluidStack found");
+		return FluidRegistry.getFluidStack(iStack.getName(), iStack.getAmount());
 	}
 	
 	public static FluidStack[] FluidStack(IIngredient[] input) {
@@ -50,7 +53,7 @@ public class Helper {
 	public static FluidStack[] FluidStack(ILiquidStack[] iStack) {
 		FluidStack[] stack = new FluidStack[iStack.length];
 		for(int i = 0; i < stack.length; i++)
-			stack[i] = (FluidStack) iStack[i].getInternal();
+			stack[i] = FluidRegistry.getFluidStack(iStack[i].getName(), iStack[i].getAmount());
 		return stack;
 	}
 	

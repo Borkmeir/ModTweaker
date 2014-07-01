@@ -18,7 +18,7 @@ import exnihilo.registries.helpers.Compostable;
 public class Compost {
     //Adding a Ex Nihilo Composting recipe
     @ZenMethod
-    public static void addRecipe(@NotNull IItemStack input, @NotNull float rarity, @Optional String hex) {
+    public static void addRecipe(IItemStack input, float rarity, @Optional String hex) {
         hex = (hex == null || hex.equals("")) ? "35A82A" : hex;
         MineTweakerAPI.tweaker.apply(new Add(new Compostable(ItemStack(input).getItem(), ItemStack(input).getItemDamage(), rarity, new Color(hex))));
     }
@@ -39,7 +39,7 @@ public class Compost {
 
     //Removing a Ex Nihilo Composting recipe
     @ZenMethod
-    public static void removeRecipe(@NotNull IItemStack output) {
+    public static void removeRecipe(IItemStack output) {
         MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
     }
 

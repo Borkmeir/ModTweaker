@@ -46,15 +46,15 @@ public abstract class BaseMapRemoveKey implements IUndoableAction {
 
     @Override
     public String describe() {
-        if (recipe instanceof ItemStack) return "Adding " + description + " Recipe for :" + ((ItemStack) recipe).getDisplayName();
-        else if (recipe instanceof FluidStack) return "Adding " + description + " Recipe for :" + ((FluidStack) recipe).getFluid().getLocalizedName();
+        if (recipe instanceof ItemStack) return "Adding " + description + " Recipe for : " + ((ItemStack) recipe).getDisplayName();
+        else if (recipe instanceof FluidStack) return "Adding " + description + " Recipe for : " + ((FluidStack) recipe).getFluid().getLocalizedName();
         else return "Adding " + description + " Recipe for :" + getRecipeInfo();
     }
 
     @Override
     public String describeUndo() {
-        if (recipe instanceof ItemStack) return "Removing " + description + " Recipe for :" + ((ItemStack) recipe).getDisplayName();
-        else if (recipe instanceof FluidStack) return "Removing " + description + " Recipe for :" + ((FluidStack) recipe).getFluid().getLocalizedName();
-        else return "Removing " + description + " Recipe for :" + getRecipeInfo();
+        if (recipe instanceof ItemStack) return "Removing " + description + " Recipe for : " + ((ItemStack) recipe).getDisplayName();
+        else if (recipe instanceof FluidStack) return "Removing " + description + " Recipe for : " + ((FluidStack) recipe).getFluid().getLocalizedName();
+        else return "Removing " + description + " Recipe for : " + getRecipeInfo();
     }
 }

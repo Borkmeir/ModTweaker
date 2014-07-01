@@ -16,7 +16,7 @@ import WayofTime.alchemicalWizardry.api.alchemy.AlchemyRecipeRegistry;
 public class Alchemy {
     //Adding a Blood Magic Alchemical Chemistry Set recipe
     @ZenMethod
-    public static void addRecipe(@NotNull IItemStack output, @NotNull IItemStack[] input, @NotNull int tier, @NotNull int lp) {
+    public static void addRecipe(IItemStack output, IItemStack[] input, int tier, int lp) {
         MineTweakerAPI.tweaker.apply(new Add(new AlchemyRecipe(ItemStack(output), lp / 100, ItemStack(input), tier)));
     }
 
@@ -36,7 +36,7 @@ public class Alchemy {
 
     //Removing a Blood Magic Alchemical Chemistry Set recipe
     @ZenMethod
-    public static void removeRecipe(@NotNull IItemStack output) {
+    public static void removeRecipe(IItemStack output) {
         MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
     }
 

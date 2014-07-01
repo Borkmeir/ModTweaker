@@ -30,14 +30,14 @@ public class Smeltery {
 
     //Adding a TConstruct Alloy recipe
     @ZenMethod
-    public static void addAlloy(@NotNull ILiquidStack output, @NotNull ILiquidStack[] input) {
+    public static void addAlloy(ILiquidStack output, ILiquidStack[] input) {
         MineTweakerAPI.tweaker.apply(new AddAlloy(new AlloyMix(FluidStack(output), new ArrayList<FluidStack>(Arrays.asList(FluidStack(input))))));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
     private static class AddAlloy extends BaseListAddition {
         public AddAlloy(AlloyMix recipe) {
-            super("Smeltery - Alloy", TConstructHacks.alloys, recipe);
+            super("Smeltery - Alloy", TConstructHelper.alloys, recipe);
         }
 
         @Override
@@ -50,27 +50,27 @@ public class Smeltery {
 
     //Removing a TConstruct Alloy recipe
     @ZenMethod
-    public static void removeAlloy(@NotNull ILiquidStack output) {
+    public static void removeAlloy(ILiquidStack output) {
         MineTweakerAPI.tweaker.apply(new RemoveAlloy((FluidStack(output))));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it
     private static class RemoveAlloy extends BaseListRemoval {
         public RemoveAlloy(FluidStack output) {
-            super("Smeltery - Alloy", TConstructHacks.alloys, output);
+            super("Smeltery - Alloy", TConstructHelper.alloys, output);
         }
 
         //Loops through the registry, to find the item that matches, saves that recipe then removes it
         @Override
         public void apply() {
-            for (AlloyMix r : TConstructHacks.alloys) {
+            for (AlloyMix r : TConstructHelper.alloys) {
                 if (r.result != null && r.result.isFluidStackIdentical(fluid)) {
                     recipe = r;
                     break;
                 }
             }
 
-            TConstructHacks.alloys.remove(recipe);
+            TConstructHelper.alloys.remove(recipe);
         }
 
         @Override
@@ -83,7 +83,7 @@ public class Smeltery {
 
     //Adding a TConstruct Melting recipe
     @ZenMethod
-    public static void addMelting(@NotNull IItemStack input, @NotNull ILiquidStack output, @NotNull int temp, @Optional IItemStack block) {
+    public static void addMelting(IItemStack input, ILiquidStack output, int temp, @Optional IItemStack block) {
         if (block == null) block = input;
         if(isABlock(block)) {
             Block theBlock = Block.getBlockFromItem(ItemStack(block).getItem());
@@ -118,9 +118,9 @@ public class Smeltery {
         //Removes the Melting recipe from the hashmaps
         @Override
         public void undo() {
-            TConstructHacks.smeltingList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            TConstructHacks.temperatureList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            TConstructHacks.renderIndex.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            TConstructHelper.smeltingList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            TConstructHelper.temperatureList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            TConstructHelper.renderIndex.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
         }
 
         @Override
@@ -133,7 +133,7 @@ public class Smeltery {
 
     //Removing a TConstruct Melting recipe
     @ZenMethod
-    public static void removeMelting(@NotNull IItemStack input) {
+    public static void removeMelting(IItemStack input) {
         MineTweakerAPI.tweaker.apply(new RemoveMelting((ItemStack(input))));
     }
 
@@ -152,12 +152,12 @@ public class Smeltery {
         //Gets the current values, and saves, them removes them from the hashmaps
         @Override
         public void apply() {
-            fluid = TConstructHacks.smeltingList.get(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            temp = TConstructHacks.temperatureList.get(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            renderer = TConstructHacks.renderIndex.get(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            TConstructHacks.smeltingList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            TConstructHacks.temperatureList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            TConstructHacks.renderIndex.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            fluid = TConstructHelper.smeltingList.get(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            temp = TConstructHelper.temperatureList.get(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            renderer = TConstructHelper.renderIndex.get(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            TConstructHelper.smeltingList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            TConstructHelper.temperatureList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            TConstructHelper.renderIndex.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
         }
 
         //Readds the Melting recipe

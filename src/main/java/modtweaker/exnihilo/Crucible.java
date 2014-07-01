@@ -24,7 +24,7 @@ public class Crucible {
     /************************************************ Crucible Melting ************************************************/
     //Adding a Ex Nihilo Crucible recipe
     @ZenMethod
-    public static void addRecipe(@NotNull IItemStack input, @NotNull ILiquidStack fluid) {
+    public static void addRecipe(IItemStack input, ILiquidStack fluid) {
         if (isABlock(input)) {
             Block theBlock = Block.getBlockFromItem(ItemStack(input).getItem());
             int theMeta = ItemStack(input).getItemDamage();
@@ -48,7 +48,7 @@ public class Crucible {
 
     //Removing a Ex Nihilo Crucible recipe
     @ZenMethod
-    public static void removeRecipe(@NotNull IItemStack output) {
+    public static void removeRecipe(IItemStack output) {
         if (isABlock(output)) {
             MineTweakerAPI.tweaker.apply(new RemoveRecipe(ItemStack(output)));
         }
@@ -69,7 +69,7 @@ public class Crucible {
     /********************************************** Crucible Heat Sources **********************************************/
     //Adding a Ex Nihilo Crucible heat source
     @ZenMethod
-    public static void addHeatSource(@NotNull IItemStack input, @NotNull float value) {
+    public static void addHeatSource(IItemStack input, float value) {
         if (isABlock(input)) {
             Block theBlock = Block.getBlockFromItem(ItemStack(input).getItem());
             int theMeta = ItemStack(input).getItemDamage();
@@ -93,7 +93,7 @@ public class Crucible {
 
     //Removing a Ex Nihilo Crucible heat source
     @ZenMethod
-    public static void removeHeatSource(@NotNull IItemStack output) {
+    public static void removeHeatSource(IItemStack output) {
         if (isABlock(output)) {
             MineTweakerAPI.tweaker.apply(new RemoveHeatSource(ItemStack(output)));
         }

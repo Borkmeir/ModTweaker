@@ -12,7 +12,7 @@ import tconstruct.library.crafting.AlloyMix;
 import tconstruct.library.crafting.CastingRecipe;
 import tconstruct.library.crafting.DryingRackRecipes.DryingRecipe;
 
-public class TConstructHacks {
+public class TConstructHelper {
     public static ArrayList<AlloyMix> alloys = null;
     public static ArrayList<CastingRecipe> basinCasting = null;
     public static ArrayList<CastingRecipe> tableCasting = null;
@@ -31,7 +31,7 @@ public class TConstructHacks {
         } catch (Exception e) {}
     }
 
-    private TConstructHacks() {}
+    private TConstructHelper() {}
     
     
     //Returns a Drying Recipe, using reflection as the constructor is not visible

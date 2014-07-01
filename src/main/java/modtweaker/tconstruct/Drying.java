@@ -19,8 +19,8 @@ import tconstruct.library.crafting.DryingRackRecipes.DryingRecipe;
 public class Drying {
     //Adding a TConstruct Drying Rack recipe
     @ZenMethod
-    public static void addRecipe(@NotNull IItemStack input, @NotNull IItemStack output, @NotNull int time) {
-        MineTweakerAPI.tweaker.apply(new Add(TConstructHacks.getDryingRecipe(ItemStack(input),time, ItemStack(output))));
+    public static void addRecipe(IItemStack input, IItemStack output, int time) {
+        MineTweakerAPI.tweaker.apply(new Add(TConstructHelper.getDryingRecipe(ItemStack(input),time, ItemStack(output))));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -39,7 +39,7 @@ public class Drying {
 
     //Removing a TConstruct Drying Rack recipe
     @ZenMethod
-    public static void removeRecipe(@NotNull IItemStack output) {
+    public static void removeRecipe(IItemStack output) {
         MineTweakerAPI.tweaker.apply(new Remove((ItemStack(output))));
     }
 

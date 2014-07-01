@@ -10,11 +10,10 @@ import net.minecraft.item.ItemStack;
  * @author King Lemming
  * 
  */
-public interface IEnergyContainerItem
-{
+public interface IEnergyContainerItem {
 
     /**
-     * Adds energy to an item. Returns the quantity of energy that was accepted. This should always return 0 if the item cannot be externally charged.
+     * Adds energy to a container item. Returns the quantity of energy that was accepted. This should always return 0 if the item cannot be externally charged.
      * 
      * @param container
      *            ItemStack to be charged.
@@ -24,10 +23,11 @@ public interface IEnergyContainerItem
      *            If TRUE, the charge will only be simulated.
      * @return Amount of energy that was (or would have been, if simulated) received by the item.
      */
-    int receiveEnergy (ItemStack container, int maxReceive, boolean simulate);
+    int receiveEnergy(ItemStack container, int maxReceive, boolean simulate);
 
     /**
-     * Removes energy from an item. Returns the quantity of energy that was removed. This should always return 0 if the item cannot be externally discharged.
+     * Removes energy from a container item. Returns the quantity of energy that was removed. This should always return 0 if the item cannot be externally
+     * discharged.
      * 
      * @param container
      *            ItemStack to be discharged.
@@ -37,16 +37,16 @@ public interface IEnergyContainerItem
      *            If TRUE, the discharge will only be simulated.
      * @return Amount of energy that was (or would have been, if simulated) extracted from the item.
      */
-    int extractEnergy (ItemStack container, int maxExtract, boolean simulate);
+    int extractEnergy(ItemStack container, int maxExtract, boolean simulate);
 
     /**
-     * Get the amount of energy currently stored in the item.
+     * Get the amount of energy currently stored in the container item.
      */
-    int getEnergyStored (ItemStack container);
+    int getEnergyStored(ItemStack container);
 
     /**
-     * Get the max amount of energy that can be stored in the item.
+     * Get the max amount of energy that can be stored in the container item.
      */
-    int getMaxEnergyStored (ItemStack container);
+    int getMaxEnergyStored(ItemStack container);
 
 }

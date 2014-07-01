@@ -18,7 +18,7 @@ import exnihilo.registries.helpers.SiftReward;
 public class Sieve {
     //Adding a Ex Nihilo Sieve recipe
     @ZenMethod
-    public static void addRecipe(@NotNull IItemStack input, @NotNull IItemStack output, @NotNull int rarity) {
+    public static void addRecipe(IItemStack input, IItemStack output, int rarity) {
         if (isABlock(input)) {
             Block theBlock = Block.getBlockFromItem(ItemStack(input).getItem());
             int theMeta = ItemStack(input).getItemDamage();
@@ -42,7 +42,7 @@ public class Sieve {
 
     //Removing a Ex Nihilo Sieve recipe
     @ZenMethod
-    public static void removeRecipe(@NotNull IItemStack output) {
+    public static void removeRecipe(IItemStack output) {
         MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
     }
 

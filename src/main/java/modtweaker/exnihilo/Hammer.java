@@ -18,7 +18,7 @@ import exnihilo.registries.helpers.Smashable;
 public class Hammer {
     //Adding a Ex Nihilo Hammer recipe
     @ZenMethod
-    public static void addRecipe(@NotNull IItemStack input, @NotNull IItemStack output, @NotNull float chance, @NotNull float luck) {
+    public static void addRecipe(IItemStack input, IItemStack output, float chance, float luck) {
         if (isABlock(input)) {
             Block theBlock = Block.getBlockFromItem(ItemStack(input).getItem());
             int theMeta = ItemStack(input).getItemDamage();
@@ -42,7 +42,7 @@ public class Hammer {
 
     //Removing a Ex Nihilo Hammer recipe
     @ZenMethod
-    public static void removeRecipe(@NotNull IItemStack output) {
+    public static void removeRecipe(IItemStack output) {
         MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
     }
 

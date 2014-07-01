@@ -17,7 +17,7 @@ import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 public class BloodAltar {
     //Adding a Blood Magic Altar recipe
     @ZenMethod
-    public static void addRecipe(@NotNull IItemStack output, @NotNull IItemStack input, @NotNull int tier, @NotNull int lp, @Optional int consume, @Optional int drain) {
+    public static void addRecipe(IItemStack output, IItemStack input, int tier, int lp, @Optional int consume, @Optional int drain) {
         consume = consume > 0 ? consume : 20;
         drain = drain > 0 ? drain : 20;
 
@@ -40,7 +40,7 @@ public class BloodAltar {
 
     //Removing a Blood Magic Altar recipe
     @ZenMethod
-    public static void removeRecipe(@NotNull IItemStack output) {
+    public static void removeRecipe(IItemStack output) {
         MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
     }
 

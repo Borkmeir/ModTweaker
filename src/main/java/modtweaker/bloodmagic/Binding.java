@@ -16,7 +16,7 @@ import WayofTime.alchemicalWizardry.api.bindingRegistry.BindingRegistry;
 public class Binding {
     //Adding a Blood Magic Binding recipe
     @ZenMethod
-    public static void addRecipe(@NotNull IItemStack input, @NotNull IItemStack output) {
+    public static void addRecipe(IItemStack input, IItemStack output) {
         MineTweakerAPI.tweaker.apply(new Add(new BindingRecipe(ItemStack(output), ItemStack(input))));
     }
 
@@ -36,7 +36,7 @@ public class Binding {
 
     //Removing a Blood Magic Binding recipe
     @ZenMethod
-    public static void removeRecipe(@NotNull IItemStack output) {
+    public static void removeRecipe(IItemStack output) {
         MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
     }
 
