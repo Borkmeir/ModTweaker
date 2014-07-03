@@ -1,9 +1,15 @@
 package tconstruct.library.tools;
 
+import mantle.world.WorldHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+import tconstruct.library.ActiveToolMod;
+import tconstruct.library.TConstructRegistry;
 
 /* Base class for harvest tools with each head having a different purpose */
 
@@ -88,7 +94,7 @@ public abstract class DualHarvestTool extends HarvestTool
     }
 
     @Override
-    public String[] toolCategories ()
+    public String[] getTraits ()
     {
         return new String[] { "harvest", "dualharvest" };
     }

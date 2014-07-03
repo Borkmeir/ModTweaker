@@ -7,7 +7,7 @@ import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
 import modtweaker.util.BaseMapAddition;
-import modtweaker.util.BaseMapRemoveKey;
+import modtweaker.util.BaseMapRemoval;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.NotNull;
@@ -55,7 +55,7 @@ public class Crucible {
     }
 
     //Removes a recipe, will always remove the key, so all should be good
-    private static class RemoveRecipe extends BaseMapRemoveKey {
+    private static class RemoveRecipe extends BaseMapRemoval {
         public RemoveRecipe(ItemStack stack) {
             super("ExNihilo Crucible", CrucibleRegistry.entries, Block.getBlockFromItem(stack.getItem()) + ":" + stack.getItemDamage(), stack);
         }
@@ -100,7 +100,7 @@ public class Crucible {
     }
 
     //Removes a recipe, will always remove the key, so all should be good
-    private static class RemoveHeatSource extends BaseMapRemoveKey {
+    private static class RemoveHeatSource extends BaseMapRemoval {
         public RemoveHeatSource(ItemStack stack) {
             super("ExNihilo Crucible - Heat Source", HeatRegistry.entries, Block.getBlockFromItem(stack.getItem()) + ":" + stack.getItemDamage(), stack);
         }

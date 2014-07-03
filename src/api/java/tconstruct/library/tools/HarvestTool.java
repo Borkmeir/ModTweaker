@@ -1,13 +1,17 @@
 package tconstruct.library.tools;
 
+import mantle.world.WorldHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import tconstruct.library.ActiveToolMod;
+import tconstruct.library.TConstructRegistry;
 
 /* Base class for tools that should be harvesting blocks */
 
@@ -101,7 +105,7 @@ public abstract class HarvestTool extends ToolCore
     }
 
     @Override
-    public String[] toolCategories ()
+    public String[] getTraits ()
     {
         return new String[] { "harvest" };
     }

@@ -11,7 +11,7 @@ import minetweaker.api.liquid.ILiquidStack;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
 import modtweaker.util.BaseMapAddition;
-import modtweaker.util.BaseMapRemoveKey;
+import modtweaker.util.BaseMapRemoval;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -123,7 +123,7 @@ public class Crucible {
     }
 
     //Removes a recipe, will always remove the key, so all should be good
-    private static class RemoveFuel extends BaseMapRemoveKey {
+    private static class RemoveFuel extends BaseMapRemoval {
         public RemoveFuel(Object o) {
             super("Mariculture Crucible Fuel", MaricultureHelper.fuels, getFuelKey(o), null);
         }

@@ -6,18 +6,18 @@ import minetweaker.IUndoableAction;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-public abstract class BaseMapRemoveKey implements IUndoableAction {
+public abstract class BaseMapRemoval implements IUndoableAction {
     protected ItemStack stack;
     protected String description;
     protected final Map map;
     protected final Object key;
     protected Object recipe;
 
-    public BaseMapRemoveKey(ItemStack stack, Map map, Object key) {
+    public BaseMapRemoval(ItemStack stack, Map map, Object key) {
         this(null, map, key, stack);
     }
 
-    public BaseMapRemoveKey(String description, Map map, Object key, ItemStack stack) {
+    public BaseMapRemoval(String description, Map map, Object key, ItemStack stack) {
         this.stack = stack;
         this.map = map;
         this.key = key;
@@ -56,5 +56,10 @@ public abstract class BaseMapRemoveKey implements IUndoableAction {
         if (recipe instanceof ItemStack) return "Removing " + description + " Recipe for : " + ((ItemStack) recipe).getDisplayName();
         else if (recipe instanceof FluidStack) return "Removing " + description + " Recipe for : " + ((FluidStack) recipe).getFluid().getLocalizedName();
         else return "Removing " + description + " Recipe for : " + getRecipeInfo();
+    }
+    
+    @Override
+    public Object getOverrideKey() {
+        return null;
     }
 }

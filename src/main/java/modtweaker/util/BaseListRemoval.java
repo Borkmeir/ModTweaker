@@ -67,4 +67,9 @@ public abstract class BaseListRemoval implements IUndoableAction {
         else if (recipe instanceof FluidStack) return "Removing " + description + " Recipe for :" + ((FluidStack) recipe).getFluid().getLocalizedName();
         else return "Restoring " + description + " Recipe for :" + getRecipeInfo();
     }
+    
+    @Override
+    public Object getOverrideKey() {
+        return null;
+    }
 }

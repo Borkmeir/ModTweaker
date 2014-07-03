@@ -294,36 +294,7 @@ public class AbilityHelper
 
     static void alertPlayerWolves (EntityPlayer player, EntityLivingBase living, boolean par2)
     {
-        if (!(living instanceof EntityCreeper) && !(living instanceof EntityGhast))
-        {
-            if (living instanceof EntityWolf)
-            {
-                EntityWolf var3 = (EntityWolf) living;
-
-                if (var3.isTamed() && player.getDisplayName().equals(var3.func_152113_b()))
-                {
-                    return;
-                }
-            }
-
-            if (!(living instanceof EntityPlayer) || player.canAttackPlayer((EntityPlayer) living))
-            {
-                List var6 = player.worldObj.getEntitiesWithinAABB(EntityWolf.class,
-                        AxisAlignedBB.getBoundingBox(player.posX, player.posY, player.posZ, player.posX + 1.0D, player.posY + 1.0D, player.posZ + 1.0D).expand(16.0D, 4.0D, 16.0D));
-                Iterator var4 = var6.iterator();
-
-                while (var4.hasNext())
-                {
-                    EntityWolf var5 = (EntityWolf) var4.next();
-
-                    if (var5.isTamed() && var5.getEntityToAttack() == null && player.getDisplayName().equals(var5.func_152113_b()) && (!par2 || !var5.isSitting()))
-                    {
-                        var5.setSitting(false);
-                        var5.setTarget(living);
-                    }
-                }
-            }
-        }
+       
     }
 
     /* Tool specific */

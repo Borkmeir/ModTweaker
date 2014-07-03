@@ -42,4 +42,8 @@ public abstract class BaseSetVar implements IUndoableAction {
 		return "Setting " + description + " to the default value of " + original;
 	}
 
+	@Override
+    public Object getOverrideKey() {
+        return null;
+    }
 }

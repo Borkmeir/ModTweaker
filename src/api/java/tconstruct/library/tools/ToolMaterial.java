@@ -3,7 +3,7 @@ package tconstruct.library.tools;
 /*
  * Dynamic substitute for an enum. It carries a lot of information
  */
-public class TToolMaterial
+public class ToolMaterial
 {
     // mining level, durability, mining speed, baseDamage, handle modifier,
     // Reinforced level, shoddy/spiny level, color/style on name
@@ -20,12 +20,12 @@ public class TToolMaterial
     public final String tipStyle;
     public final String ability;
 
-    public TToolMaterial(String name, int level, int durability, int speed, int damage, float handle, int reinforced, float stonebound, String style, String ability)
+    public ToolMaterial(String name, int level, int durability, int speed, int damage, float handle, int reinforced, float stonebound, String style, String ability)
     {
         this(name, name + " ", level, durability, speed, damage, handle, reinforced, stonebound, style, ability);
     }
 
-    public TToolMaterial(String name, String displayName, int level, int durability, int speed, int damage, float handle, int reinforced, float stonebound, String style, String ability)
+    public ToolMaterial(String name, String displayName, int level, int durability, int speed, int damage, float handle, int reinforced, float stonebound, String style, String ability)
     {
         this.materialName = name;
         this.displayName = displayName;

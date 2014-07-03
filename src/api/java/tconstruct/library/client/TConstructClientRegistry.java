@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import mantle.lib.client.MantleClientRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import tconstruct.library.TConstructRegistry;
@@ -89,7 +90,7 @@ public class TConstructClientRegistry
         recipe[0] = ToolBuilder.instance.buildTool(output, topinput, bottominput, "");
         recipe[1] = topinput;
         recipe[2] = bottominput;
-        //MantleClientRegistry.recipeIcons.put(name, recipe);
+        MantleClientRegistry.recipeIcons.put(name, recipe);
     }
 
     public static void registerManualSmeltery (String name, ItemStack output, ItemStack liquid, ItemStack cast)
@@ -98,7 +99,7 @@ public class TConstructClientRegistry
         recipe[0] = output;
         recipe[1] = liquid;
         recipe[2] = cast;
-        //MantleClientRegistry.recipeIcons.put(name, recipe);
+        MantleClientRegistry.recipeIcons.put(name, recipe);
     }
 
     //Gui

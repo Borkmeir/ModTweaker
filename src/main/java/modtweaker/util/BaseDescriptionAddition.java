@@ -27,4 +27,9 @@ public abstract class BaseDescriptionAddition implements IUndoableAction {
     public String describeUndo() {
         return "Removing " + description + " Recipe for :" + getRecipeInfo();
     }
+    
+    @Override
+    public Object getOverrideKey() {
+        return null;
+    }
 }

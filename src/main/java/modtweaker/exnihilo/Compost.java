@@ -4,7 +4,7 @@ import static modtweaker.util.Helper.ItemStack;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseMapAddition;
-import modtweaker.util.BaseMapRemoveKey;
+import modtweaker.util.BaseMapRemoval;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.NotNull;
 import stanhebben.zenscript.annotations.Optional;
@@ -44,7 +44,7 @@ public class Compost {
     }
 
     //Removes a recipe, will always remove the key, so all should be good
-    private static class Remove extends BaseMapRemoveKey {
+    private static class Remove extends BaseMapRemoval {
         public Remove(ItemStack stack) {
             super("ExNihilo Composting", CompostRegistry.entries, stack.getItem() + ":" + stack.getItemDamage(), stack);
         }
