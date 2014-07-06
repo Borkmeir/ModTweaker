@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import minetweaker.MineTweakerAPI;
-import minetweaker.api.MineTweakerMC;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
@@ -23,13 +22,33 @@ public class Helper {
         } else return true;
     }
 
-    //Conversion helpers for ItemStacks
+    //Outputting code taken from MineTweakerMC by stanhebben
     public static ItemStack ItemStack(IItemStack iStack) {
-        return iStack != null ? MineTweakerMC.getItemStack(iStack) : null;
+        if (iStack == null) return null;
+        else {
+            Object internal = iStack.getInternal();
+            if (internal == null || !(internal instanceof ItemStack)) {
+                MineTweakerAPI.getLogger().logError("Not a valid item stack: " + iStack);
+            }
+
+            return (ItemStack) internal;
+        }
     }
 
+    //Outputting code taken from MineTweakerMC by stanhebben
     public static ItemStack[] ItemStack(IItemStack[] iStack) {
-        return iStack != null ? MineTweakerMC.getItemStacks(iStack) : null;
+        if (iStack == null) return null;
+        else {
+            ItemStack[] output = new ItemStack[iStack.length];
+            for (int i = 0; i < iStack.length; i++) {
+                Object internal = iStack[i].getInternal();
+                if (internal != null && internal instanceof ItemStack) {
+                    output[i] = (ItemStack) internal;
+                }
+            }
+
+            return output;
+        }
     }
 
     //Conversion helps for FluidStacks

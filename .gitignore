@@ -12,7 +12,6 @@
 .classpath
 .project
 .settings/*
-/lib/
 src/api/resources/*
 run/
 .metadata/
