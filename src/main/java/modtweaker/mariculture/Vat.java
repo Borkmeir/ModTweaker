@@ -59,12 +59,12 @@ public class Vat {
 
     @ZenMethod
     public static void addRecipe(ILiquidStack fluid1, ILiquidStack fluid2, IItemStack input, ILiquidStack outputFluid, IItemStack outputItem, int time) {
-        MineTweakerAPI.tweaker.apply(new AddRecipe(new RecipeVat(ItemStack(input), FluidStack(fluid1), FluidStack(fluid2), FluidStack(outputFluid), ItemStack(outputItem), time)));
+        MineTweakerAPI.tweaker.apply(new Add(new RecipeVat(ItemStack(input), FluidStack(fluid1), FluidStack(fluid2), FluidStack(outputFluid), ItemStack(outputItem), time)));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
-    private static class AddRecipe extends BaseListAddition {
-        public AddRecipe(RecipeVat recipe) {
+    private static class Add extends BaseListAddition {
+        public Add(RecipeVat recipe) {
             super("Mariculture Vat", MaricultureHandlers.vat.getRecipes(), recipe);
         }
 
@@ -80,24 +80,24 @@ public class Vat {
     //Removing a Mariculture Vat recipe
     @ZenMethod
     public static void removeRecipe(IItemStack outputItem) {
-        MineTweakerAPI.tweaker.apply(new RemoveRecipe(ItemStack(outputItem), null));
+        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(outputItem), null));
     }
 
     @ZenMethod
     public static void removeRecipe(ILiquidStack outputFluid) {
-        MineTweakerAPI.tweaker.apply(new RemoveRecipe(null, FluidStack(outputFluid)));
+        MineTweakerAPI.tweaker.apply(new Remove(null, FluidStack(outputFluid)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack outputItem, ILiquidStack outputFluid) {
-        MineTweakerAPI.tweaker.apply(new RemoveRecipe(ItemStack(outputItem), FluidStack(outputFluid)));
+        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(outputItem), FluidStack(outputFluid)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it
-    private static class RemoveRecipe extends BaseListRemoval {
+    private static class Remove extends BaseListRemoval {
         private final FluidStack fluid;
 
-        public RemoveRecipe(ItemStack stack, FluidStack fluid) {
+        public Remove(ItemStack stack, FluidStack fluid) {
             super("Mariculture Vat", MaricultureHandlers.vat.getRecipes(), stack);
             this.fluid = fluid;
         }

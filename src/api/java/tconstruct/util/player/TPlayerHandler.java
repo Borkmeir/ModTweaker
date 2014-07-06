@@ -182,7 +182,7 @@ public class TPlayerHandler
 
     public void onPlayerRespawn (EntityPlayer entityplayer)
     {
-        // Boom!
+        /*// Boom!
         TPlayerStats playerData = playerStats.remove(entityplayer.getPersistentID());
         TPlayerStats stats = TPlayerStats.get(entityplayer);
         if (playerData != null)
@@ -195,9 +195,6 @@ public class TPlayerHandler
         stats.player = new WeakReference<EntityPlayer>(entityplayer);
         stats.armor.recalculateHealth(entityplayer, stats);
 
-        /*
-         * TFoodStats food = new TFoodStats(); entityplayer.foodStats = food;
-         */
 
         if (PHConstruct.keepLevels)
             entityplayer.experienceLevel = stats.level;
@@ -210,7 +207,7 @@ public class TPlayerHandler
             // TProxyClient.controlInstance.resetControls();
             if (PHConstruct.keepHunger)
                 entityplayer.getFoodStats().setFoodLevel(stats.hunger);
-        }
+        } */
     }
 
     @SubscribeEvent

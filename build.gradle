@@ -37,7 +37,7 @@ archivesBaseName = "ModTweaker"
 
 dependencies {
     compile files("lib/CodeChickenCore-1.7.2-1.0.0-dev.jar", "lib/NotEnoughItems-1.7.2-1.0.1-dev.jar", "lib/Thaumcraft-deobf-1.7.2-4.1.1.12.jar", 
-    "lib/ZenScript-dev.jar", "lib/MineTweaker3-API-dev.jar", "lib/MineTweaker3-MC172-Main-1.7.2-3.0.0-dev.jar")
+    "lib/ZenScript-dev.jar", "lib/MineTweaker3-API-dev.jar", "lib/MineTweaker3-MC172-Main-1.7.2-3.0.3-dev.jar")
 }
 
 minecraft {

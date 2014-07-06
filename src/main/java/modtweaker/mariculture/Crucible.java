@@ -12,10 +12,8 @@ import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
 import modtweaker.util.BaseMapAddition;
 import modtweaker.util.BaseMapRemoval;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 import stanhebben.zenscript.annotations.NotNull;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -97,7 +95,7 @@ public class Crucible {
     //Passes the list to the base map implementation, and adds the recipe
     private static class AddFuel extends BaseMapAddition {
         public AddFuel(Object o, FuelInfo info) {
-            super("Mariculture Crucible Fuel", MaricultureHelper.fuels, getFuelKey(o), info);
+            super("Mariculture Crucible Fuel", MaricultureHelper.fuels, MaricultureHelper.getKey(o), info);
         }
 
         @Override
@@ -125,32 +123,12 @@ public class Crucible {
     //Removes a recipe, will always remove the key, so all should be good
     private static class RemoveFuel extends BaseMapRemoval {
         public RemoveFuel(Object o) {
-            super("Mariculture Crucible Fuel", MaricultureHelper.fuels, getFuelKey(o), null);
+            super("Mariculture Crucible Fuel", MaricultureHelper.fuels, MaricultureHelper.getKey(o), null);
         }
 
         @Override
         public String getRecipeInfo() {
             return (String) key;
         }
-    }
-
-    //Helper for getting the key that is used when adding/removing fuels
-    private static String getFuelKey(Object o) {
-        if (o instanceof String) return (String) o;
-        else if (o instanceof ItemStack) {
-            String name = "";
-            ItemStack stack = (ItemStack) o;
-            if (OreDictionary.getOreIDs(stack).length > 0) {
-                name = OreDictionary.getOreName(OreDictionary.getOreIDs(stack)[0]);
-            } else if (stack.isItemStackDamageable()) {
-                name = Item.itemRegistry.getNameForObject(stack.getItem()) + "|ignore";
-            } else {
-                name = Item.itemRegistry.getNameForObject(stack.getItem()) + "|" + stack.getItemDamage();
-            }
-
-            return name;
-        } else if (o instanceof FluidStack) {
-            return ((FluidStack) o).getFluid().getName();
-        } else return null;
     }
 }
