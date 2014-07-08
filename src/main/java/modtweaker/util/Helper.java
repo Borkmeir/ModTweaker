@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import minetweaker.MineTweakerAPI;
+import minetweaker.api.data.DataString;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
@@ -45,6 +46,23 @@ public class Helper {
                 if (internal != null && internal instanceof ItemStack) {
                     output[i] = (ItemStack) internal;
                 }
+            }
+
+            return output;
+        }
+    }
+
+    public static String[] String(DataString[] string) {
+        if (string == null) return null;
+        else {
+            String[] output = new String[string.length];
+            for (int i = 0; i < string.length; i++) {
+                if(string[i] != null) {
+                    String internal = string[i].toString();
+                    if (internal != null && internal instanceof String) {
+                        output[i] = (String) internal;
+                    }
+                } else output[i] = "";
             }
 
             return output;
@@ -100,5 +118,23 @@ public class Helper {
 
     public static void setPrivateValue(Class cls, String field, int var) {
         ReflectionHelper.setPrivateValue(cls, null, var, field);
+    }
+
+    //Takes an object, and converts them to proper stacks or fluid stacks to be passed in so a recipe handler can understand them
+    public static Object[] fix(Object[] input) {
+        Object cloned[] = new Object[input.length];
+        for (int i = 0; i < input.length; i++) {
+            cloned[i] = Helper.fix(input[i]);
+        }
+
+        return cloned;
+    }
+
+    public static Object fix(Object input) {
+        Object cloned = null;
+        if (input instanceof IItemStack) cloned = ItemStack((IItemStack) input);
+        else if (input instanceof ILiquidStack) cloned = FluidStack((ILiquidStack) input);
+        else cloned = input;
+        return cloned;
     }
 }

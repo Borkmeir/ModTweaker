@@ -5,6 +5,7 @@ import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
+import modtweaker.util.Helper;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -15,7 +16,7 @@ import vazkii.botania.api.recipe.RecipePetals;
 public class Petals {
     @ZenMethod
     public static void addRecipe(IItemStack output, Object[] input) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipePetals(ItemStack(output), BotaniaHelper.fixInput(input))));
+        MineTweakerAPI.tweaker.apply(new Add(new RecipePetals(ItemStack(output), Helper.fix(input))));
     }
 
     private static class Add extends BaseListAddition {

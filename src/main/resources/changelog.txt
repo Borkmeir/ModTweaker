@@ -1,0 +1,98 @@
+===========================================================
+
+ModTweaker 0.4
+• Updated to 1.7 includes the following mods
+   • Blood Magic
+      • Alchemy
+      • Binding
+      • Blood Altar
+   • Botania - NEW!
+      • Elven Trade
+      • Mana Infusion
+      • Petals
+      • Rune Altar
+   • Ex Nihilo
+      • Composting
+      • Crucible
+      • Hammer
+      • Sieve
+   • Mariculture
+      • Anvil
+      • Casting
+      • Crucible
+         • Recipes
+         • Fuels
+      • Fishing
+      • Vat
+   • Metallurgy 4
+      • Alloyer
+      • Crusher
+   • Thaumcraft 4 - NEW!
+      • Aspects
+      • Crucible
+      • Infusion
+   • Tinker's Construct
+      • Casting
+      • Drying Rack
+      • Smeltery
+         • Alloys
+         • Melting
+      • Tweaks
+         • Max RF for Flux Tools
+
+• Temporarily 'removed' (no 1.7 update yet)
+--- • Big Reactors
+--- • Growthcraft
+--- • Mekanism
+--- • Thermal Expansion
+--- • Tinker's Steelworks
+
+===========================================================
+
+ModTweaker 0.3
+• Mekanism - add/remove enrichment chamber recipes
+• Mekanism - add/remove osmium compressor recipes
+• Mekanism - add/remove combiner recipes
+• Mekanism - add/remove crusher recipes
+• Mekanism - add/remove metallurgic infuser recipes
+• Mekanism - add/remove electrolytic seperator recipes
+• Mekanism - add/remove precision sawmill recipes
+• Mekanism - add/remove chemical infuser recipes
+• Mekanism - add/remove chemical oxidizer recipes
+• Mekanism - add/remove chemical injection chamber recipes
+• Mekanism - add/remove chemical dissolution chamber recipes
+• Mekanism - add/remove chemical washer recipes
+• Mekanism - add/remove chemical crystallizer recipes
+• Thermal Expansion Removals are also added but only work from the world folder/on reload, not from normal configs
+• Thermal Expansion - add magma crucible recipes
+• Thermal Expansion - add furnace recipes
+• Thermal Expansion - add pulverizer recipes
+• Thermal Expansion - add induction smelter recipes
+• Thermal Expansion - add sawmill recipes
+• Thermal Expansion - add transposer fill and extract recipes
+
+===========================================================
+
+ModTweaker 0.2b
+• Fixed removal of alloy recipes
+
+ModTweaker 0.2a
+• Fixed broken implementation with arrays
+
+ModTweaker 0.2
+• Fixed derp with using TweakerItem instead of TweakerItemStack
+• Big Reactors - add/remove fuels
+• Big Reactors - add/remove coil parts
+• Big Reactors - add/remove interior blocks
+• Big Reactors - add/remove interior fluids
+• Mariculture - add/remove casting recipes
+• Metallurgy - add/remove crusher recipes
+• Steelworks - add/remove advanced smelting recipes
+• TConstruct - add/remove alloy recipes
+• TConstruct - add/remove melting recipes
+• TConstruct - add drying rack recipes
+
+===========================================================
+
+ModTweaker 0.1
+• Initial Release

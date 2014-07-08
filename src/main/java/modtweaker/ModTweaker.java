@@ -14,6 +14,7 @@ import modtweaker.exnihilo.ExNihilo;
 import modtweaker.mariculture.Mariculture;
 import modtweaker.metallurgy.Metallurgy;
 import modtweaker.tconstruct.TConstruct;
+import modtweaker.thaumcraft.Thaumcraft;
 import modtweaker.util.TweakerPlugin;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -31,6 +32,7 @@ public class ModTweaker {
         TweakerPlugin.register("Mariculture", Mariculture.class);
         TweakerPlugin.register("Metallurgy", Metallurgy.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
+        TweakerPlugin.register("Thaumcraft", Thaumcraft.class);
     }
 
     @EventHandler
