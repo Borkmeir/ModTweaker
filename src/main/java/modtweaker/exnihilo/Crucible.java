@@ -1,7 +1,7 @@
 package modtweaker.exnihilo;
 
 import static modtweaker.util.Helper.FluidStack;
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 import static modtweaker.util.Helper.isABlock;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
@@ -26,8 +26,8 @@ public class Crucible {
     @ZenMethod
     public static void addRecipe(IItemStack input, ILiquidStack fluid) {
         if (isABlock(input)) {
-            Block theBlock = Block.getBlockFromItem(ItemStack(input).getItem());
-            int theMeta = ItemStack(input).getItemDamage();
+            Block theBlock = Block.getBlockFromItem(toStack(input).getItem());
+            int theMeta = toStack(input).getItemDamage();
             MineTweakerAPI.tweaker.apply(new AddRecipe(new Meltable(theBlock, theMeta, 2000, FluidStack(fluid).getFluid(), FluidStack(fluid).amount, theBlock)));
         }
     }
@@ -50,7 +50,7 @@ public class Crucible {
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
         if (isABlock(output)) {
-            MineTweakerAPI.tweaker.apply(new RemoveRecipe(ItemStack(output)));
+            MineTweakerAPI.tweaker.apply(new RemoveRecipe(toStack(output)));
         }
     }
 
@@ -71,8 +71,8 @@ public class Crucible {
     @ZenMethod
     public static void addHeatSource(IItemStack input, float value) {
         if (isABlock(input)) {
-            Block theBlock = Block.getBlockFromItem(ItemStack(input).getItem());
-            int theMeta = ItemStack(input).getItemDamage();
+            Block theBlock = Block.getBlockFromItem(toStack(input).getItem());
+            int theMeta = toStack(input).getItemDamage();
             MineTweakerAPI.tweaker.apply(new AddHeatSource(new HeatSource(theBlock, theMeta, value)));
         }
     }
@@ -95,7 +95,7 @@ public class Crucible {
     @ZenMethod
     public static void removeHeatSource(IItemStack output) {
         if (isABlock(output)) {
-            MineTweakerAPI.tweaker.apply(new RemoveHeatSource(ItemStack(output)));
+            MineTweakerAPI.tweaker.apply(new RemoveHeatSource(toStack(output)));
         }
     }
 

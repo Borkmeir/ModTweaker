@@ -34,4 +34,17 @@ public class ThaumcraftHelper {
 
         return list;
     }
+
+    public static AspectList removeAspects(AspectList list, String str) {
+        String[] aspects = str.split(",");
+        for (String aspect : aspects) {
+            if(aspect.startsWith(" ")) aspect = aspect.replaceFirst(" ", "");
+            String[] aspct = aspect.split("\\s+");
+            if (aspct.length == 2) {
+                list.remove(Aspect.aspects.get(aspct[0]), Integer.parseInt(aspct[1]));
+            }
+        }
+        
+        return list;
+    }
 }

@@ -4,10 +4,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import minetweaker.MineTweakerAPI;
-import minetweaker.api.data.DataString;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
+import minetweaker.api.oredict.IOreDictEntry;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -17,14 +17,14 @@ import cpw.mods.fml.relauncher.ReflectionHelper;
 public class Helper {
     //Generic Error thrower
     public static boolean isABlock(IItemStack block) {
-        if (!(ItemStack(block).getItem() instanceof ItemBlock)) {
+        if (!(toStack(block).getItem() instanceof ItemBlock)) {
             MineTweakerAPI.getLogger().logError("Item must be a block, or you must specify a block to render as when adding a TConstruct Melting recipe");
             return false;
         } else return true;
     }
 
     //Outputting code taken from MineTweakerMC by stanhebben
-    public static ItemStack ItemStack(IItemStack iStack) {
+    public static ItemStack toStack(IItemStack iStack) {
         if (iStack == null) return null;
         else {
             Object internal = iStack.getInternal();
@@ -37,36 +37,49 @@ public class Helper {
     }
 
     //Outputting code taken from MineTweakerMC by stanhebben
-    public static ItemStack[] ItemStack(IItemStack[] iStack) {
+    public static ItemStack[] toStacks(IItemStack[] iStack) {
         if (iStack == null) return null;
         else {
             ItemStack[] output = new ItemStack[iStack.length];
             for (int i = 0; i < iStack.length; i++) {
-                Object internal = iStack[i].getInternal();
-                if (internal != null && internal instanceof ItemStack) {
-                    output[i] = (ItemStack) internal;
-                }
+                output[i] = toStack(iStack[i]);
             }
 
             return output;
         }
     }
 
-    public static String[] String(DataString[] string) {
-        if (string == null) return null;
+    //Converts IIngredients to Strings or ItemStacks
+    public static Object toObject(IIngredient iStack) {
+        if (iStack == null) return null;
         else {
-            String[] output = new String[string.length];
-            for (int i = 0; i < string.length; i++) {
-                if(string[i] != null) {
-                    String internal = string[i].toString();
-                    if (internal != null && internal instanceof String) {
-                        output[i] = (String) internal;
-                    }
+            if (iStack instanceof IOreDictEntry) {
+                return toString((IOreDictEntry) iStack);
+            } else if (iStack instanceof IItemStack) {
+                return toStack((IItemStack) iStack);
+            }  else return null;
+        }
+    }
+
+    //Takes a list of IIngredients, and Converts them to ItemStacks or Strings
+    public static Object[] toObjects(IIngredient[] ingredient) {
+        if (ingredient == null) return null;
+        else {
+            Object[] output = new Object[ingredient.length];
+            for (int i = 0; i < ingredient.length; i++) {
+                if (ingredient[i] != null) {
+                    output[i] = toObject(ingredient[i]);
                 } else output[i] = "";
             }
 
             return output;
         }
+        
+       
+    }
+
+    public static String toString(IOreDictEntry entry) {
+        return ((IOreDictEntry) entry).getName();
     }
 
     //Conversion helps for FluidStacks
@@ -118,23 +131,5 @@ public class Helper {
 
     public static void setPrivateValue(Class cls, String field, int var) {
         ReflectionHelper.setPrivateValue(cls, null, var, field);
-    }
-
-    //Takes an object, and converts them to proper stacks or fluid stacks to be passed in so a recipe handler can understand them
-    public static Object[] fix(Object[] input) {
-        Object cloned[] = new Object[input.length];
-        for (int i = 0; i < input.length; i++) {
-            cloned[i] = Helper.fix(input[i]);
-        }
-
-        return cloned;
-    }
-
-    public static Object fix(Object input) {
-        Object cloned = null;
-        if (input instanceof IItemStack) cloned = ItemStack((IItemStack) input);
-        else if (input instanceof ILiquidStack) cloned = FluidStack((ILiquidStack) input);
-        else cloned = input;
-        return cloned;
     }
 }

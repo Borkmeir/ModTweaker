@@ -1,6 +1,6 @@
 package modtweaker.exnihilo;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseMapAddition;
@@ -18,9 +18,9 @@ import exnihilo.registries.helpers.Compostable;
 public class Compost {
     //Adding a Ex Nihilo Composting recipe
     @ZenMethod
-    public static void addRecipe(IItemStack input, float rarity, @Optional String hex) {
+    public static void addRecipe(IItemStack input, double value, @Optional String hex) {
         hex = (hex == null || hex.equals("")) ? "35A82A" : hex;
-        MineTweakerAPI.tweaker.apply(new Add(new Compostable(ItemStack(input).getItem(), ItemStack(input).getItemDamage(), rarity, new Color(hex))));
+        MineTweakerAPI.tweaker.apply(new Add(new Compostable(toStack(input).getItem(), toStack(input).getItemDamage(), Math.min(1.0F, (float) value), new Color(hex))));
     }
 
     //Passes the list to the map list implementation, and adds the recipe
@@ -39,8 +39,8 @@ public class Compost {
 
     //Removing a Ex Nihilo Composting recipe
     @ZenMethod
-    public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
+    public static void removeRecipe(IItemStack input) {
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(input)));
     }
 
     //Removes a recipe, will always remove the key, so all should be good

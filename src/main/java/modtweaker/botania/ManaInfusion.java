@@ -1,11 +1,12 @@
 package modtweaker.botania;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toObject;
+import static modtweaker.util.Helper.toStack;
 import minetweaker.MineTweakerAPI;
+import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
-import modtweaker.util.Helper;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -15,20 +16,20 @@ import vazkii.botania.api.recipe.RecipeManaInfusion;
 @ZenClass("mods.botania.ManaInfusion")
 public class ManaInfusion {
     @ZenMethod
-    public static void addInfusion(IItemStack output, Object input, int mana) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipeManaInfusion(ItemStack(output), Helper.fix(input), mana)));
+    public static void addInfusion(IItemStack output, IIngredient input, int mana) {
+        MineTweakerAPI.tweaker.apply(new Add(new RecipeManaInfusion(toStack(output), toObject(input), mana)));
     }
     
     @ZenMethod
-    public static void addAlchemy(IItemStack output, Object input, int mana) {
-        RecipeManaInfusion recipe = new RecipeManaInfusion(ItemStack(output), input, mana);
+    public static void addAlchemy(IItemStack output, IIngredient input, int mana) {
+        RecipeManaInfusion recipe = new RecipeManaInfusion(toStack(output), toObject(input), mana);
         recipe.setAlchemy(true);
         MineTweakerAPI.tweaker.apply(new Add(recipe));
     }
     
     @ZenMethod
-    public static void addConjuration(IItemStack output, Object input, int mana) {
-        RecipeManaInfusion recipe = new RecipeManaInfusion(ItemStack(output), input, mana);
+    public static void addConjuration(IItemStack output, IIngredient input, int mana) {
+        RecipeManaInfusion recipe = new RecipeManaInfusion(toStack(output), toObject(input), mana);
         recipe.setConjuration(true);
         MineTweakerAPI.tweaker.apply(new Add(recipe));
     }
@@ -48,7 +49,7 @@ public class ManaInfusion {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

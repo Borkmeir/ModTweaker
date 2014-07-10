@@ -1,6 +1,6 @@
 package modtweaker.mariculture;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 import static modtweaker.util.Helper.getPrivateStaticObject;
 
 import java.util.ArrayList;
@@ -44,17 +44,17 @@ public class Fishing {
     //Adding Fishing Loot
     @ZenMethod
     public static void addJunk(IItemStack loot, double chance, @Optional String type, @Optional boolean exact, @Optional int[] dimension) {
-        addLoot(ItemStack(loot), chance, type, exact, dimension, Rarity.JUNK);
+        addLoot(toStack(loot), chance, type, exact, dimension, Rarity.JUNK);
     }
     
     @ZenMethod
     public static void addGood(IItemStack loot, double chance, @Optional String type, @Optional boolean exact, @Optional int[] dimension) {
-        addLoot(ItemStack(loot), chance, type, exact, dimension, Rarity.GOOD);
+        addLoot(toStack(loot), chance, type, exact, dimension, Rarity.GOOD);
     }
     
     @ZenMethod
     public static void addRare(IItemStack loot, double chance, @Optional String type, @Optional boolean exact, @Optional int[] dimension) {
-        addLoot(ItemStack(loot), chance, type, exact, dimension, Rarity.RARE);
+        addLoot(toStack(loot), chance, type, exact, dimension, Rarity.RARE);
     }
     
     private static void addLoot(ItemStack stack, double chance, String type, boolean exact, int[] dimension, Rarity rarity) {
@@ -97,7 +97,7 @@ public class Fishing {
     //Removing Fishing Loot, will remove it from every single list
     @ZenMethod
     public static void removeLoot(IItemStack loot) {
-        MineTweakerAPI.tweaker.apply(new RemoveLoot(ItemStack(loot)));
+        MineTweakerAPI.tweaker.apply(new RemoveLoot(toStack(loot)));
     }
     
     private static class RemoveLoot extends BaseDescriptionRemoval {

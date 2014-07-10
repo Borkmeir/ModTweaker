@@ -1,6 +1,6 @@
 package modtweaker.bloodmagic;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
@@ -17,7 +17,7 @@ public class Binding {
     //Adding a Blood Magic Binding recipe
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(new BindingRecipe(ItemStack(output), ItemStack(input))));
+        MineTweakerAPI.tweaker.apply(new Add(new BindingRecipe(toStack(output), toStack(input))));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -37,7 +37,7 @@ public class Binding {
     //Removing a Blood Magic Binding recipe
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

@@ -1,7 +1,7 @@
 package modtweaker.mariculture;
 
 import static modtweaker.util.Helper.FluidStack;
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 
 import java.util.HashMap;
 
@@ -22,17 +22,17 @@ public class Casting {
     //Adding Mariculture Casting Recipes
     @ZenMethod
     public static void addNuggetRecipe(ILiquidStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipeNuggetCasting(FluidStack(input), ItemStack(output)), MaricultureHandlers.casting.getNuggetRecipes()));
+        MineTweakerAPI.tweaker.apply(new Add(new RecipeNuggetCasting(FluidStack(input), toStack(output)), MaricultureHandlers.casting.getNuggetRecipes()));
     }
 
     @ZenMethod
     public static void addIngotRecipe(ILiquidStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipeNuggetCasting(FluidStack(input), ItemStack(output)), MaricultureHandlers.casting.getIngotRecipes()));
+        MineTweakerAPI.tweaker.apply(new Add(new RecipeNuggetCasting(FluidStack(input), toStack(output)), MaricultureHandlers.casting.getIngotRecipes()));
     }
 
     @ZenMethod
     public static void addBlockRecipe(ILiquidStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipeNuggetCasting(FluidStack(input), ItemStack(output)), MaricultureHandlers.casting.getBlockRecipes()));
+        MineTweakerAPI.tweaker.apply(new Add(new RecipeNuggetCasting(FluidStack(input), toStack(output)), MaricultureHandlers.casting.getBlockRecipes()));
     }
 
     private static class Add extends BaseMapAddition {
@@ -51,17 +51,17 @@ public class Casting {
     //Removing Mariculture Casting Recipes
     @ZenMethod
     public static void removeNuggetRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(input), MaricultureHandlers.casting.getNuggetRecipes()));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(input), MaricultureHandlers.casting.getNuggetRecipes()));
     }
 
     @ZenMethod
     public static void removeIngotRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(input), MaricultureHandlers.casting.getIngotRecipes()));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(input), MaricultureHandlers.casting.getIngotRecipes()));
     }
 
     @ZenMethod
     public static void removeBlockRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(input), MaricultureHandlers.casting.getBlockRecipes()));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(input), MaricultureHandlers.casting.getBlockRecipes()));
     }
 
     private static class Remove extends BaseMapRemoval {

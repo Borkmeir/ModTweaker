@@ -1,6 +1,6 @@
 package modtweaker.exnihilo;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 import static modtweaker.util.Helper.isABlock;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
@@ -18,11 +18,11 @@ import exnihilo.registries.helpers.Smashable;
 public class Hammer {
     //Adding a Ex Nihilo Hammer recipe
     @ZenMethod
-    public static void addRecipe(IItemStack input, IItemStack output, float chance, float luck) {
+    public static void addRecipe(IItemStack input, IItemStack output, double chance, float luck) {
         if (isABlock(input)) {
-            Block theBlock = Block.getBlockFromItem(ItemStack(input).getItem());
-            int theMeta = ItemStack(input).getItemDamage();
-            MineTweakerAPI.tweaker.apply(new Add(new Smashable(theBlock, theMeta, ItemStack(output).getItem(), ItemStack(output).getItemDamage(), chance, luck)));
+            Block theBlock = Block.getBlockFromItem(toStack(input).getItem());
+            int theMeta = toStack(input).getItemDamage();
+            MineTweakerAPI.tweaker.apply(new Add(new Smashable(theBlock, theMeta, toStack(output).getItem(), toStack(output).getItemDamage(), (float) chance, luck)));
         }
     }
 
@@ -43,7 +43,7 @@ public class Hammer {
     //Removing a Ex Nihilo Hammer recipe
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

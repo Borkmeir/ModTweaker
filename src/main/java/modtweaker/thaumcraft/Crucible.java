@@ -1,8 +1,9 @@
 package modtweaker.thaumcraft;
 
-import static modtweaker.util.Helper.ItemStack;
-import static modtweaker.util.Helper.fix;
+import static modtweaker.util.Helper.toObject;
+import static modtweaker.util.Helper.toStack;
 import minetweaker.MineTweakerAPI;
+import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
@@ -15,8 +16,8 @@ import thaumcraft.api.crafting.CrucibleRecipe;
 @ZenClass("mods.thaumcraft.Crucible")
 public class Crucible {
     @ZenMethod
-    public static void addRecipe(String key, IItemStack result, Object catalyst, String aspects) {
-        MineTweakerAPI.tweaker.apply(new Add(new CrucibleRecipe(key, ItemStack(result), fix(catalyst), ThaumcraftHelper.parseAspects(aspects))));
+    public static void addRecipe(String key, IItemStack result, IIngredient catalyst, String aspects) {
+        MineTweakerAPI.tweaker.apply(new Add(new CrucibleRecipe(key, toStack(result), toObject(catalyst), ThaumcraftHelper.parseAspects(aspects))));
     }
 
     private static class Add extends BaseListAddition {
@@ -34,7 +35,7 @@ public class Crucible {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

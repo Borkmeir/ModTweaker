@@ -1,6 +1,6 @@
 package modtweaker.tconstruct;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public class Drying {
     //Adding a TConstruct Drying Rack recipe
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output, int time) {
-        MineTweakerAPI.tweaker.apply(new Add(TConstructHelper.getDryingRecipe(ItemStack(input),time, ItemStack(output))));
+        MineTweakerAPI.tweaker.apply(new Add(TConstructHelper.getDryingRecipe(toStack(input),time, toStack(output))));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -40,7 +40,7 @@ public class Drying {
     //Removing a TConstruct Drying Rack recipe
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove((ItemStack(output))));
+        MineTweakerAPI.tweaker.apply(new Remove((toStack(output))));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

@@ -1,6 +1,6 @@
 package modtweaker.thaumcraft;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 
 import java.util.Arrays;
 
@@ -19,23 +19,23 @@ public class Aspects {
     /** Add/Remove/Set Aspects for items **/
     @ZenMethod
     public static void add(IItemStack stack, String aspects) {
-        MineTweakerAPI.tweaker.apply(new AddItemAspects(ItemStack(stack), aspects, false));
+        MineTweakerAPI.tweaker.apply(new Add(toStack(stack), aspects, false));
     }
 
     @ZenMethod
     public static void set(IItemStack stack, String aspects) {
-        MineTweakerAPI.tweaker.apply(new AddItemAspects(ItemStack(stack), aspects, true));
+        MineTweakerAPI.tweaker.apply(new Add(toStack(stack), aspects, true));
     }
 
     //Adds or sets Aspects
-    private static class AddItemAspects extends BaseDescriptionAddition {
+    private static class Add extends BaseDescriptionAddition {
         private final ItemStack stack;
         private final String aspects;
         private final boolean replace;
         private AspectList oldList;
         private AspectList newList;
 
-        public AddItemAspects(ItemStack stack, String aspects, boolean replace) {
+        public Add(ItemStack stack, String aspects, boolean replace) {
             super("Adding Aspects");
             this.stack = stack;
             this.aspects = aspects;
@@ -55,6 +55,50 @@ public class Aspects {
             if (oldList == null) {
                 ThaumcraftApi.objectTags.remove(Arrays.asList(stack.getItem(), stack.getItemDamage()));
             } else ThaumcraftApi.objectTags.put(Arrays.asList(stack.getItem(), stack.getItemDamage()), oldList);
+        }
+
+        @Override
+        public String getRecipeInfo() {
+            return stack.getDisplayName();
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    @ZenMethod
+    public static void remove(IItemStack stack, String aspects) {
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(stack), aspects));
+    }
+
+    private static class Remove extends BaseDescriptionAddition {
+        private final ItemStack stack;
+        private final String aspects;
+        private AspectList oldList;
+        private AspectList newList;
+
+        public Remove(ItemStack stack, String aspects) {
+            super("Removing Aspects");
+            this.stack = stack;
+            this.aspects = aspects;
+        }
+
+        @Override
+        public void apply() {
+            oldList = ThaumcraftApiHelper.getObjectAspects(stack);
+            if (oldList != null) {
+                newList = ThaumcraftHelper.removeAspects(oldList, aspects);
+                ThaumcraftApi.objectTags.put(Arrays.asList(stack.getItem(), stack.getItemDamage()), newList);
+            }
+        }
+
+        @Override
+        public boolean canUndo() {
+            return oldList != null;
+        }
+
+        @Override
+        public void undo() {
+            ThaumcraftApi.objectTags.put(Arrays.asList(stack.getItem(), stack.getItemDamage()), oldList);
         }
 
         @Override

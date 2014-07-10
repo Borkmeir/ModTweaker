@@ -1,6 +1,6 @@
 package modtweaker.thaumcraft;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
@@ -15,7 +15,7 @@ import thaumcraft.api.crafting.InfusionRecipe;
 public class Infusion {
     @ZenMethod
     public static void addRecipe(String key, ItemStack input, ItemStack[] recipe, String aspects, IItemStack result, int instability) {
-        MineTweakerAPI.tweaker.apply(new Add(new InfusionRecipe(key, ItemStack(result), instability, ThaumcraftHelper.parseAspects(aspects), input, recipe)));
+        MineTweakerAPI.tweaker.apply(new Add(new InfusionRecipe(key, toStack(result), instability, ThaumcraftHelper.parseAspects(aspects), input, recipe)));
     }
 
     private static class Add extends BaseListAddition {
@@ -36,7 +36,7 @@ public class Infusion {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

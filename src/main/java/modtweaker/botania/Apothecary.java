@@ -1,22 +1,24 @@
 package modtweaker.botania;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
+import static modtweaker.util.Helper.toObjects;
 import minetweaker.MineTweakerAPI;
+import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
-import modtweaker.util.Helper;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.recipe.RecipePetals;
+import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 
-@ZenClass("mods.botania.Petals")
-public class Petals {
+@ZenClass("mods.botania.Apothecary")
+public class Apothecary {
     @ZenMethod
-    public static void addRecipe(IItemStack output, Object[] input) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipePetals(ItemStack(output), Helper.fix(input))));
+    public static void addRecipe(IItemStack output, IIngredient[] input) {
+        MineTweakerAPI.tweaker.apply(new Add(new RecipePetals(toStack(output), toObjects(input))));
     }
 
     private static class Add extends BaseListAddition {
@@ -34,20 +36,32 @@ public class Petals {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+    }
+
+    @ZenMethod
+    public static void removeRecipe(String output) {
+        MineTweakerAPI.tweaker.apply(new Remove(output));
     }
 
     private static class Remove extends BaseListRemoval {
-        public Remove(ItemStack stack) {
-            super("Botania Petal recipe", BotaniaAPI.petalRecipes, stack);
+        public Remove(Object stack) {
+            super("Botania Petal recipe", BotaniaAPI.petalRecipes, (ItemStack) (stack instanceof String ? ItemBlockSpecialFlower.ofType((String) stack) : stack));
         }
 
         @Override
         public void apply() {
             for (RecipePetals r : BotaniaAPI.petalRecipes) {
                 if (r.getOutput() != null && r.getOutput().isItemEqual(stack)) {
-                    recipe = r;
-                    break;
+                    if (r.getOutput().getItem() instanceof ItemBlockSpecialFlower) {
+                        if (ItemBlockSpecialFlower.getType(r.getOutput()).equals(ItemBlockSpecialFlower.getType(stack))) {
+                            recipe = r;
+                            break;
+                        }
+                    } else {
+                        recipe = r;
+                        break;
+                    }
                 }
             }
 

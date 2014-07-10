@@ -1,6 +1,6 @@
 package modtweaker.mariculture;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 import mariculture.api.core.IAnvilHandler.RecipeAnvil;
 import mariculture.api.core.MaricultureHandlers;
 import minetweaker.MineTweakerAPI;
@@ -16,7 +16,7 @@ public class Anvil {
     //Adding a Mariculture Anvil recipe
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output, int hits) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipeAnvil(ItemStack(input), ItemStack(output), hits)));
+        MineTweakerAPI.tweaker.apply(new Add(new RecipeAnvil(toStack(input), toStack(output), hits)));
     }
 
     private static class Add extends BaseMapAddition {
@@ -35,7 +35,7 @@ public class Anvil {
     //Removing a Mariculture Anvil recipe
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(input)));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(input)));
     }
 
     private static class Remove extends BaseMapRemoval {

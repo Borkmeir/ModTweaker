@@ -1,7 +1,7 @@
 ===========================================================
 
 ModTweaker 0.4
-• Updated to 1.7 includes the following mods
+• Updated to 1.7; includes the following mods
    • Blood Magic
       • Alchemy
       • Binding
@@ -41,11 +41,11 @@ ModTweaker 0.4
          • Max RF for Flux Tools
 
 • Temporarily 'removed' (no 1.7 update yet)
---- • Big Reactors
---- • Growthcraft
---- • Mekanism
---- • Thermal Expansion
---- • Tinker's Steelworks
+   • Big Reactors
+   • Growthcraft
+   • Mekanism
+   • Thermal Expansion
+   • Tinker's Steelworks
 
 ===========================================================
 

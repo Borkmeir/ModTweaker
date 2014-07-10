@@ -1,11 +1,12 @@
 package modtweaker.botania;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toObjects;
+import static modtweaker.util.Helper.toStack;
 import minetweaker.MineTweakerAPI;
+import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
-import modtweaker.util.Helper;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -15,8 +16,8 @@ import vazkii.botania.api.recipe.RecipeRuneAltar;
 @ZenClass("mods.botania.RuneAltar")
 public class RuneAltar {
     @ZenMethod
-    public static void addRecipe(IItemStack output, int mana, Object[] input) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipeRuneAltar(ItemStack(output), mana, Helper.fix(input))));
+    public static void addRecipe(IItemStack output, IIngredient[] input, int mana) {
+        MineTweakerAPI.tweaker.apply(new Add(new RecipeRuneAltar(toStack(output), mana, toObjects(input))));
     }
 
     private static class Add extends BaseListAddition {
@@ -34,7 +35,7 @@ public class RuneAltar {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

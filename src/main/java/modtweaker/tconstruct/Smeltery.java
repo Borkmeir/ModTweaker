@@ -1,7 +1,7 @@
 package modtweaker.tconstruct;
 
 import static modtweaker.util.Helper.FluidStack;
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 import static modtweaker.util.Helper.isABlock;
 
 import java.util.ArrayList;
@@ -86,9 +86,9 @@ public class Smeltery {
     public static void addMelting(IItemStack input, ILiquidStack output, int temp, @Optional IItemStack block) {
         if (block == null) block = input;
         if(isABlock(block)) {
-            Block theBlock = Block.getBlockFromItem(ItemStack(block).getItem());
-            int theMeta = ItemStack(block).getItemDamage();
-            MineTweakerAPI.tweaker.apply(new AddMelting(ItemStack(input), theBlock, theMeta, temp, FluidStack(output)));
+            Block theBlock = Block.getBlockFromItem(toStack(block).getItem());
+            int theMeta = toStack(block).getItemDamage();
+            MineTweakerAPI.tweaker.apply(new AddMelting(toStack(input), theBlock, theMeta, temp, FluidStack(output)));
         }
     }
 
@@ -134,7 +134,7 @@ public class Smeltery {
     //Removing a TConstruct Melting recipe
     @ZenMethod
     public static void removeMelting(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new RemoveMelting((ItemStack(input))));
+        MineTweakerAPI.tweaker.apply(new RemoveMelting((toStack(input))));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

@@ -1,7 +1,7 @@
 package modtweaker.mariculture;
 
 import static modtweaker.util.Helper.FluidStack;
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 import mariculture.api.core.FuelInfo;
 import mariculture.api.core.MaricultureHandlers;
 import mariculture.api.core.RecipeSmelter;
@@ -27,8 +27,8 @@ public class Crucible {
     //Adding a Mariculture Crucible recipe
     @ZenMethod
     public static void addRecipe(int temp, @NotNull IItemStack input, @NotNull ILiquidStack fluid, @Optional IItemStack output, @Optional int chance) {
-        ItemStack out = output != null? ItemStack(output): null;
-        MineTweakerAPI.tweaker.apply(new AddRecipe(new RecipeSmelter(ItemStack(input), null, temp, FluidStack(fluid), out, chance)));
+        ItemStack out = output != null? toStack(output): null;
+        MineTweakerAPI.tweaker.apply(new AddRecipe(new RecipeSmelter(toStack(input), null, temp, FluidStack(fluid), out, chance)));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -48,7 +48,7 @@ public class Crucible {
     //Removing a Mariculture Crucible recipe
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new RemoveRecipe(ItemStack(input)));
+        MineTweakerAPI.tweaker.apply(new RemoveRecipe(toStack(input)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it
@@ -79,7 +79,7 @@ public class Crucible {
     /********************************************** Crucible Fuels **********************************************/
     @ZenMethod
     public static void addFuel(IItemStack input, int max, int per, int time) {
-        MineTweakerAPI.tweaker.apply(new AddFuel(ItemStack(input), new FuelInfo(max, per, time)));
+        MineTweakerAPI.tweaker.apply(new AddFuel(toStack(input), new FuelInfo(max, per, time)));
     }
     
     @ZenMethod

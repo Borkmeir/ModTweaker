@@ -1,6 +1,6 @@
 package modtweaker.exnihilo;
 
-import static modtweaker.util.Helper.ItemStack;
+import static modtweaker.util.Helper.toStack;
 import static modtweaker.util.Helper.isABlock;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
@@ -20,9 +20,9 @@ public class Sieve {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output, int rarity) {
         if (isABlock(input)) {
-            Block theBlock = Block.getBlockFromItem(ItemStack(input).getItem());
-            int theMeta = ItemStack(input).getItemDamage();
-            MineTweakerAPI.tweaker.apply(new Add(new SiftReward(theBlock, theMeta, ItemStack(output).getItem(), ItemStack(output).getItemDamage(), rarity)));
+            Block theBlock = Block.getBlockFromItem(toStack(input).getItem());
+            int theMeta = toStack(input).getItemDamage();
+            MineTweakerAPI.tweaker.apply(new Add(new SiftReward(theBlock, theMeta, toStack(output).getItem(), toStack(output).getItemDamage(), rarity)));
         }
     }
 
@@ -43,7 +43,7 @@ public class Sieve {
     //Removing a Ex Nihilo Sieve recipe
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemStack(output)));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it
