@@ -7,6 +7,7 @@ import java.util.Arrays;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseDescriptionAddition;
+import modtweaker.util.BaseDescriptionRemoval;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -36,7 +37,7 @@ public class Aspects {
         private AspectList newList;
 
         public Add(ItemStack stack, String aspects, boolean replace) {
-            super("Adding Aspects");
+            super("Aspects");
             this.stack = stack;
             this.aspects = aspects;
             this.replace = replace;
@@ -70,14 +71,14 @@ public class Aspects {
         MineTweakerAPI.tweaker.apply(new Remove(toStack(stack), aspects));
     }
 
-    private static class Remove extends BaseDescriptionAddition {
+    private static class Remove extends BaseDescriptionRemoval {
         private final ItemStack stack;
         private final String aspects;
         private AspectList oldList;
         private AspectList newList;
 
         public Remove(ItemStack stack, String aspects) {
-            super("Removing Aspects");
+            super("Aspects");
             this.stack = stack;
             this.aspects = aspects;
         }

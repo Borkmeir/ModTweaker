@@ -13,7 +13,6 @@ import modtweaker.util.BaseListRemoval;
 import modtweaker.util.BaseMapAddition;
 import modtweaker.util.BaseMapRemoval;
 import net.minecraft.item.ItemStack;
-import stanhebben.zenscript.annotations.NotNull;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -25,7 +24,7 @@ public class Crucible {
 
     //Adding a Mariculture Crucible recipe
     @ZenMethod
-    public static void addRecipe(int temp, @NotNull IItemStack input, @NotNull ILiquidStack fluid, @Optional IItemStack output, @Optional int chance) {
+    public static void addRecipe(int temp, IItemStack input, ILiquidStack fluid, @Optional IItemStack output, @Optional int chance) {
         ItemStack out = output != null? toStack(output): null;
         MineTweakerAPI.tweaker.apply(new AddRecipe(new RecipeSmelter(toStack(input), null, temp, toFluid(fluid), out, chance)));
     }

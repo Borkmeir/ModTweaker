@@ -6,7 +6,6 @@ import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 
 public class Botania {
     public Botania() {
-        MineTweakerAPI.registerBracketHandler(new FlowerBracketHandler());
         MineTweakerAPI.registerClass(Apothecary.class);
         MineTweakerAPI.registerClass(ElvenTrade.class);
         MineTweakerAPI.registerClass(ManaInfusion.class);

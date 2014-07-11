@@ -42,12 +42,12 @@ public class Apothecary {
 
     @ZenMethod
     public static void removeRecipe(String output) {
-        MineTweakerAPI.tweaker.apply(new Remove(output));
+        MineTweakerAPI.tweaker.apply(new Remove(ItemBlockSpecialFlower.ofType(output)));
     }
 
     private static class Remove extends BaseListRemoval {
-        public Remove(Object stack) {
-            super("Botania Petal recipe", BotaniaAPI.petalRecipes, (ItemStack) (stack instanceof String ? ItemBlockSpecialFlower.ofType((String) stack) : stack));
+        public Remove(ItemStack stack) {
+            super("Botania Petal recipe", BotaniaAPI.petalRecipes, stack);
         }
 
         @Override

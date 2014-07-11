@@ -17,11 +17,11 @@ import exnihilo.registries.helpers.Smashable;
 public class Hammer {
     //Adding a Ex Nihilo Hammer recipe
     @ZenMethod
-    public static void addRecipe(IItemStack input, IItemStack output, double chance, float luck) {
+    public static void addRecipe(IItemStack input, IItemStack output, double chance, double luck) {
         if (isABlock(input)) {
             Block theBlock = Block.getBlockFromItem(toStack(input).getItem());
             int theMeta = toStack(input).getItemDamage();
-            MineTweakerAPI.tweaker.apply(new Add(new Smashable(theBlock, theMeta, toStack(output).getItem(), toStack(output).getItemDamage(), (float) chance, luck)));
+            MineTweakerAPI.tweaker.apply(new Add(new Smashable(theBlock, theMeta, toStack(output).getItem(), toStack(output).getItemDamage(), (float) chance, (float) luck)));
         }
     }
 
