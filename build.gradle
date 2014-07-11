@@ -31,7 +31,7 @@ configFile.withReader {
     project.ext.config = new ConfigSlurper().parse prop
 }
 
-version = config.minecraft_version + "-" + config.mod_version
+version = "1.7.X-" + config.mod_version
 group= "com.github.joshiejack.modtweaker" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "ModTweaker"
 

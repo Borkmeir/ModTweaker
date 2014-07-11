@@ -1,7 +1,7 @@
 package modtweaker.util;
 
-import static modtweaker.util.Helper.setPrivateValue;
 import minetweaker.IUndoableAction;
+import modtweaker.helpers.ReflectionHelper;
 
 public abstract class BaseSetVar implements IUndoableAction {
 	protected final String description;
@@ -19,7 +19,7 @@ public abstract class BaseSetVar implements IUndoableAction {
 	
 	@Override
     public void apply() {
-        setPrivateValue(clazz, field, newValue);
+        ReflectionHelper.setPrivateValue(clazz, field, newValue);
     }
 
 	@Override
@@ -29,7 +29,7 @@ public abstract class BaseSetVar implements IUndoableAction {
 
     @Override
     public void undo() {
-        setPrivateValue(clazz, field, original);
+        ReflectionHelper.setPrivateValue(clazz, field, original);
     }
 
 	@Override
