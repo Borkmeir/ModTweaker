@@ -86,7 +86,7 @@ public class ToolStats {
 
         private int getIDFromString(String material) {
             for (Map.Entry<Integer, ToolMaterial> entry : TConstructRegistry.toolMaterials.entrySet()) {
-                if (entry.getValue().materialName.equals(material)) {
+                if (entry.getValue().materialName.equalsIgnoreCase(material)) {
                     return entry.getKey();
                 }
             }
@@ -98,12 +98,12 @@ public class ToolStats {
         public void apply() {
             old = TConstructRegistry.toolMaterialStrings.get(material);
             id = getIDFromString(material);
-            if (id != -1) {
+            if (id != -1 && old != null) {
                 if (value instanceof ToolMaterial) {
                     fresh = (ToolMaterial) value;
                 } else {
-                    ReflectionHelper.setPrivateValue(ToolMaterial.class, fresh, field, value);
                     fresh = new ToolMaterial(old.materialName, old.displayName, old.harvestLevel, old.durability, old.miningspeed, old.attack, old.handleModifier, old.reinforced, old.stonebound, old.tipStyle, old.ability);
+                    ReflectionHelper.setPrivateValue(ToolMaterial.class, fresh, field, value);
                 }
 
                 TConstructRegistry.toolMaterials.put(id, fresh);
