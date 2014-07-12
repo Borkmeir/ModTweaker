@@ -32,8 +32,11 @@ public class ReflectionHelper {
         return null;
     }
 
-    public static void setPrivateValue(Class cls, String field, int var) {
+    public static void setPrivateValue(Class cls, String field, Object var) {
         cpw.mods.fml.relauncher.ReflectionHelper.setPrivateValue(cls, null, var, field);
     }
 
+    public static void setPrivateValue(Class cls, Object o, String field, Object var) {
+        cpw.mods.fml.relauncher.ReflectionHelper.setPrivateValue(cls, o, var, field);
+    }
 }

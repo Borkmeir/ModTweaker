@@ -8,5 +8,6 @@ public class TConstruct {
         MineTweakerAPI.registerClass(Drying.class);
         MineTweakerAPI.registerClass(Smeltery.class);
         MineTweakerAPI.registerClass(TiCTweaks.class);
+        MineTweakerAPI.registerClass(ToolStats.class);
     }
 }

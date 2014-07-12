@@ -1,5 +1,11 @@
 ===========================================================
 
+ModTweaker 0.5
+• Tinker's Construct
+  • Adjust Material Data
+
+===========================================================
+
 ModTweaker 0.4
 • Updated to 1.7; includes the following mods
    • Blood Magic
