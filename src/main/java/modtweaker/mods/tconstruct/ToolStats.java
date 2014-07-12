@@ -113,7 +113,7 @@ public class ToolStats {
 
         @Override
         public boolean canUndo() {
-            return TConstructRegistry.toolMaterialStrings != null && id != -1;
+            return TConstructRegistry.toolMaterialStrings != null && id != -1 && old != null;
         }
 
         @Override
