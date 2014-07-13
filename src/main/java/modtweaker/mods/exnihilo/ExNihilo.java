@@ -1,6 +1,10 @@
 package modtweaker.mods.exnihilo;
 
 import minetweaker.MineTweakerAPI;
+import modtweaker.mods.exnihilo.handlers.Compost;
+import modtweaker.mods.exnihilo.handlers.Crucible;
+import modtweaker.mods.exnihilo.handlers.Hammer;
+import modtweaker.mods.exnihilo.handlers.Sieve;
 
 public class ExNihilo {
     public ExNihilo() {

@@ -7,17 +7,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 public abstract class BaseMapRemoval implements IUndoableAction {
-    protected ItemStack stack;
+    protected Object stack;
     protected String description;
     protected final Map map;
-    protected final Object key;
+    protected Object key;
     protected Object recipe;
 
-    public BaseMapRemoval(ItemStack stack, Map map, Object key) {
+    public BaseMapRemoval(Object stack, Map map, Object key) {
         this(null, map, key, stack);
     }
 
-    public BaseMapRemoval(String description, Map map, Object key, ItemStack stack) {
+    public BaseMapRemoval(String description, Map map, Object key, Object stack) {
         this.stack = stack;
         this.map = map;
         this.key = key;

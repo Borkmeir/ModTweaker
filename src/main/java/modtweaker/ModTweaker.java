@@ -4,6 +4,7 @@ import modtweaker.mods.bloodmagic.BloodMagic;
 import modtweaker.mods.botania.Botania;
 import modtweaker.mods.exnihilo.ExNihilo;
 import modtweaker.mods.mariculture.Mariculture;
+import modtweaker.mods.mekanism.Mekanism;
 import modtweaker.mods.metallurgy.Metallurgy;
 import modtweaker.mods.tconstruct.TConstruct;
 import modtweaker.mods.thaumcraft.Thaumcraft;
@@ -20,6 +21,7 @@ public class ModTweaker {
         TweakerPlugin.register("Botania", Botania.class);
         TweakerPlugin.register("exnihilo", ExNihilo.class);
         TweakerPlugin.register("Mariculture", Mariculture.class);
+        TweakerPlugin.register("Mekanism", Mekanism.class);
         TweakerPlugin.register("Metallurgy", Metallurgy.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);
