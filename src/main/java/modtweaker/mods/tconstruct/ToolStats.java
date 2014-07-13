@@ -9,6 +9,8 @@ import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import tconstruct.library.TConstructRegistry;
+import tconstruct.library.tools.ArrowMaterial;
+import tconstruct.library.tools.BowMaterial;
 import tconstruct.library.tools.ToolMaterial;
 
 @ZenClass("mods.tconstruct.ToolStats")
@@ -16,75 +18,75 @@ public class ToolStats {
     @ZenMethod
     public static void set(String material, @Optional String name, int level, int durability, int speed, int damage, float handle, int reinforced, float stonebound, String style, String ability) {
         if (name == null) name = material + " ";
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "", new ToolMaterial(material, name, level, durability, speed, damage, handle, reinforced, stonebound, style, ability)));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "", new ToolMaterial(material, name, level, durability, speed, damage, handle, reinforced, stonebound, style, ability)));
     }
 
     @ZenMethod
     public static void setDisplayName(String material, String name) {
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "displayName", name));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "displayName", name));
     }
 
     @ZenMethod
     public static void setHarvestLevel(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "harvestLevel", value));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "harvestLevel", value));
     }
 
     @ZenMethod
     public static void setDurability(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "durability", value));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "durability", value));
     }
 
     @ZenMethod
     public static void setSpeed(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "miningspeed", value));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "miningspeed", value));
     }
 
     @ZenMethod
     public static void setDamage(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "attack", value));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "attack", value));
     }
 
     @ZenMethod
     public static void setHandleModifier(String material, double value) {
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "handle", (float) value));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "handle", (float) value));
     }
 
     @ZenMethod
     public static void setReinforcedLevel(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "reinforced", value));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "reinforced", value));
     }
 
     @ZenMethod
     public static void setStoneboundLevel(String material, double value) {
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "stonebound", (float) value));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "stonebound", (float) value));
     }
 
     @ZenMethod
     public static void setStyle(String material, String name) {
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "tipStyle", name));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "tipStyle", name));
     }
 
     @ZenMethod
     public static void setAbility(String material, String name) {
-        MineTweakerAPI.tweaker.apply(new SetVar(material, "ability", name));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "ability", name));
     }
 
     //Sets various variables with reflection, making my life partially easier :D
-    private static class SetVar implements IUndoableAction {
-        private int id;
-        private ToolMaterial old;
-        private ToolMaterial fresh;
-        private final String material;
-        private final String field;
-        private final Object value;
+    private static class SetToolStats implements IUndoableAction {
+        protected int id;
+        protected Object old;
+        protected Object fresh;
+        protected final String material;
+        protected final String field;
+        protected final Object value;
 
-        public SetVar(String material, String field, Object value) {
+        public SetToolStats(String material, String field, Object value) {
             this.material = material;
             this.field = field;
             this.value = value;
         }
 
-        private int getIDFromString(String material) {
+        protected int getIDFromString(String material) {
             for (Map.Entry<Integer, ToolMaterial> entry : TConstructRegistry.toolMaterials.entrySet()) {
                 if (entry.getValue().materialName.equalsIgnoreCase(material)) {
                     return entry.getKey();
@@ -102,12 +104,13 @@ public class ToolStats {
                 if (value instanceof ToolMaterial) {
                     fresh = (ToolMaterial) value;
                 } else {
-                    fresh = new ToolMaterial(old.materialName, old.displayName, old.harvestLevel, old.durability, old.miningspeed, old.attack, old.handleModifier, old.reinforced, old.stonebound, old.tipStyle, old.ability);
+                    ToolMaterial t = (ToolMaterial) old;
+                    fresh = new ToolMaterial(t.materialName, t.displayName, t.harvestLevel, t.durability, t.miningspeed, t.attack, t.handleModifier, t.reinforced, t.stonebound, t.tipStyle, t.ability);
                     ReflectionHelper.setPrivateValue(ToolMaterial.class, fresh, field, value);
                 }
 
-                TConstructRegistry.toolMaterials.put(id, fresh);
-                TConstructRegistry.toolMaterialStrings.put(material, fresh);
+                TConstructRegistry.toolMaterials.put(id, (ToolMaterial) fresh);
+                TConstructRegistry.toolMaterialStrings.put(material, (ToolMaterial) fresh);
             }
         }
 
@@ -118,8 +121,8 @@ public class ToolStats {
 
         @Override
         public void undo() {
-            TConstructRegistry.toolMaterials.put(id, old);
-            TConstructRegistry.toolMaterialStrings.put(material, old);
+            TConstructRegistry.toolMaterials.put(id, (ToolMaterial) old);
+            TConstructRegistry.toolMaterialStrings.put(material, (ToolMaterial) old);
         }
 
         @Override
@@ -135,6 +138,120 @@ public class ToolStats {
         @Override
         public Object getOverrideKey() {
             return null;
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //Bow Stats
+    @ZenMethod
+    public static void setBowStats(String material, int durability, int drawspeed, double flightspeed) {
+        MineTweakerAPI.tweaker.apply(new SetBowStats(material, "", new BowMaterial(durability, drawspeed, (float) flightspeed)));
+    }
+
+    @ZenMethod
+    public static void setBowDurability(String material, int value) {
+        MineTweakerAPI.tweaker.apply(new SetBowStats(material, "durability", value));
+    }
+
+    @ZenMethod
+    public static void setBowDrawspeed(String material, int value) {
+        MineTweakerAPI.tweaker.apply(new SetBowStats(material, "drawspeed", value));
+    }
+
+    @ZenMethod
+    public static void setBowFlightSpeed(String material, double value) {
+        MineTweakerAPI.tweaker.apply(new SetBowStats(material, "flightSpeedMax", (float) value));
+    }
+
+    // Bow Stats
+    private static class SetBowStats extends SetToolStats {
+        public SetBowStats(String material, String field, Object value) {
+            super(material, field, value);
+        }
+
+        @Override
+        public void apply() {
+            id = getIDFromString(material);
+            old = TConstructRegistry.bowMaterials.get(id);
+            if (id != -1 && old != null) {
+                if (value instanceof BowMaterial) {
+                    fresh = (BowMaterial) value;
+                } else {
+                    BowMaterial b = (BowMaterial) old;
+                    fresh = new BowMaterial(b.durability, b.drawspeed, b.flightSpeedMax);
+                    ReflectionHelper.setPrivateValue(BowMaterial.class, fresh, field, value);
+                }
+
+                TConstructRegistry.bowMaterials.put(id, (BowMaterial) fresh);
+            }
+        }
+
+        @Override
+        public boolean canUndo() {
+            return TConstructRegistry.bowMaterials != null && id != -1 && old != null;
+        }
+
+        @Override
+        public void undo() {
+            TConstructRegistry.bowMaterials.put(id, (BowMaterial) old);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //Arrow Stats
+    @ZenMethod
+    public static void setArrowStats(String material, double mass, double breakChance, double accuracy) {
+        MineTweakerAPI.tweaker.apply(new SetArrowStats(material, "", new ArrowMaterial((float) mass, (float) breakChance, (float) accuracy)));
+    }
+
+    @ZenMethod
+    public static void setArrowMass(String material, double value) {
+        MineTweakerAPI.tweaker.apply(new SetArrowStats(material, "mass", (float) value));
+    }
+
+    @ZenMethod
+    public static void setArrowBreakChance(String material, double value) {
+        MineTweakerAPI.tweaker.apply(new SetArrowStats(material, "breakChance", (float) value));
+    }
+
+    @ZenMethod
+    public static void setArrowAccuracy(String material, double value) {
+        MineTweakerAPI.tweaker.apply(new SetArrowStats(material, "accuracy", (float) value));
+    }
+
+    // Bow Stats
+    private static class SetArrowStats extends SetToolStats {
+        public SetArrowStats(String material, String field, Object value) {
+            super(material, field, value);
+        }
+
+        @Override
+        public void apply() {
+            id = getIDFromString(material);
+            old = TConstructRegistry.arrowMaterials.get(id);
+            if (id != -1 && old != null) {
+                if (value instanceof ArrowMaterial) {
+                    fresh = (ArrowMaterial) value;
+                } else {
+                    ArrowMaterial a = (ArrowMaterial) old;
+                    fresh = new ArrowMaterial(a.mass, a.breakChance, a.accuracy);
+                    ReflectionHelper.setPrivateValue(ArrowMaterial.class, fresh, field, value);
+                }
+
+                TConstructRegistry.arrowMaterials.put(id, (ArrowMaterial) fresh);
+            }
+        }
+
+        @Override
+        public boolean canUndo() {
+            return TConstructRegistry.arrowMaterials != null && id != -1 && old != null;
+        }
+
+        @Override
+        public void undo() {
+            TConstructRegistry.arrowMaterials.put(id, (ArrowMaterial) old);
         }
     }
 }

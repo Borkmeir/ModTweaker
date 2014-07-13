@@ -19,4 +19,7 @@ public class TiCTweaks {
             super("RF Maximum for Tinkers Tools", ToolCore.class, "capacity", 40000, newValue);
         }
     }
+    
+    
+    //Tweaks for enabling / disabling / changing modifiers
 }
