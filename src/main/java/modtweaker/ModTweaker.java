@@ -5,9 +5,12 @@ import modtweaker.mods.botania.Botania;
 import modtweaker.mods.exnihilo.ExNihilo;
 import modtweaker.mods.factorization.Factorization;
 import modtweaker.mods.hee.HardcoreEnderExpansion;
+import modtweaker.mods.logipipes.LogisticPipes;
 import modtweaker.mods.mariculture.Mariculture;
 import modtweaker.mods.mekanism.Mekanism;
 import modtweaker.mods.metallurgy.Metallurgy;
+import modtweaker.mods.pneumaticraft.Pneumaticraft;
+import modtweaker.mods.railcraft.Railcraft;
 import modtweaker.mods.tconstruct.TConstruct;
 import modtweaker.mods.thaumcraft.Thaumcraft;
 import modtweaker.util.TweakerPlugin;
@@ -24,9 +27,12 @@ public class ModTweaker {
         TweakerPlugin.register("exnihilo", ExNihilo.class);
         TweakerPlugin.register("Factorization", Factorization.class);
         TweakerPlugin.register("HardcoreEnderExpansion", HardcoreEnderExpansion.class);
+        TweakerPlugin.register("LogisticsPipes|Main", LogisticPipes.class);
         TweakerPlugin.register("Mariculture", Mariculture.class);
         TweakerPlugin.register("Mekanism", Mekanism.class);
         TweakerPlugin.register("Metallurgy", Metallurgy.class);
+        TweakerPlugin.register("Pneumatricraft", Pneumaticraft.class);
+        TweakerPlugin.register("Railcraft", Railcraft.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);
     }
