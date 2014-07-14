@@ -1,8 +1,32 @@
 ===========================================================
 
 ModTweaker 0.5
-• Tinker's Construct
-  • Adjust Material Data
+• Hardcore Ender Expansion - NEW!
+   • Essence Altar
+• Factorization - NEW!
+   • Crystallizer
+   • Lacerator
+   • Slag Furnace
+• Mekanism - RESTORED!
+   • Chemical Crystallizer
+   • Chemical Dissolution Chamber
+   • Chemical Infuser
+   • Chemical Injection Chamber
+   • Chemical Oxidizer
+   • Chemical Washer
+   • Combiner
+   • Crusher
+   • Electrolytic Seperator
+   • Enrichment Chamber
+   • Metallurgic Infuser
+   • Osmium Compressor
+   • Purification Chamber
+   • Precision Sawmill
+   • Pressurised Reaction Chamber
+• Tinker's Construct - EXTRA!
+   • Adjust Material Data
+   • Disable Creation of Wood Patterns
+   • Add/Remove Repair Materials
 
 ===========================================================
 

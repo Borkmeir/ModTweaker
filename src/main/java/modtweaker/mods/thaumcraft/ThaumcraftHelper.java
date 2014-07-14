@@ -12,7 +12,7 @@ public class ThaumcraftHelper {
 
     static {
         try {
-            recipes = ReflectionHelper.getPrivateStaticObject(ThaumcraftApi.class, "recipes");
+            recipes = ReflectionHelper.getStaticObject(ThaumcraftApi.class, "recipes");
         } catch (Exception e) {}
     }
 

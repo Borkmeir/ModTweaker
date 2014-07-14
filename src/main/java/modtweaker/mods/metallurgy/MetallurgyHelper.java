@@ -18,9 +18,9 @@ public class MetallurgyHelper {
 
     static {
         try {
-            alloyerRecipes = ReflectionHelper.getPrivateFinalObject(AlloyerRecipes.getInstance(), "recipes");
-            crusherMetaList = ReflectionHelper.getPrivateFinalObject(CrusherRecipes.getInstance(), "metaList");
-            crusherInputList = ReflectionHelper.getPrivateFinalObject(CrusherRecipes.getInstance(), "inputList");
+            alloyerRecipes = ReflectionHelper.getFinalObject(AlloyerRecipes.getInstance(), "recipes");
+            crusherMetaList = ReflectionHelper.getFinalObject(CrusherRecipes.getInstance(), "metaList");
+            crusherInputList = ReflectionHelper.getFinalObject(CrusherRecipes.getInstance(), "inputList");
         } catch (Exception e) {}
     }
 

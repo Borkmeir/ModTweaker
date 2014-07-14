@@ -4,7 +4,20 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 public class ReflectionHelper {
-    public static <T> T getPrivateFinalObject(Object o, String... fieldName) {
+    public static <T> T getObject(Object o, String... fieldName) {
+        Class cls = o.getClass();
+        for (String field : fieldName) {
+            try {
+                Field result = cls.getDeclaredField(field);
+                result.setAccessible(true);
+                return (T) result.get(o);
+            } catch (Exception ex) {}
+        }
+
+        return null;
+    }
+    
+    public static <T> T getFinalObject(Object o, String... fieldName) {
         Class cls = o.getClass();
         for (String field : fieldName) {
             try {
@@ -20,7 +33,7 @@ public class ReflectionHelper {
         return null;
     }
 
-    public static <T> T getPrivateStaticObject(Class cls, String... fieldName) {
+    public static <T> T getStaticObject(Class cls, String... fieldName) {
         for (String field : fieldName) {
             try {
                 Field result = cls.getDeclaredField(field);

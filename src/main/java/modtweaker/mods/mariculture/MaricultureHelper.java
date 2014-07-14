@@ -20,8 +20,8 @@ public class MaricultureHelper {
 
     static {
         try {
-            fuels = ReflectionHelper.getPrivateFinalObject(MaricultureHandlers.crucible, "fuels");
-            loot = ReflectionHelper.getPrivateFinalObject(Fishing.fishing, "fishing_loot");
+            fuels = ReflectionHelper.getFinalObject(MaricultureHandlers.crucible, "fuels");
+            loot = ReflectionHelper.getFinalObject(Fishing.fishing, "fishing_loot");
         } catch (Exception e) {}
     }
 

@@ -3,6 +3,8 @@ package modtweaker;
 import modtweaker.mods.bloodmagic.BloodMagic;
 import modtweaker.mods.botania.Botania;
 import modtweaker.mods.exnihilo.ExNihilo;
+import modtweaker.mods.factorization.Factorization;
+import modtweaker.mods.hee.HardcoreEnderExpansion;
 import modtweaker.mods.mariculture.Mariculture;
 import modtweaker.mods.mekanism.Mekanism;
 import modtweaker.mods.metallurgy.Metallurgy;
@@ -20,6 +22,8 @@ public class ModTweaker {
         TweakerPlugin.register("AWWayofTime", BloodMagic.class);
         TweakerPlugin.register("Botania", Botania.class);
         TweakerPlugin.register("exnihilo", ExNihilo.class);
+        TweakerPlugin.register("Factorization", Factorization.class);
+        TweakerPlugin.register("HardcoreEnderExpansion", HardcoreEnderExpansion.class);
         TweakerPlugin.register("Mariculture", Mariculture.class);
         TweakerPlugin.register("Mekanism", Mekanism.class);
         TweakerPlugin.register("Metallurgy", Metallurgy.class);

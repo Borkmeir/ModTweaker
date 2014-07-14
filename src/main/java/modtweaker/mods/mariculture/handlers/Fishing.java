@@ -35,7 +35,7 @@ public class Fishing {
         rodTypes.put("flux", RodType.FLUX);
         if(Loader.isModLoaded("AWWayofTime")) {
             try {
-                rodTypes.put("blood", (RodType) ReflectionHelper.getPrivateStaticObject(Class.forName("mariculture.plugins.PluginBloodMagic"), "BLOOD"));
+                rodTypes.put("blood", (RodType) ReflectionHelper.getStaticObject(Class.forName("mariculture.plugins.PluginBloodMagic"), "BLOOD"));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
