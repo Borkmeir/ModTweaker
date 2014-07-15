@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.railcraft.RollingMachine")
+@ZenClass("mods.railcraft.Rolling")
 public class RollingMachine {
     @ZenMethod
     public static void addShaped(IItemStack output, IIngredient[][] ingredients) {
