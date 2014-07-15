@@ -13,7 +13,9 @@ import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.AlloyMix;
 import tconstruct.library.crafting.CastingRecipe;
 import tconstruct.library.crafting.DryingRackRecipes.DryingRecipe;
+import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.crafting.PatternBuilder.ItemKey;
+import tconstruct.library.modifier.ItemModifier;
 import tconstruct.library.tools.ToolMaterial;
 
 public class TConstructHelper {
@@ -24,6 +26,8 @@ public class TConstructHelper {
     public static HashMap<List<Integer>, FluidStack> smeltingList = null;
     public static HashMap<List<Integer>, Integer> temperatureList = null;
     public static HashMap<List<Integer>, ItemStack> renderIndex = null;
+    public static List<ItemModifier> modifiers = null;
+    public static List<ItemModifier> modifiers_clone = null;
 
     static {
         try {
@@ -33,11 +37,13 @@ public class TConstructHelper {
             renderIndex = tconstruct.library.crafting.Smeltery.getRenderIndex();
             basinCasting = TConstructRegistry.getBasinCasting().getCastingRecipes();
             tableCasting = TConstructRegistry.getTableCasting().getCastingRecipes();
+            modifiers = ModifyBuilder.instance.itemModifiers;
+            modifiers_clone = new ArrayList(modifiers);
 
             for (Map.Entry<Integer, ToolMaterial> entry : TConstructRegistry.toolMaterials.entrySet()) {
                 mappings.put(entry.getValue().materialName, entry.getKey());
             }
-            
+
         } catch (Exception e) {}
     }
 

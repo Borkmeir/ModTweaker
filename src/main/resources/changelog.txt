@@ -40,6 +40,8 @@ ModTweaker 0.5
    • Adjust Material Data
    • Disable Creation of Wood Patterns
    • Add/Remove Repair Materials
+• Vanilla - WHAT?
+   • Tall Grass Drops
 
 ===========================================================
 

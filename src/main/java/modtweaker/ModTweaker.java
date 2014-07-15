@@ -1,5 +1,7 @@
 package modtweaker;
 
+import minetweaker.MineTweakerAPI;
+import modtweaker.handlers.VanillaTweaks;
 import modtweaker.mods.bloodmagic.BloodMagic;
 import modtweaker.mods.botania.Botania;
 import modtweaker.mods.exnihilo.ExNihilo;
@@ -21,6 +23,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 public class ModTweaker {
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        MineTweakerAPI.registerClass(VanillaTweaks.class);
         TweakerPlugin.register("AWWayofTime", BloodMagic.class);
         TweakerPlugin.register("Botania", Botania.class);
         TweakerPlugin.register("exnihilo", ExNihilo.class);

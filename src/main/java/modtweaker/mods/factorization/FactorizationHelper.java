@@ -29,7 +29,6 @@ public class FactorizationHelper {
             constructor.setAccessible(true);
             return constructor.newInstance(input, output, probability);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new NullPointerException("Failed to instantiate GrinderRecipe");
         }
     }
@@ -41,7 +40,6 @@ public class FactorizationHelper {
             constructor.setAccessible(true);
             return constructor.newInstance(input, chance1, output1, chance2, output2);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new NullPointerException("Failed to instantiate SmeltingResult");
         }
     }
@@ -53,7 +51,6 @@ public class FactorizationHelper {
             constructor.setAccessible(true);
             return constructor.newInstance(input, output, output_count, solution);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new NullPointerException("Failed to instantiate CrystalRecipe");
         }
     }
