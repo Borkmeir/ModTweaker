@@ -31,7 +31,7 @@ public class ModTweaker {
         TweakerPlugin.register("Mariculture", Mariculture.class);
         TweakerPlugin.register("Mekanism", Mekanism.class);
         TweakerPlugin.register("Metallurgy", Metallurgy.class);
-        TweakerPlugin.register("Pneumatricraft", Pneumaticraft.class);
+        TweakerPlugin.register("Pneumaticraft", Pneumaticraft.class);
         TweakerPlugin.register("Railcraft", Railcraft.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);

@@ -1,6 +1,8 @@
 ===========================================================
 
 ModTweaker 0.5
+• Blood Magic - EXTRA!
+   • Blood Orb Recipes
 • Hardcore Ender Expansion - NEW!
    • Essence Altar
 • Factorization - NEW!
@@ -23,10 +25,17 @@ ModTweaker 0.5
    • Purification Chamber
    • Precision Sawmill
    • Pressurised Reaction Chamber
+• Pneumaticraft - NEW!
+   • Assembly
+   • Pressure Chamber
 • Railcraft - NEW!
    • Blast Furnace
    • Coke Oven
    • Rock Crusher
+   • Rolling Machine
+• Thaumcraft 4 - EXTRA!
+   • Arcane Worktable
+   • Infusion Enchanting
 • Tinker's Construct - EXTRA!
    • Adjust Material Data
    • Disable Creation of Wood Patterns

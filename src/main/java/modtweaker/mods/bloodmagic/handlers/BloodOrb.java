@@ -1,4 +1,4 @@
-package modtweaker.mods.railcraft.handlers;
+package modtweaker.mods.bloodmagic.handlers;
 
 import static modtweaker.helpers.InputHelper.toObjects;
 import static modtweaker.helpers.InputHelper.toShapedObjects;
@@ -6,16 +6,18 @@ import static modtweaker.helpers.InputHelper.toStack;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
-import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import modtweaker.mods.railcraft.RailcraftHelper;
 import modtweaker.util.BaseCraftingAddition;
 import modtweaker.util.BaseCraftingRemoval;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import WayofTime.alchemicalWizardry.api.items.ShapedBloodOrbRecipe;
+import WayofTime.alchemicalWizardry.api.items.ShapelessBloodOrbRecipe;
+import cpw.mods.fml.common.registry.GameRegistry;
 
-@ZenClass("mods.railcraft.RollingMachine")
-public class RollingMachine {
+@ZenClass("mods.bloodmagic.BloodOrb")
+public class BloodOrb {
     @ZenMethod
     public static void addShaped(IItemStack output, IIngredient[][] ingredients) {
         MineTweakerAPI.tweaker.apply(new Add(false, toStack(output), toShapedObjects(ingredients)));
@@ -28,17 +30,17 @@ public class RollingMachine {
 
     private static class Add extends BaseCraftingAddition {
         public Add(boolean shapeless, ItemStack output, Object... recipe) {
-            super("Rolling Machine", shapeless, RailcraftHelper.rolling, output, recipe);
+            super("Blood Orb", shapeless, CraftingManager.getInstance().getRecipeList(), output, recipe);
         }
 
         @Override
         public void applyShaped() {
-            RailcraftCraftingManager.rollingMachine.addRecipe(output, recipe);
+            GameRegistry.addRecipe(new ShapedBloodOrbRecipe(output, recipe));
         }
 
         @Override
         public void applyShapeless() {
-            RailcraftCraftingManager.rollingMachine.addShapelessRecipe(output, recipe);
+            GameRegistry.addRecipe(new ShapelessBloodOrbRecipe(output, recipe));
         }
     }
 
@@ -51,7 +53,7 @@ public class RollingMachine {
 
     private static class Remove extends BaseCraftingRemoval {
         public Remove(ItemStack stack) {
-            super("Rolling Machine", RailcraftHelper.rolling, stack);
+            super("Blood Orb", CraftingManager.getInstance().getRecipeList(), stack);
         }
     }
 }
