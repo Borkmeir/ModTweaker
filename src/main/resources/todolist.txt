@@ -1,8 +1,4 @@
 ModTweaker 0.5
-• Logistic Pipes - NEW!
-   • Soldering
-• Railcraft - NEW!
-   • Boiler Fuels
 • Thaumcraft 4
    • Research
 • Tinker's Construct - EXTRA!
