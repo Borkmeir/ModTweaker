@@ -5,10 +5,14 @@ import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
 import minetweaker.api.oredict.IOreDictEntry;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class InputHelper {
     public static boolean isABlock(IItemStack block) {
@@ -63,6 +67,30 @@ public class InputHelper {
                 } else output[i] = "";
             }
 
+            return output;
+        }
+    }
+
+    public static Object[] toShapedObjects(IIngredient[][] ingredients){
+        if(ingredients == null) return null;
+        else {
+            Object[] output;
+            ArrayList prep = new ArrayList();
+            prep.add("abc");
+            prep.add("def");
+            prep.add("ghi");
+            char[][] map = new char[][] {{'a', 'b', 'c'}, {'d', 'e', 'f'}, {'g', 'h', 'i'}};
+            for(int x = 0;x < ingredients.length;x++){
+                if(ingredients[x] != null){
+                    for(int y = 0;y < ingredients[x].length;y++){
+                        if(ingredients[x][y] != null && x < map.length && y < map[x].length){
+                            prep.add(map[x][y]);
+                            prep.add(toObject(ingredients[x][y]));
+                        }
+                    }
+                }
+            }
+            output = prep.toArray();
             return output;
         }
     }
