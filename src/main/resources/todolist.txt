@@ -8,10 +8,7 @@ ModTweaker 0.5
    • Laser
    • Pressure Chamber
 • Railcraft - NEW!
-   • Blast Furnace
    • Boiler Fuels
-   • Coke Oven
-   • Rock Crusher
    • Rolling Machine
 • Thaumcraft 4
    • Arcane Worktable

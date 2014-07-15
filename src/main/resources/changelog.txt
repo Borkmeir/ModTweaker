@@ -23,6 +23,10 @@ ModTweaker 0.5
    • Purification Chamber
    • Precision Sawmill
    • Pressurised Reaction Chamber
+• Railcraft - NEW!
+   • Blast Furnace
+   • Coke Oven
+   • Rock Crusher
 • Tinker's Construct - EXTRA!
    • Adjust Material Data
    • Disable Creation of Wood Patterns
