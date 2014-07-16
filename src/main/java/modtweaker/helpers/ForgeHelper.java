@@ -22,7 +22,7 @@ public class ForgeHelper {
         try {
             seeds = ReflectionHelper.getStaticObject(ForgeHooks.class, "seedList");
             loot = ReflectionHelper.getStaticObject(ChestGenHooks.class, "chestInfo");
-            translate = ReflectionHelper.getFinalObject(ReflectionHelper.getStaticObject(StatCollector.class, "localizedName"), "languageList");
+            translate = ReflectionHelper.getFinalObject(ReflectionHelper.getStaticObject(StatCollector.class, "localizedName", "field_74839_a"), "languageList", "field_74816_c");
         } catch (Exception e) {}
     }
 
