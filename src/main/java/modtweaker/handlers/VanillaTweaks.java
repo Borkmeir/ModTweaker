@@ -151,33 +151,43 @@ public class VanillaTweaks {
 
     @ZenMethod
     public static void setLang(String key, String text) {
-        MineTweakerAPI.tweaker.apply(new SetTranslation(key, text));
+        MineTweakerAPI.tweaker.apply(new SetTranslation(null, key, text));
+    }
+
+    @ZenMethod
+    public static void setLang(String lang, String key, String text) {
+        MineTweakerAPI.tweaker.apply(new SetTranslation(lang, key, text));
     }
 
     private static class SetTranslation implements IUndoableAction {
         private String original;
+        private final String lang;
         private final String key;
         private final String text;
 
-        public SetTranslation(String key, String text) {
+        public SetTranslation(String lang, String key, String text) {
+            this.lang = lang;
             this.key = key;
             this.text = text;
         }
 
         @Override
         public void apply() {
-            original = (String) ForgeHelper.translate.get(key);
-            ForgeHelper.translate.put(key, text);
+            if (lang == null || ForgeHelper.isLangActive(lang)) {
+                original = (String) ForgeHelper.translate.get(key);
+                ForgeHelper.translate.put(key, text);
+            }
         }
 
         @Override
         public boolean canUndo() {
-            return ForgeHelper.translate != null;
+            return ForgeHelper.translate != null && (lang == null || ForgeHelper.isLangActive(lang));
         }
 
         @Override
         public void undo() {
-            ForgeHelper.translate.put(key, original);
+            if (original == null) ForgeHelper.translate.remove(key);
+            else ForgeHelper.translate.put(key, original);
         }
 
         @Override

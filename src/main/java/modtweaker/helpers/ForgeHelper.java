@@ -7,9 +7,11 @@ import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-import net.minecraft.util.StringTranslate;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.ForgeHooks;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 
 public class ForgeHelper {
     public static Map translate = null;
@@ -35,5 +37,9 @@ public class ForgeHelper {
         } catch (Exception e) {
             throw new NullPointerException("Failed to instantiate SeedEntry");
         }
+    }
+
+    public static boolean isLangActive(String lang) {
+        return FMLCommonHandler.instance().getSide() == Side.SERVER ? null : FMLClientHandler.instance().getCurrentLanguage().equals(lang);
     }
 }
