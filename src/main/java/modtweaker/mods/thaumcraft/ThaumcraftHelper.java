@@ -6,6 +6,7 @@ import modtweaker.helpers.ReflectionHelper;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.research.ResearchCategories;
 
 public class ThaumcraftHelper {
     public static ArrayList recipes = null;
@@ -45,5 +46,15 @@ public class ThaumcraftHelper {
         }
         
         return list;
+    }
+
+    public static String getResearchTab(String key){
+        for(String tab : ResearchCategories.researchCategories.keySet()){
+            for(String research : ResearchCategories.researchCategories.get(tab).research.keySet()){
+                if(research.equals(key))
+                    return tab;
+            }
+        }
+        return null;
     }
 }
