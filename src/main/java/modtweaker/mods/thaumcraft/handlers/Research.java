@@ -2,32 +2,19 @@ package modtweaker.mods.thaumcraft.handlers;
 
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
-import minetweaker.api.item.IIngredient;
-import minetweaker.api.item.IItemStack;
-import minetweaker.mc172.util.MineTweakerHacks;
-import modtweaker.mods.thaumcraft.ThaumcraftHelper;
-import modtweaker.util.BaseListAddition;
-import modtweaker.util.BaseListRemoval;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-import thaumcraft.api.ThaumcraftApi;
-import thaumcraft.api.crafting.IArcaneRecipe;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategoryList;
 import thaumcraft.api.research.ResearchItem;
-
-import javax.annotation.Resource;
-
-import static modtweaker.helpers.InputHelper.*;
 
 @ZenClass("mods.thaumcraft.Research")
 public class Research {
     private static final ResourceLocation defaultBackground = new ResourceLocation("thaumcraft", "textures/gui/gui_researchback.png");
 
     @ZenMethod
-    public static void addTab(String key, String iconDomain, String iconPath){
+    public static void addTab(String key, String iconDomain, String iconPath) {
         addTab(key, iconDomain, iconPath, null, null);
     }
 
@@ -35,14 +22,12 @@ public class Research {
     public static void addTab(String key, String iconDomain, String iconPath, String backDomain, String backPath) {
         ResourceLocation icon = new ResourceLocation(iconDomain, iconPath);
         ResourceLocation background;
-        if(backPath == null)
-            background = defaultBackground;
-        else
-            background = new ResourceLocation(backDomain, backPath);
+        if (backPath == null) background = defaultBackground;
+        else background = new ResourceLocation(backDomain, backPath);
         addTab(key, icon, background);
     }
 
-    private static void addTab(String key, ResourceLocation icon, ResourceLocation background){
+    private static void addTab(String key, ResourceLocation icon, ResourceLocation background) {
         MineTweakerAPI.tweaker.apply(new AddTab(key, icon, background));
     }
 
@@ -51,7 +36,7 @@ public class Research {
         ResourceLocation icon;
         ResourceLocation background;
 
-        public AddTab(String research, ResourceLocation pic, ResourceLocation back){
+        public AddTab(String research, ResourceLocation pic, ResourceLocation back) {
             icon = pic;
             background = back;
             tab = research;
@@ -63,44 +48,30 @@ public class Research {
         }
 
         @Override
-        public String describe(){
+        public String describe() {
             return "Registering Research Tab: " + tab;
         }
 
         @Override
-        public boolean canUndo(){
+        public boolean canUndo() {
             return true;
         }
 
         @Override
-        public void undo(){
+        public void undo() {
             ResearchCategories.researchCategories.remove(tab);
         }
 
         @Override
-        public String describeUndo(){
+        public String describeUndo() {
             return "Removing Research Tab: " + tab;
         }
 
         @Override
-        public String getOverrideKey(){
+        public String getOverrideKey() {
             return null;
         }
 
-    }
-
-    private static class Add extends BaseListAddition {
-        public Add(IArcaneRecipe recipe) {
-            super("Thaumcraft Arcane Worktable", ThaumcraftApi.getCraftingRecipes(), recipe);
-        }
-
-        @Override
-        public String getRecipeInfo() {
-            Object out = ((IArcaneRecipe) recipe).getRecipeOutput();
-            if (out instanceof ItemStack) {
-                return ((ItemStack) out).getDisplayName();
-            } else return super.getRecipeInfo();
-        }
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,7 +89,8 @@ public class Research {
     private static class RemoveTab implements IUndoableAction {
         String tab;
         ResearchCategoryList list;
-        public RemoveTab(String victim){
+
+        public RemoveTab(String victim) {
             tab = victim;
         }
 
@@ -129,27 +101,27 @@ public class Research {
         }
 
         @Override
-        public String describe(){
+        public String describe() {
             return "Removing Research Tab: " + tab;
         }
 
         @Override
-        public boolean canUndo(){
+        public boolean canUndo() {
             return list != null;
         }
 
         @Override
-        public void undo(){
+        public void undo() {
             ResearchCategories.researchCategories.put(tab, list);
         }
 
         @Override
-        public String describeUndo(){
+        public String describeUndo() {
             return "Restoring Research Tab: " + tab;
         }
 
         @Override
-        public String getOverrideKey(){
+        public String getOverrideKey() {
             return null;
         }
 
@@ -159,44 +131,44 @@ public class Research {
         String research;
         String tab;
         ResearchItem removed;
-        public RemoveResearch(String victim){
+
+        public RemoveResearch(String victim) {
             research = victim;
         }
 
         @Override
         public void apply() {
-            for(String key : ResearchCategories.researchCategories.keySet()){
-                if(ResearchCategories.researchCategories.get(key).research.containsKey(research)) {
+            for (String key : ResearchCategories.researchCategories.keySet()) {
+                if (ResearchCategories.researchCategories.get(key).research.containsKey(research)) {
                     tab = key;
                     removed = ResearchCategories.researchCategories.get(key).research.get(research);
                 }
             }
-            if(tab != null)
-                ResearchCategories.researchCategories.get(tab).research.remove(research);
+            if (tab != null) ResearchCategories.researchCategories.get(tab).research.remove(research);
         }
 
         @Override
-        public String describe(){
+        public String describe() {
             return "Removing Research: " + tab;
         }
 
         @Override
-        public boolean canUndo(){
+        public boolean canUndo() {
             return tab != null && removed != null;
         }
 
         @Override
-        public void undo(){
+        public void undo() {
             ResearchCategories.researchCategories.get(tab).research.put(tab, removed);
         }
 
         @Override
-        public String describeUndo(){
+        public String describeUndo() {
             return "Restoring Research: " + tab;
         }
 
         @Override
-        public String getOverrideKey(){
+        public String getOverrideKey() {
             return null;
         }
 

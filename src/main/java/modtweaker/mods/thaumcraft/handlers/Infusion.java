@@ -1,9 +1,7 @@
 package modtweaker.mods.thaumcraft.handlers;
 
-import static modtweaker.helpers.InputHelper.toObjects;
 import static modtweaker.helpers.InputHelper.toStack;
 import static modtweaker.helpers.InputHelper.toStacks;
-
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;

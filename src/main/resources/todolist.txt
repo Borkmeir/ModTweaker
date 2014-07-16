@@ -1,19 +1,10 @@
 ModTweaker 0.5
-• Blood Magic - EXTRA!
-   • Blood Orb Recipes
-• Logistic Pipes - NEW!
-   • Soldering
-• Pneumaticraft - NEW!
-   • Drill
-   • Laser
-   • Pressure Chamber
-• Railcraft - NEW!
-   • Boiler Fuels
-   • Rolling Machine
 • Thaumcraft 4
-   • Arcane Worktable
    • Research
 • Tinker's Construct - EXTRA!
    • Add/Remove/Adjust Modifiers
+• Vanilla
+   • Dungeon Loot
+   • Dungeon Mobs
    
    

@@ -1,15 +1,16 @@
 package modtweaker;
 
+import minetweaker.MineTweakerAPI;
+import modtweaker.handlers.VanillaTweaks;
 import modtweaker.mods.bloodmagic.BloodMagic;
 import modtweaker.mods.botania.Botania;
 import modtweaker.mods.exnihilo.ExNihilo;
 import modtweaker.mods.factorization.Factorization;
 import modtweaker.mods.hee.HardcoreEnderExpansion;
-import modtweaker.mods.logipipes.LogisticPipes;
 import modtweaker.mods.mariculture.Mariculture;
 import modtweaker.mods.mekanism.Mekanism;
 import modtweaker.mods.metallurgy.Metallurgy;
-import modtweaker.mods.pneumaticraft.Pneumaticraft;
+import modtweaker.mods.pneumaticcraft.PneumaticCraft;
 import modtweaker.mods.railcraft.Railcraft;
 import modtweaker.mods.tconstruct.TConstruct;
 import modtweaker.mods.thaumcraft.Thaumcraft;
@@ -22,16 +23,16 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 public class ModTweaker {
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        MineTweakerAPI.registerClass(VanillaTweaks.class);
         TweakerPlugin.register("AWWayofTime", BloodMagic.class);
         TweakerPlugin.register("Botania", Botania.class);
         TweakerPlugin.register("exnihilo", ExNihilo.class);
         TweakerPlugin.register("Factorization", Factorization.class);
         TweakerPlugin.register("HardcoreEnderExpansion", HardcoreEnderExpansion.class);
-        TweakerPlugin.register("LogisticsPipes|Main", LogisticPipes.class);
         TweakerPlugin.register("Mariculture", Mariculture.class);
         TweakerPlugin.register("Mekanism", Mekanism.class);
         TweakerPlugin.register("Metallurgy", Metallurgy.class);
-        TweakerPlugin.register("Pneumatricraft", Pneumaticraft.class);
+        TweakerPlugin.register("PneumaticCraft", PneumaticCraft.class);
         TweakerPlugin.register("Railcraft", Railcraft.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);

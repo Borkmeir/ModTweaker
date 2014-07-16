@@ -10,7 +10,7 @@ public abstract class BaseMapAddition implements IUndoableAction {
     protected String description;
     protected final Map map;
     protected final Object key;
-    protected final Object recipe;
+    protected Object recipe;
 
     public BaseMapAddition(Map map, Object key, Object recipe) {
         this(null, map, key, recipe);
