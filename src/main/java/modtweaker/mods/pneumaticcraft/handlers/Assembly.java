@@ -1,4 +1,4 @@
-package modtweaker.mods.pneumaticraft.handlers;
+package modtweaker.mods.pneumaticcraft.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
 
@@ -13,7 +13,7 @@ import pneumaticCraft.api.recipe.AssemblyRecipe;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.pneumaticraft.Assembly")
+@ZenClass("mods.pneumaticcraft.Assembly")
 public class Assembly {
     @ZenMethod
     public static void addDrillRecipe(IItemStack input, IItemStack output) {

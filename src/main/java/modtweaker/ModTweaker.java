@@ -10,7 +10,7 @@ import modtweaker.mods.hee.HardcoreEnderExpansion;
 import modtweaker.mods.mariculture.Mariculture;
 import modtweaker.mods.mekanism.Mekanism;
 import modtweaker.mods.metallurgy.Metallurgy;
-import modtweaker.mods.pneumaticraft.Pneumaticraft;
+import modtweaker.mods.pneumaticcraft.PneumaticCraft;
 import modtweaker.mods.railcraft.Railcraft;
 import modtweaker.mods.tconstruct.TConstruct;
 import modtweaker.mods.thaumcraft.Thaumcraft;
@@ -32,7 +32,7 @@ public class ModTweaker {
         TweakerPlugin.register("Mariculture", Mariculture.class);
         TweakerPlugin.register("Mekanism", Mekanism.class);
         TweakerPlugin.register("Metallurgy", Metallurgy.class);
-        TweakerPlugin.register("Pneumaticraft", Pneumaticraft.class);
+        TweakerPlugin.register("PneumaticCraft", PneumaticCraft.class);
         TweakerPlugin.register("Railcraft", Railcraft.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);

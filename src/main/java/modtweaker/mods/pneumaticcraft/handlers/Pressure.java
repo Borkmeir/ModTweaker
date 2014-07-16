@@ -1,4 +1,4 @@
-package modtweaker.mods.pneumaticraft.handlers;
+package modtweaker.mods.pneumaticcraft.handlers;
 
 import static modtweaker.helpers.InputHelper.toStacks;
 import minetweaker.MineTweakerAPI;
@@ -10,7 +10,7 @@ import pneumaticCraft.api.recipe.PressureChamberRecipe;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.pneumaticraft.Pressure")
+@ZenClass("mods.pneumaticcraft.Pressure")
 public class Pressure {
     @ZenMethod
     public static void addRecipe(IItemStack[] input, double pressure, IItemStack[] output, boolean asBlock) {
