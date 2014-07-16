@@ -87,6 +87,11 @@ public class Infusion {
         MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
     }
 
+    @ZenMethod
+    public static void removeEnchant(int id) {
+        MineTweakerAPI.tweaker.apply(new RemoveEnchant(Enchantment.enchantmentsList[id]));
+    }
+
     private static class Remove extends BaseListRemoval {
         public Remove(ItemStack stack) {
             super("Thaumcraft Infusion", ThaumcraftApi.getCraftingRecipes(), stack);

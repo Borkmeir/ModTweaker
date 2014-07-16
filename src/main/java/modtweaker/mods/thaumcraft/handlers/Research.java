@@ -2,12 +2,21 @@ package modtweaker.mods.thaumcraft.handlers;
 
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
+import modtweaker.mods.thaumcraft.ThaumcraftHelper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.crafting.CrucibleRecipe;
+import thaumcraft.api.crafting.IArcaneRecipe;
+import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategoryList;
 import thaumcraft.api.research.ResearchItem;
+import thaumcraft.api.research.ResearchPage;
 
 @ZenClass("mods.thaumcraft.Research")
 public class Research {
@@ -134,17 +143,15 @@ public class Research {
 
         public RemoveResearch(String victim) {
             research = victim;
+            tab = ThaumcraftHelper.getResearchTab(research);
         }
 
         @Override
         public void apply() {
-            for (String key : ResearchCategories.researchCategories.keySet()) {
-                if (ResearchCategories.researchCategories.get(key).research.containsKey(research)) {
-                    tab = key;
-                    removed = ResearchCategories.researchCategories.get(key).research.get(research);
-                }
+            if (tab != null) {
+                removed = ResearchCategories.researchCategories.get(tab).research.get(research);
+                ResearchCategories.researchCategories.get(tab).research.remove(research);
             }
-            if (tab != null) ResearchCategories.researchCategories.get(tab).research.remove(research);
         }
 
         @Override
@@ -165,6 +172,112 @@ public class Research {
         @Override
         public String describeUndo() {
             return "Restoring Research: " + tab;
+        }
+
+        @Override
+        public String getOverrideKey() {
+            return null;
+        }
+
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @ZenMethod
+    public static void refreshResearchRecipe(String key){
+        MineTweakerAPI.tweaker.apply(new RefreshResearch(key));
+    }
+
+    private static class RefreshResearch implements IUndoableAction {
+        String research;
+        String tab;
+
+        public RefreshResearch(String target) {
+            research = target;
+            tab = ThaumcraftHelper.getResearchTab(research);
+        }
+
+        @Override
+        public void apply() {
+            if (tab != null) {
+                ResearchItem target = ResearchCategories.researchCategories.get(tab).research.get(research);
+                ResearchPage[] pages = target.getPages();
+                for(int x = 0;x < pages.length;x++){
+                    if(pages[x].recipe != null){
+                        if(pages[x].recipe instanceof IRecipe) {
+                            IRecipe recipe = (IRecipe)pages[x].recipe;
+                            for (Object craft : CraftingManager.getInstance().getRecipeList()) {
+                                if(craft instanceof IRecipe){
+                                    IRecipe theCraft = (IRecipe)craft;
+                                    if(theCraft.getRecipeOutput() != null && theCraft.getRecipeOutput().isItemEqual(recipe.getRecipeOutput())) {
+                                        pages[x] = new ResearchPage(theCraft);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else if(pages[x].recipe instanceof IArcaneRecipe){
+                            IArcaneRecipe recipe = (IArcaneRecipe)pages[x].recipe;
+                            for(Object craft : ThaumcraftApi.getCraftingRecipes()){
+                                if(craft instanceof IArcaneRecipe){
+                                    IArcaneRecipe theCraft = (IArcaneRecipe)craft;
+                                    if(theCraft.getRecipeOutput() != null && theCraft.getRecipeOutput().isItemEqual(recipe.getRecipeOutput())) {
+                                        pages[x] = new ResearchPage(theCraft);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else if(pages[x].recipe instanceof CrucibleRecipe){
+                            CrucibleRecipe recipe = (CrucibleRecipe)pages[x].recipe;
+                            for(Object craft : ThaumcraftApi.getCraftingRecipes()){
+                                if(craft instanceof CrucibleRecipe){
+                                    CrucibleRecipe theCraft = (CrucibleRecipe)craft;
+                                    if(theCraft.getRecipeOutput() != null && theCraft.getRecipeOutput().isItemEqual(recipe.getRecipeOutput())) {
+                                        pages[x] = new ResearchPage(theCraft);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else if(pages[x].recipe instanceof InfusionRecipe){
+                            InfusionRecipe recipe = (InfusionRecipe)pages[x].recipe;
+                            if(recipe.getRecipeOutput() instanceof ItemStack) {
+                                for (Object craft : ThaumcraftApi.getCraftingRecipes()) {
+                                    if (craft instanceof InfusionRecipe) {
+                                        InfusionRecipe theCraft = (InfusionRecipe) craft;
+                                        if (theCraft.getRecipeOutput() != null && theCraft.getRecipeOutput() instanceof ItemStack &&
+                                                ((ItemStack) theCraft.getRecipeOutput()).isItemEqual((ItemStack) recipe.getRecipeOutput())) {
+                                            pages[x] = new ResearchPage(theCraft);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @Override
+        public String describe() {
+            return "Refreshing Research: " + research;
+        }
+
+        @Override
+        public boolean canUndo() {
+            return tab != null;
+        }
+
+        @Override
+        public void undo() {
+            apply();
+        }
+
+        @Override
+        public String describeUndo() {
+            return "Refreshing Research Again?: " + research;
         }
 
         @Override

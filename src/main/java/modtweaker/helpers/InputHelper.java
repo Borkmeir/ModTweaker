@@ -72,7 +72,6 @@ public class InputHelper {
     public static Object[] toShapedObjects(IIngredient[][] ingredients){
         if(ingredients == null) return null;
         else {
-            Object[] output;
             ArrayList prep = new ArrayList();
             prep.add("abc");
             prep.add("def");
@@ -88,8 +87,7 @@ public class InputHelper {
                     }
                 }
             }
-            output = prep.toArray();
-            return output;
+            return prep.toArray();
         }
     }
 
