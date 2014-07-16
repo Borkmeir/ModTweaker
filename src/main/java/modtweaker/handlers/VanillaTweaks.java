@@ -150,12 +150,12 @@ public class VanillaTweaks {
     }
 
     @ZenMethod
-    public static void setLang(String key, String text) {
+    public static void setLocalization(String key, String text) {
         MineTweakerAPI.tweaker.apply(new SetTranslation(null, key, text));
     }
 
     @ZenMethod
-    public static void setLang(String lang, String key, String text) {
+    public static void setLocalization(String lang, String key, String text) {
         MineTweakerAPI.tweaker.apply(new SetTranslation(lang, key, text));
     }
 
