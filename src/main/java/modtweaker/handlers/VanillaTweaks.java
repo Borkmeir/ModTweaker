@@ -4,6 +4,7 @@ import static modtweaker.helpers.InputHelper.toStack;
 
 import java.util.ArrayList;
 
+import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.helpers.ForgeHelper;
@@ -17,7 +18,7 @@ import net.minecraft.util.WeightedRandomChestContent;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("modtweaker")
+@ZenClass("mods.modtweaker")
 public class VanillaTweaks {
     @ZenMethod
     public static void addGrassSeed(IItemStack stack, int weight) {
@@ -145,6 +146,53 @@ public class VanillaTweaks {
         @Override
         public String getRecipeInfo() {
             return ((ItemStack) stack).getDisplayName();
+        }
+    }
+
+    @ZenMethod
+    public static void setLang(String key, String text) {
+        MineTweakerAPI.tweaker.apply(new SetTranslation(key, text));
+    }
+
+    private static class SetTranslation implements IUndoableAction {
+        private String original;
+        private final String key;
+        private final String text;
+
+        public SetTranslation(String key, String text) {
+            this.key = key;
+            this.text = text;
+        }
+
+        @Override
+        public void apply() {
+            original = (String) ForgeHelper.translate.get(key);
+            ForgeHelper.translate.put(key, text);
+        }
+
+        @Override
+        public boolean canUndo() {
+            return ForgeHelper.translate != null;
+        }
+
+        @Override
+        public void undo() {
+            ForgeHelper.translate.put(key, original);
+        }
+
+        @Override
+        public String describe() {
+            return "Setting localisation for the key: " + key + " to " + text;
+        }
+
+        @Override
+        public String describeUndo() {
+            return "Setting localisation for the key: " + key + " to " + original;
+        }
+
+        @Override
+        public Object getOverrideKey() {
+            return null;
         }
     }
 }
