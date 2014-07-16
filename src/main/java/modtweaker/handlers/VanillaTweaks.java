@@ -10,6 +10,8 @@ import modtweaker.helpers.ForgeHelper;
 import modtweaker.helpers.ReflectionHelper;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
+import modtweaker.util.BaseMapAddition;
+import modtweaker.util.BaseMapRemoval;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -77,9 +79,26 @@ public class VanillaTweaks {
         MineTweakerAPI.tweaker.apply(new AddLoot(chest, new WeightedRandomChestContent(toStack(stack), min, max, weight)));
     }
 
-    private static class AddLoot extends BaseListAddition {
+    private static class AddLoot extends BaseMapAddition {
+        private WeightedRandomChestContent content;
+
         public AddLoot(String chest, WeightedRandomChestContent content) {
-            super("Chest Loot for " + chest + " : ", (ArrayList<WeightedRandomChestContent>) ReflectionHelper.getObject(ForgeHelper.loot.get(chest), "contents"), content);
+            super("Chest Loot for " + chest + " : ", ForgeHelper.loot, chest, null);
+            this.content = content;
+        }
+
+        @Override
+        public void apply() {
+            recipe = (ArrayList<WeightedRandomChestContent>) ReflectionHelper.getObject(map.get(key), "contents");
+            ((ArrayList<WeightedRandomChestContent>) recipe).add(content);
+            super.apply();
+        }
+
+        @Override
+        public void undo() {
+            recipe = ((ArrayList<WeightedRandomChestContent>) ReflectionHelper.getObject(map.get(key), "contents"));
+            ((ArrayList<WeightedRandomChestContent>) recipe).remove(content);
+            super.apply();
         }
 
         public String getRecipeInfo() {
@@ -94,26 +113,38 @@ public class VanillaTweaks {
         MineTweakerAPI.apply(new RemoveLoot(chest, toStack(stack)));
     }
 
-    private static class RemoveLoot extends BaseListRemoval {
+    private static class RemoveLoot extends BaseMapRemoval {
+        private WeightedRandomChestContent content;
+
         public RemoveLoot(String chest, ItemStack stack) {
-            super("Chest Loot", (ArrayList<WeightedRandomChestContent>) ReflectionHelper.getObject(ForgeHelper.loot.get(chest), "contents"), stack);
+            super("Chest Loot", ForgeHelper.loot, chest, stack);
         }
 
         @Override
         public void apply() {
-            for (WeightedRandomChestContent r : (ArrayList<WeightedRandomChestContent>) list) {
-                if (r.theItemId != null && r.theItemId.isItemEqual(stack)) {
-                    recipe = r;
+            recipe = (ArrayList<WeightedRandomChestContent>) ReflectionHelper.getObject(map.get(key), "contents");
+
+            for (WeightedRandomChestContent r : (ArrayList<WeightedRandomChestContent>) recipe) {
+                if (r.theItemId != null && r.theItemId.isItemEqual((ItemStack) stack)) {
+                    content = r;
                     break;
                 }
             }
 
-            list.remove(recipe);
+            ((ArrayList<WeightedRandomChestContent>) recipe).remove(content);
+            super.undo();
+        }
+
+        @Override
+        public void undo() {
+            recipe = (ArrayList<WeightedRandomChestContent>) ReflectionHelper.getObject(map.get(key), "contents");
+            ((ArrayList<WeightedRandomChestContent>) recipe).add(content);
+            super.undo();
         }
 
         @Override
         public String getRecipeInfo() {
-            return stack.getDisplayName();
+            return ((ItemStack) stack).getDisplayName();
         }
     }
 }
