@@ -25,6 +25,8 @@ public class ThaumcraftHelper {
 
     public static AspectList parseAspects(AspectList list, String str) {
         if (list == null) list = new AspectList();
+        if(str == null || str.equals(""))
+            return list;
         String[] aspects = str.split(",");
         for (String aspect : aspects) {
             if(aspect.startsWith(" ")) aspect = aspect.replaceFirst(" ", "");
