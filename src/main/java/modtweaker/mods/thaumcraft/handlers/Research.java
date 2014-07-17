@@ -14,6 +14,7 @@ import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.IArcaneRecipe;
 import thaumcraft.api.crafting.InfusionEnchantmentRecipe;
@@ -428,6 +429,16 @@ public class Research {
     @ZenMethod
     public static void moveResearch(String key, String destination, int x, int y){
         MineTweakerAPI.tweaker.apply(new MoveResearch(key, destination, x, y));
+    }
+
+    @ZenMethod
+    public static void setAspects(String key, String aspects){
+        MineTweakerAPI.tweaker.apply(new Aspects(key, ThaumcraftHelper.parseAspects(aspects)));
+    }
+
+    @ZenMethod
+    public static void setComplexity(String key, int complexity){
+        MineTweakerAPI.tweaker.apply(new Difficulty(key, complexity));
     }
 
     private static class AddResearch implements IUndoableAction {
@@ -1164,6 +1175,132 @@ public class Research {
         @Override
         public String describeUndo() {
             return "Moving Research " + key + " back to " + oldTab;
+        }
+
+        @Override
+        public String getOverrideKey() {
+            return null;
+        }
+
+    }
+
+    private static class Aspects implements IUndoableAction {
+        String key;
+        String tab;
+        AspectList oldList;
+        AspectList list;
+        boolean applied = false;
+
+        public Aspects(String res, AspectList asp) {
+            key = res;
+            tab = ThaumcraftHelper.getResearchTab(key);
+            list = asp;
+        }
+
+        @Override
+        public void apply() {
+            ResearchItem research = ResearchCategories.researchCategories.get(tab).research.get(key);
+            oldList = research.tags;
+            try {
+                Field tags = Class.forName("thaumcraft.api.research.ResearchItem").getField("tags");
+                tags.setAccessible(true);
+                tags.set(research, list);
+                applied = true;
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public String describe() {
+            return "Changing Aspects for " + key;
+        }
+
+        @Override
+        public boolean canUndo() {
+            return applied;
+        }
+
+        @Override
+        public void undo() {
+            try {
+                ResearchItem research = ResearchCategories.researchCategories.get(tab).research.get(key);
+                Field tags = Class.forName("thaumcraft.api.research.ResearchItem").getField("tags");
+                tags.setAccessible(true);
+                tags.set(research, oldList);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public String describeUndo() {
+            return "Restoring Aspects for " + key;
+        }
+
+        @Override
+        public String getOverrideKey() {
+            return null;
+        }
+
+    }
+
+    private static class Difficulty implements IUndoableAction {
+        String key;
+        String tab;
+        int difficulty;
+        int oldDif;
+        boolean applied = false;
+
+        public Difficulty(String res, int dif) {
+            key = res;
+            tab = ThaumcraftHelper.getResearchTab(key);
+            difficulty = dif;
+        }
+
+        @Override
+        public void apply() {
+            ResearchItem research = ResearchCategories.researchCategories.get(tab).research.get(key);
+            oldDif = research.getComplexity();
+            try {
+                Field complexity = Class.forName("thaumcraft.api.research.ResearchItem").getDeclaredField("complexity");
+                complexity.setAccessible(true);
+                complexity.set(research, difficulty);
+                applied = true;
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public String describe() {
+            return "Changing Complexity for " + key;
+        }
+
+        @Override
+        public boolean canUndo() {
+            return applied;
+        }
+
+        @Override
+        public void undo() {
+            try {
+                ResearchItem research = ResearchCategories.researchCategories.get(tab).research.get(key);
+                Field complexity = Class.forName("thaumcraft.api.research.ResearchItem").getDeclaredField("complexity");
+                complexity.setAccessible(true);
+                complexity.set(research, oldDif);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public String describeUndo() {
+            return "Restoring Complexity for " + key;
         }
 
         @Override
