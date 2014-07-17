@@ -36,6 +36,7 @@ ModTweaker 0.5
 • Thaumcraft 4 - EXTRA!
    • Arcane Worktable
    • Infusion Enchanting
+   • Research
 • Tinker's Construct - EXTRA!
    • Adjust Material Data
    • Disable Creation of Wood Patterns

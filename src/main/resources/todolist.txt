@@ -1,6 +1,11 @@
-ModTweaker 0.5
-• Thaumcraft 4
-   • Research
+ModTweaker 0.6
+
+• Botania
+   • Books
+• Ender IO
+   • All
+• TCon
+   • Modifiers
 • Vanilla
    • Dungeon Mobs
    
