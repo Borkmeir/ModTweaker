@@ -6,6 +6,7 @@ import static modtweaker.helpers.InputHelper.toStacks;
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
+import minetweaker.api.oredict.IOreDictEntry;
 import modtweaker.mods.thaumcraft.ThaumcraftHelper;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
@@ -20,6 +21,11 @@ import vazkii.botania.api.BotaniaAPI;
 
 @ZenClass("mods.botania.Orechid")
 public class Orechid {
+    @ZenMethod
+    public static void addOre(IOreDictEntry oreDict, int weight) {
+        MineTweakerAPI.tweaker.apply(new Add(oreDict.getName(), weight));
+    }
+
     @ZenMethod
     public static void addOre(String oreDict, int weight) {
         MineTweakerAPI.tweaker.apply(new Add(oreDict, weight));
@@ -67,6 +73,11 @@ public class Orechid {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @ZenMethod
+    public static void removeOre(IOreDictEntry oreDict) {
+        MineTweakerAPI.tweaker.apply(new Remove(oreDict.getName()));
+    }
 
     @ZenMethod
     public static void removeOre(String oreDict) {
