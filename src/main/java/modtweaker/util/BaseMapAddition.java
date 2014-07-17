@@ -55,7 +55,7 @@ public abstract class BaseMapAddition implements IUndoableAction {
         else if (recipe instanceof FluidStack) return "Removing " + description + " Recipe for :" + ((FluidStack) recipe).getFluid().getLocalizedName();
         else return "Removing " + description + " Recipe for :" + getRecipeInfo();
     }
-    
+
     @Override
     public Object getOverrideKey() {
         return null;

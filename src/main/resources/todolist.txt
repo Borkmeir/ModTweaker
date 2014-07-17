@@ -1,8 +1,6 @@
 ModTweaker 0.5
 • Thaumcraft 4
    • Research
-• Tinker's Construct - EXTRA!
-   • Add/Remove/Adjust Modifiers
 • Vanilla
    • Dungeon Mobs
    

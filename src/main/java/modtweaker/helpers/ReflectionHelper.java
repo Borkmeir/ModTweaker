@@ -16,7 +16,7 @@ public class ReflectionHelper {
 
         return null;
     }
-    
+
     public static <T> T getFinalObject(Object o, String... fieldName) {
         Class cls = o.getClass();
         for (String field : fieldName) {

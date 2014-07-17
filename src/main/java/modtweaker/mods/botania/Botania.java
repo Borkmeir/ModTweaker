@@ -1,7 +1,11 @@
 package modtweaker.mods.botania;
 
 import minetweaker.MineTweakerAPI;
-import modtweaker.mods.botania.handlers.*;
+import modtweaker.mods.botania.handlers.Apothecary;
+import modtweaker.mods.botania.handlers.ElvenTrade;
+import modtweaker.mods.botania.handlers.ManaInfusion;
+import modtweaker.mods.botania.handlers.Orechid;
+import modtweaker.mods.botania.handlers.RuneAltar;
 import net.minecraft.item.ItemStack;
 import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 

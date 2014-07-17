@@ -25,7 +25,7 @@ import cpw.mods.fml.common.Loader;
 public class Fishing {
     //HashMap Helper for converting strings to rodtypes, (will personally add a registry to mariculture eventually...)
     public static HashMap<String, RodType> rodTypes = new HashMap();
-    
+
     static {
         rodTypes.put("net", RodType.NET);
         rodTypes.put("old", RodType.OLD);
@@ -33,7 +33,7 @@ public class Fishing {
         rodTypes.put("dire", RodType.DIRE);
         rodTypes.put("super", RodType.SUPER);
         rodTypes.put("flux", RodType.FLUX);
-        if(Loader.isModLoaded("AWWayofTime")) {
+        if (Loader.isModLoaded("AWWayofTime")) {
             try {
                 rodTypes.put("blood", (RodType) ReflectionHelper.getStaticObject(Class.forName("mariculture.plugins.PluginBloodMagic"), "BLOOD"));
             } catch (ClassNotFoundException e) {
@@ -41,69 +41,71 @@ public class Fishing {
             }
         }
     }
-    
+
     //Adding Fishing Loot
     @ZenMethod
     public static void addJunk(IItemStack loot, double chance, @Optional String type, @Optional boolean exact, @Optional int[] dimension) {
         addLoot(toStack(loot), chance, type, exact, dimension, Rarity.JUNK);
     }
-    
+
     @ZenMethod
     public static void addGood(IItemStack loot, double chance, @Optional String type, @Optional boolean exact, @Optional int[] dimension) {
         addLoot(toStack(loot), chance, type, exact, dimension, Rarity.GOOD);
     }
-    
+
     @ZenMethod
     public static void addRare(IItemStack loot, double chance, @Optional String type, @Optional boolean exact, @Optional int[] dimension) {
         addLoot(toStack(loot), chance, type, exact, dimension, Rarity.RARE);
     }
-    
+
     private static void addLoot(ItemStack stack, double chance, String type, boolean exact, int[] dimension, Rarity rarity) {
-        if(dimension == null || dimension.length == 0) dimension = new int[] { Short.MAX_VALUE };
-        if(type == null) type = "dire";
-        for(int dim: dimension) {
+        if (dimension == null || dimension.length == 0) dimension = new int[] { Short.MAX_VALUE };
+        if (type == null) type = "dire";
+        for (int dim : dimension) {
             MineTweakerAPI.tweaker.apply(new AddLoot(new Loot(stack, chance, rarity, dim, rodTypes.get(type), exact), rarity.name()));
         }
     }
 
     private static class AddLoot extends BaseDescriptionAddition {
         private final Loot loot;
+
         public AddLoot(Loot loot, String description) {
             super("Fishing Loot - " + description);
             this.loot = loot;
         }
-        
+
         @Override
         public void apply() {
             ArrayList<Loot> list = MaricultureHelper.loot.get(loot.rarity);
             list.add(loot);
             MaricultureHelper.loot.put(loot.rarity, list);
         }
-        
+
         @Override
         public void undo() {
             ArrayList<Loot> list = MaricultureHelper.loot.get(loot.rarity);
             list.remove(loot);
             MaricultureHelper.loot.put(loot.rarity, list);
         }
-        
+
         @Override
         public String getRecipeInfo() {
             return loot.loot.getDisplayName();
         }
     }
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     //Removing Fishing Loot, will remove it from every single list
     @ZenMethod
     public static void removeLoot(IItemStack loot) {
         MineTweakerAPI.tweaker.apply(new RemoveLoot(toStack(loot)));
     }
-    
+
     private static class RemoveLoot extends BaseDescriptionRemoval {
         private HashMap<Rarity, Loot> loot;
         private final ItemStack stack;
+
         public RemoveLoot(ItemStack stack) {
             super("Fishing Loot");
             this.loot = new HashMap();
@@ -117,22 +119,21 @@ public class Fishing {
             apply(Rarity.GOOD);
             apply(Rarity.RARE);
         }
-        
+
         //Performs the apply function on all rarity types
         public void apply(Rarity rarity) {
             ArrayList<Loot> list = MaricultureHelper.loot.get(rarity);
             int preSize = list.size();
-            for(Loot l: list) {
-                if(l.loot.isItemEqual(stack)) {
+            for (Loot l : list) {
+                if (l.loot.isItemEqual(stack)) {
                     loot.put(rarity, l);
                     break;
                 }
             }
-            
+
             list.remove(loot);
-            
-            if(list.size() != preSize)
-            MaricultureHelper.loot.put(rarity, list);
+
+            if (list.size() != preSize) MaricultureHelper.loot.put(rarity, list);
         }
 
         @Override
@@ -141,14 +142,14 @@ public class Fishing {
                 undo(entry.getKey(), entry.getValue());
             }
         }
-        
+
         //Undoes the action on the applicable rarities
         public void undo(Rarity rarity, Loot l) {
             ArrayList<Loot> list = MaricultureHelper.loot.get(rarity);
             list.add(l);
             MaricultureHelper.loot.put(rarity, list);
         }
-        
+
         @Override
         public String getRecipeInfo() {
             return stack.getDisplayName();
