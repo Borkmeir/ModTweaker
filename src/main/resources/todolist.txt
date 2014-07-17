@@ -4,7 +4,6 @@ ModTweaker 0.5
 • Tinker's Construct - EXTRA!
    • Add/Remove/Adjust Modifiers
 • Vanilla
-   • Dungeon Loot
    • Dungeon Mobs
    
    

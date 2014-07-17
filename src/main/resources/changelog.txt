@@ -41,6 +41,7 @@ ModTweaker 0.5
    • Disable Creation of Wood Patterns
    • Add/Remove Repair Materials
 • Vanilla - WHAT?
+   • Dungeon Loot
    • Tall Grass Drops
 
 ===========================================================
