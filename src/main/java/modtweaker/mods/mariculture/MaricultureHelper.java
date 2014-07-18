@@ -40,7 +40,7 @@ public class MaricultureHelper {
             } else {
                 name = Item.itemRegistry.getNameForObject(stack.getItem()) + "|" + stack.getItemDamage();
             }
-    
+
             return name;
         } else if (o instanceof FluidStack) {
             return ((FluidStack) o).getFluid().getName();

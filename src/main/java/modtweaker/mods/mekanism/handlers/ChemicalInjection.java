@@ -3,6 +3,7 @@ package modtweaker.mods.mekanism.handlers;
 import static modtweaker.helpers.InputHelper.toStack;
 import static modtweaker.mods.mekanism.MekanismHelper.toGas;
 import mekanism.api.AdvancedInput;
+import mekanism.common.recipe.RecipeHandler.Recipe;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.mods.mekanism.gas.IGasStack;
@@ -16,11 +17,11 @@ public class ChemicalInjection {
     @ZenMethod
     public static void addRecipe(IItemStack input, IGasStack gas, IItemStack output) {
         AdvancedInput aInput = new AdvancedInput(toStack(input), toGas(gas).getGas());
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_INJECTION_CHAMBER", aInput, toStack(output)));
+        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_INJECTION_CHAMBER", Recipe.CHEMICAL_INJECTION_CHAMBER.get(), aInput, toStack(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_INJECTION_CHAMBER", toStack(output)));
+        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_INJECTION_CHAMBER", Recipe.CHEMICAL_INJECTION_CHAMBER.get(), toStack(output)));
     }
 }

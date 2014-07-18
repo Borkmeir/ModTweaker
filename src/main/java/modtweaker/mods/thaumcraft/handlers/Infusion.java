@@ -24,7 +24,7 @@ public class Infusion {
     }
 
     @ZenMethod
-    public static void addEnchantment(String key, int enchantID, int instability, String aspects, IItemStack[] recipe){
+    public static void addEnchantment(String key, int enchantID, int instability, String aspects, IItemStack[] recipe) {
         MineTweakerAPI.tweaker.apply(new AddEnchant(new InfusionEnchantmentRecipe(key, Enchantment.enchantmentsList[enchantID], instability, ThaumcraftHelper.parseAspects(aspects), toStacks(recipe))));
     }
 
@@ -45,7 +45,7 @@ public class Infusion {
     private static class AddEnchant implements IUndoableAction {
         InfusionEnchantmentRecipe recipe;
 
-        public AddEnchant(InfusionEnchantmentRecipe inp){
+        public AddEnchant(InfusionEnchantmentRecipe inp) {
             recipe = inp;
         }
 
@@ -55,27 +55,27 @@ public class Infusion {
         }
 
         @Override
-        public String describe(){
+        public String describe() {
             return "Adding Infusion Enchantment Recipe: " + recipe.enchantment.getName();
         }
 
         @Override
-        public boolean canUndo(){
+        public boolean canUndo() {
             return recipe != null;
         }
 
         @Override
-        public void undo(){
+        public void undo() {
             ThaumcraftApi.getCraftingRecipes().remove(recipe);
         }
 
         @Override
-        public String describeUndo(){
+        public String describeUndo() {
             return "Removing Infusion Enchantment Recipe: " + recipe.enchantment.getName();
         }
 
         @Override
-        public String getOverrideKey(){
+        public String getOverrideKey() {
             return null;
         }
     }
@@ -122,16 +122,16 @@ public class Infusion {
         Enchantment enchant;
         InfusionEnchantmentRecipe removed;
 
-        public RemoveEnchant(Enchantment ench){
+        public RemoveEnchant(Enchantment ench) {
             enchant = ench;
         }
 
         @Override
         public void apply() {
-            for(Object recipe : ThaumcraftApi.getCraftingRecipes()){
-                if(recipe instanceof InfusionEnchantmentRecipe){
-                    InfusionEnchantmentRecipe enchRecipe = (InfusionEnchantmentRecipe)recipe;
-                    if(enchRecipe.getEnchantment() == enchant) {
+            for (Object recipe : ThaumcraftApi.getCraftingRecipes()) {
+                if (recipe instanceof InfusionEnchantmentRecipe) {
+                    InfusionEnchantmentRecipe enchRecipe = (InfusionEnchantmentRecipe) recipe;
+                    if (enchRecipe.getEnchantment() == enchant) {
                         removed = enchRecipe;
                         ThaumcraftApi.getCraftingRecipes().remove(enchRecipe);
                     }
@@ -140,27 +140,27 @@ public class Infusion {
         }
 
         @Override
-        public String describe(){
+        public String describe() {
             return "Removing Infusion Enchantment Recipe: " + enchant.getName();
         }
 
         @Override
-        public boolean canUndo(){
+        public boolean canUndo() {
             return removed != null;
         }
 
         @Override
-        public void undo(){
+        public void undo() {
             ThaumcraftApi.getCraftingRecipes().add(removed);
         }
 
         @Override
-        public String describeUndo(){
+        public String describeUndo() {
             return "Restoring Infusion Enchantment Recipe: " + enchant.getName();
         }
 
         @Override
-        public String getOverrideKey(){
+        public String getOverrideKey() {
             return null;
         }
     }

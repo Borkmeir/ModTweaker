@@ -26,7 +26,7 @@ public class Crucible {
     //Adding a Mariculture Crucible recipe
     @ZenMethod
     public static void addRecipe(int temp, IItemStack input, ILiquidStack fluid, @Optional IItemStack output, @Optional int chance) {
-        ItemStack out = output != null? toStack(output): null;
+        ItemStack out = output != null ? toStack(output) : null;
         MineTweakerAPI.tweaker.apply(new AddRecipe(new RecipeSmelter(toStack(input), null, temp, toFluid(fluid), out, chance)));
     }
 
@@ -80,12 +80,12 @@ public class Crucible {
     public static void addFuel(IItemStack input, int max, int per, int time) {
         MineTweakerAPI.tweaker.apply(new AddFuel(toStack(input), new FuelInfo(max, per, time)));
     }
-    
+
     @ZenMethod
     public static void addFuel(ILiquidStack input, int max, int per, int time) {
         MineTweakerAPI.tweaker.apply(new AddFuel(toFluid(input), new FuelInfo(max, per, time)));
     }
-    
+
     @ZenMethod
     public static void addFuel(String input, int max, int per, int time) {
         MineTweakerAPI.tweaker.apply(new AddFuel(input, new FuelInfo(max, per, time)));
@@ -108,12 +108,12 @@ public class Crucible {
     public static void removeFuel(IItemStack fuel) {
         MineTweakerAPI.tweaker.apply(new RemoveFuel(fuel));
     }
-    
+
     @ZenMethod
     public static void removeFuel(ILiquidStack fuel) {
         MineTweakerAPI.tweaker.apply(new RemoveFuel(fuel));
     }
-    
+
     @ZenMethod
     public static void removeFuel(String fuel) {
         MineTweakerAPI.tweaker.apply(new RemoveFuel(fuel));

@@ -17,8 +17,9 @@ import modtweaker.mods.mekanism.handlers.Purification;
 import modtweaker.mods.mekanism.handlers.Reaction;
 import modtweaker.mods.mekanism.handlers.Sawmill;
 import modtweaker.mods.mekanism.handlers.Seperator;
+import modtweaker.util.TweakerPlugin;
 
-public class Mekanism {
+public class Mekanism extends TweakerPlugin {
     public Mekanism() {
         MineTweakerAPI.registerBracketHandler(new GasBracketHandler());
         MineTweakerAPI.registerClass(Combiner.class);

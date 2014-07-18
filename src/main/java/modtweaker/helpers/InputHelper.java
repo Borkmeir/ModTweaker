@@ -69,18 +69,18 @@ public class InputHelper {
         }
     }
 
-    public static Object[] toShapedObjects(IIngredient[][] ingredients){
-        if(ingredients == null) return null;
+    public static Object[] toShapedObjects(IIngredient[][] ingredients) {
+        if (ingredients == null) return null;
         else {
             ArrayList prep = new ArrayList();
             prep.add("abc");
             prep.add("def");
             prep.add("ghi");
-            char[][] map = new char[][] {{'a', 'b', 'c'}, {'d', 'e', 'f'}, {'g', 'h', 'i'}};
-            for(int x = 0;x < ingredients.length;x++){
-                if(ingredients[x] != null){
-                    for(int y = 0;y < ingredients[x].length;y++){
-                        if(ingredients[x][y] != null && x < map.length && y < map[x].length){
+            char[][] map = new char[][] { { 'a', 'b', 'c' }, { 'd', 'e', 'f' }, { 'g', 'h', 'i' } };
+            for (int x = 0; x < ingredients.length; x++) {
+                if (ingredients[x] != null) {
+                    for (int y = 0; y < ingredients[x].length; y++) {
+                        if (ingredients[x][y] != null && x < map.length && y < map[x].length) {
                             prep.add(map[x][y]);
                             prep.add(toObject(ingredients[x][y]));
                         }

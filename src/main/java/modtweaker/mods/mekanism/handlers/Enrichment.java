@@ -1,6 +1,7 @@
 package modtweaker.mods.mekanism.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import mekanism.common.recipe.RecipeHandler.Recipe;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.mods.mekanism.util.AddMekanismRecipe;
@@ -12,11 +13,11 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class Enrichment {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("ENRICHMENT_CHAMBER", toStack(input), toStack(output)));
+        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("ENRICHMENT_CHAMBER", Recipe.ENRICHMENT_CHAMBER.get(), toStack(input), toStack(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("ENRICHMENT_CHAMBER", toStack(input)));
+        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("ENRICHMENT_CHAMBER", Recipe.ENRICHMENT_CHAMBER.get(), toStack(input)));
     }
 }

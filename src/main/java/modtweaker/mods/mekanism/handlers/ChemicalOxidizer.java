@@ -2,6 +2,7 @@ package modtweaker.mods.mekanism.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
 import static modtweaker.mods.mekanism.MekanismHelper.toGas;
+import mekanism.common.recipe.RecipeHandler.Recipe;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.mods.mekanism.gas.IGasStack;
@@ -14,11 +15,11 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class ChemicalOxidizer {
     @ZenMethod
     public static void addRecipe(IItemStack input, IGasStack output) {
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_OXIDIZER", toStack(input), toGas(output)));
+        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_OXIDIZER", Recipe.CHEMICAL_OXIDIZER.get(), toStack(input), toGas(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IGasStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_OXIDIZER", toGas(output)));
+        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_OXIDIZER", Recipe.CHEMICAL_OXIDIZER.get(), toGas(output)));
     }
 }

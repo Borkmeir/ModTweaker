@@ -20,7 +20,7 @@ public class Drying {
     //Adding a TConstruct Drying Rack recipe
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output, int time) {
-        MineTweakerAPI.tweaker.apply(new Add(TConstructHelper.getDryingRecipe(toStack(input),time, toStack(output))));
+        MineTweakerAPI.tweaker.apply(new Add(TConstructHelper.getDryingRecipe(toStack(input), time, toStack(output))));
     }
 
     //Passes the list to the base list implementation, and adds the recipe

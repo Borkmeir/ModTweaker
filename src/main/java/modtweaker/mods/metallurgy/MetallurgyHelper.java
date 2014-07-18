@@ -29,8 +29,8 @@ public class MetallurgyHelper {
     public static String getCrusherKey(ItemStack input) {
         return input.getUnlocalizedName();
     }
-    
-  //Returns a Drying Recipe, using reflection as the constructor is not visible
+
+    //Returns a Drying Recipe, using reflection as the constructor is not visible
     public static AlloyRecipe getAlloyRecipe(ItemStack first, ItemStack base, ItemStack result) {
         try {
             Constructor constructor = AlloyRecipe.class.getDeclaredConstructor(ItemStack.class, ItemStack.class, ItemStack.class);

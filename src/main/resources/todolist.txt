@@ -1,8 +1,11 @@
-ModTweaker 0.5
-• Thaumcraft 4
-   • Research
-• Tinker's Construct - EXTRA!
-   • Add/Remove/Adjust Modifiers
+ModTweaker 0.6
+
+• Botania
+   • Books
+• Ender IO
+   • All
+• TCon
+   • Modifiers
 • Vanilla
    • Dungeon Mobs
    

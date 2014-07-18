@@ -6,6 +6,7 @@ import static modtweaker.mods.mekanism.MekanismHelper.toGas;
 import mekanism.api.PressurizedProducts;
 import mekanism.api.PressurizedReactants;
 import mekanism.api.PressurizedRecipe;
+import mekanism.common.recipe.RecipeHandler.Recipe;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
@@ -21,12 +22,12 @@ public class Reaction {
     public static void addRecipe(IItemStack solid, ILiquidStack liquid, IGasStack gas, IItemStack outItem, IGasStack outGas, double energy, int ticks) {
         PressurizedReactants input = new PressurizedReactants(toStack(solid), toFluid(liquid), toGas(gas));
         PressurizedRecipe recipe = new PressurizedRecipe(input, energy, new PressurizedProducts(toStack(outItem), toGas(outGas)), ticks);
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("PRESSURIZED_REACTION_CHAMBER", input, recipe));
+        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("PRESSURIZED_REACTION_CHAMBER", Recipe.PRESSURIZED_REACTION_CHAMBER.get(), input, recipe));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack outItem, IGasStack outGas) {
         PressurizedProducts output = new PressurizedProducts(toStack(outItem), toGas(outGas));
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("PRESSURIZED_REACTION_CHAMBER", output));
+        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("PRESSURIZED_REACTION_CHAMBER", Recipe.PRESSURIZED_REACTION_CHAMBER.get(), output));
     }
 }

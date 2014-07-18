@@ -3,6 +3,7 @@ package modtweaker.mods.mekanism.handlers;
 import static modtweaker.helpers.InputHelper.toFluid;
 import static modtweaker.mods.mekanism.MekanismHelper.toGas;
 import mekanism.api.ChemicalPair;
+import mekanism.common.recipe.RecipeHandler.Recipe;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.liquid.ILiquidStack;
 import modtweaker.mods.mekanism.gas.IGasStack;
@@ -16,12 +17,12 @@ public class Seperator {
     @ZenMethod
     public static void addRecipe(ILiquidStack input, IGasStack gas1, IGasStack gas2) {
         ChemicalPair pair = new ChemicalPair(toGas(gas1), toGas(gas2));
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("ELECTROLYTIC_SEPARATOR", toFluid(input), pair));
+        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("ELECTROLYTIC_SEPARATOR", Recipe.ELECTROLYTIC_SEPARATOR.get(), toFluid(input), pair));
     }
 
     @ZenMethod
     public static void removeRecipe(IGasStack gas1, IGasStack gas2) {
         ChemicalPair pair = new ChemicalPair(toGas(gas1), toGas(gas2));
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("ELECTROLYTIC_SEPARATOR", pair));
+        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("ELECTROLYTIC_SEPARATOR", Recipe.ELECTROLYTIC_SEPARATOR.get(), pair));
     }
 }

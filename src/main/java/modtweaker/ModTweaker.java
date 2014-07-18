@@ -1,7 +1,6 @@
 package modtweaker;
 
 import minetweaker.MineTweakerAPI;
-import modtweaker.handlers.VanillaTweaks;
 import modtweaker.mods.bloodmagic.BloodMagic;
 import modtweaker.mods.botania.Botania;
 import modtweaker.mods.exnihilo.ExNihilo;
@@ -9,15 +8,20 @@ import modtweaker.mods.factorization.Factorization;
 import modtweaker.mods.hee.HardcoreEnderExpansion;
 import modtweaker.mods.mariculture.Mariculture;
 import modtweaker.mods.mekanism.Mekanism;
+import modtweaker.mods.mekanism.gas.GasLogger;
 import modtweaker.mods.metallurgy.Metallurgy;
 import modtweaker.mods.pneumaticcraft.PneumaticCraft;
 import modtweaker.mods.railcraft.Railcraft;
 import modtweaker.mods.tconstruct.TConstruct;
 import modtweaker.mods.thaumcraft.Thaumcraft;
 import modtweaker.util.TweakerPlugin;
+import modtweaker.vanilla.LootLogger;
+import modtweaker.vanilla.SeedLogger;
+import modtweaker.vanilla.VanillaTweaks;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = "ModTweaker", name = "ModTweaker", dependencies = "required-after:MineTweaker3")
 public class ModTweaker {
@@ -36,5 +40,22 @@ public class ModTweaker {
         TweakerPlugin.register("Railcraft", Railcraft.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);
+    }
+    
+    @EventHandler
+    public void onServerStart(FMLServerStartingEvent event) {
+        MineTweakerAPI.server.addMineTweakerCommand("loot", new String[] {
+                "/minetweaker loot",
+                "    Outputs a list of all dungeon loot in the game to the minetweaker log" }, new LootLogger());
+        
+        MineTweakerAPI.server.addMineTweakerCommand("seeds", new String[] {
+                "/minetweaker grass",
+                "    Outputs a list of all grass drops in the game to the minetweaker log" }, new SeedLogger());
+        
+        if(TweakerPlugin.isLoaded("Mekanism")) {
+            MineTweakerAPI.server.addMineTweakerCommand("gases", new String[] {
+                    "/minetweaker gases",
+                    "    Outputs a list of all gas names in the game to the minetweaker log" }, new GasLogger());
+        }
     }
 }

@@ -86,7 +86,7 @@ public class Smeltery {
     @ZenMethod
     public static void addMelting(IItemStack input, ILiquidStack output, int temp, @Optional IItemStack block) {
         if (block == null) block = input;
-        if(isABlock(block)) {
+        if (isABlock(block)) {
             Block theBlock = Block.getBlockFromItem(toStack(block).getItem());
             int theMeta = toStack(block).getItemDamage();
             MineTweakerAPI.tweaker.apply(new AddMelting(toStack(input), theBlock, theMeta, temp, toFluid(output)));
