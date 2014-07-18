@@ -21,11 +21,22 @@ public class HackedLogger extends Logger {
 
     @Override
     public void error(String message, Throwable t) {
+        if (contains(message)) return;
+        else super.error(message, t);
+    }
+
+    @Override
+    public void warn(String message) {
+        if (contains(message)) return;
+        else super.warn(message);
+    }
+
+    private boolean contains(String message) {
         for (String s : list) {
-            if (message.startsWith(s)) return;
+            if (message.contains(s)) return true;
         }
 
-        super.error(message, t);
+        return false;
     }
 
     static {

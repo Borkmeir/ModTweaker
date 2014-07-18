@@ -10,7 +10,6 @@ import mekanism.api.PressurizedReactants;
 import mekanism.api.PressurizedRecipe;
 import mekanism.api.gas.GasStack;
 import mekanism.api.infuse.InfusionOutput;
-import modtweaker.mods.mekanism.MekanismHelper;
 import modtweaker.util.BaseMapRemoval;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -18,8 +17,8 @@ import net.minecraftforge.fluids.FluidStack;
 public class RemoveMekanismRecipe extends BaseMapRemoval {
     private Object tmp;
 
-    public RemoveMekanismRecipe(String string, Object key) {
-        super(string.toLowerCase(), MekanismHelper.get(string), key, null);
+    public RemoveMekanismRecipe(String string, Map map, Object key) {
+        super(string.toLowerCase(), map, key, null);
         this.tmp = key;
     }
 

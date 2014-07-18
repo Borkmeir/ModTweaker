@@ -2,6 +2,7 @@ package modtweaker.mods.mekanism.handlers;
 
 import static modtweaker.helpers.InputHelper.toFluid;
 import static modtweaker.helpers.InputHelper.toStack;
+import mekanism.common.recipe.RecipeHandler.Recipe;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
@@ -14,11 +15,11 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class ChemicalDissolution {
     @ZenMethod
     public static void addRecipe(IItemStack input, ILiquidStack output) {
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_DISSOLUTION_CHAMBER", toStack(input), toFluid(output)));
+        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_DISSOLUTION_CHAMBER", Recipe.CHEMICAL_DISSOLUTION_CHAMBER.get(), toStack(input), toFluid(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(ILiquidStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_DISSOLUTION_CHAMBER", toFluid(output)));
+        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_DISSOLUTION_CHAMBER", Recipe.CHEMICAL_DISSOLUTION_CHAMBER.get(), toFluid(output)));
     }
 }

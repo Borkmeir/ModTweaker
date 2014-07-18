@@ -1,6 +1,7 @@
 package modtweaker.mods.mekanism.handlers;
 
 import static modtweaker.mods.mekanism.MekanismHelper.toGas;
+import mekanism.common.recipe.RecipeHandler.Recipe;
 import minetweaker.MineTweakerAPI;
 import modtweaker.mods.mekanism.gas.IGasStack;
 import modtweaker.mods.mekanism.util.AddMekanismRecipe;
@@ -12,11 +13,11 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class ChemicalWasher {
     @ZenMethod
     public static void addRecipe(IGasStack input, IGasStack output) {
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_WASHER", toGas(input), toGas(output)));
+        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_WASHER", Recipe.CHEMICAL_WASHER.get(), toGas(input), toGas(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IGasStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_WASHER", toGas(output)));
+        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_WASHER", Recipe.CHEMICAL_WASHER.get(), toGas(output)));
     }
 }
