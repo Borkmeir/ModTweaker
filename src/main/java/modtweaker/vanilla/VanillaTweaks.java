@@ -1,4 +1,4 @@
-package modtweaker.handlers;
+package modtweaker.vanilla;
 
 import static modtweaker.helpers.InputHelper.toStack;
 

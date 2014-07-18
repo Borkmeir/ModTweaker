@@ -12,7 +12,9 @@ public class TweakerPlugin {
             try {
                 clazz.newInstance();
                 isLoaded.add(mod);
-            } catch (Exception e) {}
+            } catch (Exception e) {
+                isLoaded.remove(mod);
+            }
         }
     }
 
