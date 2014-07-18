@@ -43,6 +43,7 @@ ModTweaker 0.5
    • Add/Remove Repair Materials
 • Vanilla - WHAT?
    • Dungeon Loot
+   • Localisation
    • Tall Grass Drops
 
 ===========================================================
