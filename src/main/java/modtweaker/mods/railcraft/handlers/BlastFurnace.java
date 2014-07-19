@@ -4,6 +4,7 @@ import static modtweaker.helpers.InputHelper.toStack;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import mods.railcraft.api.crafting.IBlastFurnaceRecipe;
+import mods.railcraft.common.util.crafting.BlastFurnaceCraftingManager.BlastFurnaceRecipe;
 import modtweaker.mods.railcraft.RailcraftHelper;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
@@ -15,7 +16,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class BlastFurnace {
     @ZenMethod
     public static void addRecipe(IItemStack input, boolean matchDamage, boolean matchNBT, int cookTime, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(RailcraftHelper.getBlastFurnaceRecipe(toStack(input), matchDamage, matchNBT, cookTime, toStack(output))));
+        MineTweakerAPI.tweaker.apply(new Add(new BlastFurnaceRecipe(toStack(input), matchDamage, matchNBT, cookTime, toStack(output))));
     }
 
     private static class Add extends BaseListAddition {

@@ -3,10 +3,7 @@ package modtweaker.vanilla;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasRegistry;
 import minetweaker.MineTweakerAPI;
 import minetweaker.MineTweakerImplementationAPI;
 import minetweaker.api.player.IPlayer;
