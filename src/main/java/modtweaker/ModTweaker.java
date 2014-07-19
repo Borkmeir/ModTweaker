@@ -31,7 +31,7 @@ public class ModTweaker {
         TweakerPlugin.register("AWWayofTime", BloodMagic.class);
         TweakerPlugin.register("Botania", Botania.class);
         TweakerPlugin.register("exnihilo", ExNihilo.class);
-        TweakerPlugin.register("Factorization", Factorization.class);
+        TweakerPlugin.register("factorization", Factorization.class);
         TweakerPlugin.register("HardcoreEnderExpansion", HardcoreEnderExpansion.class);
         TweakerPlugin.register("Mariculture", Mariculture.class);
         TweakerPlugin.register("Mekanism", Mekanism.class);

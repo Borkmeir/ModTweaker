@@ -8,5 +8,5 @@ ModTweaker 0.6
    • Modifiers
 • Vanilla
    • Dungeon Mobs
-   
+   • Fishing Loot
    
