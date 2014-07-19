@@ -111,6 +111,7 @@ public class RemoveMekanismRecipe extends BaseMapRemoval {
         else if (tmp instanceof ChanceOutput) return "Removing " + description + " Recipe for : " + ((ChanceOutput) tmp).primaryOutput.getDisplayName();
         else if (tmp instanceof GasStack) return "Removing " + description + " Recipe for : " + ((GasStack) tmp).getGas().getLocalizedName();
         else if (tmp instanceof PressurizedReactants) return "Removing " + description + " Recipe for : " + ((PressurizedReactants) tmp).getSolid().getDisplayName();
+        else if (tmp instanceof InfusionOutput) return "Removing " + description + " Recipe for : " + ((InfusionOutput) tmp).resource.getDisplayName();
         else return super.getRecipeInfo();
     }
 
@@ -122,6 +123,7 @@ public class RemoveMekanismRecipe extends BaseMapRemoval {
         else if (tmp instanceof ChanceOutput) return "Restoring " + description + " Recipe for : " + ((ChanceOutput) tmp).primaryOutput.getDisplayName();
         else if (tmp instanceof GasStack) return "Restoring " + description + " Recipe for : " + ((GasStack) tmp).getGas().getLocalizedName();
         else if (tmp instanceof PressurizedReactants) return "Restoring " + description + " Recipe for : " + ((PressurizedReactants) tmp).getSolid().getDisplayName();
+        else if (tmp instanceof InfusionOutput) return "Restoring " + description + " Recipe for : " + ((InfusionOutput) tmp).resource.getDisplayName();
         else return super.getRecipeInfo();
     }
 }
