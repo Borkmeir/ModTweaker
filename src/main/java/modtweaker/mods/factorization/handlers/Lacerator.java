@@ -10,12 +10,13 @@ import modtweaker.util.BaseListRemoval;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import factorization.oreprocessing.TileEntityGrinder.GrinderRecipe;
 
 @ZenClass("mods.factorization.Lacerator")
 public class Lacerator {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output, double probability) {
-        Object recipe = FactorizationHelper.getLaceratorRecipe(toStack(input), toStack(output), probability);
+        Object recipe = new GrinderRecipe(toStack(input), toStack(output), (float) probability);
         MineTweakerAPI.tweaker.apply(new Add(toStack(input), recipe));
     }
 

@@ -1,3 +1,8 @@
+MODTWEAKER 0.5
+• FIX TCON PATTERNS
+• FIX TCON ENERGY
+• FIX MEKANISM PURIFICATION REMOVAL AND FURTHER
+
 ModTweaker 0.6
 
 • Botania
@@ -8,5 +13,5 @@ ModTweaker 0.6
    • Modifiers
 • Vanilla
    • Dungeon Mobs
-   
+   • Fishing Loot
    

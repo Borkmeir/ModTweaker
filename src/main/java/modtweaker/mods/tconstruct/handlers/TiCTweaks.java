@@ -40,8 +40,8 @@ public class TiCTweaks {
 
     //Tweaks for enabling / disabling Patterns
     @ZenMethod
-    public static void removePattern(ItemStack stack) {
-        MineTweakerAPI.tweaker.apply(new DisablePattern(stack));
+    public static void removePattern(IItemStack stack) {
+        MineTweakerAPI.tweaker.apply(new DisablePattern(toStack(stack)));
     }
 
     private static class DisablePattern implements IUndoableAction {

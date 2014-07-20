@@ -10,12 +10,13 @@ import modtweaker.util.BaseListRemoval;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import factorization.oreprocessing.TileEntityCrystallizer.CrystalRecipe;
 
 @ZenClass("mods.factorization.Crystallizer")
 public class Crystallizer {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output, IItemStack solution, double output_count) {
-        Object recipe = FactorizationHelper.getCrystallizerRecipe(toStack(input), toStack(output), toStack(solution), (float) output_count);
+        Object recipe = new CrystalRecipe(toStack(input), toStack(output), (float) output_count, toStack(solution));
         MineTweakerAPI.tweaker.apply(new Add(toStack(input), recipe));
     }
 

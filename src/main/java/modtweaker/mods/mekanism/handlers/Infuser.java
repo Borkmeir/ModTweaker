@@ -1,6 +1,10 @@
 package modtweaker.mods.mekanism.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+
+import java.util.Iterator;
+import java.util.Map;
+
 import mekanism.api.infuse.InfuseRegistry;
 import mekanism.api.infuse.InfusionInput;
 import mekanism.api.infuse.InfusionOutput;
@@ -23,6 +27,32 @@ public class Infuser {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("METALLURGIC_INFUSER", Recipe.METALLURGIC_INFUSER.get(), toStack(output)));
+        MineTweakerAPI.tweaker.apply(new Remove("METALLURGIC_INFUSER", Recipe.METALLURGIC_INFUSER.get(), new InfusionOutput(null, toStack(output))));
+    }
+
+    private static class Remove extends RemoveMekanismRecipe {
+        public Remove(String string, Map map, Object key) {
+            super(string, map, key);
+        }
+
+        @Override
+        public void apply() {
+            Iterator it = map.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pairs = (Map.Entry) it.next();
+                InfusionInput key = (InfusionInput) pairs.getKey();
+                InfusionOutput value = (InfusionOutput) pairs.getValue();
+                if (key != null) {
+                    if (this.key instanceof InfusionOutput && value.resource.isItemEqual(((InfusionOutput) this.key).resource)) {
+                        this.key = key;
+                        break;
+                    }
+                }
+
+            }
+
+            recipe = map.get(key);
+            map.remove(key);
+        }
     }
 }

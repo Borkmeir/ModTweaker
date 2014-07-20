@@ -13,7 +13,6 @@ import modtweaker.helpers.ReflectionHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
-import net.minecraft.util.WeightedRandomChestContent;
 
 public class SeedLogger implements ICommandFunction {
     public static final Comparator<WeightedRandom.Item> COMPARATOR = new Compare();

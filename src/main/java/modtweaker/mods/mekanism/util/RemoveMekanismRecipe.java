@@ -18,7 +18,7 @@ public class RemoveMekanismRecipe extends BaseMapRemoval {
     private Object tmp;
 
     public RemoveMekanismRecipe(String string, Map map, Object key) {
-        super(string.toLowerCase(), map, key, null);
+        super(string.toLowerCase().replace('_', ' '), map, key, null);
         this.tmp = key;
     }
 
@@ -104,13 +104,26 @@ public class RemoveMekanismRecipe extends BaseMapRemoval {
     }
 
     @Override
-    public String getRecipeInfo() {
-        if (tmp instanceof ItemStack) return "Adding " + description + " Recipe for : " + ((ItemStack) tmp).getDisplayName();
-        else if (tmp instanceof FluidStack) return "Adding " + description + " Recipe for : " + ((FluidStack) tmp).getFluid().getLocalizedName();
-        else if (tmp instanceof ChemicalPair) return "Adding " + description + " Recipe for : " + ((ChemicalPair) tmp).leftGas.getGas().getLocalizedName();
-        else if (tmp instanceof ChanceOutput) return "Adding " + description + " Recipe for : " + ((ChanceOutput) tmp).primaryOutput.getDisplayName();
-        else if (tmp instanceof GasStack) return "Adding " + description + " Recipe for : " + ((GasStack) tmp).getGas().getLocalizedName();
-        else if (tmp instanceof PressurizedReactants) return "Adding " + description + " Recipe for : " + ((PressurizedReactants) tmp).getSolid().getDisplayName();
+    public String describe() {
+        if (tmp instanceof ItemStack) return "Removing " + description + " Recipe for : " + ((ItemStack) tmp).getDisplayName();
+        else if (tmp instanceof FluidStack) return "Removing " + description + " Recipe for : " + ((FluidStack) tmp).getFluid().getLocalizedName();
+        else if (tmp instanceof ChemicalPair) return "Removing " + description + " Recipe for : " + ((ChemicalPair) tmp).leftGas.getGas().getLocalizedName();
+        else if (tmp instanceof ChanceOutput) return "Removing " + description + " Recipe for : " + ((ChanceOutput) tmp).primaryOutput.getDisplayName();
+        else if (tmp instanceof GasStack) return "Removing " + description + " Recipe for : " + ((GasStack) tmp).getGas().getLocalizedName();
+        else if (tmp instanceof PressurizedReactants) return "Removing " + description + " Recipe for : " + ((PressurizedReactants) tmp).getSolid().getDisplayName();
+        else if (tmp instanceof InfusionOutput) return "Removing " + description + " Recipe for : " + ((InfusionOutput) tmp).resource.getDisplayName();
+        else return super.getRecipeInfo();
+    }
+
+    @Override
+    public String describeUndo() {
+        if (tmp instanceof ItemStack) return "Restoring " + description + " Recipe for : " + ((ItemStack) tmp).getDisplayName();
+        else if (tmp instanceof FluidStack) return "Restoring " + description + " Recipe for : " + ((FluidStack) tmp).getFluid().getLocalizedName();
+        else if (tmp instanceof ChemicalPair) return "Restoring " + description + " Recipe for : " + ((ChemicalPair) tmp).leftGas.getGas().getLocalizedName();
+        else if (tmp instanceof ChanceOutput) return "Restoring " + description + " Recipe for : " + ((ChanceOutput) tmp).primaryOutput.getDisplayName();
+        else if (tmp instanceof GasStack) return "Restoring " + description + " Recipe for : " + ((GasStack) tmp).getGas().getLocalizedName();
+        else if (tmp instanceof PressurizedReactants) return "Restoring " + description + " Recipe for : " + ((PressurizedReactants) tmp).getSolid().getDisplayName();
+        else if (tmp instanceof InfusionOutput) return "Restoring " + description + " Recipe for : " + ((InfusionOutput) tmp).resource.getDisplayName();
         else return super.getRecipeInfo();
     }
 }

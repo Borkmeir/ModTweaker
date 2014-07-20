@@ -11,12 +11,13 @@ import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import factorization.oreprocessing.TileEntitySlagFurnace.SmeltingResult;
 
 @ZenClass("mods.factorization.SlagFurnace")
 public class SlagFurnace {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output1, double chance1, IItemStack output2, double chance2) {
-        Object recipe = FactorizationHelper.getSlagFurnaceRecipe(toStack(input), toStack(output1), (float) chance1, toStack(output2), (float) chance2);
+        Object recipe = new SmeltingResult(toStack(input), (float) chance1, toStack(output1), (float) chance2, toStack(output2));
         MineTweakerAPI.tweaker.apply(new Add(toStack(output1), recipe));
     }
 
