@@ -2,7 +2,6 @@ package modtweaker.mods.mekanism.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
 
-import java.util.Iterator;
 import java.util.Map;
 
 import mekanism.api.AdvancedInput;
@@ -11,7 +10,7 @@ import mekanism.common.recipe.RecipeHandler.Recipe;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.mods.mekanism.util.AddMekanismRecipe;
-import modtweaker.mods.mekanism.util.RemoveMekanismRecipe;
+import modtweaker.util.BaseMapRemoval;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -26,32 +25,25 @@ public class Purification {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove("PURIFICATION_CHAMBER", Recipe.PURIFICATION_CHAMBER.get(), toStack(output)));
+        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
     }
 
-    private static class Remove extends RemoveMekanismRecipe {
-        public Remove(String string, Map map, Object key) {
-            super(string, map, key);
+    private static class Remove extends BaseMapRemoval {
+        public Remove(ItemStack stack) {
+            super("Purification Chamber", Recipe.PURIFICATION_CHAMBER.get(), stack);
         }
 
+        //We must search through the recipe entries so that we can assign the correct key for removal
         @Override
         public void apply() {
-            Iterator it = map.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry pairs = (Map.Entry) it.next();
-                AdvancedInput key = (AdvancedInput) pairs.getKey();
-                ItemStack value = (ItemStack) pairs.getValue();
-                if (key != null) {
-                    if (this.key instanceof ItemStack && value.isItemEqual((ItemStack) this.key)) {
-                        this.key = key;
-                        break;
-                    }
+            for (Map.Entry<AdvancedInput, ItemStack> entry : ((Map<AdvancedInput, ItemStack>) map).entrySet()) {
+                if (entry.getValue() != null && entry.getValue().isItemEqual((ItemStack) stack)) {
+                    key = entry.getKey();
+                    break;
                 }
-
             }
 
-            recipe = map.get(key);
-            map.remove(key);
+            super.apply();
         }
     }
 }

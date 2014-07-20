@@ -12,6 +12,7 @@ import modtweaker.mods.mekanism.gas.GasLogger;
 import modtweaker.mods.metallurgy.Metallurgy;
 import modtweaker.mods.pneumaticcraft.PneumaticCraft;
 import modtweaker.mods.railcraft.Railcraft;
+import modtweaker.mods.tconstruct.MaterialLogger;
 import modtweaker.mods.tconstruct.TConstruct;
 import modtweaker.mods.thaumcraft.Thaumcraft;
 import modtweaker.mods.thaumcraft.research.ResearchLogger;
@@ -42,28 +43,28 @@ public class ModTweaker {
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);
     }
-    
+
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event) {
-        MineTweakerAPI.server.addMineTweakerCommand("loot", new String[] {
-                "/minetweaker loot",
+        MineTweakerAPI.server.addMineTweakerCommand("loot", new String[] { "/minetweaker loot", 
                 "    Outputs a list of all dungeon loot in the game to the minetweaker log" }, new LootLogger());
-        
-        MineTweakerAPI.server.addMineTweakerCommand("seeds", new String[] {
-                "/minetweaker seeds",
+        MineTweakerAPI.server.addMineTweakerCommand("seeds", new String[] { "/minetweaker seeds", 
                 "    Outputs a list of all grass drops in the game to the minetweaker log" }, new SeedLogger());
-        
-        if(TweakerPlugin.isLoaded("Mekanism")) {
-            MineTweakerAPI.server.addMineTweakerCommand("gases", new String[] {
-                    "/minetweaker gases",
+
+        if (TweakerPlugin.isLoaded("Mekanism")) {
+            MineTweakerAPI.server.addMineTweakerCommand("gases", new String[] { "/minetweaker gases", 
                     "    Outputs a list of all gas names in the game to the minetweaker log" }, new GasLogger());
         }
 
-        if(TweakerPlugin.isLoaded("Thaumcraft")) {
-            MineTweakerAPI.server.addMineTweakerCommand("research", new String[] {
-                    "/minetweaker research", "/minetweaker research [CATEGORY]",
-                    "    Outputs a list of all category names in the game to the minetweaker log,"
-                    + " or outputs a list of all research keys in a category to the log."}, new ResearchLogger());
+        if (TweakerPlugin.isLoaded("Thaumcraft")) {
+            MineTweakerAPI.server.addMineTweakerCommand("research", new String[] { "/minetweaker research",  "/minetweaker research [CATEGORY]", 
+                    "    Outputs a list of all category names in the game to the minetweaker log," + 
+                    " or outputs a list of all research keys in a category to the log." }, new ResearchLogger());
+        }
+        
+        if (TweakerPlugin.isLoaded("TConstruct")) {
+            MineTweakerAPI.server.addMineTweakerCommand("materials", new String[] { "/minetweaker materials", 
+                    "    Outputs a list of all Tinker's Construct material names in the game to the minetweaker log" }, new MaterialLogger());
         }
     }
 }

@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
+import modtweaker.helpers.ReflectionHelper;
 import modtweaker.mods.tconstruct.TConstructHelper;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
@@ -21,25 +22,27 @@ import tconstruct.library.crafting.PatternBuilder;
 import tconstruct.library.crafting.PatternBuilder.ItemKey;
 import tconstruct.library.crafting.PatternBuilder.MaterialSet;
 import tconstruct.library.tools.ToolCore;
+import tconstruct.tools.TinkerTools;
 
 @ZenClass("mods.tconstruct.Tweaks")
 public class TiCTweaks {
     //Set the maximum RF
     @ZenMethod
-    public static void setRFCapacity(int capacity) {
-        MineTweakerAPI.tweaker.apply(new AdjustRF(capacity));
+    public static void setRFCapacity(String tool, int capacity) {
+        MineTweakerAPI.tweaker.apply(new AdjustRF(tool, capacity));
     }
 
     private static class AdjustRF extends BaseSetVar {
-        public AdjustRF(int newValue) {
-            super("RF Maximum for Tinkers Tools", ToolCore.class, "capacity", 400000, newValue);
+        public AdjustRF(String tool, int newValue) {
+            super("RF Maximum for Tinkers Tools", ToolCore.class, ReflectionHelper.getStaticObject(TinkerTools.class, tool), "capacity", 400000, newValue);
         }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /** Disabling for 0.5, will do this properly for 0.6 **/
     //Tweaks for enabling / disabling Patterns
-    @ZenMethod
+  /*  @ZenMethod
     public static void removePattern(IItemStack stack) {
         MineTweakerAPI.tweaker.apply(new DisablePattern(toStack(stack)));
     }
@@ -94,7 +97,7 @@ public class TiCTweaks {
         public Object getOverrideKey() {
             return null;
         }
-    }
+    } */
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

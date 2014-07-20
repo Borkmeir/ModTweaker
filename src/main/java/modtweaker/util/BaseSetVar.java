@@ -4,11 +4,17 @@ import minetweaker.IUndoableAction;
 import modtweaker.helpers.ReflectionHelper;
 
 public abstract class BaseSetVar implements IUndoableAction {
+    protected Object object;
     protected final String description;
     protected final Class clazz;
     protected final String field;
     protected final int original;
     protected final int newValue;
+    
+    public BaseSetVar(String description, Class clazz, Object object, String field, int original, int newValue) {
+        this(description, clazz, field, original, newValue);
+        this.object = object;
+    }
 
     public BaseSetVar(String description, Class clazz, String field, int original, int newValue) {
         this.description = description;
@@ -20,7 +26,7 @@ public abstract class BaseSetVar implements IUndoableAction {
 
     @Override
     public void apply() {
-        ReflectionHelper.setPrivateValue(clazz, field, newValue);
+        ReflectionHelper.setPrivateValue(clazz, object, field, newValue);
     }
 
     @Override
@@ -30,7 +36,7 @@ public abstract class BaseSetVar implements IUndoableAction {
 
     @Override
     public void undo() {
-        ReflectionHelper.setPrivateValue(clazz, field, original);
+        ReflectionHelper.setPrivateValue(clazz, object, field, original);
     }
 
     @Override

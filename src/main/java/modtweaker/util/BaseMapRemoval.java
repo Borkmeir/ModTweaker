@@ -16,6 +16,10 @@ public abstract class BaseMapRemoval implements IUndoableAction {
     public BaseMapRemoval(Object stack, Map map, Object key) {
         this(null, map, key, stack);
     }
+    
+    public BaseMapRemoval(String description, Map map, Object stack) {
+        this(description, map, null, stack);
+    }
 
     public BaseMapRemoval(String description, Map map, Object key, Object stack) {
         this.stack = stack;

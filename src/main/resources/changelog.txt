@@ -39,7 +39,6 @@ ModTweaker 0.5
    • Research
 • Tinker's Construct - EXTRA!
    • Adjust Material Data
-   • Disable Creation of Wood Patterns
    • Add/Remove Repair Materials
 • Vanilla - WHAT?
    • Dungeon Loot

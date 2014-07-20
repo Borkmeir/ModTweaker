@@ -16,7 +16,7 @@ import modtweaker.mods.mekanism.handlers.Infuser;
 import modtweaker.mods.mekanism.handlers.Purification;
 import modtweaker.mods.mekanism.handlers.Reaction;
 import modtweaker.mods.mekanism.handlers.Sawmill;
-import modtweaker.mods.mekanism.handlers.Seperator;
+import modtweaker.mods.mekanism.handlers.Separator;
 import modtweaker.util.TweakerPlugin;
 
 public class Mekanism extends TweakerPlugin {
@@ -30,7 +30,7 @@ public class Mekanism extends TweakerPlugin {
         MineTweakerAPI.registerClass(Purification.class);
         MineTweakerAPI.registerClass(Reaction.class);
         MineTweakerAPI.registerClass(Sawmill.class);
-        MineTweakerAPI.registerClass(Seperator.class);
+        MineTweakerAPI.registerClass(Separator.class);
         MineTweakerAPI.registerClass(ChemicalCrystallizer.class);
         MineTweakerAPI.registerClass(ChemicalDissolution.class);
         MineTweakerAPI.registerClass(ChemicalInfuser.class);

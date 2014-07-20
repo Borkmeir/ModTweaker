@@ -1,11 +1,12 @@
 package modtweaker.vanilla;
 
+import static modtweaker.helpers.LogHelper.logPrinted;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import minetweaker.MineTweakerAPI;
-import minetweaker.MineTweakerImplementationAPI;
 import minetweaker.api.player.IPlayer;
 import minetweaker.api.server.ICommandFunction;
 import modtweaker.helpers.ForgeHelper;
@@ -28,18 +29,15 @@ public class SeedLogger implements ICommandFunction {
 
     @Override
     public void execute(String[] arguments, IPlayer player) {
-        List<WeightedRandom.Item> seeds =  ForgeHelper.seeds;
+        List<WeightedRandom.Item> seeds = ForgeHelper.seeds;
         System.out.println("Seeds: " + seeds.size());
         Collections.sort(seeds, COMPARATOR);
         for (WeightedRandom.Item seed : seeds) {
             ItemStack stack = ((ItemStack) ReflectionHelper.getObject(seed, "seed"));
             System.out.println("Seed " + Item.itemRegistry.getNameForObject(stack.getItem()));
-            MineTweakerAPI.logCommand("<" + Item.itemRegistry.getNameForObject(stack.getItem()) + "> -- " + stack.getDisplayName() 
-                    + " -- (Weight: " + seed.itemWeight + ")");
+            MineTweakerAPI.logCommand("<" + Item.itemRegistry.getNameForObject(stack.getItem()) + "> -- " + stack.getDisplayName() + " -- (Weight: " + seed.itemWeight + ")");
         }
 
-        if (player != null) {
-            player.sendChat(MineTweakerImplementationAPI.platform.getMessage("List generated; see minetweaker.log in your minecraft dir"));
-        }
+        logPrinted(player);
     }
 }
