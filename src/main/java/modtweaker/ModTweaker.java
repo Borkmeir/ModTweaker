@@ -50,7 +50,7 @@ public class ModTweaker {
                 "    Outputs a list of all dungeon loot in the game to the minetweaker log" }, new LootLogger());
         
         MineTweakerAPI.server.addMineTweakerCommand("seeds", new String[] {
-                "/minetweaker grass",
+                "/minetweaker seeds",
                 "    Outputs a list of all grass drops in the game to the minetweaker log" }, new SeedLogger());
         
         if(TweakerPlugin.isLoaded("Mekanism")) {
