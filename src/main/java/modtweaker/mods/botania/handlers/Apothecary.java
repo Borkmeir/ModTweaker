@@ -22,6 +22,11 @@ public class Apothecary {
         MineTweakerAPI.tweaker.apply(new Add(new RecipePetals(toStack(output), toObjects(input))));
     }
 
+    @ZenMethod
+    public static void addRecipe(String output, IIngredient[] input) {
+        MineTweakerAPI.tweaker.apply(new Add(new RecipePetals(ItemBlockSpecialFlower.ofType(output), toObjects(input))));
+    }
+
     private static class Add extends BaseListAddition {
         public Add(RecipePetals recipe) {
             super("Botania Petal Recipe", BotaniaAPI.petalRecipes, recipe);
