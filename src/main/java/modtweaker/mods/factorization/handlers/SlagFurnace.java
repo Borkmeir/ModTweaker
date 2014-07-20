@@ -4,13 +4,13 @@ import static modtweaker.helpers.InputHelper.toStack;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.helpers.ReflectionHelper;
-import modtweaker.mods.factorization.FactorizationHelper;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import factorization.oreprocessing.TileEntitySlagFurnace.SlagRecipes;
 import factorization.oreprocessing.TileEntitySlagFurnace.SmeltingResult;
 
 @ZenClass("mods.factorization.SlagFurnace")
@@ -25,7 +25,7 @@ public class SlagFurnace {
         private final ItemStack output;
 
         public Add(ItemStack output, Object recipe) {
-            super("Slag Furnace", FactorizationHelper.slag, recipe);
+            super("Slag Furnace", SlagRecipes.smeltingResults, recipe);
             this.output = output;
         }
 
@@ -46,7 +46,7 @@ public class SlagFurnace {
         private final ItemStack stack2;
 
         public Remove(ItemStack stack1, ItemStack stack2) {
-            super("Lacerator", FactorizationHelper.lacerator, stack1);
+            super("Lacerator", SlagRecipes.smeltingResults, stack1);
             this.stack2 = stack2;
         }
 

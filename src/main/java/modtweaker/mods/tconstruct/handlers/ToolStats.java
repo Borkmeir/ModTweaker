@@ -47,7 +47,7 @@ public class ToolStats {
 
     @ZenMethod
     public static void setHandleModifier(String material, double value) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "handle", (float) value));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "handleModifier", (float) value));
     }
 
     @ZenMethod
