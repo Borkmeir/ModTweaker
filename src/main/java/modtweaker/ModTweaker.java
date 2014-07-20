@@ -14,6 +14,7 @@ import modtweaker.mods.pneumaticcraft.PneumaticCraft;
 import modtweaker.mods.railcraft.Railcraft;
 import modtweaker.mods.tconstruct.TConstruct;
 import modtweaker.mods.thaumcraft.Thaumcraft;
+import modtweaker.mods.thaumcraft.research.ResearchLogger;
 import modtweaker.util.TweakerPlugin;
 import modtweaker.vanilla.LootLogger;
 import modtweaker.vanilla.SeedLogger;
@@ -31,7 +32,7 @@ public class ModTweaker {
         TweakerPlugin.register("AWWayofTime", BloodMagic.class);
         TweakerPlugin.register("Botania", Botania.class);
         TweakerPlugin.register("exnihilo", ExNihilo.class);
-        TweakerPlugin.register("factorization", Factorization.class);
+        TweakerPlugin.register("Factorization", Factorization.class);
         TweakerPlugin.register("HardcoreEnderExpansion", HardcoreEnderExpansion.class);
         TweakerPlugin.register("Mariculture", Mariculture.class);
         TweakerPlugin.register("Mekanism", Mekanism.class);
@@ -56,6 +57,13 @@ public class ModTweaker {
             MineTweakerAPI.server.addMineTweakerCommand("gases", new String[] {
                     "/minetweaker gases",
                     "    Outputs a list of all gas names in the game to the minetweaker log" }, new GasLogger());
+        }
+
+        if(TweakerPlugin.isLoaded("Thaumcraft")) {
+            MineTweakerAPI.server.addMineTweakerCommand("research", new String[] {
+                    "/minetweaker research", "/minetweaker research [CATEGORY]",
+                    "    Outputs a list of all category names in the game to the minetweaker log,"
+                    + " or outputs a list of all research keys in a category to the log."}, new ResearchLogger());
         }
     }
 }
