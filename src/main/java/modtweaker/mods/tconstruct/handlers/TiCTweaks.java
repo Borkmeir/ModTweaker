@@ -32,7 +32,7 @@ public class TiCTweaks {
 
     private static class AdjustRF extends BaseSetVar {
         public AdjustRF(int newValue) {
-            super("RF Maximum for Tinkers Tools", ToolCore.class, "capacity", 40000, newValue);
+            super("RF Maximum for Tinkers Tools", ToolCore.class, "capacity", 400000, newValue);
         }
     }
 
@@ -98,6 +98,7 @@ public class TiCTweaks {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    @ZenMethod
     public static void addRepairMaterial(IItemStack stack, String material, int value) {
         ItemStack input = toStack(stack);
         MineTweakerAPI.tweaker.apply(new Add(TConstructHelper.getItemKey(input.getItem(), input.getItemDamage(), value, material)));

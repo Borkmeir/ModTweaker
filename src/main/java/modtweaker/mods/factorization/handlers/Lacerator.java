@@ -4,12 +4,12 @@ import static modtweaker.helpers.InputHelper.toStack;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.helpers.ReflectionHelper;
-import modtweaker.mods.factorization.FactorizationHelper;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import factorization.oreprocessing.TileEntityGrinder;
 import factorization.oreprocessing.TileEntityGrinder.GrinderRecipe;
 
 @ZenClass("mods.factorization.Lacerator")
@@ -24,7 +24,7 @@ public class Lacerator {
         private final ItemStack output;
 
         public Add(ItemStack output, Object recipe) {
-            super("Lacerator", FactorizationHelper.lacerator, recipe);
+            super("Lacerator", TileEntityGrinder.recipes, recipe);
             this.output = output;
         }
 
@@ -43,7 +43,7 @@ public class Lacerator {
 
     private static class Remove extends BaseListRemoval {
         public Remove(ItemStack stack) {
-            super("Lacerator", FactorizationHelper.lacerator, stack);
+            super("Lacerator", TileEntityGrinder.recipes, stack);
         }
 
         //Returns the output ItemStack
