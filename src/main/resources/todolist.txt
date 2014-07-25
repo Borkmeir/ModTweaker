@@ -1,12 +1,27 @@
 ModTweaker 0.6
-• Botania
-   • Books
+• EE3
+   • Stuff
 • Ender IO
-   • All
+   • Stuff
+• Forestry
+   • Bees
+• Growthcraft
+   • Stuff
 • TCon
    • Modifiers
+   • Patterns
+   • ToolParts
 • Vanilla
    • Dungeon Mobs
    • Fishing Loot
    • Adjust Pickaxe Mining Levels
+   • Bonemeal
    
+joshie:
+
+   
+SpitefulFox:
+• Botania
+   • Books
+• Thaumic Tinkerer
+   • Stuff
