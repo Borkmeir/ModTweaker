@@ -50,21 +50,7 @@ public class ReflectionHelper {
             Field f = cls.getDeclaredField(field);
             f.setAccessible(true);
             f.setInt(null, var);
-        } catch (NoSuchFieldException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (SecurityException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-        //cpw.mods.fml.relauncher.ReflectionHelper.setPrivateValue(cls, null, var, field);
+        } catch (Exception e) {}
     }
 
     public static void setPrivateValue(Class cls, Object o, String field, Object var) {

@@ -1,4 +1,7 @@
 package modtweaker.helpers;
+ 
+import static modtweaker.helpers.ReflectionHelper.getFinalObject;
+import static modtweaker.helpers.ReflectionHelper.getStaticObject;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
@@ -20,9 +23,9 @@ public class ForgeHelper {
 
     static {
         try {
-            seeds = ReflectionHelper.getStaticObject(ForgeHooks.class, "seedList");
-            loot = ReflectionHelper.getStaticObject(ChestGenHooks.class, "chestInfo");
-            translate = ReflectionHelper.getFinalObject(ReflectionHelper.getStaticObject(StatCollector.class, "localizedName", "field_74839_a"), "languageList", "field_74816_c");
+            seeds = getStaticObject(ForgeHooks.class, "seedList");
+            loot = getStaticObject(ChestGenHooks.class, "chestInfo");
+            translate = getFinalObject(getStaticObject(StatCollector.class, "localizedName", "field_74839_a"), "languageList", "field_74816_c");
         } catch (Exception e) {}
     }
 
@@ -30,7 +33,7 @@ public class ForgeHelper {
 
     public static Object getSeedEntry(ItemStack stack, int weight) {
         try {
-            Class clazz = Class.forName("net.minecraftforge.common.SeedEntry");
+            Class clazz = Class.forName("net.minecraftforge.common.ForgeHooks$SeedEntry");
             Constructor constructor = clazz.getDeclaredConstructor(ItemStack.class, int.class);
             constructor.setAccessible(true);
             return constructor.newInstance(stack, weight);

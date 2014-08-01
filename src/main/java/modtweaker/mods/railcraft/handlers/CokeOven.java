@@ -6,7 +6,6 @@ import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
 import mods.railcraft.api.crafting.ICokeOvenRecipe;
-import mods.railcraft.common.util.crafting.CokeOvenCraftingManager.CokeOvenRecipe;
 import modtweaker.mods.railcraft.RailcraftHelper;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
@@ -18,7 +17,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class CokeOven {
     @ZenMethod
     public static void addRecipe(IItemStack input, boolean matchDamage, boolean matchNBT, IItemStack output, ILiquidStack fluidOutput, int cookTime) {
-        MineTweakerAPI.tweaker.apply(new Add(new CokeOvenRecipe(toStack(input), matchDamage, matchNBT, toStack(output), toFluid(fluidOutput), cookTime)));
+        MineTweakerAPI.tweaker.apply(new Add(RailcraftHelper.getCokeOvenRecipe(toStack(input), matchDamage, matchNBT, toStack(output), toFluid(fluidOutput), cookTime)));
     }
 
     private static class Add extends BaseListAddition {

@@ -4,19 +4,18 @@ import static modtweaker.helpers.InputHelper.toStack;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.helpers.ReflectionHelper;
+import modtweaker.mods.factorization.FactorizationHelper;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-import factorization.oreprocessing.TileEntityCrystallizer;
-import factorization.oreprocessing.TileEntityCrystallizer.CrystalRecipe;
 
 @ZenClass("mods.factorization.Crystallizer")
 public class Crystallizer {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output, IItemStack solution, double output_count) {
-        Object recipe = new CrystalRecipe(toStack(input), toStack(output), (float) output_count, toStack(solution));
+        Object recipe = FactorizationHelper.getCrystallizerRecipe(toStack(input), toStack(output), toStack(solution), (float) output_count);
         MineTweakerAPI.tweaker.apply(new Add(toStack(input), recipe));
     }
 
@@ -24,7 +23,7 @@ public class Crystallizer {
         private final ItemStack output;
 
         public Add(ItemStack output, Object recipe) {
-            super("Crystallizer", TileEntityCrystallizer.recipes, recipe);
+            super("Crystallizer", FactorizationHelper.crystallizer, recipe);
             this.output = output;
         }
 
@@ -43,7 +42,7 @@ public class Crystallizer {
 
     private static class Remove extends BaseListRemoval {
         public Remove(ItemStack stack) {
-            super("Crystallizer", TileEntityCrystallizer.recipes, stack);
+            super("Crystallizer", FactorizationHelper.crystallizer, stack);
         }
 
         //Returns the output ItemStack

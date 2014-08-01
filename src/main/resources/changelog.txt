@@ -1,5 +1,11 @@
 ===========================================================
 
+ModTweaker 0.5a
+• Fix Vanilla Seed Entries
+• Fix Dungeon Loot
+
+===========================================================
+
 ModTweaker 0.5
 • Blood Magic - EXTRA!
    • Blood Orb Recipes

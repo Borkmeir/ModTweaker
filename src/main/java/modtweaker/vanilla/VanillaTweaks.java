@@ -103,7 +103,7 @@ public class VanillaTweaks {
         }
 
         public String getRecipeInfo() {
-            return ((WeightedRandomChestContent) recipe).theItemId.getDisplayName();
+            return content.theItemId.getDisplayName();
         }
     }
 
