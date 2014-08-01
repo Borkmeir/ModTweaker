@@ -37,7 +37,7 @@ public abstract class BaseCraftingAddition extends BaseDescriptionAddition {
     public void undo() {
         IRecipe remove = null;
         for (IRecipe recipe : list) {
-            if (recipe.getRecipeOutput().isItemEqual(output)) {
+            if (recipe.getRecipeOutput() != null && recipe.getRecipeOutput().isItemEqual(output)) {
                 remove = recipe;
                 break;
             }

@@ -3,6 +3,8 @@
 ModTweaker 0.5a
 • Fix Vanilla Seed Entries
 • Fix Dungeon Loot
+• Fix Factorization Support
+• Fix Blood Orb Recipes
 
 ===========================================================
 

@@ -33,7 +33,7 @@ public class FactorizationHelper {
         }
     }
 
-    public static Object getSlagFurnaceRecipe(ItemStack input, ItemStack output1, float chance1, ItemStack output2, float chance2) {
+    public static Object getSlagFurnaceRecipe(ItemStack input, float chance1, ItemStack output1, float chance2, ItemStack output2) {
         try {
             Class clazz = Class.forName("factorization.oreprocessing.TileEntitySlagFurnace$SmeltingResult");
             Constructor constructor = clazz.getDeclaredConstructor(ItemStack.class, float.class, ItemStack.class, float.class, ItemStack.class);
