@@ -34,6 +34,7 @@ public abstract class BaseCraftingAddition extends BaseDescriptionAddition {
         return list != null;
     }
 
+    @Override
     public void undo() {
         IRecipe remove = null;
         for (IRecipe recipe : list) {
@@ -44,5 +45,10 @@ public abstract class BaseCraftingAddition extends BaseDescriptionAddition {
         }
 
         list.remove(remove);
+    }
+
+    @Override
+    public String getRecipeInfo() {
+        return output.getDisplayName();
     }
 }

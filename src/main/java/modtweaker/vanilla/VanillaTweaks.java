@@ -15,6 +15,7 @@ import modtweaker.util.BaseMapAddition;
 import modtweaker.util.BaseMapRemoval;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -90,15 +91,25 @@ public class VanillaTweaks {
 
         @Override
         public void apply() {
-            recipe = (ArrayList<WeightedRandomChestContent>) ReflectionHelper.getObject(map.get(key), "contents");
+            recipe = ForgeHelper.loot.get(key);
+            if (recipe instanceof ChestGenHooks) {
+                recipe = ReflectionHelper.getObject(recipe, "contents");
+            }
+
             ((ArrayList<WeightedRandomChestContent>) recipe).add(content);
+
             super.apply();
         }
 
         @Override
         public void undo() {
-            recipe = ((ArrayList<WeightedRandomChestContent>) ReflectionHelper.getObject(map.get(key), "contents"));
+            recipe = ForgeHelper.loot.get(key);
+            if (recipe instanceof ChestGenHooks) {
+                recipe = ReflectionHelper.getObject(recipe, "contents");
+            }
+
             ((ArrayList<WeightedRandomChestContent>) recipe).remove(content);
+
             super.apply();
         }
 
@@ -123,7 +134,10 @@ public class VanillaTweaks {
 
         @Override
         public void apply() {
-            recipe = (ArrayList<WeightedRandomChestContent>) ReflectionHelper.getObject(map.get(key), "contents");
+            recipe = ForgeHelper.loot.get(key);
+            if (recipe instanceof ChestGenHooks) {
+                recipe = ReflectionHelper.getObject(recipe, "contents");
+            }
 
             for (WeightedRandomChestContent r : (ArrayList<WeightedRandomChestContent>) recipe) {
                 if (r.theItemId != null && r.theItemId.isItemEqual((ItemStack) stack)) {
@@ -133,13 +147,19 @@ public class VanillaTweaks {
             }
 
             ((ArrayList<WeightedRandomChestContent>) recipe).remove(content);
+
             super.undo();
         }
 
         @Override
         public void undo() {
-            recipe = (ArrayList<WeightedRandomChestContent>) ReflectionHelper.getObject(map.get(key), "contents");
+            recipe = ForgeHelper.loot.get(key);
+            if (recipe instanceof ChestGenHooks) {
+                recipe = ReflectionHelper.getObject(recipe, "contents");
+            }
+
             ((ArrayList<WeightedRandomChestContent>) recipe).add(content);
+
             super.undo();
         }
 
@@ -151,7 +171,7 @@ public class VanillaTweaks {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //Set Dungeon Mobs
+    //Set Localisation
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -67,10 +67,18 @@ public class LootLogger implements ICommandFunction {
     }
 
     private void printChest(String chest, IPlayer player) {
-        ArrayList<WeightedRandomChestContent> loots = ReflectionHelper.getObject(ForgeHelper.loot.get(chest), "contents");
-        System.out.println("Loots for " + chest + ": " + loots.size());
-        Collections.sort(loots, COMPARATOR);
-        for (WeightedRandomChestContent loot : loots) {
+        //God knows why but dungeonChest returns the loot list directly instead of chestgenhooks, guess we have to work with it!
+        Object loots = ForgeHelper.loot.get(chest);
+        if (loots instanceof ChestGenHooks) {
+            loots = ReflectionHelper.getObject(loots, "contents");
+        } else if (loots == null) {
+            MineTweakerAPI.logCommand("Invalid Chest");
+            return;
+        }
+
+        System.out.println("Loots for " + chest + ": " + ((ArrayList<WeightedRandomChestContent>) loots).size());
+        Collections.sort((ArrayList<WeightedRandomChestContent>) loots, COMPARATOR);
+        for (WeightedRandomChestContent loot : (ArrayList<WeightedRandomChestContent>) loots) {
             System.out.println("Loot " + Item.itemRegistry.getNameForObject(loot.theItemId.getItem()));
             MineTweakerAPI.logCommand("<" + chest + "> -- <" + Item.itemRegistry.getNameForObject(loot.theItemId.getItem()) + "> -- " + loot.theItemId.getDisplayName() + " -- (Min: " + loot.theMinimumChanceToGenerateItem + ", Max: " + loot.theMaximumChanceToGenerateItem + ", Weight: " + loot.itemWeight + ")");
         }

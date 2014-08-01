@@ -53,10 +53,12 @@ public class Crystallizer {
         @Override
         public void apply() {
             for (Object r : list) {
-                ItemStack output = getOutput(r);
-                if (output != null && output.isItemEqual(stack)) {
-                    recipe = r;
-                    break;
+                if (r != null) {
+                    ItemStack output = getOutput(r);
+                    if (output != null && output.isItemEqual(stack)) {
+                        recipe = r;
+                        break;
+                    }
                 }
             }
 

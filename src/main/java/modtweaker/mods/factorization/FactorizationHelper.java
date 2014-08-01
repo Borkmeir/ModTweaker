@@ -22,14 +22,14 @@ public class FactorizationHelper {
 
     private FactorizationHelper() {}
 
-    public static Object getLaceratorRecipe(ItemStack input, ItemStack output, double probability) {
+    public static Object getLaceratorRecipe(ItemStack input, ItemStack output, float probability) {
         try {
             Class clazz = Class.forName("factorization.oreprocessing.TileEntityGrinder$GrinderRecipe");
-            Constructor constructor = clazz.getDeclaredConstructor(Object.class, ItemStack.class, double.class);
+            Constructor constructor = clazz.getDeclaredConstructor(Object.class, ItemStack.class, float.class);
             constructor.setAccessible(true);
             return constructor.newInstance(input, output, probability);
         } catch (Exception e) {
-            throw new NullPointerException("Failed to instantiate GrinderRecipe");
+            throw new NullPointerException("Failed to instantiate Lacerator Recipe");
         }
     }
 

@@ -14,7 +14,6 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import WayofTime.alchemicalWizardry.api.items.ShapedBloodOrbRecipe;
 import WayofTime.alchemicalWizardry.api.items.ShapelessBloodOrbRecipe;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 @ZenClass("mods.bloodmagic.BloodOrb")
 public class BloodOrb {
@@ -35,12 +34,12 @@ public class BloodOrb {
 
         @Override
         public void applyShaped() {
-            GameRegistry.addRecipe(new ShapedBloodOrbRecipe(output, recipe));
+            list.add(new ShapedBloodOrbRecipe(output, recipe));
         }
 
         @Override
         public void applyShapeless() {
-            GameRegistry.addRecipe(new ShapelessBloodOrbRecipe(output, recipe));
+            list.add(new ShapelessBloodOrbRecipe(output, recipe));
         }
     }
 

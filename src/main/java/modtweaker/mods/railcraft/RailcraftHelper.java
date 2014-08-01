@@ -29,7 +29,7 @@ public class RailcraftHelper {
 
     public static IBlastFurnaceRecipe getBlastFurnaceRecipe(ItemStack input, boolean matchDamage, boolean matchNBT, int cookTime, ItemStack output) {
         try {
-            Class clazz = Class.forName("railcraft.common.util.crafting.BlastFurnaceCraftingManager$BlastFurnaceRecipe");
+            Class clazz = Class.forName("mods.railcraft.common.util.crafting.BlastFurnaceCraftingManager$BlastFurnaceRecipe");
             Constructor constructor = clazz.getDeclaredConstructor(ItemStack.class, boolean.class, boolean.class, int.class, ItemStack.class);
             constructor.setAccessible(true);
             return (IBlastFurnaceRecipe) constructor.newInstance(input, matchDamage, matchNBT, cookTime, output);
@@ -40,7 +40,7 @@ public class RailcraftHelper {
 
     public static ICokeOvenRecipe getCokeOvenRecipe(ItemStack input, boolean matchDamage, boolean matchNBT, ItemStack output, FluidStack fluidOutput, int cookTime) {
         try {
-            Class clazz = Class.forName("railcraft.common.util.crafting.CokeOvenCraftingManager$CokeOvenRecipe");
+            Class clazz = Class.forName("mods.railcraft.common.util.crafting.CokeOvenCraftingManager$CokeOvenRecipe");
             Constructor constructor = clazz.getDeclaredConstructor(ItemStack.class, boolean.class, boolean.class, ItemStack.class, FluidStack.class, int.class);
             constructor.setAccessible(true);
             return (ICokeOvenRecipe) constructor.newInstance(input, matchDamage, matchNBT, output, fluidOutput, cookTime);
@@ -51,7 +51,7 @@ public class RailcraftHelper {
 
     public static IRockCrusherRecipe getRockCrusherRecipe(ItemStack stack, boolean matchDamage, boolean matchNBT) {
         try {
-            Class clazz = Class.forName("railcraft.common.util.crafting.RockCrusherCraftingManager$CrusherRecipe");
+            Class clazz = Class.forName("mods.railcraft.common.util.crafting.RockCrusherCraftingManager$CrusherRecipe");
             Constructor constructor = clazz.getDeclaredConstructor(ItemStack.class, boolean.class, boolean.class);
             constructor.setAccessible(true);
             return (IRockCrusherRecipe) constructor.newInstance(stack, matchDamage, matchNBT);

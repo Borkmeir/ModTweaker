@@ -16,7 +16,7 @@ public abstract class BaseMapRemoval implements IUndoableAction {
     public BaseMapRemoval(Object stack, Map map, Object key) {
         this(null, map, key, stack);
     }
-    
+
     public BaseMapRemoval(String description, Map map, Object stack) {
         this(description, map, null, stack);
     }
@@ -50,16 +50,16 @@ public abstract class BaseMapRemoval implements IUndoableAction {
 
     @Override
     public String describe() {
-        if (recipe instanceof ItemStack) return "Adding " + description + " Recipe for : " + ((ItemStack) recipe).getDisplayName();
-        else if (recipe instanceof FluidStack) return "Adding " + description + " Recipe for : " + ((FluidStack) recipe).getFluid().getLocalizedName();
-        else return "Adding " + description + " Recipe for :" + getRecipeInfo();
+        if (recipe instanceof ItemStack) return "Removing " + description + " Recipe for : " + ((ItemStack) recipe).getDisplayName();
+        else if (recipe instanceof FluidStack) return "Removing " + description + " Recipe for : " + ((FluidStack) recipe).getFluid().getLocalizedName();
+        else return "Removing " + description + " Recipe for :" + getRecipeInfo();
     }
 
     @Override
     public String describeUndo() {
-        if (recipe instanceof ItemStack) return "Removing " + description + " Recipe for : " + ((ItemStack) recipe).getDisplayName();
-        else if (recipe instanceof FluidStack) return "Removing " + description + " Recipe for : " + ((FluidStack) recipe).getFluid().getLocalizedName();
-        else return "Removing " + description + " Recipe for : " + getRecipeInfo();
+        if (recipe instanceof ItemStack) return "Restoring " + description + " Recipe for : " + ((ItemStack) recipe).getDisplayName();
+        else if (recipe instanceof FluidStack) return "Restoring " + description + " Recipe for : " + ((FluidStack) recipe).getFluid().getLocalizedName();
+        else return "Restoring " + description + " Recipe for : " + getRecipeInfo();
     }
 
     @Override
