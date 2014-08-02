@@ -1,6 +1,9 @@
 package modtweaker;
 
 import minetweaker.MineTweakerAPI;
+import minetweaker.api.item.IItemStack;
+import minetweaker.api.player.IPlayer;
+import minetweaker.api.server.ICommandFunction;
 import modtweaker.mods.bloodmagic.BloodMagic;
 import modtweaker.mods.botania.Botania;
 import modtweaker.mods.exnihilo.ExNihilo;
@@ -20,10 +23,13 @@ import modtweaker.util.TweakerPlugin;
 import modtweaker.vanilla.LootLogger;
 import modtweaker.vanilla.SeedLogger;
 import modtweaker.vanilla.VanillaTweaks;
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "ModTweaker", name = "ModTweaker", dependencies = "required-after:MineTweaker3")
 public class ModTweaker {
@@ -42,6 +48,9 @@ public class ModTweaker {
         TweakerPlugin.register("Railcraft", Railcraft.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);
+        if(FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+            MinecraftForge.EVENT_BUS.register(new ClientEvents());
+        }
     }
 
     @EventHandler
@@ -50,6 +59,13 @@ public class ModTweaker {
                 "    Outputs a list of all dungeon loot in the game to the minetweaker log" }, new LootLogger());
         MineTweakerAPI.server.addMineTweakerCommand("seeds", new String[] { "/minetweaker seeds", 
                 "    Outputs a list of all grass drops in the game to the minetweaker log" }, new SeedLogger());
+        MineTweakerAPI.server.addMineTweakerCommand("tooltips", new String[] { "/minetweaker tooltips", 
+        "    Adds tooltips to all items ingame with their mt script name, press ctrl on an item to print to the log" }, new ICommandFunction() {
+                @Override
+                public void execute(String[] arguments, IPlayer player) {
+                    ClientEvents.active = !ClientEvents.active;
+                }
+            });
 
         if (TweakerPlugin.isLoaded("Mekanism")) {
             MineTweakerAPI.server.addMineTweakerCommand("gases", new String[] { "/minetweaker gases", 
