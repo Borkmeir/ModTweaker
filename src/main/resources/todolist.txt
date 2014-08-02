@@ -4,6 +4,8 @@ ModTweaker 0.6
    • Stuff
 • Ender IO
    • Stuff
+• Flaxbeards
+   • Stuff
 • Forestry
    • Bees
 • Growthcraft
@@ -22,4 +24,6 @@ SpitefulFox:
 • Botania
    • Books
 • Thaumic Tinkerer
+   • Stuff
+• Thermal Expansion
    • Stuff
