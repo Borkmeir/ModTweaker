@@ -1,7 +1,8 @@
 package modtweaker.mods.bloodmagic.handlers;
 
-import static modtweaker.helpers.InputHelper.toStack; import static modtweaker.helpers.StackHelper.*; import static modtweaker.helpers.StackHelper.*;
+import static modtweaker.helpers.InputHelper.toStack;
 import static modtweaker.helpers.InputHelper.toStacks;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
@@ -17,7 +18,7 @@ public class Alchemy {
     //Adding a Blood Magic Alchemical Chemistry Set recipe
     @ZenMethod
     public static void addRecipe(IItemStack output, IItemStack[] input, int tier, int lp) {
-        MineTweakerAPI.tweaker.apply(new Add(new AlchemyRecipe(toStack(output), (int) (((double)lp) / 100), toStacks(input), tier)));
+        MineTweakerAPI.tweaker.apply(new Add(new AlchemyRecipe(toStack(output), (int) (((double) lp) / 100), toStacks(input), tier)));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
