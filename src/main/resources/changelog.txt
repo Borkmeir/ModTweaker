@@ -1,5 +1,10 @@
 ===========================================================
 
+ModTweaker 0.5b
+• Fix Ex Nihilo Support with broken removals
+
+===========================================================
+
 ModTweaker 0.5a
 • Fix Vanilla Seed Entries
 • Fix Dungeon Loot
