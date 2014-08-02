@@ -68,11 +68,11 @@ public class Crucible {
     /********************************************** Crucible Heat Sources **********************************************/
     //Adding a Ex Nihilo Crucible heat source
     @ZenMethod
-    public static void addHeatSource(IItemStack input, float value) {
+    public static void addHeatSource(IItemStack input, double value) {
         if (isABlock(input)) {
             Block theBlock = Block.getBlockFromItem(toStack(input).getItem());
             int theMeta = toStack(input).getItemDamage();
-            MineTweakerAPI.tweaker.apply(new AddHeatSource(new HeatSource(theBlock, theMeta, value)));
+            MineTweakerAPI.tweaker.apply(new AddHeatSource(new HeatSource(theBlock, theMeta, (float) value)));
         }
     }
 

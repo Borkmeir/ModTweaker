@@ -15,9 +15,9 @@ import tconstruct.library.tools.ToolMaterial;
 @ZenClass("mods.tconstruct.ToolStats")
 public class ToolStats {
     @ZenMethod
-    public static void set(String material, @Optional String name, int level, int durability, int speed, int damage, float handle, int reinforced, float stonebound, String style, String ability) {
+    public static void set(String material, @Optional String name, int level, int durability, int speed, int damage, double handle, int reinforced, double stonebound, String style, String ability) {
         if (name == null) name = material + " ";
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "", new ToolMaterial(material, name, level, durability, speed, damage, handle, reinforced, stonebound, style, ability)));
+        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "", new ToolMaterial(material, name, level, durability, speed, damage, (float)handle, reinforced, (float)stonebound, style, ability)));
     }
 
     @ZenMethod
