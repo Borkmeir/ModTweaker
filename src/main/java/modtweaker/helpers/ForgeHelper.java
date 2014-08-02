@@ -1,5 +1,5 @@
 package modtweaker.helpers;
- 
+
 import static modtweaker.helpers.ReflectionHelper.getFinalObject;
 import static modtweaker.helpers.ReflectionHelper.getStaticObject;
 

@@ -1,6 +1,7 @@
 package modtweaker.mods.factorization.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.helpers.ReflectionHelper;
@@ -55,7 +56,7 @@ public class Crystallizer {
             for (Object r : list) {
                 if (r != null) {
                     ItemStack output = getOutput(r);
-                    if (output != null && output.isItemEqual(stack)) {
+                    if (output != null && areEqual(output, stack)) {
                         recipe = r;
                         break;
                     }

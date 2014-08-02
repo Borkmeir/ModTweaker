@@ -3,6 +3,7 @@ package modtweaker.mods.thaumcraft.handlers;
 import static modtweaker.helpers.InputHelper.toObjects;
 import static modtweaker.helpers.InputHelper.toShapedObjects;
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
@@ -60,7 +61,7 @@ public class Arcane {
             for (Object o : ThaumcraftApi.getCraftingRecipes()) {
                 if (o instanceof IArcaneRecipe) {
                     IArcaneRecipe r = (IArcaneRecipe) o;
-                    if (r.getRecipeOutput() != null && r.getRecipeOutput() instanceof ItemStack && stack.isItemEqual((ItemStack) r.getRecipeOutput())) {
+                    if (r.getRecipeOutput() != null && r.getRecipeOutput() instanceof ItemStack && areEqual((ItemStack) r.getRecipeOutput(), stack)) {
                         recipe = r;
                         break;
                     }

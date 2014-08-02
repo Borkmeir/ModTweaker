@@ -1,6 +1,7 @@
 package modtweaker.mods.mariculture.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -125,7 +126,7 @@ public class Fishing {
             ArrayList<Loot> list = MaricultureHelper.loot.get(rarity);
             int preSize = list.size();
             for (Loot l : list) {
-                if (l.loot.isItemEqual(stack)) {
+                if (areEqual(l.loot, stack)) {
                     loot.put(rarity, l);
                     break;
                 }

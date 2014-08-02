@@ -1,6 +1,7 @@
 package modtweaker.mods.mekanism.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -43,7 +44,7 @@ public class Infuser {
                 InfusionInput key = (InfusionInput) pairs.getKey();
                 InfusionOutput value = (InfusionOutput) pairs.getValue();
                 if (key != null) {
-                    if (this.key instanceof InfusionOutput && value.resource.isItemEqual(((InfusionOutput) this.key).resource)) {
+                    if (this.key instanceof InfusionOutput && areEqual(value.resource, ((InfusionOutput) this.key).resource)) {
                         this.key = key;
                         break;
                     }

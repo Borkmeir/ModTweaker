@@ -2,6 +2,7 @@ package modtweaker.mods.mariculture.handlers;
 
 import static modtweaker.helpers.InputHelper.toFluid;
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import mariculture.api.core.FuelInfo;
 import mariculture.api.core.MaricultureHandlers;
 import mariculture.api.core.RecipeSmelter;
@@ -60,7 +61,7 @@ public class Crucible {
         @Override
         public void apply() {
             for (RecipeSmelter r : MaricultureHandlers.crucible.getRecipes()) {
-                if (r.input != null && r.input.isItemEqual(stack)) {
+                if (r.input != null && areEqual(r.input, stack)) {
                     recipe = r;
                     break;
                 }

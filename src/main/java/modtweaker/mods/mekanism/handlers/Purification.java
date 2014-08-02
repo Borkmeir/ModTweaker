@@ -1,6 +1,7 @@
 package modtweaker.mods.mekanism.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public class Purification {
         @Override
         public void apply() {
             for (Map.Entry<AdvancedInput, ItemStack> entry : ((Map<AdvancedInput, ItemStack>) map).entrySet()) {
-                if (entry.getValue() != null && entry.getValue().isItemEqual((ItemStack) stack)) {
+                if (entry.getValue() != null && areEqual(entry.getValue(), (ItemStack) stack)) {
                     key = entry.getKey();
                     break;
                 }

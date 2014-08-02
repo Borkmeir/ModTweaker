@@ -2,6 +2,7 @@ package modtweaker.mods.exnihilo.handlers;
 
 import static modtweaker.helpers.InputHelper.isABlock;
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
@@ -55,8 +56,8 @@ public class Hammer {
         @Override
         public void apply() {
             for (Smashable r : HammerRegistry.rewards) {
-                ItemStack stack = new ItemStack(r.item, 1, r.meta);
-                if (stack != null && stack.isItemEqual(stack)) {
+                ItemStack check = new ItemStack(r.item, 1, r.meta);
+                if (check != null && areEqual(check, stack)) {
                     recipe = r;
                     break;
                 }

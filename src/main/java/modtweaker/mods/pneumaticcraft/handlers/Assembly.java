@@ -1,6 +1,7 @@
 package modtweaker.mods.pneumaticcraft.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class Assembly {
         @Override
         public void apply() {
             for (AssemblyRecipe r : (List<AssemblyRecipe>) list) {
-                if (r.getOutput() != null && r.getOutput().isItemEqual(stack)) {
+                if (r.getOutput() != null && areEqual(r.getOutput(), stack)) {
                     recipe = r;
                     break;
                 }

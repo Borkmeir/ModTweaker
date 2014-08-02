@@ -1,11 +1,6 @@
 package modtweaker.mods.tconstruct.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
-
-import java.util.List;
-import java.util.Map.Entry;
-
-import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.helpers.ReflectionHelper;
@@ -17,10 +12,8 @@ import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.PatternBuilder;
 import tconstruct.library.crafting.PatternBuilder.ItemKey;
-import tconstruct.library.crafting.PatternBuilder.MaterialSet;
 import tconstruct.library.tools.ToolCore;
 import tconstruct.tools.TinkerTools;
 
@@ -42,62 +35,62 @@ public class TiCTweaks {
 
     /** Disabling for 0.5, will do this properly for 0.6 **/
     //Tweaks for enabling / disabling Patterns
-  /*  @ZenMethod
-    public static void removePattern(IItemStack stack) {
-        MineTweakerAPI.tweaker.apply(new DisablePattern(toStack(stack)));
-    }
+    /*  @ZenMethod
+      public static void removePattern(IItemStack stack) {
+          MineTweakerAPI.tweaker.apply(new DisablePattern(toStack(stack)));
+      }
 
-    private static class DisablePattern implements IUndoableAction {
-        private String key;
-        private MaterialSet set;
-        private List list;
-        private ItemStack stack;
-        private final ItemStack disable;
+      private static class DisablePattern implements IUndoableAction {
+          private String key;
+          private MaterialSet set;
+          private List list;
+          private ItemStack stack;
+          private final ItemStack disable;
 
-        public DisablePattern(ItemStack disable) {
-            this.disable = disable;
-        }
+          public DisablePattern(ItemStack disable) {
+              this.disable = disable;
+          }
 
-        //Loops through the pattern mappings to find an entry with the same material name
-        @Override
-        public void apply() {
-            for (Entry<List, ItemStack> entry : TConstructRegistry.patternPartMapping.entrySet()) {
-                ItemStack check = entry.getValue();
-                if (check.isItemEqual(disable)) {
-                    list = entry.getKey();
-                    stack = entry.getValue();
-                    break;
-                }
-            }
+          //Loops through the pattern mappings to find an entry with the same material name
+          @Override
+          public void apply() {
+              for (Entry<List, ItemStack> entry : TConstructRegistry.patternPartMapping.entrySet()) {
+                  ItemStack check = entry.getValue();
+                  if (check.isItemEqual(disable)) {
+                      list = entry.getKey();
+                      stack = entry.getValue();
+                      break;
+                  }
+              }
 
-            TConstructRegistry.patternPartMapping.remove(list);
-        }
+              TConstructRegistry.patternPartMapping.remove(list);
+          }
 
-        @Override
-        public boolean canUndo() {
-            return true;
-        }
+          @Override
+          public boolean canUndo() {
+              return true;
+          }
 
-        @Override
-        public void undo() {
-            TConstructRegistry.patternPartMapping.put(list, stack);
-        }
+          @Override
+          public void undo() {
+              TConstructRegistry.patternPartMapping.put(list, stack);
+          }
 
-        @Override
-        public String describe() {
-            return "Disabling creation of the pattern for: " + disable.getDisplayName();
-        }
+          @Override
+          public String describe() {
+              return "Disabling creation of the pattern for: " + disable.getDisplayName();
+          }
 
-        @Override
-        public String describeUndo() {
-            return "Enabling creation of the pattern for: " + disable.getDisplayName();
-        }
+          @Override
+          public String describeUndo() {
+              return "Enabling creation of the pattern for: " + disable.getDisplayName();
+          }
 
-        @Override
-        public Object getOverrideKey() {
-            return null;
-        }
-    } */
+          @Override
+          public Object getOverrideKey() {
+              return null;
+          }
+      } */
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

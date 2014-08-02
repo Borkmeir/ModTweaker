@@ -2,6 +2,7 @@ package modtweaker.mods.tconstruct.handlers;
 
 import static modtweaker.helpers.InputHelper.toFluid;
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 
 import java.util.ArrayList;
 
@@ -65,7 +66,7 @@ public class Casting {
         @Override
         public void apply() {
             for (CastingRecipe r : (ArrayList<CastingRecipe>) list) {
-                if (r.output != null && r.output.isItemEqual(stack)) {
+                if (r.output != null && areEqual(r.output, stack)) {
                     recipe = r;
                     break;
                 }

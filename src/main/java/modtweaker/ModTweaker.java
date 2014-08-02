@@ -57,11 +57,12 @@ public class ModTweaker {
         }
 
         if (TweakerPlugin.isLoaded("Thaumcraft")) {
-            MineTweakerAPI.server.addMineTweakerCommand("research", new String[] { "/minetweaker research",  "/minetweaker research [CATEGORY]", 
+            MineTweakerAPI.server.addMineTweakerCommand("research", new String[] { 
+                    "/minetweaker research", "/minetweaker research [CATEGORY]", 
                     "    Outputs a list of all category names in the game to the minetweaker log," + 
                     " or outputs a list of all research keys in a category to the log." }, new ResearchLogger());
         }
-        
+
         if (TweakerPlugin.isLoaded("TConstruct")) {
             MineTweakerAPI.server.addMineTweakerCommand("materials", new String[] { "/minetweaker materials", 
                     "    Outputs a list of all Tinker's Construct material names in the game to the minetweaker log" }, new MaterialLogger());

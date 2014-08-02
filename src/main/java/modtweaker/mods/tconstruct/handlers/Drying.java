@@ -1,6 +1,7 @@
 package modtweaker.mods.tconstruct.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 
 import java.util.ArrayList;
 
@@ -53,7 +54,7 @@ public class Drying {
         @Override
         public void apply() {
             for (DryingRecipe r : (ArrayList<DryingRecipe>) list) {
-                if (r.result != null && r.result.isItemEqual(stack)) {
+                if (r.result != null && areEqual(r.result, stack)) {
                     recipe = r;
                     break;
                 }

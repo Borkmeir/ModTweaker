@@ -1,5 +1,6 @@
 package modtweaker.mods.thaumcraft.research;
 
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.IUndoableAction;
 import modtweaker.mods.thaumcraft.ThaumcraftHelper;
 import net.minecraft.enchantment.Enchantment;
@@ -39,7 +40,7 @@ public class AddPage implements IUndoableAction {
             for (Object craft : CraftingManager.getInstance().getRecipeList()) {
                 if (craft instanceof IRecipe) {
                     IRecipe theCraft = (IRecipe) craft;
-                    if (theCraft.getRecipeOutput() != null && theCraft.getRecipeOutput().isItemEqual(target)) {
+                    if (theCraft.getRecipeOutput() != null && areEqual(theCraft.getRecipeOutput(), target)) {
                         page = new ResearchPage(theCraft);
                         break;
                     }
@@ -49,7 +50,7 @@ public class AddPage implements IUndoableAction {
             for (Object craft : ThaumcraftApi.getCraftingRecipes()) {
                 if (craft instanceof IArcaneRecipe) {
                     IArcaneRecipe theCraft = (IArcaneRecipe) craft;
-                    if (theCraft.getRecipeOutput() != null && theCraft.getRecipeOutput().isItemEqual(target)) {
+                    if (theCraft.getRecipeOutput() != null && areEqual(theCraft.getRecipeOutput(), target)) {
                         page = new ResearchPage(theCraft);
                         break;
                     }
@@ -59,7 +60,7 @@ public class AddPage implements IUndoableAction {
             for (Object craft : ThaumcraftApi.getCraftingRecipes()) {
                 if (craft instanceof CrucibleRecipe) {
                     CrucibleRecipe theCraft = (CrucibleRecipe) craft;
-                    if (theCraft.getRecipeOutput() != null && theCraft.getRecipeOutput().isItemEqual(target)) {
+                    if (theCraft.getRecipeOutput() != null && areEqual(theCraft.getRecipeOutput(), target)) {
                         page = new ResearchPage(theCraft);
                         break;
                     }
@@ -69,7 +70,7 @@ public class AddPage implements IUndoableAction {
             for (Object craft : ThaumcraftApi.getCraftingRecipes()) {
                 if (craft instanceof InfusionRecipe) {
                     InfusionRecipe theCraft = (InfusionRecipe) craft;
-                    if (theCraft.getRecipeOutput() != null && theCraft.getRecipeOutput() instanceof ItemStack && ((ItemStack) (theCraft.getRecipeOutput())).isItemEqual(target)) {
+                    if (theCraft.getRecipeOutput() != null && theCraft.getRecipeOutput() instanceof ItemStack && areEqual(((ItemStack) (theCraft.getRecipeOutput())), target)) {
                         page = new ResearchPage(theCraft);
                         break;
                     }

@@ -1,6 +1,7 @@
 package modtweaker.mods.railcraft.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
@@ -47,7 +48,7 @@ public class RockCrusher {
         @Override
         public void apply() {
             for (IRockCrusherRecipe r : RailcraftHelper.crusher) {
-                if (r.getInput() != null && r.getInput().isItemEqual(stack)) {
+                if (r.getInput() != null && areEqual(r.getInput(), stack)) {
                     recipe = r;
                     break;
                 }

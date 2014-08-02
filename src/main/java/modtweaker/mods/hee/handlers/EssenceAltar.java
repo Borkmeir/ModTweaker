@@ -1,6 +1,7 @@
 package modtweaker.mods.hee.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 
 import java.util.List;
 
@@ -47,18 +48,17 @@ public class EssenceAltar {
         public Remove(ItemStack stack) {
             super("Essence Altar", DragonEssenceHandler.recipes, stack);
         }
-        
 
         //Returns the output ItemStack
         private ItemStack getOutput(Object o) {
             return (ItemStack) ReflectionHelper.getObject(o, "result");
         }
-        
+
         @Override
         public void apply() {
-            for (AltarItemRecipe r : (List<AltarItemRecipe>)list) {
+            for (AltarItemRecipe r : (List<AltarItemRecipe>) list) {
                 ItemStack output = getOutput(r);
-                if (output != null && output.isItemEqual(stack)) {
+                if (output != null && areEqual(output, stack)) {
                     recipe = r;
                     break;
 

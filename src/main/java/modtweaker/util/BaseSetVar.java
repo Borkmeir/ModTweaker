@@ -10,7 +10,7 @@ public abstract class BaseSetVar implements IUndoableAction {
     protected final String field;
     protected final int original;
     protected final int newValue;
-    
+
     public BaseSetVar(String description, Class clazz, Object object, String field, int original, int newValue) {
         this(description, clazz, field, original, newValue);
         this.object = object;

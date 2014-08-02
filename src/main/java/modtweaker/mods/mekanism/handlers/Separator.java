@@ -6,7 +6,6 @@ import static modtweaker.mods.mekanism.MekanismHelper.toGas;
 import java.util.Map;
 
 import mekanism.api.ChemicalPair;
-import mekanism.api.gas.GasStack;
 import mekanism.common.recipe.RecipeHandler.Recipe;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.liquid.ILiquidStack;

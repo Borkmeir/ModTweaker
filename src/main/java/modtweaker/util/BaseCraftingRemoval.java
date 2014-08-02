@@ -1,5 +1,7 @@
 package modtweaker.util;
 
+import static modtweaker.helpers.StackHelper.areEqual;
+
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
@@ -13,7 +15,7 @@ public class BaseCraftingRemoval extends BaseListRemoval {
     @Override
     public void apply() {
         for (IRecipe r : (List<IRecipe>) list) {
-            if (r.getRecipeOutput() != null && r.getRecipeOutput() instanceof ItemStack && stack.isItemEqual((ItemStack) r.getRecipeOutput())) {
+            if (r.getRecipeOutput() != null && r.getRecipeOutput() instanceof ItemStack && areEqual(r.getRecipeOutput(), stack)) {
                 recipe = r;
                 break;
             }

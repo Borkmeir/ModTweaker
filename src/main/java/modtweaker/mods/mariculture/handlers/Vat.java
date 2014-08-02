@@ -2,6 +2,7 @@ package modtweaker.mods.mariculture.handlers;
 
 import static modtweaker.helpers.InputHelper.toFluid;
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import mariculture.api.core.MaricultureHandlers;
 import mariculture.api.core.RecipeVat;
 import minetweaker.MineTweakerAPI;
@@ -106,7 +107,7 @@ public class Vat {
         @Override
         public void apply() {
             for (RecipeVat r : MaricultureHandlers.vat.getRecipes()) {
-                if (r.outputItem != null && stack != null && r.outputItem.isItemEqual(stack)) {
+                if (r.outputItem != null && stack != null && areEqual(r.outputItem, stack)) {
                     if (r.outputFluid == null || (fluid != null && r.outputFluid.isFluidStackIdentical(fluid))) {
                         recipe = r;
                         break;

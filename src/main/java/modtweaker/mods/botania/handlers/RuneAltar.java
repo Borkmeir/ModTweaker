@@ -2,6 +2,7 @@ package modtweaker.mods.botania.handlers;
 
 import static modtweaker.helpers.InputHelper.toObjects;
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
@@ -46,7 +47,7 @@ public class RuneAltar {
         @Override
         public void apply() {
             for (RecipeRuneAltar r : BotaniaAPI.runeAltarRecipes) {
-                if (r.getOutput() != null && r.getOutput().isItemEqual(stack)) {
+                if (r.getOutput() != null && areEqual(r.getOutput(), stack)) {
                     recipe = r;
                     break;
                 }

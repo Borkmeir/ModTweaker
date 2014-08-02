@@ -1,6 +1,7 @@
 package modtweaker.mods.factorization.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.helpers.ReflectionHelper;
@@ -54,7 +55,7 @@ public class SlagFurnace {
         public void apply() {
             for (Object r : list) {
                 ItemStack input = getInput(r);
-                if (input != null && input.isItemEqual(stack)) {
+                if (input != null && areEqual(input, stack)) {
                     recipe = r;
                     break;
                 }

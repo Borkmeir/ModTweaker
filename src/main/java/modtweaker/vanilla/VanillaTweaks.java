@@ -1,6 +1,7 @@
 package modtweaker.vanilla;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 
 import java.util.ArrayList;
 
@@ -59,7 +60,7 @@ public class VanillaTweaks {
         public void apply() {
             for (Object r : list) {
                 ItemStack output = getOutput(r);
-                if (output != null && output.isItemEqual(stack)) {
+                if (output != null && areEqual(output, stack)) {
                     recipe = r;
                     break;
                 }
@@ -140,7 +141,7 @@ public class VanillaTweaks {
             }
 
             for (WeightedRandomChestContent r : (ArrayList<WeightedRandomChestContent>) recipe) {
-                if (r.theItemId != null && r.theItemId.isItemEqual((ItemStack) stack)) {
+                if (r.theItemId != null && areEqual(r.theItemId, (ItemStack) stack)) {
                     content = r;
                     break;
                 }

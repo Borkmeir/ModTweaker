@@ -17,7 +17,7 @@ public class ResearchLogger implements ICommandFunction {
                 System.out.println(tab);
                 MineTweakerAPI.logCommand(tab);
             }
-            
+
             logPrinted(player);
         } else if (arguments[0] != null && ResearchCategories.researchCategories.containsKey(arguments[0])) {
             System.out.println("Research Keys for " + arguments[0] + ":");
@@ -26,7 +26,7 @@ public class ResearchLogger implements ICommandFunction {
                 System.out.println(key);
                 MineTweakerAPI.logCommand(key);
             }
-            
+
             logPrinted(player);
         } else if (arguments[0] != null && player != null) {
             log(player, "Cannot find research category " + arguments[0]);

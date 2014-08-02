@@ -1,5 +1,7 @@
 package modtweaker.util;
 
+import static modtweaker.helpers.StackHelper.areEqual;
+
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
@@ -38,7 +40,7 @@ public abstract class BaseCraftingAddition extends BaseDescriptionAddition {
     public void undo() {
         IRecipe remove = null;
         for (IRecipe recipe : list) {
-            if (recipe.getRecipeOutput() != null && recipe.getRecipeOutput().isItemEqual(output)) {
+            if (recipe.getRecipeOutput() != null && areEqual(recipe.getRecipeOutput(), output)) {
                 remove = recipe;
                 break;
             }

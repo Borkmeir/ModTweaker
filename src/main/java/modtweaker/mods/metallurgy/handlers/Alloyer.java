@@ -1,6 +1,7 @@
 package modtweaker.mods.metallurgy.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.mods.metallurgy.MetallurgyHelper;
@@ -50,7 +51,7 @@ public class Alloyer {
         @Override
         public void apply() {
             for (AlloyRecipe r : MetallurgyHelper.alloyerRecipes) {
-                if (r.getCraftingResult() != null && r.getCraftingResult().isItemEqual(stack)) {
+                if (r.getCraftingResult() != null && areEqual(r.getCraftingResult(), stack)) {
                     recipe = r;
                     break;
                 }

@@ -1,6 +1,6 @@
 package modtweaker.mods.bloodmagic.handlers;
 
-import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.InputHelper.toStack; import static modtweaker.helpers.StackHelper.*; import static modtweaker.helpers.StackHelper.*;
 import static modtweaker.helpers.InputHelper.toStacks;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
@@ -50,7 +50,7 @@ public class Alchemy {
         @Override
         public void apply() {
             for (AlchemyRecipe r : AlchemyRecipeRegistry.recipes) {
-                if (r.getResult() != null && r.getResult().isItemEqual(stack)) {
+                if (r.getResult() != null && areEqual(r.getResult(), stack)) {
                     recipe = r;
                     break;
                 }

@@ -1,6 +1,7 @@
 package modtweaker.mods.mekanism.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import static modtweaker.mods.mekanism.MekanismHelper.toGas;
 
 import java.util.Iterator;
@@ -59,7 +60,7 @@ public class ChemicalDissolution {
                 ItemStack key = (ItemStack) pairs.getKey();
                 GasStack value = (GasStack) pairs.getValue();
                 if (key != null) {
-                    if (this.key instanceof ItemStack && key.isItemEqual((ItemStack) this.key)) {
+                    if (this.key instanceof ItemStack && areEqual(key, (ItemStack) this.key)) {
                         this.key = key;
                         break;
                     } else if (this.key instanceof GasStack && value.isGasEqual((GasStack) this.key)) {

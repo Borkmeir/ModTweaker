@@ -1,18 +1,17 @@
 package modtweaker.mods.mekanism.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 
 import java.util.Map;
 
-import net.minecraft.item.ItemStack;
-import mekanism.api.AdvancedInput;
 import mekanism.api.ChanceOutput;
 import mekanism.common.recipe.RecipeHandler.Recipe;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.mods.mekanism.util.AddMekanismRecipe;
-import modtweaker.mods.mekanism.util.RemoveMekanismRecipe;
 import modtweaker.util.BaseMapRemoval;
+import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -29,7 +28,7 @@ public class Sawmill {
     public static void removeRecipe(IItemStack input) {
         MineTweakerAPI.tweaker.apply(new Remove(toStack(input)));
     }
-    
+
     private static class Remove extends BaseMapRemoval {
         public Remove(ItemStack stack) {
             super("Precision Sawmill", Recipe.PRECISION_SAWMILL.get(), stack);
@@ -39,7 +38,7 @@ public class Sawmill {
         @Override
         public void apply() {
             for (Map.Entry<ItemStack, ChanceOutput> entry : ((Map<ItemStack, ChanceOutput>) map).entrySet()) {
-                if (entry.getKey() != null && entry.getKey().isItemEqual((ItemStack) stack)) {
+                if (entry.getKey() != null && areEqual(entry.getKey(), (ItemStack) stack)) {
                     key = entry.getKey();
                     break;
                 }

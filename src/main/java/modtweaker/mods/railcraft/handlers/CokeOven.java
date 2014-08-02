@@ -2,6 +2,7 @@ package modtweaker.mods.railcraft.handlers;
 
 import static modtweaker.helpers.InputHelper.toFluid;
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
@@ -46,7 +47,7 @@ public class CokeOven {
         @Override
         public void apply() {
             for (ICokeOvenRecipe r : RailcraftHelper.oven) {
-                if (r.getOutput() != null && r.getOutput().isItemEqual(stack)) {
+                if (r.getOutput() != null && areEqual(r.getOutput(), stack)) {
                     recipe = r;
                     break;
                 }

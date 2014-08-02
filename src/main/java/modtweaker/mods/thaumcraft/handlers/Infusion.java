@@ -2,6 +2,7 @@ package modtweaker.mods.thaumcraft.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
 import static modtweaker.helpers.InputHelper.toStacks;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
@@ -102,7 +103,7 @@ public class Infusion {
             for (Object o : ThaumcraftApi.getCraftingRecipes()) {
                 if (o instanceof InfusionRecipe) {
                     InfusionRecipe r = (InfusionRecipe) o;
-                    if (r.getRecipeOutput() != null && r.getRecipeOutput() instanceof ItemStack && stack.isItemEqual((ItemStack) r.getRecipeOutput())) {
+                    if (r.getRecipeOutput() != null && r.getRecipeOutput() instanceof ItemStack && areEqual((ItemStack) r.getRecipeOutput(), stack)) {
                         recipe = r;
                         break;
                     }

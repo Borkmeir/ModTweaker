@@ -1,6 +1,7 @@
 package modtweaker.mods.bloodmagic.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
@@ -49,7 +50,7 @@ public class Binding {
         @Override
         public void apply() {
             for (BindingRecipe r : BindingRegistry.bindingRecipes) {
-                if (r.getResult() != null && r.getResult().isItemEqual(stack)) {
+                if (r.getResult() != null && areEqual(r.getResult(), stack)) {
                     recipe = r;
                     break;
                 }

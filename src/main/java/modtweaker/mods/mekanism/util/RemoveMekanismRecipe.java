@@ -1,5 +1,7 @@
 package modtweaker.mods.mekanism.util;
 
+import static modtweaker.helpers.StackHelper.areEqual;
+
 import java.util.Iterator;
 import java.util.Map;
 
@@ -31,7 +33,7 @@ public class RemoveMekanismRecipe extends BaseMapRemoval {
                 Object value = pairs.getValue();
                 if (value != null) {
                     if (tmp instanceof ItemStack && value instanceof ItemStack) {
-                        if (((ItemStack) tmp).isItemEqual((ItemStack) value)) {
+                        if (areEqual(((ItemStack) tmp), (ItemStack) value)) {
                             key = pairs.getKey();
                             break;
                         }
@@ -52,7 +54,7 @@ public class RemoveMekanismRecipe extends BaseMapRemoval {
                     }
 
                     if (tmp instanceof ItemStack && value instanceof InfusionOutput) {
-                        if (((ItemStack) tmp).isItemEqual(((InfusionOutput) value).resource)) {
+                        if (areEqual(((ItemStack) tmp), ((InfusionOutput) value).resource)) {
                             key = pairs.getKey();
                             break;
                         }
@@ -70,8 +72,8 @@ public class RemoveMekanismRecipe extends BaseMapRemoval {
                     if (tmp instanceof ChanceOutput && value instanceof ChanceOutput) {
                         ChanceOutput par1 = (ChanceOutput) tmp;
                         ChanceOutput par2 = (ChanceOutput) value;
-                        if (par1.primaryOutput.isItemEqual(par2.primaryOutput)) {
-                            if (par1.secondaryOutput == null || (par1.secondaryOutput != null && par2.secondaryOutput != null && par1.secondaryOutput.isItemEqual(par2.secondaryOutput))) {
+                        if (areEqual(par1.primaryOutput, par2.primaryOutput)) {
+                            if (par1.secondaryOutput == null || (par1.secondaryOutput != null && par2.secondaryOutput != null && areEqual(par1.secondaryOutput, par2.secondaryOutput))) {
                                 key = pairs.getKey();
                                 break;
                             }
@@ -81,7 +83,7 @@ public class RemoveMekanismRecipe extends BaseMapRemoval {
                     if (tmp instanceof PressurizedProducts && value instanceof PressurizedRecipe) {
                         PressurizedProducts par1 = (PressurizedProducts) tmp;
                         PressurizedProducts par2 = ((PressurizedRecipe) value).products;
-                        if (par1.getItemOutput().isItemEqual(par2.getItemOutput())) {
+                        if (areEqual(par1.getItemOutput(), (par2.getItemOutput()))) {
                             if (par1.getGasOutput().isGasEqual(par2.getGasOutput())) {
                                 key = pairs.getKey();
                                 break;

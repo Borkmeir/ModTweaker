@@ -1,6 +1,7 @@
 package modtweaker.mods.metallurgy.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.mods.metallurgy.MetallurgyHelper;
@@ -96,7 +97,7 @@ public class Crusher {
         ItemStack[] newList = new ItemStack[inputList.length - 1];
         if (newList.length >= 1) {
             for (int i = 0; i < inputList.length; i++) {
-                if (switched || inputList[i].isItemEqual(input)) {
+                if (switched || (areEqual(inputList[i], input))) {
                     switched = true;
                     newList[i] = inputList[i + 1];
                 } else newList[i] = inputList[i];

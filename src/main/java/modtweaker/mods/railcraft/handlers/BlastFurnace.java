@@ -1,6 +1,7 @@
 package modtweaker.mods.railcraft.handlers;
 
 import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import mods.railcraft.api.crafting.IBlastFurnaceRecipe;
@@ -44,7 +45,7 @@ public class BlastFurnace {
         @Override
         public void apply() {
             for (IBlastFurnaceRecipe r : RailcraftHelper.furnace) {
-                if (r.getOutput() != null && r.getOutput().isItemEqual(stack)) {
+                if (r.getOutput() != null && areEqual(r.getOutput(), stack)) {
                     recipe = r;
                     break;
                 }

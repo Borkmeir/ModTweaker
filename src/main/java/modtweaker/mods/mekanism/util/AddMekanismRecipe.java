@@ -2,20 +2,20 @@ package modtweaker.mods.mekanism.util;
 
 import java.util.Map;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 import mekanism.api.ChanceOutput;
 import mekanism.api.ChemicalPair;
 import mekanism.api.PressurizedReactants;
 import mekanism.api.gas.GasStack;
 import mekanism.api.infuse.InfusionOutput;
 import modtweaker.util.BaseMapAddition;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public class AddMekanismRecipe extends BaseMapAddition {
     public AddMekanismRecipe(String str, Map map, Object key, Object recipe) {
         super(str.toLowerCase(), map, key, recipe);
     }
-    
+
     @Override
     public String describe() {
         if (recipe instanceof ItemStack) return "Adding " + description + " Recipe for : " + ((ItemStack) recipe).getDisplayName();

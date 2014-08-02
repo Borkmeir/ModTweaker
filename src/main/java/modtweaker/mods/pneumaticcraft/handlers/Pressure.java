@@ -1,6 +1,7 @@
 package modtweaker.mods.pneumaticcraft.handlers;
 
 import static modtweaker.helpers.InputHelper.toStacks;
+import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
@@ -51,7 +52,7 @@ public class Pressure {
             for (PressureChamberRecipe r : PressureChamberRecipe.chamberRecipes) {
                 boolean matches = true;
                 for (int i = 0; i < stacks.length; i++) {
-                    if (!stacks[i].isItemEqual(r.output[i])) {
+                    if (!areEqual(stacks[i], r.output[i])) {
                         matches = false;
                         break;
                     }
