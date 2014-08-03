@@ -1,4 +1,4 @@
-package modtweaker.vanilla;
+package modtweaker.mods.vanilla;
 
 import static modtweaker.helpers.InputHelper.toStack;
 import static modtweaker.helpers.StackHelper.areEqual;

@@ -1,4 +1,4 @@
-package modtweaker.vanilla;
+package modtweaker.mods.vanilla;
 
 import static modtweaker.helpers.LogHelper.logPrinted;
 
