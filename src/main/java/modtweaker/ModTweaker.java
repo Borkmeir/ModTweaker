@@ -7,6 +7,7 @@ import minetweaker.api.server.ICommandFunction;
 import modtweaker.mods.bloodmagic.BloodMagic;
 import modtweaker.mods.botania.Botania;
 import modtweaker.mods.exnihilo.ExNihilo;
+import modtweaker.mods.extendedworkbench.ExtendedWorkbench;
 import modtweaker.mods.factorization.Factorization;
 import modtweaker.mods.hee.HardcoreEnderExpansion;
 import modtweaker.mods.mariculture.Mariculture;
@@ -39,6 +40,7 @@ public class ModTweaker {
         TweakerPlugin.register("AWWayofTime", BloodMagic.class);
         TweakerPlugin.register("Botania", Botania.class);
         TweakerPlugin.register("exnihilo", ExNihilo.class);
+        TweakerPlugin.register("extendedWorkbench", ExtendedWorkbench.class);
         TweakerPlugin.register("factorization", Factorization.class);
         TweakerPlugin.register("HardcoreEnderExpansion", HardcoreEnderExpansion.class);
         TweakerPlugin.register("Mariculture", Mariculture.class);
