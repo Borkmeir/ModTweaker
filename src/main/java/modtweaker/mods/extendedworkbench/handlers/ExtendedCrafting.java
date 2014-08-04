@@ -8,15 +8,10 @@ import naruto1310.extendedWorkbench.crafting.ExtendedCraftingManager;
 import naruto1310.extendedWorkbench.crafting.ExtendedShapedRecipes;
 import naruto1310.extendedWorkbench.crafting.ExtendedShapelessRecipes;
 import naruto1310.extendedWorkbench.crafting.IExtendedRecipe;
-import net.minecraft.block.Block;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-import thaumcraft.api.ThaumcraftApi;
-import thaumcraft.api.crafting.IArcaneRecipe;
+
 import static modtweaker.helpers.InputHelper.toStack;
 import static modtweaker.helpers.InputHelper.toStacks;
 import static modtweaker.helpers.StackHelper.areEqual;
