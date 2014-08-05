@@ -34,7 +34,7 @@ public class PacketSyncBauble implements IMessage, IMessageHandler<PacketSyncBau
 		buffer.writeByte(slot);
 		buffer.writeInt(playerId);
 		PacketBuffer pb = new PacketBuffer(buffer);
-		try { pb.writeItemStackToBuffer(bauble); } catch (IOException e) {}
+		try { pb.writeItemStackToBuffer(bauble); } catch (Exception e) {}
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class PacketSyncBauble implements IMessage, IMessageHandler<PacketSyncBau
 		slot = buffer.readByte();
 		playerId = buffer.readInt();
 		PacketBuffer pb = new PacketBuffer(buffer);
-		try { bauble = pb.readItemStackFromBuffer(); } catch (IOException e) {}
+		try { bauble = pb.readItemStackFromBuffer(); } catch (Exception e) {}
 	}
 
 	@Override
