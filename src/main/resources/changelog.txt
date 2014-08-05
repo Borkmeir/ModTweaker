@@ -1,5 +1,10 @@
 ===========================================================
 
+ModTweaker 0.5d
+• Fix potential crash when adding dungeon loot
+
+===========================================================
+
 ModTweaker 0.5c
 • Added New Command - "/mt tooltips", adds the info from mt hand to items tooltips, if you press the sprint key while hovering over an item (it's ctrl by default for those who don't know), it will print it to the log.
 • Fix broken Ex Nihilo Heat Sources

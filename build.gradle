@@ -17,6 +17,13 @@ buildscript {
 
 apply plugin: 'forge'
 apply plugin: 'java'
+
+ext.buildnumber = 0
+if (System.getenv().BUILD_NUMBER)
+    project.buildnumber = System.getenv().BUILD_NUMBER
+else
+    logger.lifecycle "SETTING BUILDNUMBER TO 0"
+
 repositories {
     mavenCentral();
 }
@@ -62,3 +69,5 @@ processResources {
         exclude '**/*.properties'
     }
 }
+
+project.version += '-' + project.buildnumber
