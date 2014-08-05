@@ -4,6 +4,7 @@ import static modtweaker.helpers.InputHelper.toStack;
 import static modtweaker.helpers.StackHelper.areEqual;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
@@ -94,24 +95,25 @@ public class VanillaTweaks {
         public void apply() {
             recipe = ForgeHelper.loot.get(key);
             if (recipe instanceof ChestGenHooks) {
-                recipe = ReflectionHelper.getObject(recipe, "contents");
+                List list = ReflectionHelper.getObject(recipe, "contents");
+                ((ArrayList<WeightedRandomChestContent>) list).add(content);
+                super.apply();
             }
+        }
 
-            ((ArrayList<WeightedRandomChestContent>) recipe).add(content);
-
-            super.apply();
+        @Override
+        public boolean canUndo() {
+            return recipe instanceof ChestGenHooks;
         }
 
         @Override
         public void undo() {
             recipe = ForgeHelper.loot.get(key);
             if (recipe instanceof ChestGenHooks) {
-                recipe = ReflectionHelper.getObject(recipe, "contents");
+                List contents = ReflectionHelper.getObject(recipe, "contents");
+                ((ArrayList<WeightedRandomChestContent>) contents).remove(content);
+                super.apply();
             }
-
-            ((ArrayList<WeightedRandomChestContent>) recipe).remove(content);
-
-            super.apply();
         }
 
         public String getRecipeInfo() {
@@ -137,31 +139,33 @@ public class VanillaTweaks {
         public void apply() {
             recipe = ForgeHelper.loot.get(key);
             if (recipe instanceof ChestGenHooks) {
-                recipe = ReflectionHelper.getObject(recipe, "contents");
-            }
+                List contents = ReflectionHelper.getObject(recipe, "contents");
 
-            for (WeightedRandomChestContent r : (ArrayList<WeightedRandomChestContent>) recipe) {
-                if (r.theItemId != null && areEqual(r.theItemId, (ItemStack) stack)) {
-                    content = r;
-                    break;
+                for (WeightedRandomChestContent r : (ArrayList<WeightedRandomChestContent>) recipe) {
+                    if (r.theItemId != null && areEqual(r.theItemId, (ItemStack) stack)) {
+                        content = r;
+                        break;
+                    }
                 }
+
+                ((ArrayList<WeightedRandomChestContent>) recipe).remove(content);
+                super.undo();
             }
+        }
 
-            ((ArrayList<WeightedRandomChestContent>) recipe).remove(content);
-
-            super.undo();
+        @Override
+        public boolean canUndo() {
+            return recipe instanceof ChestGenHooks;
         }
 
         @Override
         public void undo() {
             recipe = ForgeHelper.loot.get(key);
             if (recipe instanceof ChestGenHooks) {
-                recipe = ReflectionHelper.getObject(recipe, "contents");
+                List contents = ReflectionHelper.getObject(recipe, "contents");
+                ((ArrayList<WeightedRandomChestContent>) contents).add(content);
+                super.undo();
             }
-
-            ((ArrayList<WeightedRandomChestContent>) recipe).add(content);
-
-            super.undo();
         }
 
         @Override
