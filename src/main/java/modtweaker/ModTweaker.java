@@ -20,6 +20,7 @@ import modtweaker.mods.tconstruct.MaterialLogger;
 import modtweaker.mods.tconstruct.TConstruct;
 import modtweaker.mods.thaumcraft.Thaumcraft;
 import modtweaker.mods.thaumcraft.research.ResearchLogger;
+import modtweaker.mods.thermalexpansion.ThermalExpansion;
 import modtweaker.mods.vanilla.LootLogger;
 import modtweaker.mods.vanilla.SeedLogger;
 import modtweaker.mods.vanilla.VanillaTweaks;
@@ -51,6 +52,7 @@ public class ModTweaker {
         TweakerPlugin.register("Steamcraft", Steamcraft.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);
+        TweakerPlugin.register("ThermalExpansion", ThermalExpansion.class);
         if(FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             MinecraftForge.EVENT_BUS.register(new ClientEvents());
         }

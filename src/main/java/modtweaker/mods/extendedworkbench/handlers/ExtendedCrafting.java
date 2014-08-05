@@ -19,7 +19,7 @@ import static modtweaker.helpers.StackHelper.areEqual;
 import java.util.Arrays;
 
 
-@ZenClass("mods.extendedworkbench.Crafting")
+@ZenClass("mods.extendedworkbench")
 public class ExtendedCrafting {
     @ZenMethod
     public static void addShaped(IItemStack output, IItemStack[][] ingredients) {
