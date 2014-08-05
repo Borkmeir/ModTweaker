@@ -1,7 +1,6 @@
 package modtweaker;
 
 import minetweaker.MineTweakerAPI;
-import minetweaker.api.item.IItemStack;
 import minetweaker.api.player.IPlayer;
 import minetweaker.api.server.ICommandFunction;
 import modtweaker.mods.bloodmagic.BloodMagic;
@@ -9,6 +8,7 @@ import modtweaker.mods.botania.Botania;
 import modtweaker.mods.exnihilo.ExNihilo;
 import modtweaker.mods.extendedworkbench.ExtendedWorkbench;
 import modtweaker.mods.factorization.Factorization;
+import modtweaker.mods.fsp.Steamcraft;
 import modtweaker.mods.hee.HardcoreEnderExpansion;
 import modtweaker.mods.mariculture.Mariculture;
 import modtweaker.mods.mekanism.Mekanism;
@@ -48,6 +48,7 @@ public class ModTweaker {
         TweakerPlugin.register("Metallurgy", Metallurgy.class);
         TweakerPlugin.register("PneumaticCraft", PneumaticCraft.class);
         TweakerPlugin.register("Railcraft", Railcraft.class);
+        TweakerPlugin.register("Steamcraft", Steamcraft.class);
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);
         if(FMLCommonHandler.instance().getSide() == Side.CLIENT) {

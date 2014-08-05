@@ -95,8 +95,8 @@ public class VanillaTweaks {
         public void apply() {
             recipe = ForgeHelper.loot.get(key);
             if (recipe instanceof ChestGenHooks) {
-                List list = ReflectionHelper.getObject(recipe, "contents");
-                ((ArrayList<WeightedRandomChestContent>) list).add(content);
+                List contents = ReflectionHelper.getObject(recipe, "contents");
+                ((ArrayList<WeightedRandomChestContent>) contents).add(content);
                 super.apply();
             }
         }
@@ -148,7 +148,7 @@ public class VanillaTweaks {
                     }
                 }
 
-                ((ArrayList<WeightedRandomChestContent>) recipe).remove(content);
+                ((ArrayList<WeightedRandomChestContent>) contents).remove(content);
                 super.undo();
             }
         }
