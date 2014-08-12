@@ -77,7 +77,7 @@ public class Smelter {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @ZenMethod
+    /*@ZenMethod
     public static void removeRecipe(IItemStack input, IItemStack input2) {
         MineTweakerAPI.tweaker.apply(new Remove(toStack(input), toStack(input2)));
     }
@@ -119,6 +119,6 @@ public class Smelter {
             return null;
         }
 
-    }
+    }*/
 
 }
