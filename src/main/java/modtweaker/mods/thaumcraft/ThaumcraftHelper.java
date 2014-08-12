@@ -1,6 +1,7 @@
 package modtweaker.mods.thaumcraft;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import modtweaker.helpers.ReflectionHelper;
 import thaumcraft.api.ThaumcraftApi;
@@ -10,10 +11,12 @@ import thaumcraft.api.research.ResearchCategories;
 
 public class ThaumcraftHelper {
     public static ArrayList recipes = null;
+    public static HashMap<Object, Integer> warpList;
 
     static {
         try {
             recipes = ReflectionHelper.getStaticObject(ThaumcraftApi.class, "recipes");
+            warpList = ReflectionHelper.getStaticObject(ThaumcraftApi.class, "warpMap");
         } catch (Exception e) {}
     }
 
