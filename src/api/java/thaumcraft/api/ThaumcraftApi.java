@@ -115,7 +115,7 @@ public class ThaumcraftApi {
 	 */
 	public static void addSmeltingBonus(ItemStack in, ItemStack out) {
 		smeltingBonus.put(
-				Arrays.asList(Item.getIdFromItem(in.getItem()),in.getItemDamage()), 
+				Arrays.asList(in.getItem(),in.getItemDamage()), 
 				new ItemStack(out.getItem(),0,out.getItemDamage()));
 	}
 	
@@ -135,9 +135,9 @@ public class ThaumcraftApi {
 	 * @return the The bonus item that can be produced
 	 */
 	public static ItemStack getSmeltingBonus(ItemStack in) {
-		ItemStack out = smeltingBonus.get(Arrays.asList(Item.getIdFromItem(in.getItem()),in.getItemDamage()));
+		ItemStack out = smeltingBonus.get(Arrays.asList(in.getItem(),in.getItemDamage()));
 		if (out==null) {
-			out = smeltingBonus.get(Arrays.asList(Item.getIdFromItem(in.getItem()),OreDictionary.WILDCARD_VALUE));
+			out = smeltingBonus.get(Arrays.asList(in.getItem(),OreDictionary.WILDCARD_VALUE));
 		}
 		if (out==null) {
 			String od = OreDictionary.getOreName( OreDictionary.getOreID(in));
@@ -278,6 +278,16 @@ public class ThaumcraftApi {
 				if (ri.getPages()==null) continue;
 				for (int a=0;a<ri.getPages().length;a++) {
 					ResearchPage page = ri.getPages()[a];
+					if (page.recipe!=null && page.recipe instanceof CrucibleRecipe[]) {
+						CrucibleRecipe[] crs = (CrucibleRecipe[]) page.recipe;
+						for (CrucibleRecipe cr:crs) {
+							if (cr.getRecipeOutput().isItemEqual(stack)) {
+								keyCache.put(key,new Object[] {ri.key,a});
+								if (ThaumcraftApiHelper.isResearchComplete(player.getCommandSenderName(), ri.key))
+									return new Object[] {ri.key,a};
+							}
+						}
+					} else
 					if (page.recipeOutput!=null && stack !=null && page.recipeOutput.isItemEqual(stack)) {
 						keyCache.put(key,new Object[] {ri.key,a});
 						if (ThaumcraftApiHelper.isResearchComplete(player.getCommandSenderName(), ri.key))
@@ -369,6 +379,7 @@ public class ThaumcraftApi {
 	 * Attempts to automatically generate aspect tags by checking registered recipes.
 	 * Here is an example of the declaration for pistons:<p>
 	 * <i>ThaumcraftApi.registerComplexObjectTag(new ItemStack(Blocks.cobblestone), (new AspectList()).add(Aspect.MECHANISM, 2).add(Aspect.MOTION, 4));</i>
+	 * IMPORTANT - this should only be used if you are not happy with the default aspects the object would be assigned.
 	 * @param item, pass OreDictionary.WILDCARD_VALUE to meta if all damage values of this item/block should have the same aspects
 	 * @param aspects A ObjectTags object of the associated aspects
 	 */
@@ -389,6 +400,43 @@ public class ThaumcraftApi {
 			registerObjectTag(item,tmp);
 		}
 	}
+	
+	//WARP ///////////////////////////////////////////////////////////////////////////////////////
+		private static HashMap<Object,Integer> warpMap = new HashMap<Object,Integer>();
+		
+		/**
+		 * This method is used to determine how much warp is gained if the item is crafted
+		 * @param craftresult The item crafted
+		 * @param amount how much warp is gained
+		 */
+		public static void addWarpToItem(ItemStack craftresult, int amount) {
+			warpMap.put(Arrays.asList(craftresult.getItem(),craftresult.getItemDamage()),amount);
+		}
+		
+		/**
+		 * This method is used to determine how much warp is gained if the sent item is crafted
+		 * @param in The item crafted
+		 * @param amount how much warp is gained
+		 */
+		public static void addWarpToResearch(String research, int amount) {
+			warpMap.put(research, amount);
+		}
+		
+		/**
+		 * Returns how much warp is gained from the item or research passed in
+		 * @param in itemstack or string
+		 * @return how much warp it will give
+		 */
+		public static int getWarp(Object in) {
+			if (in==null) return 0;
+			if (in instanceof ItemStack && warpMap.containsKey(Arrays.asList(((ItemStack)in).getItem(),((ItemStack)in).getItemDamage()))) {
+				return warpMap.get(Arrays.asList(((ItemStack)in).getItem(),((ItemStack)in).getItemDamage()));
+			} else
+			if (in instanceof String && warpMap.containsKey((String)in)) {
+				return warpMap.get((String)in);
+			}
+			return 0;
+		}
 		
 	//CROPS //////////////////////////////////////////////////////////////////////////////////////////
 	

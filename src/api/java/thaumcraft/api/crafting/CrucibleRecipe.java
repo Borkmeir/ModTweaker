@@ -34,12 +34,15 @@ public class CrucibleRecipe {
 			return false;
 		} else 
 		if (catalyst instanceof ArrayList && ((ArrayList<ItemStack>)catalyst).size()>0) {
-			if (!ThaumcraftApiHelper.containsMatch(true, ((ArrayList<ItemStack>)catalyst).toArray(new ItemStack[]{}), cat)) return false;
+			ItemStack[] ores = ((ArrayList<ItemStack>)catalyst).toArray(new ItemStack[]{});
+			if (!ThaumcraftApiHelper.containsMatch(false, new ItemStack[]{cat},ores)) return false;
 		}
+		System.out.println("here");
 		if (itags==null) return false;
 		for (Aspect tag:aspects.getAspects()) {
 			if (itags.getAmount(tag)<aspects.getAmount(tag)) return false;
 		}
+		System.out.println("here2");
 		return true;
 	}
 	
@@ -48,8 +51,8 @@ public class CrucibleRecipe {
 			return true;
 		} else 
 		if (catalyst instanceof ArrayList && ((ArrayList<ItemStack>)catalyst).size()>0) {
-			if (ThaumcraftApiHelper.containsMatch(true, 
-					((ArrayList<ItemStack>)catalyst).toArray(new ItemStack[]{}), cat)) return true;
+			ItemStack[] ores = ((ArrayList<ItemStack>)catalyst).toArray(new ItemStack[]{});
+			if (ThaumcraftApiHelper.containsMatch(false, new ItemStack[]{cat},ores)) return true;
 		}
 		return false;
 	}
@@ -71,4 +74,24 @@ public class CrucibleRecipe {
 		return recipeOutput;
 	}
 	
+	
+//	@Override
+//	public int hashCode() {
+//		String hash = "";
+//		if (catalyst instanceof ItemStack) {
+//			hash += ((ItemStack)catalyst).toString();
+//		} else if (catalyst instanceof ArrayList && ((ArrayList<ItemStack>)catalyst).size()>0) {
+//			for (ItemStack s:(ArrayList<ItemStack>)catalyst) {
+//				hash += s.toString();
+//			} 
+//		} else {
+//			hash += catalyst.hashCode();
+//		}
+//		hash += getRecipeOutput().toString();
+//		for (Aspect a:aspects.getAspectsSorted()) {
+//			hash += a.getTag() + aspects.getAmount(a);
+//		}
+//		return hash.hashCode();
+//	}
+
 }
