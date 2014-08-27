@@ -1,5 +1,6 @@
 package modtweaker.helpers;
 
+import minetweaker.MineTweakerAPI;
 import minetweaker.MineTweakerImplementationAPI;
 import minetweaker.api.player.IPlayer;
 
@@ -14,5 +15,10 @@ public class LogHelper {
         if (player != null) {
             player.sendChat(MineTweakerImplementationAPI.platform.getMessage(message));
         }
+    }
+    
+    public static void print(String string){
+        System.out.println(string);
+        MineTweakerAPI.logCommand(string);
     }
 }

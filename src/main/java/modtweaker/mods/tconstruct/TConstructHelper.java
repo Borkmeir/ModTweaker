@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import mantle.utils.ItemMetaWrapper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -20,12 +21,12 @@ import tconstruct.library.tools.ToolMaterial;
 
 public class TConstructHelper {
     public static HashMap<String, Integer> mappings = new HashMap();
-    public static ArrayList<AlloyMix> alloys = null;
+    public static List<AlloyMix> alloys = null;
     public static ArrayList<CastingRecipe> basinCasting = null;
     public static ArrayList<CastingRecipe> tableCasting = null;
-    public static HashMap<List<Integer>, FluidStack> smeltingList = null;
-    public static HashMap<List<Integer>, Integer> temperatureList = null;
-    public static HashMap<List<Integer>, ItemStack> renderIndex = null;
+    public static Map<ItemMetaWrapper, FluidStack> smeltingList = null;
+    public static Map<ItemMetaWrapper, Integer> temperatureList = null;
+    public static Map<ItemMetaWrapper, ItemStack> renderIndex = null;
     public static List<ItemModifier> modifiers = null;
     public static List<ItemModifier> modifiers_clone = null;
 

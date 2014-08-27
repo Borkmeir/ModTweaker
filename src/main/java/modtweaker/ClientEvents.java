@@ -1,6 +1,6 @@
 package modtweaker;
 
-import minetweaker.MineTweakerAPI;
+import static modtweaker.helpers.LogHelper.print;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.minecraft.MineTweakerMC;
 import minetweaker.api.player.IPlayer;
@@ -25,8 +25,7 @@ public class ClientEvents {
                     if (GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSprint)) {
                         if (cooldown <= 0) {
                             cooldown = 30;
-                            System.out.println(print + "  --  " + hand.getDisplayName());
-                            MineTweakerAPI.logCommand(print + "  --  " + hand.getDisplayName());
+                            print(print + "  --  " + hand.getDisplayName());
                         } else cooldown--;
                     } else cooldown--;
                 }
