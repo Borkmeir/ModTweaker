@@ -8,6 +8,7 @@ import static modtweaker.helpers.InputHelper.toStack;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import mantle.utils.ItemMetaWrapper;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
@@ -119,9 +120,10 @@ public class Smeltery {
         //Removes the Melting recipe from the hashmaps
         @Override
         public void undo() {
-            TConstructHelper.smeltingList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            TConstructHelper.temperatureList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            TConstructHelper.renderIndex.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            ItemMetaWrapper in = new ItemMetaWrapper(input);
+            TConstructHelper.smeltingList.remove(in);
+            TConstructHelper.temperatureList.remove(in);
+            TConstructHelper.renderIndex.remove(in);
         }
 
         @Override
@@ -153,12 +155,13 @@ public class Smeltery {
         //Gets the current values, and saves, them removes them from the hashmaps
         @Override
         public void apply() {
-            fluid = TConstructHelper.smeltingList.get(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            temp = TConstructHelper.temperatureList.get(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            renderer = TConstructHelper.renderIndex.get(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            TConstructHelper.smeltingList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            TConstructHelper.temperatureList.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
-            TConstructHelper.renderIndex.remove(Arrays.asList(input.getItem().hashCode(), input.getItemDamage()));
+            ItemMetaWrapper in = new ItemMetaWrapper(input);
+            fluid = TConstructHelper.smeltingList.get(in);
+            temp = TConstructHelper.temperatureList.get(in);
+            renderer = TConstructHelper.renderIndex.get(in);
+            TConstructHelper.smeltingList.remove(in);
+            TConstructHelper.temperatureList.remove(in);
+            TConstructHelper.renderIndex.remove(in);
         }
 
         //Readds the Melting recipe
