@@ -11,6 +11,7 @@ import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.helpers.ForgeHelper;
 import modtweaker.helpers.ReflectionHelper;
+import modtweaker.mods.vanilla.ToolTipRegistry.ToolTipEffect;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
 import modtweaker.util.BaseMapAddition;
@@ -244,6 +245,41 @@ public class VanillaTweaks {
         @Override
         public Object getOverrideKey() {
             return null;
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    @ZenMethod
+    public static void addTooltip(IItemStack stack, String[] lines, boolean checkDamage, boolean checkNBT, boolean advanced, boolean localized) {
+        MineTweakerAPI.tweaker.apply(new AddTooltip(toStack(stack), new ToolTipEffect(toStack(stack), lines, checkDamage, checkNBT, advanced, localized)));
+    }
+    
+    @ZenMethod
+    public static void addTooltip(IItemStack stack, String[] lines, boolean checkDamage, boolean checkNBT) {
+        addTooltip(stack, lines, checkDamage, checkNBT, false, false);
+    }
+    
+    @ZenMethod
+    public static void addTooltip(IItemStack stack, String[] lines) {
+        addTooltip(stack, lines, true, false, false, false);
+    }
+
+    private static class AddTooltip extends BaseMapAddition {
+        private final ItemStack input;
+
+        public AddTooltip(ItemStack input, ToolTipEffect effect) {
+            super(ToolTipRegistry.tooltips, input.getItem(), effect);
+            this.input = input;
+        }
+
+        @Override
+        public String describe() {
+            return "Adding Tooltip for " + input.getDisplayName();
+        }
+
+        @Override
+        public String describeUndo() {
+            return "Removing Tooltip for " + input.getDisplayName();
         }
     }
 }

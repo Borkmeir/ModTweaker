@@ -4,12 +4,14 @@ import static modtweaker.helpers.LogHelper.print;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.minecraft.MineTweakerMC;
 import minetweaker.api.player.IPlayer;
+import modtweaker.mods.vanilla.ToolTipRegistry;
+import modtweaker.mods.vanilla.ToolTipRegistry.ToolTipEffect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class ClientEvents {
+public class ClientEvents {    
     public static int cooldown;
     public static boolean active;
 
@@ -30,6 +32,12 @@ public class ClientEvents {
                     } else cooldown--;
                 }
             }
+        }
+        
+        //If this item is being checked
+        ToolTipEffect effect = ToolTipRegistry.tooltips.get(event.itemStack.getItem());
+        if(effect != null) {
+            effect.apply(event.itemStack.getItemDamage(), event.itemStack.stackTagCompound, event.toolTip, event.showAdvancedItemTooltips);
         }
     }
 }
