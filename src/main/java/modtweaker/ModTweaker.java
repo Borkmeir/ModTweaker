@@ -21,16 +21,12 @@ import modtweaker.mods.tconstruct.TConstruct;
 import modtweaker.mods.thaumcraft.Thaumcraft;
 import modtweaker.mods.thaumcraft.research.ResearchLogger;
 import modtweaker.mods.thermalexpansion.ThermalExpansion;
-import modtweaker.mods.vanilla.LootLogger;
-import modtweaker.mods.vanilla.SeedLogger;
-import modtweaker.mods.vanilla.VanillaTweaks;
 import modtweaker.util.TweakerPlugin;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLModIdMappingEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 
@@ -38,7 +34,6 @@ import cpw.mods.fml.relauncher.Side;
 public class ModTweaker {
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        MineTweakerAPI.registerClass(VanillaTweaks.class);
         TweakerPlugin.register("AWWayofTime", BloodMagic.class);
         TweakerPlugin.register("Botania", Botania.class);
         TweakerPlugin.register("exnihilo", ExNihilo.class);
@@ -61,8 +56,6 @@ public class ModTweaker {
 
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event) {
-        MineTweakerAPI.server.addMineTweakerCommand("loot", new String[] { "/minetweaker loot", "    Outputs a list of all dungeon loot in the game to the minetweaker log" }, new LootLogger());
-        MineTweakerAPI.server.addMineTweakerCommand("seeds", new String[] { "/minetweaker seeds", "    Outputs a list of all grass drops in the game to the minetweaker log" }, new SeedLogger());
         MineTweakerAPI.server.addMineTweakerCommand("tooltips", new String[] { "/minetweaker tooltips", "    Adds tooltips to all items ingame with their mt script name, press ctrl on an item to print to the log" }, new ICommandFunction() {
             @Override
             public void execute(String[] arguments, IPlayer player) {
