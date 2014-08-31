@@ -30,6 +30,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLModIdMappingEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 
@@ -53,40 +54,32 @@ public class ModTweaker {
         TweakerPlugin.register("TConstruct", TConstruct.class);
         TweakerPlugin.register("Thaumcraft", Thaumcraft.class);
         TweakerPlugin.register("ThermalExpansion", ThermalExpansion.class);
-        if(FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             MinecraftForge.EVENT_BUS.register(new ClientEvents());
         }
     }
 
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event) {
-        MineTweakerAPI.server.addMineTweakerCommand("loot", new String[] { "/minetweaker loot", 
-                "    Outputs a list of all dungeon loot in the game to the minetweaker log" }, new LootLogger());
-        MineTweakerAPI.server.addMineTweakerCommand("seeds", new String[] { "/minetweaker seeds", 
-                "    Outputs a list of all grass drops in the game to the minetweaker log" }, new SeedLogger());
-        MineTweakerAPI.server.addMineTweakerCommand("tooltips", new String[] { "/minetweaker tooltips", 
-        "    Adds tooltips to all items ingame with their mt script name, press ctrl on an item to print to the log" }, new ICommandFunction() {
-                @Override
-                public void execute(String[] arguments, IPlayer player) {
-                    ClientEvents.active = !ClientEvents.active;
-                }
-            });
+        MineTweakerAPI.server.addMineTweakerCommand("loot", new String[] { "/minetweaker loot", "    Outputs a list of all dungeon loot in the game to the minetweaker log" }, new LootLogger());
+        MineTweakerAPI.server.addMineTweakerCommand("seeds", new String[] { "/minetweaker seeds", "    Outputs a list of all grass drops in the game to the minetweaker log" }, new SeedLogger());
+        MineTweakerAPI.server.addMineTweakerCommand("tooltips", new String[] { "/minetweaker tooltips", "    Adds tooltips to all items ingame with their mt script name, press ctrl on an item to print to the log" }, new ICommandFunction() {
+            @Override
+            public void execute(String[] arguments, IPlayer player) {
+                ClientEvents.active = !ClientEvents.active;
+            }
+        });
 
         if (TweakerPlugin.isLoaded("Mekanism")) {
-            MineTweakerAPI.server.addMineTweakerCommand("gases", new String[] { "/minetweaker gases", 
-                    "    Outputs a list of all gas names in the game to the minetweaker log" }, new GasLogger());
+            MineTweakerAPI.server.addMineTweakerCommand("gases", new String[] { "/minetweaker gases", "    Outputs a list of all gas names in the game to the minetweaker log" }, new GasLogger());
         }
 
         if (TweakerPlugin.isLoaded("Thaumcraft")) {
-            MineTweakerAPI.server.addMineTweakerCommand("research", new String[] { 
-                    "/minetweaker research", "/minetweaker research [CATEGORY]", 
-                    "    Outputs a list of all category names in the game to the minetweaker log," + 
-                    " or outputs a list of all research keys in a category to the log." }, new ResearchLogger());
+            MineTweakerAPI.server.addMineTweakerCommand("research", new String[] { "/minetweaker research", "/minetweaker research [CATEGORY]", "    Outputs a list of all category names in the game to the minetweaker log," + " or outputs a list of all research keys in a category to the log." }, new ResearchLogger());
         }
 
         if (TweakerPlugin.isLoaded("TConstruct")) {
-            MineTweakerAPI.server.addMineTweakerCommand("materials", new String[] { "/minetweaker materials", 
-                    "    Outputs a list of all Tinker's Construct material names in the game to the minetweaker log" }, new MaterialLogger());
+            MineTweakerAPI.server.addMineTweakerCommand("materials", new String[] { "/minetweaker materials", "    Outputs a list of all Tinker's Construct material names in the game to the minetweaker log" }, new MaterialLogger());
         }
     }
 }

@@ -1,9 +1,23 @@
 package modtweaker.helpers;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+import net.minecraft.item.ItemStack;
+
 public class ReflectionHelper {
+    public static Constructor getConstructor(String string, Class... types) {
+        try {
+            Class clazz = Class.forName(string);
+            Constructor constructor = clazz.getDeclaredConstructor(types);
+            constructor.setAccessible(true);
+            return constructor;
+        } catch (Exception ex) {}
+        
+        return null;
+    }
+
     public static <T> T getObject(Object o, String... fieldName) {
         Class cls = o.getClass();
         for (String field : fieldName) {

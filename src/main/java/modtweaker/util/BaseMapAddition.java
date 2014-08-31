@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.FluidStack;
 public abstract class BaseMapAddition implements IUndoableAction {
     protected String description;
     protected final Map map;
-    protected final Object key;
+    protected Object key;
     protected Object recipe;
 
     public BaseMapAddition(Map map, Object key, Object recipe) {
