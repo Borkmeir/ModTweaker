@@ -10,5 +10,6 @@ public class ThermalExpansion {
         MineTweakerAPI.registerClass(Pulverizer.class);
         MineTweakerAPI.registerClass(Sawmill.class);
         MineTweakerAPI.registerClass(Smelter.class);
+        MineTweakerAPI.registerClass(Transposer.class);
     }
 }

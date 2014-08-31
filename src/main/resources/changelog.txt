@@ -1,3 +1,16 @@
+ModTweaker 0.6
+• Fixed Tinkers, Mariculture and MineTweaker3 Support :P
+• Removed Vanilla Tweaks > Now part of MineTweaker3 main
+• Thaumcraft 4
+   • Warp Support
+• Thermal Expansion
+   • Induction Smelter
+   • Fluid Transposer
+   • Magma Crucible
+   • Pulverizer
+   • Redstone Furnace
+   • Sawmill
+
 ===========================================================
 
 ModTweaker 0.5d
