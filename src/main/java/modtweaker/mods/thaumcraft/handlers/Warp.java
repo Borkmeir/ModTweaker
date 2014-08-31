@@ -1,5 +1,11 @@
 package modtweaker.mods.thaumcraft.handlers;
 
+import static modtweaker.helpers.InputHelper.toStack;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
@@ -8,12 +14,6 @@ import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import thaumcraft.api.ThaumcraftApi;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
-import static modtweaker.helpers.InputHelper.toStack;
 
 @ZenClass("mods.thaumcraft.Warp")
 public class Warp {

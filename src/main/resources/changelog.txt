@@ -1,6 +1,6 @@
 ModTweaker 0.6
-• Fixed Tinkers, Mariculture and MineTweaker3 Support :P
-• Removed Vanilla Tweaks > Now part of MineTweaker3 main
+• Fixed Tinkers, Mariculture and MineTweaker
+• Removed Vanilla Tweaks > Now part of MineTweaker main
 • Thaumcraft 4
    • Warp Support
 • Thermal Expansion

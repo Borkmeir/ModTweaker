@@ -4,8 +4,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import net.minecraft.item.ItemStack;
-
 public class ReflectionHelper {
     public static Constructor getConstructor(String string, Class... types) {
         try {
