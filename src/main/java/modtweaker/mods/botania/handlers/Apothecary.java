@@ -19,12 +19,12 @@ import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 public class Apothecary {
     @ZenMethod
     public static void addRecipe(IItemStack output, IIngredient[] input) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipePetals(toStack(output), toObjects(input))));
+        MineTweakerAPI.apply(new Add(new RecipePetals(toStack(output), toObjects(input))));
     }
 
     @ZenMethod
     public static void addRecipe(String output, IIngredient[] input) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipePetals(ItemBlockSpecialFlower.ofType(output), toObjects(input))));
+        MineTweakerAPI.apply(new Add(new RecipePetals(ItemBlockSpecialFlower.ofType(output), toObjects(input))));
     }
 
     private static class Add extends BaseListAddition {
@@ -42,12 +42,12 @@ public class Apothecary {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(String output) {
-        MineTweakerAPI.tweaker.apply(new Remove(ItemBlockSpecialFlower.ofType(output)));
+        MineTweakerAPI.apply(new Remove(ItemBlockSpecialFlower.ofType(output)));
     }
 
     private static class Remove extends BaseListRemoval {

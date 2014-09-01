@@ -19,12 +19,12 @@ import WayofTime.alchemicalWizardry.api.items.ShapelessBloodOrbRecipe;
 public class BloodOrb {
     @ZenMethod
     public static void addShaped(IItemStack output, IIngredient[][] ingredients) {
-        MineTweakerAPI.tweaker.apply(new Add(false, toStack(output), toShapedObjects(ingredients)));
+        MineTweakerAPI.apply(new Add(false, toStack(output), toShapedObjects(ingredients)));
     }
 
     @ZenMethod
     public static void addShapeless(IItemStack output, IIngredient[] ingredients) {
-        MineTweakerAPI.tweaker.apply(new Add(true, toStack(output), toObjects(ingredients)));
+        MineTweakerAPI.apply(new Add(true, toStack(output), toObjects(ingredients)));
     }
 
     private static class Add extends BaseCraftingAddition {
@@ -47,7 +47,7 @@ public class BloodOrb {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseCraftingRemoval {

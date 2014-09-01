@@ -18,7 +18,7 @@ public class Alchemy {
     //Adding a Blood Magic Alchemical Chemistry Set recipe
     @ZenMethod
     public static void addRecipe(IItemStack output, IItemStack[] input, int tier, int lp) {
-        MineTweakerAPI.tweaker.apply(new Add(new AlchemyRecipe(toStack(output), (int) (((double) lp) / 100), toStacks(input), tier)));
+        MineTweakerAPI.apply(new Add(new AlchemyRecipe(toStack(output), (int) (((double) lp) / 100), toStacks(input), tier)));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -38,7 +38,7 @@ public class Alchemy {
     //Removing a Blood Magic Alchemical Chemistry Set recipe
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

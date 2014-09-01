@@ -18,7 +18,7 @@ public class Alloyer {
     //Adding a Metallurgy Alloyer recipe
     @ZenMethod
     public static void addRecipe(IItemStack first, IItemStack base, IItemStack result) {
-        MineTweakerAPI.tweaker.apply(new Add(MetallurgyHelper.getAlloyRecipe(toStack(first), toStack(base), toStack(result))));
+        MineTweakerAPI.apply(new Add(MetallurgyHelper.getAlloyRecipe(toStack(first), toStack(base), toStack(result))));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -38,7 +38,7 @@ public class Alloyer {
     //Removing a Metallurgy Alloyer recipe
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

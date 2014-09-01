@@ -22,7 +22,7 @@ public class TiCTweaks {
     //Set the maximum RF
     @ZenMethod
     public static void setRFCapacity(String tool, int capacity) {
-        MineTweakerAPI.tweaker.apply(new AdjustRF(tool, capacity));
+        MineTweakerAPI.apply(new AdjustRF(tool, capacity));
     }
 
     private static class AdjustRF extends BaseSetVar {
@@ -37,7 +37,7 @@ public class TiCTweaks {
     //Tweaks for enabling / disabling Patterns
     /*  @ZenMethod
       public static void removePattern(IItemStack stack) {
-          MineTweakerAPI.tweaker.apply(new DisablePattern(toStack(stack)));
+          MineTweakerAPI.apply(new DisablePattern(toStack(stack)));
       }
 
       private static class DisablePattern implements IUndoableAction {
@@ -97,7 +97,7 @@ public class TiCTweaks {
     @ZenMethod
     public static void addRepairMaterial(IItemStack stack, String material, int value) {
         ItemStack input = toStack(stack);
-        MineTweakerAPI.tweaker.apply(new Add(TConstructHelper.getItemKey(input.getItem(), input.getItemDamage(), value, material)));
+        MineTweakerAPI.apply(new Add(TConstructHelper.getItemKey(input.getItem(), input.getItemDamage(), value, material)));
     }
 
     //Tweaks for setting repair materials
@@ -115,7 +115,7 @@ public class TiCTweaks {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @ZenMethod
     public static void removeRepairMaterial(IItemStack output, @Optional String material) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output), material));
+        MineTweakerAPI.apply(new Remove(toStack(output), material));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

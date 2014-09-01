@@ -21,7 +21,7 @@ public class BloodAltar {
         consume = consume > 0 ? consume : 20;
         drain = drain > 0 ? drain : 20;
 
-        MineTweakerAPI.tweaker.apply(new Add(new AltarRecipe(toStack(output), toStack(input), tier, lp, consume, drain, false)));
+        MineTweakerAPI.apply(new Add(new AltarRecipe(toStack(output), toStack(input), tier, lp, consume, drain, false)));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -41,7 +41,7 @@ public class BloodAltar {
     //Removing a Blood Magic Altar recipe
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

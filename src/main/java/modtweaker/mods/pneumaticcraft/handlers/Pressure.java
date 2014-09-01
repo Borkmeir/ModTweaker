@@ -15,7 +15,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class Pressure {
     @ZenMethod
     public static void addRecipe(IItemStack[] input, double pressure, IItemStack[] output, boolean asBlock) {
-        MineTweakerAPI.tweaker.apply(new Add(new PressureChamberRecipe(toStacks(input), (float) pressure, toStacks(output), asBlock)));
+        MineTweakerAPI.apply(new Add(new PressureChamberRecipe(toStacks(input), (float) pressure, toStacks(output), asBlock)));
     }
 
     private static class Add extends BaseListAddition {
@@ -36,7 +36,7 @@ public class Pressure {
 
     @ZenMethod
     public static void removeRecipe(IItemStack[] output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStacks(output)));
+        MineTweakerAPI.apply(new Remove(toStacks(output)));
     }
 
     private static class Remove extends BaseListRemoval {

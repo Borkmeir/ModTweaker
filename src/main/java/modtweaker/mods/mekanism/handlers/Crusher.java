@@ -13,11 +13,11 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class Crusher {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CRUSHER", Recipe.CRUSHER.get(), toStack(input), toStack(output)));
+        MineTweakerAPI.apply(new AddMekanismRecipe("CRUSHER", Recipe.CRUSHER.get(), toStack(input), toStack(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CRUSHER", Recipe.CRUSHER.get(), toStack(output)));
+        MineTweakerAPI.apply(new RemoveMekanismRecipe("CRUSHER", Recipe.CRUSHER.get(), toStack(output)));
     }
 }

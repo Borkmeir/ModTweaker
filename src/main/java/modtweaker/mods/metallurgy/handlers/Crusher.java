@@ -16,7 +16,7 @@ public class Crusher {
     //Adding a Metallurgy Crusher Recipe
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(toStack(input), toStack(output)));
+        MineTweakerAPI.apply(new Add(toStack(input), toStack(output)));
     }
 
     private static class Add extends BaseMapAddition {
@@ -45,7 +45,7 @@ public class Crusher {
     //Removing a Metallurgy Crusher recipe
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(input)));
+        MineTweakerAPI.apply(new Remove(toStack(input)));
     }
 
     private static class Remove extends BaseMapRemoval {

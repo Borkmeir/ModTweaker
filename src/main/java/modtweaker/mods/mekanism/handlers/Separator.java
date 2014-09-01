@@ -21,12 +21,12 @@ public class Separator {
     @ZenMethod
     public static void addRecipe(ILiquidStack input, IGasStack gas1, IGasStack gas2) {
         ChemicalPair pair = new ChemicalPair(toGas(gas1), toGas(gas2));
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("ELECTROLYTIC_SEPARATOR", Recipe.ELECTROLYTIC_SEPARATOR.get(), toFluid(input), pair));
+        MineTweakerAPI.apply(new AddMekanismRecipe("ELECTROLYTIC_SEPARATOR", Recipe.ELECTROLYTIC_SEPARATOR.get(), toFluid(input), pair));
     }
 
     @ZenMethod
     public static void removeRecipe(ILiquidStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(toFluid(input)));
+        MineTweakerAPI.apply(new Remove(toFluid(input)));
     }
 
     private static class Remove extends BaseMapRemoval {

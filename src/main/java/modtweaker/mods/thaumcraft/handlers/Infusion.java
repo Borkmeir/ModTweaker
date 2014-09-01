@@ -21,12 +21,12 @@ import thaumcraft.api.crafting.InfusionRecipe;
 public class Infusion {
     @ZenMethod
     public static void addRecipe(String key, IItemStack input, IItemStack[] recipe, String aspects, IItemStack result, int instability) {
-        MineTweakerAPI.tweaker.apply(new Add(new InfusionRecipe(key, toStack(result), instability, ThaumcraftHelper.parseAspects(aspects), toStack(input), toStacks(recipe))));
+        MineTweakerAPI.apply(new Add(new InfusionRecipe(key, toStack(result), instability, ThaumcraftHelper.parseAspects(aspects), toStack(input), toStacks(recipe))));
     }
 
     @ZenMethod
     public static void addEnchantment(String key, int enchantID, int instability, String aspects, IItemStack[] recipe) {
-        MineTweakerAPI.tweaker.apply(new AddEnchant(new InfusionEnchantmentRecipe(key, Enchantment.enchantmentsList[enchantID], instability, ThaumcraftHelper.parseAspects(aspects), toStacks(recipe))));
+        MineTweakerAPI.apply(new AddEnchant(new InfusionEnchantmentRecipe(key, Enchantment.enchantmentsList[enchantID], instability, ThaumcraftHelper.parseAspects(aspects), toStacks(recipe))));
     }
 
     private static class Add extends BaseListAddition {
@@ -85,12 +85,12 @@ public class Infusion {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     @ZenMethod
     public static void removeEnchant(int id) {
-        MineTweakerAPI.tweaker.apply(new RemoveEnchant(Enchantment.enchantmentsList[id]));
+        MineTweakerAPI.apply(new RemoveEnchant(Enchantment.enchantmentsList[id]));
     }
 
     private static class Remove extends BaseListRemoval {

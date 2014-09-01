@@ -21,12 +21,12 @@ public class Purification {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output) {
         AdvancedInput aInput = new AdvancedInput(toStack(input), GasRegistry.getGas("oxygen"));
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("PURIFICATION_CHAMBER", Recipe.PURIFICATION_CHAMBER.get(), aInput, toStack(output)));
+        MineTweakerAPI.apply(new AddMekanismRecipe("PURIFICATION_CHAMBER", Recipe.PURIFICATION_CHAMBER.get(), aInput, toStack(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseMapRemoval {

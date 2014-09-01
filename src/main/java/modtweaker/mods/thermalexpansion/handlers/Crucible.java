@@ -19,7 +19,7 @@ import static modtweaker.mods.thermalexpansion.ThermalHelper.removeCrucibleRecip
 public class Crucible {
     @ZenMethod
     public static void addRecipe(int energy, IItemStack input, ILiquidStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(energy, toStack(input), toFluid(output)));
+        MineTweakerAPI.apply(new Add(energy, toStack(input), toFluid(output)));
     }
 
     private static class Add implements IUndoableAction {
@@ -64,7 +64,7 @@ public class Crucible {
 
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(input)));
+        MineTweakerAPI.apply(new Remove(toStack(input)));
     }
 
     private static class Remove implements IUndoableAction {

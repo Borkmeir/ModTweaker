@@ -18,17 +18,17 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class Assembly {
     @ZenMethod
     public static void addDrillRecipe(IItemStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(new AssemblyRecipe(toStack(input), toStack(output)), AssemblyRecipe.drillRecipes));
+        MineTweakerAPI.apply(new Add(new AssemblyRecipe(toStack(input), toStack(output)), AssemblyRecipe.drillRecipes));
     }
 
     @ZenMethod
     public static void addLaserRecipe(IItemStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(new AssemblyRecipe(toStack(input), toStack(output)), AssemblyRecipe.laserRecipes));
+        MineTweakerAPI.apply(new Add(new AssemblyRecipe(toStack(input), toStack(output)), AssemblyRecipe.laserRecipes));
     }
 
     @ZenMethod
     public static void addLaserDrillRecipe(IItemStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(new AssemblyRecipe(toStack(input), toStack(output)), AssemblyRecipe.drillLaserRecipes));
+        MineTweakerAPI.apply(new Add(new AssemblyRecipe(toStack(input), toStack(output)), AssemblyRecipe.drillLaserRecipes));
     }
 
     private static class Add extends BaseListAddition {
@@ -46,17 +46,17 @@ public class Assembly {
 
     @ZenMethod
     public static void removeDrillRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output), AssemblyRecipe.drillRecipes));
+        MineTweakerAPI.apply(new Remove(toStack(output), AssemblyRecipe.drillRecipes));
     }
 
     @ZenMethod
     public static void removeLaserRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output), AssemblyRecipe.laserRecipes));
+        MineTweakerAPI.apply(new Remove(toStack(output), AssemblyRecipe.laserRecipes));
     }
 
     @ZenMethod
     public static void removeLaserDrillRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output), AssemblyRecipe.drillLaserRecipes));
+        MineTweakerAPI.apply(new Remove(toStack(output), AssemblyRecipe.drillLaserRecipes));
     }
 
     private static class Remove extends BaseListRemoval {

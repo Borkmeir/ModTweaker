@@ -15,11 +15,11 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class ChemicalOxidizer {
     @ZenMethod
     public static void addRecipe(IItemStack input, IGasStack output) {
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_OXIDIZER", Recipe.CHEMICAL_OXIDIZER.get(), toStack(input), toGas(output)));
+        MineTweakerAPI.apply(new AddMekanismRecipe("CHEMICAL_OXIDIZER", Recipe.CHEMICAL_OXIDIZER.get(), toStack(input), toGas(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IGasStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_OXIDIZER", Recipe.CHEMICAL_OXIDIZER.get(), toGas(output)));
+        MineTweakerAPI.apply(new RemoveMekanismRecipe("CHEMICAL_OXIDIZER", Recipe.CHEMICAL_OXIDIZER.get(), toGas(output)));
     }
 }

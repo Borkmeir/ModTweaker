@@ -17,7 +17,7 @@ public class Crystallizer {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output, IItemStack solution, double output_count) {
         Object recipe = FactorizationHelper.getCrystallizerRecipe(toStack(input), toStack(output), toStack(solution), (float) output_count);
-        MineTweakerAPI.tweaker.apply(new Add(toStack(input), recipe));
+        MineTweakerAPI.apply(new Add(toStack(input), recipe));
     }
 
     private static class Add extends BaseListAddition {
@@ -38,7 +38,7 @@ public class Crystallizer {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

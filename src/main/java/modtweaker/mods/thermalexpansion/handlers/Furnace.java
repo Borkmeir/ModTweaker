@@ -15,7 +15,7 @@ import static modtweaker.helpers.InputHelper.toStack;
 public class Furnace {
     @ZenMethod
     public static void addRecipe(int energy, IItemStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(energy, toStack(input), toStack(output)));
+        MineTweakerAPI.apply(new Add(energy, toStack(input), toStack(output)));
     }
 
     private static class Add implements IUndoableAction {
@@ -60,7 +60,7 @@ public class Furnace {
 
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(input)));
+        MineTweakerAPI.apply(new Remove(toStack(input)));
     }
 
     private static class Remove implements IUndoableAction {
@@ -102,7 +102,7 @@ public class Furnace {
 
     @ZenMethod
     public static void refreshRecipes() {
-        MineTweakerAPI.tweaker.apply(new Refresh());
+        MineTweakerAPI.apply(new Refresh());
     }
 
     private static class Refresh implements IUndoableAction {

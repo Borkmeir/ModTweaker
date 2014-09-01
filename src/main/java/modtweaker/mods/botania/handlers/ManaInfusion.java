@@ -18,21 +18,21 @@ import vazkii.botania.api.recipe.RecipeManaInfusion;
 public class ManaInfusion {
     @ZenMethod
     public static void addInfusion(IItemStack output, IIngredient input, int mana) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipeManaInfusion(toStack(output), toObject(input), mana)));
+        MineTweakerAPI.apply(new Add(new RecipeManaInfusion(toStack(output), toObject(input), mana)));
     }
 
     @ZenMethod
     public static void addAlchemy(IItemStack output, IIngredient input, int mana) {
         RecipeManaInfusion recipe = new RecipeManaInfusion(toStack(output), toObject(input), mana);
         recipe.setAlchemy(true);
-        MineTweakerAPI.tweaker.apply(new Add(recipe));
+        MineTweakerAPI.apply(new Add(recipe));
     }
 
     @ZenMethod
     public static void addConjuration(IItemStack output, IIngredient input, int mana) {
         RecipeManaInfusion recipe = new RecipeManaInfusion(toStack(output), toObject(input), mana);
         recipe.setConjuration(true);
-        MineTweakerAPI.tweaker.apply(new Add(recipe));
+        MineTweakerAPI.apply(new Add(recipe));
     }
 
     private static class Add extends BaseListAddition {
@@ -50,7 +50,7 @@ public class ManaInfusion {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

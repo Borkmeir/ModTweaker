@@ -16,11 +16,11 @@ public class Compressor {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output) {
         AdvancedInput aInput = new AdvancedInput(toStack(input), GasRegistry.getGas("liquidOsmium"));
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("OSMIUM_COMPRESSOR", Recipe.OSMIUM_COMPRESSOR.get(), aInput, toStack(output)));
+        MineTweakerAPI.apply(new AddMekanismRecipe("OSMIUM_COMPRESSOR", Recipe.OSMIUM_COMPRESSOR.get(), aInput, toStack(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("OSMIUM_COMPRESSOR", Recipe.OSMIUM_COMPRESSOR.get(), toStack(output)));
+        MineTweakerAPI.apply(new RemoveMekanismRecipe("OSMIUM_COMPRESSOR", Recipe.OSMIUM_COMPRESSOR.get(), toStack(output)));
     }
 }

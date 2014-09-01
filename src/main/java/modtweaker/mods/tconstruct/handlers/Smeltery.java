@@ -33,7 +33,7 @@ public class Smeltery {
     //Adding a TConstruct Alloy recipe
     @ZenMethod
     public static void addAlloy(ILiquidStack output, ILiquidStack[] input) {
-        MineTweakerAPI.tweaker.apply(new AddAlloy(new AlloyMix(toFluid(output), new ArrayList<FluidStack>(Arrays.asList(toFluids(input))))));
+        MineTweakerAPI.apply(new AddAlloy(new AlloyMix(toFluid(output), new ArrayList<FluidStack>(Arrays.asList(toFluids(input))))));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -53,7 +53,7 @@ public class Smeltery {
     //Removing a TConstruct Alloy recipe
     @ZenMethod
     public static void removeAlloy(ILiquidStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveAlloy((toFluid(output))));
+        MineTweakerAPI.apply(new RemoveAlloy((toFluid(output))));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it
@@ -90,7 +90,7 @@ public class Smeltery {
         if (isABlock(block)) {
             Block theBlock = Block.getBlockFromItem(toStack(block).getItem());
             int theMeta = toStack(block).getItemDamage();
-            MineTweakerAPI.tweaker.apply(new AddMelting(toStack(input), theBlock, theMeta, temp, toFluid(output)));
+            MineTweakerAPI.apply(new AddMelting(toStack(input), theBlock, theMeta, temp, toFluid(output)));
         }
     }
 
@@ -137,7 +137,7 @@ public class Smeltery {
     //Removing a TConstruct Melting recipe
     @ZenMethod
     public static void removeMelting(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new RemoveMelting((toStack(input))));
+        MineTweakerAPI.apply(new RemoveMelting((toStack(input))));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

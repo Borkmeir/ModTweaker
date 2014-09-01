@@ -20,7 +20,7 @@ import chylex.hee.mechanics.essence.handler.dragon.AltarItemRecipe;
 public class EssenceAltar {
     @ZenMethod
     public static void addRecipe(IItemStack source, IItemStack result, int cost) {
-        MineTweakerAPI.tweaker.apply(new Add(toStack(result), new AltarItemRecipe(toStack(source), toStack(result), cost)));
+        MineTweakerAPI.apply(new Add(toStack(result), new AltarItemRecipe(toStack(source), toStack(result), cost)));
     }
 
     private static class Add extends BaseListAddition {
@@ -41,7 +41,7 @@ public class EssenceAltar {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

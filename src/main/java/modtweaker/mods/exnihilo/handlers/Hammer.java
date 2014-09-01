@@ -22,7 +22,7 @@ public class Hammer {
         if (isABlock(input)) {
             Block theBlock = Block.getBlockFromItem(toStack(input).getItem());
             int theMeta = toStack(input).getItemDamage();
-            MineTweakerAPI.tweaker.apply(new Add(new Smashable(theBlock, theMeta, toStack(output).getItem(), toStack(output).getItemDamage(), (float) chance, (float) luck)));
+            MineTweakerAPI.apply(new Add(new Smashable(theBlock, theMeta, toStack(output).getItem(), toStack(output).getItemDamage(), (float) chance, (float) luck)));
         }
     }
 
@@ -43,7 +43,7 @@ public class Hammer {
     //Removing a Ex Nihilo Hammer recipe
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

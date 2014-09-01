@@ -13,11 +13,11 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class Enrichment {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("ENRICHMENT_CHAMBER", Recipe.ENRICHMENT_CHAMBER.get(), toStack(input), toStack(output)));
+        MineTweakerAPI.apply(new AddMekanismRecipe("ENRICHMENT_CHAMBER", Recipe.ENRICHMENT_CHAMBER.get(), toStack(input), toStack(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("ENRICHMENT_CHAMBER", Recipe.ENRICHMENT_CHAMBER.get(), toStack(input)));
+        MineTweakerAPI.apply(new RemoveMekanismRecipe("ENRICHMENT_CHAMBER", Recipe.ENRICHMENT_CHAMBER.get(), toStack(input)));
     }
 }

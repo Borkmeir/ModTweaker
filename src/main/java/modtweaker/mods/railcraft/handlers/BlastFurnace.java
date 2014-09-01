@@ -16,7 +16,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class BlastFurnace {
     @ZenMethod
     public static void addRecipe(IItemStack input, boolean matchDamage, boolean matchNBT, int cookTime, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(RailcraftHelper.getBlastFurnaceRecipe(toStack(input), matchDamage, matchNBT, cookTime, toStack(output))));
+        MineTweakerAPI.apply(new Add(RailcraftHelper.getBlastFurnaceRecipe(toStack(input), matchDamage, matchNBT, cookTime, toStack(output))));
     }
 
     private static class Add extends BaseListAddition {
@@ -34,7 +34,7 @@ public class BlastFurnace {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

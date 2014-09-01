@@ -18,12 +18,12 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class ChemicalWasher {
     @ZenMethod
     public static void addRecipe(IGasStack input, IGasStack output) {
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_WASHER", Recipe.CHEMICAL_WASHER.get(), toGas(input), toGas(output)));
+        MineTweakerAPI.apply(new AddMekanismRecipe("CHEMICAL_WASHER", Recipe.CHEMICAL_WASHER.get(), toGas(input), toGas(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IGasStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove("CHEMICAL_WASHER", Recipe.CHEMICAL_WASHER.get(), toGas(output)));
+        MineTweakerAPI.apply(new Remove("CHEMICAL_WASHER", Recipe.CHEMICAL_WASHER.get(), toGas(output)));
     }
 
     private static class Remove extends RemoveMekanismRecipe {

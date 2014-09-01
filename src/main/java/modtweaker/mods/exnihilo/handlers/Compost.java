@@ -19,7 +19,7 @@ public class Compost {
     @ZenMethod
     public static void addRecipe(IItemStack input, double value, @Optional String hex) {
         hex = (hex == null || hex.equals("")) ? "35A82A" : hex;
-        MineTweakerAPI.tweaker.apply(new Add(new Compostable(toStack(input).getItem(), toStack(input).getItemDamage(), Math.min(1.0F, (float) value), new Color(hex))));
+        MineTweakerAPI.apply(new Add(new Compostable(toStack(input).getItem(), toStack(input).getItemDamage(), Math.min(1.0F, (float) value), new Color(hex))));
     }
 
     //Passes the list to the map list implementation, and adds the recipe
@@ -39,7 +39,7 @@ public class Compost {
     //Removing a Ex Nihilo Composting recipe
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(input)));
+        MineTweakerAPI.apply(new Remove(toStack(input)));
     }
 
     //Removes a recipe, will always remove the key, so all should be good

@@ -19,7 +19,7 @@ public class RockCrusher {
         IRockCrusherRecipe recipe = RailcraftHelper.getRockCrusherRecipe(toStack(input), matchDamage, matchNBT);
         for (int i = 0; i < output.length; i++)
             recipe.addOutput(toStack(output[i]), (float) chances[i]);
-        MineTweakerAPI.tweaker.apply(new Add(recipe));
+        MineTweakerAPI.apply(new Add(recipe));
     }
 
     private static class Add extends BaseListAddition {
@@ -37,7 +37,7 @@ public class RockCrusher {
 
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(input)));
+        MineTweakerAPI.apply(new Remove(toStack(input)));
     }
 
     private static class Remove extends BaseListRemoval {

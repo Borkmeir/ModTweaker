@@ -13,7 +13,7 @@ import tconstruct.library.modifier.ItemModifier;
 public class Modifiers {
     @ZenMethod
     public static void remove(String mod) {
-        MineTweakerAPI.tweaker.apply(new Remove(mod));
+        MineTweakerAPI.apply(new Remove(mod));
     }
 
     //Searches through the modifiers and removes the first valid entry

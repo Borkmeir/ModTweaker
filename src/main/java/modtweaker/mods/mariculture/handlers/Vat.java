@@ -60,7 +60,7 @@ public class Vat {
 
     @ZenMethod
     public static void addRecipe(ILiquidStack fluid1, ILiquidStack fluid2, IItemStack input, ILiquidStack outputFluid, IItemStack outputItem, int time) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipeVat(toStack(input), toFluid(fluid1), toFluid(fluid2), toFluid(outputFluid), toStack(outputItem), time)));
+        MineTweakerAPI.apply(new Add(new RecipeVat(toStack(input), toFluid(fluid1), toFluid(fluid2), toFluid(outputFluid), toStack(outputItem), time)));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -81,17 +81,17 @@ public class Vat {
     //Removing a Mariculture Vat recipe
     @ZenMethod
     public static void removeRecipe(IItemStack outputItem) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(outputItem), null));
+        MineTweakerAPI.apply(new Remove(toStack(outputItem), null));
     }
 
     @ZenMethod
     public static void removeRecipe(ILiquidStack outputFluid) {
-        MineTweakerAPI.tweaker.apply(new Remove(null, toFluid(outputFluid)));
+        MineTweakerAPI.apply(new Remove(null, toFluid(outputFluid)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack outputItem, ILiquidStack outputFluid) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(outputItem), toFluid(outputFluid)));
+        MineTweakerAPI.apply(new Remove(toStack(outputItem), toFluid(outputFluid)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

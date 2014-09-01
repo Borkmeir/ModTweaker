@@ -23,12 +23,12 @@ public class Infuser {
     public static void addRecipe(String type, int infuse, IItemStack input, IItemStack output) {
         InfusionInput infuseIn = new InfusionInput(InfuseRegistry.get(type), infuse, toStack(input));
         InfusionOutput infuseOut = new InfusionOutput(infuseIn, toStack(output));
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("METALLURGIC_INFUSER", Recipe.METALLURGIC_INFUSER.get(), infuseIn, infuseOut));
+        MineTweakerAPI.apply(new AddMekanismRecipe("METALLURGIC_INFUSER", Recipe.METALLURGIC_INFUSER.get(), infuseIn, infuseOut));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove("METALLURGIC_INFUSER", Recipe.METALLURGIC_INFUSER.get(), new InfusionOutput(null, toStack(output))));
+        MineTweakerAPI.apply(new Remove("METALLURGIC_INFUSER", Recipe.METALLURGIC_INFUSER.get(), new InfusionOutput(null, toStack(output))));
     }
 
     private static class Remove extends RemoveMekanismRecipe {

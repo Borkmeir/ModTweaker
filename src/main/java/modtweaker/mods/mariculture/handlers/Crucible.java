@@ -28,7 +28,7 @@ public class Crucible {
     @ZenMethod
     public static void addRecipe(int temp, IItemStack input, ILiquidStack fluid, @Optional IItemStack output, @Optional int chance) {
         ItemStack out = output != null ? toStack(output) : null;
-        MineTweakerAPI.tweaker.apply(new AddRecipe(new RecipeSmelter(toStack(input), null, temp, toFluid(fluid), out, chance)));
+        MineTweakerAPI.apply(new AddRecipe(new RecipeSmelter(toStack(input), null, temp, toFluid(fluid), out, chance)));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -48,7 +48,7 @@ public class Crucible {
     //Removing a Mariculture Crucible recipe
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new RemoveRecipe(toStack(input)));
+        MineTweakerAPI.apply(new RemoveRecipe(toStack(input)));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it
@@ -79,17 +79,17 @@ public class Crucible {
     /********************************************** Crucible Fuels **********************************************/
     @ZenMethod
     public static void addFuel(IItemStack input, int max, int per, int time) {
-        MineTweakerAPI.tweaker.apply(new AddFuel(toStack(input), new FuelInfo(max, per, time)));
+        MineTweakerAPI.apply(new AddFuel(toStack(input), new FuelInfo(max, per, time)));
     }
 
     @ZenMethod
     public static void addFuel(ILiquidStack input, int max, int per, int time) {
-        MineTweakerAPI.tweaker.apply(new AddFuel(toFluid(input), new FuelInfo(max, per, time)));
+        MineTweakerAPI.apply(new AddFuel(toFluid(input), new FuelInfo(max, per, time)));
     }
 
     @ZenMethod
     public static void addFuel(String input, int max, int per, int time) {
-        MineTweakerAPI.tweaker.apply(new AddFuel(input, new FuelInfo(max, per, time)));
+        MineTweakerAPI.apply(new AddFuel(input, new FuelInfo(max, per, time)));
     }
 
     //Passes the list to the base map implementation, and adds the recipe
@@ -107,17 +107,17 @@ public class Crucible {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @ZenMethod
     public static void removeFuel(IItemStack fuel) {
-        MineTweakerAPI.tweaker.apply(new RemoveFuel(fuel));
+        MineTweakerAPI.apply(new RemoveFuel(fuel));
     }
 
     @ZenMethod
     public static void removeFuel(ILiquidStack fuel) {
-        MineTweakerAPI.tweaker.apply(new RemoveFuel(fuel));
+        MineTweakerAPI.apply(new RemoveFuel(fuel));
     }
 
     @ZenMethod
     public static void removeFuel(String fuel) {
-        MineTweakerAPI.tweaker.apply(new RemoveFuel(fuel));
+        MineTweakerAPI.apply(new RemoveFuel(fuel));
     }
 
     //Removes a recipe, will always remove the key, so all should be good

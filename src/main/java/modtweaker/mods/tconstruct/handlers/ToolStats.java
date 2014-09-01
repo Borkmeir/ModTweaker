@@ -17,57 +17,57 @@ public class ToolStats {
     @ZenMethod
     public static void set(String material, @Optional String name, int level, int durability, int speed, int damage, double handle, int reinforced, double stonebound, String style, String ability) {
         if (name == null) name = material + " ";
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "", new ToolMaterial(material, name, level, durability, speed, damage, (float)handle, reinforced, (float)stonebound, style, ability)));
+        MineTweakerAPI.apply(new SetToolStats(material, "", new ToolMaterial(material, name, level, durability, speed, damage, (float)handle, reinforced, (float)stonebound, style, ability)));
     }
 
     @ZenMethod
     public static void setDisplayName(String material, String name) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "displayName", name));
+        MineTweakerAPI.apply(new SetToolStats(material, "displayName", name));
     }
 
     @ZenMethod
     public static void setHarvestLevel(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "harvestLevel", value));
+        MineTweakerAPI.apply(new SetToolStats(material, "harvestLevel", value));
     }
 
     @ZenMethod
     public static void setDurability(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "durability", value));
+        MineTweakerAPI.apply(new SetToolStats(material, "durability", value));
     }
 
     @ZenMethod
     public static void setSpeed(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "miningspeed", value));
+        MineTweakerAPI.apply(new SetToolStats(material, "miningspeed", value));
     }
 
     @ZenMethod
     public static void setDamage(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "attack", value));
+        MineTweakerAPI.apply(new SetToolStats(material, "attack", value));
     }
 
     @ZenMethod
     public static void setHandleModifier(String material, double value) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "handleModifier", (float) value));
+        MineTweakerAPI.apply(new SetToolStats(material, "handleModifier", (float) value));
     }
 
     @ZenMethod
     public static void setReinforcedLevel(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "reinforced", value));
+        MineTweakerAPI.apply(new SetToolStats(material, "reinforced", value));
     }
 
     @ZenMethod
     public static void setStoneboundLevel(String material, double value) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "stonebound", (float) value));
+        MineTweakerAPI.apply(new SetToolStats(material, "stonebound", (float) value));
     }
 
     @ZenMethod
     public static void setStyle(String material, String name) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "tipStyle", name));
+        MineTweakerAPI.apply(new SetToolStats(material, "tipStyle", name));
     }
 
     @ZenMethod
     public static void setAbility(String material, String name) {
-        MineTweakerAPI.tweaker.apply(new SetToolStats(material, "ability", name));
+        MineTweakerAPI.apply(new SetToolStats(material, "ability", name));
     }
 
     //Sets various variables with reflection, making my life partially easier :D
@@ -135,22 +135,22 @@ public class ToolStats {
     //Bow Stats
     @ZenMethod
     public static void setBowStats(String material, int durability, int drawspeed, double flightspeed) {
-        MineTweakerAPI.tweaker.apply(new SetBowStats(material, "", new BowMaterial(durability, drawspeed, (float) flightspeed)));
+        MineTweakerAPI.apply(new SetBowStats(material, "", new BowMaterial(durability, drawspeed, (float) flightspeed)));
     }
 
     @ZenMethod
     public static void setBowDurability(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetBowStats(material, "durability", value));
+        MineTweakerAPI.apply(new SetBowStats(material, "durability", value));
     }
 
     @ZenMethod
     public static void setBowDrawspeed(String material, int value) {
-        MineTweakerAPI.tweaker.apply(new SetBowStats(material, "drawspeed", value));
+        MineTweakerAPI.apply(new SetBowStats(material, "drawspeed", value));
     }
 
     @ZenMethod
     public static void setBowFlightSpeed(String material, double value) {
-        MineTweakerAPI.tweaker.apply(new SetBowStats(material, "flightSpeedMax", (float) value));
+        MineTweakerAPI.apply(new SetBowStats(material, "flightSpeedMax", (float) value));
     }
 
     // Bow Stats
@@ -192,22 +192,22 @@ public class ToolStats {
     //Arrow Stats
     @ZenMethod
     public static void setArrowStats(String material, double mass, double breakChance, double accuracy) {
-        MineTweakerAPI.tweaker.apply(new SetArrowStats(material, "", new ArrowMaterial((float) mass, (float) breakChance, (float) accuracy)));
+        MineTweakerAPI.apply(new SetArrowStats(material, "", new ArrowMaterial((float) mass, (float) breakChance, (float) accuracy)));
     }
 
     @ZenMethod
     public static void setArrowMass(String material, double value) {
-        MineTweakerAPI.tweaker.apply(new SetArrowStats(material, "mass", (float) value));
+        MineTweakerAPI.apply(new SetArrowStats(material, "mass", (float) value));
     }
 
     @ZenMethod
     public static void setArrowBreakChance(String material, double value) {
-        MineTweakerAPI.tweaker.apply(new SetArrowStats(material, "breakChance", (float) value));
+        MineTweakerAPI.apply(new SetArrowStats(material, "breakChance", (float) value));
     }
 
     @ZenMethod
     public static void setArrowAccuracy(String material, double value) {
-        MineTweakerAPI.tweaker.apply(new SetArrowStats(material, "accuracy", (float) value));
+        MineTweakerAPI.apply(new SetArrowStats(material, "accuracy", (float) value));
     }
 
     // Bow Stats

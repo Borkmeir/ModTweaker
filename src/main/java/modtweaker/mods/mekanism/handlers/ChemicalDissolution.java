@@ -26,25 +26,25 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class ChemicalDissolution {
     @ZenMethod
     public static void addRecipe(IItemStack input, IGasStack output) {
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_DISSOLUTION_CHAMBER", Recipe.CHEMICAL_DISSOLUTION_CHAMBER.get(), toStack(input), toGas(output)));
+        MineTweakerAPI.apply(new AddMekanismRecipe("CHEMICAL_DISSOLUTION_CHAMBER", Recipe.CHEMICAL_DISSOLUTION_CHAMBER.get(), toStack(input), toGas(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove("CHEMICAL_DISSOLUTION_CHAMBER", Recipe.CHEMICAL_DISSOLUTION_CHAMBER.get(), toStack(input)));
+        MineTweakerAPI.apply(new Remove("CHEMICAL_DISSOLUTION_CHAMBER", Recipe.CHEMICAL_DISSOLUTION_CHAMBER.get(), toStack(input)));
     }
 
     @ZenMethod
     public static void removeRecipe(IOreDictEntry input) {
         List<ItemStack> stacks = OreDictionary.getOres(InputHelper.toString(input));
         for (ItemStack stack : stacks) {
-            MineTweakerAPI.tweaker.apply(new Remove("CHEMICAL_DISSOLUTION_CHAMBER", Recipe.CHEMICAL_DISSOLUTION_CHAMBER.get(), stack));
+            MineTweakerAPI.apply(new Remove("CHEMICAL_DISSOLUTION_CHAMBER", Recipe.CHEMICAL_DISSOLUTION_CHAMBER.get(), stack));
         }
     }
 
     @ZenMethod
     public static void removeRecipe(IGasStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove("CHEMICAL_DISSOLUTION_CHAMBER", Recipe.CHEMICAL_DISSOLUTION_CHAMBER.get(), toGas(input)));
+        MineTweakerAPI.apply(new Remove("CHEMICAL_DISSOLUTION_CHAMBER", Recipe.CHEMICAL_DISSOLUTION_CHAMBER.get(), toGas(input)));
     }
 
     private static class Remove extends RemoveMekanismRecipe {

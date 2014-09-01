@@ -18,7 +18,7 @@ import vazkii.botania.api.recipe.RecipeRuneAltar;
 public class RuneAltar {
     @ZenMethod
     public static void addRecipe(IItemStack output, IIngredient[] input, int mana) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipeRuneAltar(toStack(output), mana, toObjects(input))));
+        MineTweakerAPI.apply(new Add(new RecipeRuneAltar(toStack(output), mana, toObjects(input))));
     }
 
     private static class Add extends BaseListAddition {
@@ -36,7 +36,7 @@ public class RuneAltar {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

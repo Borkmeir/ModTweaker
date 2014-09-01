@@ -11,12 +11,12 @@ import vazkii.botania.api.BotaniaAPI;
 public class Orechid {
     @ZenMethod
     public static void addOre(IOreDictEntry oreDict, int weight) {
-        MineTweakerAPI.tweaker.apply(new Add(oreDict.getName(), weight));
+        MineTweakerAPI.apply(new Add(oreDict.getName(), weight));
     }
 
     @ZenMethod
     public static void addOre(String oreDict, int weight) {
-        MineTweakerAPI.tweaker.apply(new Add(oreDict, weight));
+        MineTweakerAPI.apply(new Add(oreDict, weight));
     }
 
     private static class Add implements IUndoableAction {
@@ -64,12 +64,12 @@ public class Orechid {
 
     @ZenMethod
     public static void removeOre(IOreDictEntry oreDict) {
-        MineTweakerAPI.tweaker.apply(new Remove(oreDict.getName()));
+        MineTweakerAPI.apply(new Remove(oreDict.getName()));
     }
 
     @ZenMethod
     public static void removeOre(String oreDict) {
-        MineTweakerAPI.tweaker.apply(new Remove(oreDict));
+        MineTweakerAPI.apply(new Remove(oreDict));
     }
 
     private static class Remove implements IUndoableAction {

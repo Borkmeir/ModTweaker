@@ -15,11 +15,11 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class ChemicalCrystallizer {
     @ZenMethod
     public static void addRecipe(IGasStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_CRYSTALLIZER", Recipe.CHEMICAL_CRYSTALLIZER.get(), toGas(input), toStack(output)));
+        MineTweakerAPI.apply(new AddMekanismRecipe("CHEMICAL_CRYSTALLIZER", Recipe.CHEMICAL_CRYSTALLIZER.get(), toGas(input), toStack(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_CRYSTALLIZER", Recipe.CHEMICAL_CRYSTALLIZER.get(), toStack(output)));
+        MineTweakerAPI.apply(new RemoveMekanismRecipe("CHEMICAL_CRYSTALLIZER", Recipe.CHEMICAL_CRYSTALLIZER.get(), toStack(output)));
     }
 }

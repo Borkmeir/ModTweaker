@@ -18,7 +18,7 @@ import net.minecraftforge.fluids.FluidStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import thermalexpansion.util.crafting.TransposerManager.RecipeTransposer;
-import cofh.util.inventory.ComparableItemStackSafe;
+import cofh.lib.inventory.ComparableItemStackSafe;
 
 @ZenClass("mods.thermalexpansion.Transposer")
 public class Transposer {
@@ -58,7 +58,7 @@ public class Transposer {
         ItemStack out = toStack(output);
         FluidStack fluid = toFluid(liquid);
         RecipeTransposer recipe = (RecipeTransposer) ThermalHelper.getTERecipe(ThermalHelper.transposerRecipe, in, out, fluid, energy, chance);
-        MineTweakerAPI.tweaker.apply(new Add(in, fluid, recipe, isFillRecipe));
+        MineTweakerAPI.apply(new Add(in, fluid, recipe, isFillRecipe));
     }
 
     private static class Add extends BaseDescriptionAddition {
@@ -124,7 +124,7 @@ public class Transposer {
 
     @ZenMethod
     public static void removeRecipe(IItemStack input, ILiquidStack liquid, boolean isFillRecipe) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(input), toFluid(liquid), isFillRecipe));
+        MineTweakerAPI.apply(new Remove(toStack(input), toFluid(liquid), isFillRecipe));
     }
 
     private static class Remove extends BaseDescriptionRemoval {

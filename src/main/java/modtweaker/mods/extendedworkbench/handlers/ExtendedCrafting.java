@@ -23,12 +23,12 @@ import java.util.Arrays;
 public class ExtendedCrafting {
     @ZenMethod
     public static void addShaped(IItemStack output, IItemStack[][] ingredients) {
-        MineTweakerAPI.tweaker.apply(new Add(getShapedRecipe(output, ingredients)));
+        MineTweakerAPI.apply(new Add(getShapedRecipe(output, ingredients)));
     }
 
     @ZenMethod
     public static void addShapeless(IItemStack output, IItemStack[] ingredients){
-        MineTweakerAPI.tweaker.apply(new Add(new ExtendedShapelessRecipes(toStack(output), Arrays.asList(toStacks(ingredients)))));
+        MineTweakerAPI.apply(new Add(new ExtendedShapelessRecipes(toStack(output), Arrays.asList(toStacks(ingredients)))));
     }
 
     private static class Add extends BaseListAddition {
@@ -74,7 +74,7 @@ public class ExtendedCrafting {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

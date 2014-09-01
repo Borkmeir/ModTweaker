@@ -17,11 +17,11 @@ public class ChemicalInjection {
     @ZenMethod
     public static void addRecipe(IItemStack input, IGasStack gas, IItemStack output) {
         AdvancedInput aInput = new AdvancedInput(toStack(input), toGas(gas).getGas());
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("CHEMICAL_INJECTION_CHAMBER", Recipe.CHEMICAL_INJECTION_CHAMBER.get(), aInput, toStack(output)));
+        MineTweakerAPI.apply(new AddMekanismRecipe("CHEMICAL_INJECTION_CHAMBER", Recipe.CHEMICAL_INJECTION_CHAMBER.get(), aInput, toStack(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("CHEMICAL_INJECTION_CHAMBER", Recipe.CHEMICAL_INJECTION_CHAMBER.get(), toStack(output)));
+        MineTweakerAPI.apply(new RemoveMekanismRecipe("CHEMICAL_INJECTION_CHAMBER", Recipe.CHEMICAL_INJECTION_CHAMBER.get(), toStack(output)));
     }
 }

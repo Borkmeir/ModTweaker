@@ -22,12 +22,12 @@ import thaumcraft.api.crafting.ShapelessArcaneRecipe;
 public class Arcane {
     @ZenMethod
     public static void addShaped(String key, IItemStack output, String aspects, IIngredient[][] ingredients) {
-        MineTweakerAPI.tweaker.apply(new Add(new ShapedArcaneRecipe(key, toStack(output), ThaumcraftHelper.parseAspects(aspects), toShapedObjects(ingredients))));
+        MineTweakerAPI.apply(new Add(new ShapedArcaneRecipe(key, toStack(output), ThaumcraftHelper.parseAspects(aspects), toShapedObjects(ingredients))));
     }
 
     @ZenMethod
     public static void addShapeless(String key, IItemStack output, String aspects, IIngredient[] ingredients) {
-        MineTweakerAPI.tweaker.apply(new Add(new ShapelessArcaneRecipe(key, toStack(output), ThaumcraftHelper.parseAspects(aspects), toObjects(ingredients))));
+        MineTweakerAPI.apply(new Add(new ShapelessArcaneRecipe(key, toStack(output), ThaumcraftHelper.parseAspects(aspects), toObjects(ingredients))));
     }
 
     private static class Add extends BaseListAddition {
@@ -48,7 +48,7 @@ public class Arcane {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

@@ -18,7 +18,7 @@ import vazkii.botania.api.recipe.RecipeElvenTrade;
 public class ElvenTrade {
     @ZenMethod
     public static void addRecipe(IItemStack output, IIngredient[] input) {
-        MineTweakerAPI.tweaker.apply(new Add(new RecipeElvenTrade(toStack(output), toObjects(input))));
+        MineTweakerAPI.apply(new Add(new RecipeElvenTrade(toStack(output), toObjects(input))));
     }
 
     private static class Add extends BaseListAddition {
@@ -36,7 +36,7 @@ public class ElvenTrade {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

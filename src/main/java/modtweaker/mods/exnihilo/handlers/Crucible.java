@@ -27,7 +27,7 @@ public class Crucible {
         if (isABlock(input)) {
             Block theBlock = Block.getBlockFromItem(toStack(input).getItem());
             int theMeta = toStack(input).getItemDamage();
-            MineTweakerAPI.tweaker.apply(new AddRecipe(new Meltable(theBlock, theMeta, 2000, toFluid(fluid).getFluid(), toFluid(fluid).amount, theBlock)));
+            MineTweakerAPI.apply(new AddRecipe(new Meltable(theBlock, theMeta, 2000, toFluid(fluid).getFluid(), toFluid(fluid).amount, theBlock)));
         }
     }
 
@@ -49,7 +49,7 @@ public class Crucible {
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
         if (isABlock(output)) {
-            MineTweakerAPI.tweaker.apply(new RemoveRecipe(toStack(output)));
+            MineTweakerAPI.apply(new RemoveRecipe(toStack(output)));
         }
     }
 
@@ -72,7 +72,7 @@ public class Crucible {
         if (isABlock(input)) {
             Block theBlock = Block.getBlockFromItem(toStack(input).getItem());
             int theMeta = toStack(input).getItemDamage();
-            MineTweakerAPI.tweaker.apply(new AddHeatSource(new HeatSource(theBlock, theMeta, (float) value)));
+            MineTweakerAPI.apply(new AddHeatSource(new HeatSource(theBlock, theMeta, (float) value)));
         }
     }
 
@@ -94,7 +94,7 @@ public class Crucible {
     @ZenMethod
     public static void removeHeatSource(IItemStack output) {
         if (isABlock(output)) {
-            MineTweakerAPI.tweaker.apply(new RemoveHeatSource(toStack(output)));
+            MineTweakerAPI.apply(new RemoveHeatSource(toStack(output)));
         }
     }
 

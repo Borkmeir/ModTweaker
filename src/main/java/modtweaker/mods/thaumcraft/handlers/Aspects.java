@@ -21,12 +21,12 @@ public class Aspects {
     /** Add/Remove/Set Aspects for items **/
     @ZenMethod
     public static void add(IItemStack stack, String aspects) {
-        MineTweakerAPI.tweaker.apply(new Add(toStack(stack), aspects, false));
+        MineTweakerAPI.apply(new Add(toStack(stack), aspects, false));
     }
 
     @ZenMethod
     public static void set(IItemStack stack, String aspects) {
-        MineTweakerAPI.tweaker.apply(new Add(toStack(stack), aspects, true));
+        MineTweakerAPI.apply(new Add(toStack(stack), aspects, true));
     }
 
     //Adds or sets Aspects
@@ -69,7 +69,7 @@ public class Aspects {
 
     @ZenMethod
     public static void remove(IItemStack stack, String aspects) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(stack), aspects));
+        MineTweakerAPI.apply(new Remove(toStack(stack), aspects));
     }
 
     private static class Remove extends BaseDescriptionRemoval {

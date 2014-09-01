@@ -22,12 +22,12 @@ public class Reaction {
     public static void addRecipe(IItemStack solid, ILiquidStack liquid, IGasStack gas, IItemStack outItem, IGasStack outGas, double energy, int ticks) {
         PressurizedReactants input = new PressurizedReactants(toStack(solid), toFluid(liquid), toGas(gas));
         PressurizedRecipe recipe = new PressurizedRecipe(input, energy, new PressurizedProducts(toStack(outItem), toGas(outGas)), ticks);
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("PRESSURIZED_REACTION_CHAMBER", Recipe.PRESSURIZED_REACTION_CHAMBER.get(), input, recipe));
+        MineTweakerAPI.apply(new AddMekanismRecipe("PRESSURIZED_REACTION_CHAMBER", Recipe.PRESSURIZED_REACTION_CHAMBER.get(), input, recipe));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack outItem, IGasStack outGas) {
         PressurizedProducts output = new PressurizedProducts(toStack(outItem), toGas(outGas));
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("PRESSURIZED_REACTION_CHAMBER", Recipe.PRESSURIZED_REACTION_CHAMBER.get(), output));
+        MineTweakerAPI.apply(new RemoveMekanismRecipe("PRESSURIZED_REACTION_CHAMBER", Recipe.PRESSURIZED_REACTION_CHAMBER.get(), output));
     }
 }

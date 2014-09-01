@@ -20,12 +20,12 @@ public class Warp {
 
     @ZenMethod
     public static void addToResearch(String key, int warp) {
-        MineTweakerAPI.tweaker.apply(new Add(key, warp));
+        MineTweakerAPI.apply(new Add(key, warp));
     }
 
     @ZenMethod
     public static void addToItem(IItemStack stack, int warp) {
-        MineTweakerAPI.tweaker.apply(new Add(toStack(stack), warp));
+        MineTweakerAPI.apply(new Add(toStack(stack), warp));
     }
 
     private static class Add implements IUndoableAction {
@@ -83,27 +83,27 @@ public class Warp {
 
     @ZenMethod
     public static void removeFromResearch(String key) {
-        MineTweakerAPI.tweaker.apply(new Remove(key));
+        MineTweakerAPI.apply(new Remove(key));
     }
 
     @ZenMethod
     public static void removeFromItem(IItemStack stack) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(stack)));
+        MineTweakerAPI.apply(new Remove(toStack(stack)));
     }
 
     @ZenMethod
     public static void removeAll(){
-        MineTweakerAPI.tweaker.apply(new MassRemove(RemoveType.BOTH));
+        MineTweakerAPI.apply(new MassRemove(RemoveType.BOTH));
     }
 
     @ZenMethod
     public static void removeAllResearch(){
-        MineTweakerAPI.tweaker.apply(new MassRemove(RemoveType.RESEARCH));
+        MineTweakerAPI.apply(new MassRemove(RemoveType.RESEARCH));
     }
 
     @ZenMethod
     public static void removeAllItems(){
-        MineTweakerAPI.tweaker.apply(new MassRemove(RemoveType.ITEMS));
+        MineTweakerAPI.apply(new MassRemove(RemoveType.ITEMS));
     }
 
     private static class Remove implements IUndoableAction {

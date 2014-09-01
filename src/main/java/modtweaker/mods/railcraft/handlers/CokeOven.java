@@ -18,7 +18,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class CokeOven {
     @ZenMethod
     public static void addRecipe(IItemStack input, boolean matchDamage, boolean matchNBT, IItemStack output, ILiquidStack fluidOutput, int cookTime) {
-        MineTweakerAPI.tweaker.apply(new Add(RailcraftHelper.getCokeOvenRecipe(toStack(input), matchDamage, matchNBT, toStack(output), toFluid(fluidOutput), cookTime)));
+        MineTweakerAPI.apply(new Add(RailcraftHelper.getCokeOvenRecipe(toStack(input), matchDamage, matchNBT, toStack(output), toFluid(fluidOutput), cookTime)));
     }
 
     private static class Add extends BaseListAddition {
@@ -36,7 +36,7 @@ public class CokeOven {
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output)));
     }
 
     private static class Remove extends BaseListRemoval {

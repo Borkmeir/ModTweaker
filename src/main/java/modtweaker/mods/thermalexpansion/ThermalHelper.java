@@ -2,8 +2,6 @@ package modtweaker.mods.thermalexpansion;
 
 import static modtweaker.helpers.ReflectionHelper.getConstructor;
 import static modtweaker.helpers.ReflectionHelper.getStaticObject;
-import static modtweaker.helpers.ReflectionHelper.setPrivateValue;
-import gnu.trove.map.hash.THashMap;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
@@ -12,10 +10,9 @@ import java.util.Set;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
-import thermalexpansion.util.crafting.SmelterManager;
 import thermalexpansion.util.crafting.SmelterManager.RecipeSmelter;
 import thermalexpansion.util.crafting.TransposerManager.RecipeTransposer;
-import cofh.util.inventory.ComparableItemStackSafe;
+import cofh.lib.inventory.ComparableItemStackSafe;
 
 public class ThermalHelper {
     private static Map<List, RecipeSmelter> smelter;

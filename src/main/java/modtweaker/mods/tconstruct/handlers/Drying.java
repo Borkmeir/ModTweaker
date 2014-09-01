@@ -21,7 +21,7 @@ public class Drying {
     //Adding a TConstruct Drying Rack recipe
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output, int time) {
-        MineTweakerAPI.tweaker.apply(new Add(TConstructHelper.getDryingRecipe(toStack(input), time, toStack(output))));
+        MineTweakerAPI.apply(new Add(TConstructHelper.getDryingRecipe(toStack(input), time, toStack(output))));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -41,7 +41,7 @@ public class Drying {
     //Removing a TConstruct Drying Rack recipe
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove((toStack(output))));
+        MineTweakerAPI.apply(new Remove((toStack(output))));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

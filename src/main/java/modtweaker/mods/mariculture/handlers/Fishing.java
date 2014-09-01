@@ -63,7 +63,7 @@ public class Fishing {
         if (dimension == null || dimension.length == 0) dimension = new int[] { Short.MAX_VALUE };
         if (type == null) type = "dire";
         for (int dim : dimension) {
-            MineTweakerAPI.tweaker.apply(new AddLoot(new Loot(stack, chance, rarity, dim, rodTypes.get(type), exact), rarity.name()));
+            MineTweakerAPI.apply(new AddLoot(new Loot(stack, chance, rarity, dim, rodTypes.get(type), exact), rarity.name()));
         }
     }
 
@@ -100,7 +100,7 @@ public class Fishing {
     //Removing Fishing Loot, will remove it from every single list
     @ZenMethod
     public static void removeLoot(IItemStack loot) {
-        MineTweakerAPI.tweaker.apply(new RemoveLoot(toStack(loot)));
+        MineTweakerAPI.apply(new RemoveLoot(toStack(loot)));
     }
 
     private static class RemoveLoot extends BaseDescriptionRemoval {

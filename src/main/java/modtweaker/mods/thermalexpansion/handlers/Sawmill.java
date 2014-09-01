@@ -15,12 +15,12 @@ import thermalexpansion.util.crafting.SawmillManager.RecipeSawmill;
 public class Sawmill {
     @ZenMethod
     public static void addRecipe(int energy, IItemStack input, IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Add(energy, toStack(input), toStack(output), null, 0));
+        MineTweakerAPI.apply(new Add(energy, toStack(input), toStack(output), null, 0));
     }
 
     @ZenMethod
     public static void addRecipe(int energy, IItemStack input, IItemStack output, IItemStack secondary, int secondaryChance) {
-        MineTweakerAPI.tweaker.apply(new Add(energy, toStack(input), toStack(output), toStack(secondary), secondaryChance));
+        MineTweakerAPI.apply(new Add(energy, toStack(input), toStack(output), toStack(secondary), secondaryChance));
     }
 
     private static class Add implements IUndoableAction {
@@ -69,7 +69,7 @@ public class Sawmill {
 
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(input)));
+        MineTweakerAPI.apply(new Remove(toStack(input)));
     }
 
     private static class Remove implements IUndoableAction {

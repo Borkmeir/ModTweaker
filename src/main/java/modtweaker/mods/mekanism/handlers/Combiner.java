@@ -16,11 +16,11 @@ public class Combiner {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output) {
         AdvancedInput aInput = new AdvancedInput(toStack(input), GasRegistry.getGas("liquidStone"));
-        MineTweakerAPI.tweaker.apply(new AddMekanismRecipe("COMBINER", Recipe.COMBINER.get(), aInput, toStack(output)));
+        MineTweakerAPI.apply(new AddMekanismRecipe("COMBINER", Recipe.COMBINER.get(), aInput, toStack(output)));
     }
 
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new RemoveMekanismRecipe("COMBINER", Recipe.COMBINER.get(), toStack(output)));
+        MineTweakerAPI.apply(new RemoveMekanismRecipe("COMBINER", Recipe.COMBINER.get(), toStack(output)));
     }
 }

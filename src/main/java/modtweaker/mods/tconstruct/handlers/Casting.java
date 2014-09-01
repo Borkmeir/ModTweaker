@@ -23,12 +23,12 @@ public class Casting {
     //Adding a TConstruct Casting recipe
     @ZenMethod
     public static void addBasinRecipe(IItemStack output, ILiquidStack metal, @Optional IItemStack cast, @Optional boolean consume, int delay) {
-        MineTweakerAPI.tweaker.apply(new Add(new CastingRecipe(toStack(output), toFluid(metal), toStack(cast), consume, delay, null), TConstructHelper.basinCasting));
+        MineTweakerAPI.apply(new Add(new CastingRecipe(toStack(output), toFluid(metal), toStack(cast), consume, delay, null), TConstructHelper.basinCasting));
     }
 
     @ZenMethod
     public static void addTableRecipe(IItemStack output, ILiquidStack metal, @Optional IItemStack cast, @Optional boolean consume, int delay) {
-        MineTweakerAPI.tweaker.apply(new Add(new CastingRecipe(toStack(output), toFluid(metal), toStack(cast), consume, delay, null), TConstructHelper.tableCasting));
+        MineTweakerAPI.apply(new Add(new CastingRecipe(toStack(output), toFluid(metal), toStack(cast), consume, delay, null), TConstructHelper.tableCasting));
     }
 
     //Passes the list to the base list implementation, and adds the recipe
@@ -48,12 +48,12 @@ public class Casting {
     //Removing a TConstruct Casting recipe
     @ZenMethod
     public static void removeBasinRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove((toStack(output)), TConstructHelper.basinCasting));
+        MineTweakerAPI.apply(new Remove((toStack(output)), TConstructHelper.basinCasting));
     }
 
     @ZenMethod
     public static void removeTableRecipe(IItemStack output) {
-        MineTweakerAPI.tweaker.apply(new Remove((toStack(output)), TConstructHelper.tableCasting));
+        MineTweakerAPI.apply(new Remove((toStack(output)), TConstructHelper.tableCasting));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it

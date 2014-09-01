@@ -17,7 +17,7 @@ public class SlagFurnace {
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output1, double chance1, IItemStack output2, double chance2) {
         Object recipe = FactorizationHelper.getSlagFurnaceRecipe(toStack(input), (float) chance1, toStack(output1), (float) chance2, toStack(output2));
-        MineTweakerAPI.tweaker.apply(new Add(toStack(input), recipe));
+        MineTweakerAPI.apply(new Add(toStack(input), recipe));
     }
 
     private static class Add extends BaseListAddition {
@@ -38,7 +38,7 @@ public class SlagFurnace {
 
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.tweaker.apply(new Remove(toStack(input)));
+        MineTweakerAPI.apply(new Remove(toStack(input)));
     }
 
     private static class Remove extends BaseListRemoval {
