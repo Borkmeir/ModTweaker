@@ -6,7 +6,8 @@ import static modtweaker.helpers.StackHelper.areEqual;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
-import modtweaker.util.BaseListRemoval;
+import modtweaker.util.BaseMultipleListRemoval;
+import modtweaker.util.BaseMultipleListRemoval.Position;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -43,32 +44,37 @@ public class Sieve {
     //Removing a Ex Nihilo Sieve recipe
     @ZenMethod
     public static void removeRecipe(IItemStack output) {
-        MineTweakerAPI.apply(new Remove(toStack(output)));
+        MineTweakerAPI.apply(new Remove(toStack(output), Position.ALL));
+    }
+    
+    @ZenMethod
+    public static void removeFirst(IItemStack output) {
+        MineTweakerAPI.apply(new Remove(toStack(output), Position.FIRST));
+    }
+    
+    @ZenMethod
+    public static void removeLast(IItemStack output) {
+        MineTweakerAPI.apply(new Remove(toStack(output), Position.LAST));
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it
-    private static class Remove extends BaseListRemoval {
-        public Remove(ItemStack stack) {
-            super("ExNihilo Sieve", SieveRegistry.rewards, stack);
+    private static class Remove extends BaseMultipleListRemoval {
+        public Remove(ItemStack stack, Position pos) {
+            super("ExNihilo Sieve", SieveRegistry.rewards, stack, pos);
         }
 
-        //Loops through the registry, to find the item that matches, saves that recipe then removes it
         @Override
-        public void apply() {
-            for (SiftReward r : SieveRegistry.rewards) {
-                ItemStack check = new ItemStack(r.item, 1, r.meta);
-                if (check != null && areEqual(check, stack)) {
-                    recipe = r;
-                    break;
-                }
-            }
-
-            SieveRegistry.rewards.remove(recipe);
+        protected boolean isEqual(Object recipe, Object search) {
+            SiftReward r = (SiftReward) recipe;
+            ItemStack c = new ItemStack(r.item, 1, r.meta);
+            if (c != null && areEqual(c, (ItemStack) search)) {
+                return true;
+            } else return false;
         }
 
         @Override
         public String getRecipeInfo() {
-            return stack.getDisplayName();
+            return ((ItemStack) search).getDisplayName();
         }
     }
 }
