@@ -27,8 +27,8 @@ public class Infusion {
     
     //A version that allows you to specify whether the detection should be fuzzy or not
     @ZenMethod
-    public static void addRecipe(String key, IItemStack input, IItemStack[] recipe, String aspects, IItemStack result, int instability, boolean fuzzy) {
-        MineTweakerAPI.apply(new Add(new MTInfusionRecipe(key, toStack(result), instability, ThaumcraftHelper.parseAspects(aspects), toStack(input), toStacks(recipe), fuzzy)));
+    public static void addRecipe(String key, IItemStack input, IItemStack[] recipe, String aspects, IItemStack result, int instability, boolean fuzzyCentre, boolean[] fuzzyRecipe) {
+        MineTweakerAPI.apply(new Add(new MTInfusionRecipe(key, toStack(result), instability, ThaumcraftHelper.parseAspects(aspects), toStack(input), toStacks(recipe), fuzzyCentre, fuzzyRecipe)));
     }
 
     @ZenMethod

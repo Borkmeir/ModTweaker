@@ -11,10 +11,12 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.crafting.InfusionRecipe;
 
 public class MTInfusionRecipe extends InfusionRecipe {
-    private final boolean fuzzy;
-    public MTInfusionRecipe(String research, Object output, int inst, AspectList aspects2, ItemStack input, ItemStack[] recipe, boolean fuzzy) {
+    private final boolean fuzzyCentre;
+    private final boolean[] fuzzyRecipe;
+    public MTInfusionRecipe(String research, Object output, int inst, AspectList aspects2, ItemStack input, ItemStack[] recipe, boolean fuzzyCentre, boolean[] fuzzyRecipe) {
         super(research, output, inst, aspects2, input, recipe);
-        this.fuzzy = fuzzy;
+        this.fuzzyCentre = fuzzyCentre;
+        this.fuzzyRecipe = fuzzyRecipe;
     }
 
     @Override
@@ -30,14 +32,15 @@ public class MTInfusionRecipe extends InfusionRecipe {
             i2.setItemDamage(OreDictionary.WILDCARD_VALUE);
         }
 
-        if (!areItemStacksEqual(i2, getRecipeInput(), fuzzy)) return false;
+        if (!areItemStacksEqual(i2, getRecipeInput(), fuzzyCentre)) return false;
 
         ArrayList<ItemStack> ii = new ArrayList<ItemStack>();
         for (ItemStack is : input) {
             ii.add(is.copy());
         }
-
-        for (ItemStack comp : getComponents()) {
+        
+        for(int j = 0; j < getComponents().length; j++) {
+            ItemStack comp = getComponents()[j];
             boolean b = false;
             for (int a = 0; a < ii.size(); a++) {
                 i2 = ii.get(a).copy();
@@ -45,7 +48,7 @@ public class MTInfusionRecipe extends InfusionRecipe {
                     i2.setItemDamage(OreDictionary.WILDCARD_VALUE);
                 }
 
-                if (areItemStacksEqual(i2, comp, fuzzy)) {
+                if (areItemStacksEqual(i2, comp, fuzzyRecipe[j])) {
                     ii.remove(a);
                     b = true;
                     break;
@@ -53,6 +56,7 @@ public class MTInfusionRecipe extends InfusionRecipe {
             }
             if (!b) return false;
         }
+
         return ii.size() == 0 ? true : false;
     }
 }

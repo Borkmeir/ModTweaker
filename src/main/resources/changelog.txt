@@ -1,6 +1,8 @@
 ModTweaker 0.6
 • Fixed Tinkers, Mariculture and MineTweaker
 • Removed Vanilla Tweaks > Now part of MineTweaker main
+• Sieve and Slag Furnace removals now remove all the items, also added removeFirst and removeLast methods, if you want to remove them.
+• Thaumcraft Infusion recipes can have an optional boolean, to specify whether the recipe should be fuzzy or not
 • Thaumcraft 4
    • Warp Support
 • Thermal Expansion
