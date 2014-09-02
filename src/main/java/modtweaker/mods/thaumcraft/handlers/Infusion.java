@@ -7,6 +7,7 @@ import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.mods.thaumcraft.ThaumcraftHelper;
+import modtweaker.mods.thaumcraft.recipe.MTInfusionRecipe;
 import modtweaker.util.BaseListAddition;
 import modtweaker.util.BaseListRemoval;
 import net.minecraft.enchantment.Enchantment;
@@ -22,6 +23,12 @@ public class Infusion {
     @ZenMethod
     public static void addRecipe(String key, IItemStack input, IItemStack[] recipe, String aspects, IItemStack result, int instability) {
         MineTweakerAPI.apply(new Add(new InfusionRecipe(key, toStack(result), instability, ThaumcraftHelper.parseAspects(aspects), toStack(input), toStacks(recipe))));
+    }
+    
+    //A version that allows you to specify whether the detection should be fuzzy or not
+    @ZenMethod
+    public static void addRecipe(String key, IItemStack input, IItemStack[] recipe, String aspects, IItemStack result, int instability, boolean fuzzy) {
+        MineTweakerAPI.apply(new Add(new MTInfusionRecipe(key, toStack(result), instability, ThaumcraftHelper.parseAspects(aspects), toStack(input), toStacks(recipe), fuzzy)));
     }
 
     @ZenMethod
