@@ -5,7 +5,7 @@ import java.util.List;
 
 import minetweaker.IUndoableAction;
 
-public class BaseMultipleListRemoval implements IUndoableAction {
+public abstract class BaseMultipleListRemoval implements IUndoableAction {
     public static enum Position {
         ALL, FIRST, LAST;
     }
@@ -22,6 +22,9 @@ public class BaseMultipleListRemoval implements IUndoableAction {
         this.list = list;
         this.search = search;
     }
+    
+    //Return whether the items are equal or not
+    protected abstract boolean isEqual(Object recipe, Object search);
 
     @Override
     public void apply() {
@@ -49,14 +52,9 @@ public class BaseMultipleListRemoval implements IUndoableAction {
         }
     }
 
-    //Return whether the items are equal or not
-    protected boolean isEqual(Object recipe, Object search) {
-        return false;
-    }
-
     @Override
     public boolean canUndo() {
-        return list != null;
+        return recipes != null;
     }
 
     @Override
@@ -66,9 +64,7 @@ public class BaseMultipleListRemoval implements IUndoableAction {
         }
     }
     
-    public String getRecipeInfo() {
-        return "Invalid Item";
-    }
+    public abstract String getRecipeInfo();
 
     @Override
     public String describe() {
