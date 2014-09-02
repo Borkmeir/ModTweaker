@@ -7,7 +7,8 @@ import minetweaker.api.item.IItemStack;
 import modtweaker.helpers.ReflectionHelper;
 import modtweaker.mods.factorization.FactorizationHelper;
 import modtweaker.util.BaseListAddition;
-import modtweaker.util.BaseListRemoval;
+import modtweaker.util.BaseMultipleListRemoval;
+import modtweaker.util.BaseMultipleListRemoval.Position;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -38,35 +39,35 @@ public class SlagFurnace {
 
     @ZenMethod
     public static void removeRecipe(IItemStack input) {
-        MineTweakerAPI.apply(new Remove(toStack(input)));
+        MineTweakerAPI.apply(new Remove(toStack(input), Position.ALL));
     }
 
-    private static class Remove extends BaseListRemoval {
-        public Remove(ItemStack stack) {
-            super("Slag Furnace", FactorizationHelper.slag, stack);
-        }
+    @ZenMethod
+    public static void removeFirst(IItemStack output) {
+        MineTweakerAPI.apply(new Remove(toStack(output), Position.FIRST));
+    }
 
-        //Returns the output ItemStack
-        private ItemStack getInput(Object o) {
-            return (ItemStack) ReflectionHelper.getObject(o, "input");
+    @ZenMethod
+    public static void removeLast(IItemStack output) {
+        MineTweakerAPI.apply(new Remove(toStack(output), Position.LAST));
+    }
+
+    private static class Remove extends BaseMultipleListRemoval {
+        public Remove(ItemStack stack, Position pos) {
+            super("Slag Furnace", FactorizationHelper.slag, stack, pos);
         }
 
         @Override
-        public void apply() {
-            for (Object r : list) {
-                ItemStack input = getInput(r);
-                if (input != null && areEqual(input, stack)) {
-                    recipe = r;
-                    break;
-                }
-            }
-
-            list.remove(recipe);
+        protected boolean isEqual(Object recipe, Object search) {
+            ItemStack input = (ItemStack) ReflectionHelper.getObject(recipe, "input");
+            if (input != null && areEqual(input, (ItemStack) search)) {
+                return true;
+            } else return false;
         }
 
         @Override
         public String getRecipeInfo() {
-            return stack.getDisplayName();
+            return ((ItemStack) search).getDisplayName();
         }
     }
 }
