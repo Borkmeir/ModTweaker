@@ -14,10 +14,14 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class InputHelper {
     public static boolean isABlock(IItemStack block) {
-        if (!(toStack(block).getItem() instanceof ItemBlock)) {
+        if (!(isABlock(toStack(block)))) {
             MineTweakerAPI.getLogger().logError("Item must be a block, or you must specify a block to render as when adding a TConstruct Melting recipe");
             return false;
         } else return true;
+    }
+    
+    public static boolean isABlock(ItemStack block) {
+        return block.getItem() instanceof ItemBlock;
     }
 
     public static ItemStack toStack(IItemStack iStack) {

@@ -12,6 +12,8 @@ import mantle.utils.ItemMetaWrapper;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
+import minetweaker.api.minecraft.MineTweakerMC;
+import minetweaker.api.oredict.IOreDictEntry;
 import modtweaker.mods.tconstruct.TConstructHelper;
 import modtweaker.util.BaseDescriptionAddition;
 import modtweaker.util.BaseDescriptionRemoval;
@@ -20,6 +22,7 @@ import modtweaker.util.BaseListRemoval;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -94,6 +97,13 @@ public class Smeltery {
         }
     }
 
+    @ZenMethod
+    public static void addMelting(IOreDictEntry input, ILiquidStack output, int temp, @Optional IItemStack block) {
+        for (ItemStack stack : OreDictionary.getOres(input.getName())) {
+            addMelting(MineTweakerMC.getIItemStack(stack), output, temp, block);
+        }
+    }
+
     //Takes all the variables and saves them in place
     private static class AddMelting extends BaseDescriptionAddition {
         private final ItemStack input;
@@ -138,6 +148,13 @@ public class Smeltery {
     @ZenMethod
     public static void removeMelting(IItemStack input) {
         MineTweakerAPI.apply(new RemoveMelting((toStack(input))));
+    }
+
+    @ZenMethod
+    public static void removeMelting(IOreDictEntry input) {
+        for (ItemStack stack : OreDictionary.getOres(input.getName())) {
+            removeMelting(MineTweakerMC.getIItemStack(stack));
+        }
     }
 
     //Removes a recipe, apply is never the same for anything, so will always need to override it
