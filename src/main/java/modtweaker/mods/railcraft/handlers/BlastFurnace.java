@@ -45,12 +45,14 @@ public class BlastFurnace {
         @Override
         public void apply() {
             for (IBlastFurnaceRecipe r : RailcraftHelper.furnace) {
-                if (r.getOutput() != null && areEqual(r.getOutput(), stack)) {
-                    recipe = r;
-                    break;
+                if (r != null) {
+                    if (r.getOutput() != null && areEqual(r.getOutput(), stack)) {
+                        recipe = r;
+                        break;
+                    }
                 }
             }
-
+                        
             RailcraftHelper.furnace.remove(recipe);
         }
 
