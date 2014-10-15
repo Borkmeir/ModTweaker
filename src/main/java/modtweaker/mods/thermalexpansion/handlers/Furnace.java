@@ -1,5 +1,6 @@
 package modtweaker.mods.thermalexpansion.handlers;
 
+import static modtweaker.helpers.InputHelper.toStack;
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
@@ -8,8 +9,6 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import thermalexpansion.util.crafting.FurnaceManager;
 import thermalexpansion.util.crafting.FurnaceManager.RecipeFurnace;
-
-import static modtweaker.helpers.InputHelper.toStack;
 
 @ZenClass("mods.thermalexpansion.Furnace")
 public class Furnace {
@@ -30,27 +29,27 @@ public class Furnace {
             output = out;
         }
 
-        public void apply(){
+        public void apply() {
             applied = FurnaceManager.addRecipe(energy, input, output, false);
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return input != null && applied;
         }
 
-        public String describe () {
+        public String describe() {
             return "Adding Redstone Furnace Recipe using " + input.getDisplayName();
         }
 
-        public void undo(){
+        public void undo() {
             FurnaceManager.removeRecipe(input);
         }
 
-        public String describeUndo () {
+        public String describeUndo() {
             return "Removing Redstone Furnace Recipe using " + input.getDisplayName();
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 
@@ -71,28 +70,28 @@ public class Furnace {
             input = inp;
         }
 
-        public void apply(){
+        public void apply() {
             removed = FurnaceManager.getRecipe(input);
             FurnaceManager.removeRecipe(input);
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return removed != null;
         }
 
-        public String describe () {
+        public String describe() {
             return "Removing Redstone Furnace Recipe using " + input.getDisplayName();
         }
 
-        public void undo(){
+        public void undo() {
             FurnaceManager.addRecipe(removed.getEnergy(), removed.getInput(), removed.getOutput(), false);
         }
 
-        public String describeUndo () {
+        public String describeUndo() {
             return "Restoring Redstone Furnace Recipe using " + input.getDisplayName();
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 
@@ -107,25 +106,25 @@ public class Furnace {
 
     private static class Refresh implements IUndoableAction {
 
-        public void apply(){
+        public void apply() {
             FurnaceManager.loadRecipes();
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return false;
         }
 
-        public String describe () {
+        public String describe() {
             return "Refreshing Redstone Furnace Recipes";
         }
 
-        public void undo(){}
+        public void undo() {}
 
-        public String describeUndo () {
+        public String describeUndo() {
             return "Can't Undo Redstone Furnace Refresh";
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 

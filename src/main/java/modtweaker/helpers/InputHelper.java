@@ -19,7 +19,7 @@ public class InputHelper {
             return false;
         } else return true;
     }
-    
+
     public static boolean isABlock(ItemStack block) {
         return block.getItem() instanceof ItemBlock;
     }

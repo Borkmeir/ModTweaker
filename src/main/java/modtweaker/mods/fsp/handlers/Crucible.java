@@ -34,10 +34,10 @@ public class Crucible {
         public AddLiquid(CrucibleLiquid recipe) {
             super("FSP Crucible Liquid", SteamcraftRegistry.liquids, recipe);
         }
-        
+
         @Override
         public String getRecipeInfo() {
-            return ((CrucibleLiquid)recipe).name;
+            return ((CrucibleLiquid) recipe).name;
         }
     }
 
@@ -52,11 +52,12 @@ public class Crucible {
 
     private static class AddMelting extends BaseMapAddition {
         private final ItemStack stack;
+
         public AddMelting(ItemStack stack, Object key, Object recipe) {
             super("FSP Crucible Melting", SteamcraftRegistry.smeltThings, key, recipe);
             this.stack = stack;
         }
-        
+
         @Override
         public String getRecipeInfo() {
             return stack.getDisplayName();
@@ -70,11 +71,12 @@ public class Crucible {
 
     private static class RemoveMelting extends BaseMapRemoval {
         private final ItemStack stack;
+
         public RemoveMelting(ItemStack stack, Object key) {
             super("FSP Crucible Melting", SteamcraftRegistry.smeltThings, key);
             this.stack = stack;
         }
-        
+
         @Override
         public String getRecipeInfo() {
             return stack.getDisplayName();
@@ -92,11 +94,12 @@ public class Crucible {
 
     private static class AddDunking extends BaseMapAddition {
         private final ItemStack stack;
+
         public AddDunking(ItemStack stack, Object key, Object recipe) {
             super("FSP Crucible Dunking", SteamcraftRegistry.dunkThings, key, recipe);
             this.stack = stack;
         }
-        
+
         @Override
         public String getRecipeInfo() {
             return stack.getDisplayName();
@@ -110,11 +113,12 @@ public class Crucible {
 
     private static class RemoveDunking extends BaseMapRemoval {
         private final ItemStack stack;
+
         public RemoveDunking(ItemStack stack, Object key) {
             super("FSP Crucible Dunking", SteamcraftRegistry.dunkThings, key);
             this.stack = stack;
         }
-        
+
         @Override
         public String getRecipeInfo() {
             return stack.getDisplayName();

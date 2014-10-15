@@ -22,11 +22,12 @@ public class Furnace {
 
     private static class AddSteamFood extends BaseMapAddition {
         private final ItemStack stack;
+
         public AddSteamFood(ItemStack stack, MutablePair key, MutablePair recipe) {
             super("FSP Furnace - Steam Food", SteamcraftRegistry.steamedFoods, key, recipe);
             this.stack = stack;
         }
-        
+
         @Override
         public String getRecipeInfo() {
             return stack.getDisplayName();
@@ -40,11 +41,12 @@ public class Furnace {
 
     private static class RemoveSteamFood extends BaseMapRemoval {
         private final ItemStack stack;
+
         public RemoveSteamFood(ItemStack stack, MutablePair key) {
             super("FSP Furnace - Steam Food", SteamcraftRegistry.steamedFoods, key);
             this.stack = stack;
         }
-        
+
         @Override
         public String getRecipeInfo() {
             return stack.getDisplayName();

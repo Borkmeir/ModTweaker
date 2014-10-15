@@ -16,8 +16,8 @@ public class LogHelper {
             player.sendChat(MineTweakerImplementationAPI.platform.getMessage(message));
         }
     }
-    
-    public static void print(String string){
+
+    public static void print(String string) {
         System.out.println(string);
         MineTweakerAPI.logCommand(string);
     }

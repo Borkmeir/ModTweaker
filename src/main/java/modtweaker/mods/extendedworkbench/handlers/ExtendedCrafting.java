@@ -1,5 +1,11 @@
 package modtweaker.mods.extendedworkbench.handlers;
 
+import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.helpers.InputHelper.toStacks;
+import static modtweaker.helpers.StackHelper.areEqual;
+
+import java.util.Arrays;
+
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import modtweaker.util.BaseListAddition;
@@ -12,13 +18,6 @@ import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-import static modtweaker.helpers.InputHelper.toStack;
-import static modtweaker.helpers.InputHelper.toStacks;
-import static modtweaker.helpers.StackHelper.areEqual;
-
-import java.util.Arrays;
-
-
 @ZenClass("mods.extendedworkbench")
 public class ExtendedCrafting {
     @ZenMethod
@@ -27,7 +26,7 @@ public class ExtendedCrafting {
     }
 
     @ZenMethod
-    public static void addShapeless(IItemStack output, IItemStack[] ingredients){
+    public static void addShapeless(IItemStack output, IItemStack[] ingredients) {
         MineTweakerAPI.apply(new Add(new ExtendedShapelessRecipes(toStack(output), Arrays.asList(toStacks(ingredients)))));
     }
 
@@ -38,29 +37,28 @@ public class ExtendedCrafting {
 
         @Override
         public String getRecipeInfo() {
-            Object out = ((IExtendedRecipe)recipe).getRecipeOutput();
+            Object out = ((IExtendedRecipe) recipe).getRecipeOutput();
             if (out != null) {
                 return ((ItemStack) out).getDisplayName();
             } else return super.getRecipeInfo();
         }
     }
 
-    private static IExtendedRecipe getShapedRecipe(IItemStack out, IItemStack[][] ingredients){
+    private static IExtendedRecipe getShapedRecipe(IItemStack out, IItemStack[][] ingredients) {
 
         int width = 0;
         int height = ingredients.length;
         ItemStack[] recipe;
 
-        for(int x = 0;x < ingredients.length;x++){
-            if(ingredients[x] != null && ingredients[x].length > width)
-                width = ingredients[x].length;
+        for (int x = 0; x < ingredients.length; x++) {
+            if (ingredients[x] != null && ingredients[x].length > width) width = ingredients[x].length;
         }
 
         recipe = new ItemStack[width * height];
         int counter = 0;
-        for(int x = 0;x < ingredients.length;x++){
-            if(ingredients[x] != null){
-                for(int y = 0;y < ingredients[x].length;y++){
+        for (int x = 0; x < ingredients.length; x++) {
+            if (ingredients[x] != null) {
+                for (int y = 0; y < ingredients[x].length; y++) {
                     recipe[counter++] = toStack(ingredients[x][y]);
                 }
             }

@@ -37,43 +37,35 @@ public class Warp {
             warp = amount;
         }
 
-        public void apply(){
-            if(target instanceof String)
-                ThaumcraftApi.addWarpToResearch((String)target, warp);
-            else if(target instanceof ItemStack)
-                ThaumcraftApi.addWarpToItem((ItemStack) target, warp);
+        public void apply() {
+            if (target instanceof String) ThaumcraftApi.addWarpToResearch((String) target, warp);
+            else if (target instanceof ItemStack) ThaumcraftApi.addWarpToItem((ItemStack) target, warp);
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return ThaumcraftApi.getWarp(target) > 0;
         }
 
-        public String describe () {
+        public String describe() {
             String desc = "Adding " + warp + " warp to ";
-            if(target instanceof String)
-                desc += (String)target;
-            else if(target instanceof ItemStack)
-                desc += ((ItemStack)target).getDisplayName();
+            if (target instanceof String) desc += (String) target;
+            else if (target instanceof ItemStack) desc += ((ItemStack) target).getDisplayName();
             return desc;
         }
 
-        public void undo(){
-            if(target instanceof String)
-                ThaumcraftHelper.warpList.remove(target);
-            else if(target instanceof ItemStack)
-                ThaumcraftHelper.warpList.remove(Arrays.asList(((ItemStack) target).getItem(), ((ItemStack) target).getItemDamage()));
+        public void undo() {
+            if (target instanceof String) ThaumcraftHelper.warpList.remove(target);
+            else if (target instanceof ItemStack) ThaumcraftHelper.warpList.remove(Arrays.asList(((ItemStack) target).getItem(), ((ItemStack) target).getItemDamage()));
         }
 
-        public String describeUndo () {
+        public String describeUndo() {
             String desc = "Removing warp from ";
-            if(target instanceof String)
-                desc += (String)target;
-            else if(target instanceof ItemStack)
-                desc += ((ItemStack)target).getDisplayName();
+            if (target instanceof String) desc += (String) target;
+            else if (target instanceof ItemStack) desc += ((ItemStack) target).getDisplayName();
             return desc;
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 
@@ -92,17 +84,17 @@ public class Warp {
     }
 
     @ZenMethod
-    public static void removeAll(){
+    public static void removeAll() {
         MineTweakerAPI.apply(new MassRemove(RemoveType.BOTH));
     }
 
     @ZenMethod
-    public static void removeAllResearch(){
+    public static void removeAllResearch() {
         MineTweakerAPI.apply(new MassRemove(RemoveType.RESEARCH));
     }
 
     @ZenMethod
-    public static void removeAllItems(){
+    public static void removeAllItems() {
         MineTweakerAPI.apply(new MassRemove(RemoveType.ITEMS));
     }
 
@@ -114,49 +106,43 @@ public class Warp {
             target = targ;
         }
 
-        public void apply(){
-            if(target instanceof String)
-                warp = ThaumcraftHelper.warpList.remove(target);
-            else if(target instanceof ItemStack)
-                warp = ThaumcraftHelper.warpList.remove(Arrays.asList(((ItemStack) target).getItem(), ((ItemStack) target).getItemDamage()));
+        public void apply() {
+            if (target instanceof String) warp = ThaumcraftHelper.warpList.remove(target);
+            else if (target instanceof ItemStack) warp = ThaumcraftHelper.warpList.remove(Arrays.asList(((ItemStack) target).getItem(), ((ItemStack) target).getItemDamage()));
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return warp > 0;
         }
 
-        public String describe () {
+        public String describe() {
             String desc = "Removing warp from ";
-            if(target instanceof String)
-                desc += (String)target;
-            else if(target instanceof ItemStack)
-                desc += ((ItemStack)target).getDisplayName();
+            if (target instanceof String) desc += (String) target;
+            else if (target instanceof ItemStack) desc += ((ItemStack) target).getDisplayName();
             return desc;
         }
 
-        public void undo(){
-            if(target instanceof String)
-                ThaumcraftApi.addWarpToResearch((String) target, warp);
-            else if(target instanceof ItemStack)
-                ThaumcraftApi.addWarpToItem((ItemStack) target, warp);
+        public void undo() {
+            if (target instanceof String) ThaumcraftApi.addWarpToResearch((String) target, warp);
+            else if (target instanceof ItemStack) ThaumcraftApi.addWarpToItem((ItemStack) target, warp);
         }
 
-        public String describeUndo () {
+        public String describeUndo() {
             String desc = "Restoring " + warp + " warp to ";
-            if(target instanceof String)
-                desc += (String)target;
-            else if(target instanceof ItemStack)
-                desc += ((ItemStack)target).getDisplayName();
+            if (target instanceof String) desc += (String) target;
+            else if (target instanceof ItemStack) desc += ((ItemStack) target).getDisplayName();
             return desc;
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 
     }
 
-    public static enum RemoveType {RESEARCH, ITEMS, BOTH}
+    public static enum RemoveType {
+        RESEARCH, ITEMS, BOTH
+    }
 
     private static class MassRemove implements IUndoableAction {
         HashMap<Object, Integer> oldMap = new HashMap<Object, Integer>();
@@ -166,26 +152,24 @@ public class Warp {
             type = typ;
         }
 
-        public void apply(){
-            if(type == RemoveType.BOTH) {
+        public void apply() {
+            if (type == RemoveType.BOTH) {
                 for (Object key : ThaumcraftHelper.warpList.keySet()) {
                     oldMap.put(key, ThaumcraftHelper.warpList.get(key));
                 }
                 ThaumcraftHelper.warpList.clear();
-            }
-            else if(type == RemoveType.ITEMS) {
+            } else if (type == RemoveType.ITEMS) {
                 for (Object key : ThaumcraftHelper.warpList.keySet()) {
-                    if(key instanceof List){
+                    if (key instanceof List) {
                         oldMap.put(key, ThaumcraftHelper.warpList.get(key));
                     }
                 }
                 for (Object key : oldMap.keySet()) {
                     ThaumcraftHelper.warpList.remove(key);
                 }
-            }
-            else if(type == RemoveType.RESEARCH) {
+            } else if (type == RemoveType.RESEARCH) {
                 for (Object key : ThaumcraftHelper.warpList.keySet()) {
-                    if(key instanceof String){
+                    if (key instanceof String) {
                         oldMap.put(key, ThaumcraftHelper.warpList.get(key));
                     }
                 }
@@ -195,35 +179,29 @@ public class Warp {
             }
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return oldMap.size() > 0;
         }
 
-        public String describe () {
-            if(type == RemoveType.RESEARCH)
-                return "Clearing All Research Warp";
-            else if(type == RemoveType.ITEMS)
-                return "Clearing All Item Warp";
-            else
-                return "Clearing All Warp";
+        public String describe() {
+            if (type == RemoveType.RESEARCH) return "Clearing All Research Warp";
+            else if (type == RemoveType.ITEMS) return "Clearing All Item Warp";
+            else return "Clearing All Warp";
         }
 
-        public void undo(){
-            for(Object key : oldMap.keySet()){
+        public void undo() {
+            for (Object key : oldMap.keySet()) {
                 ThaumcraftHelper.warpList.put(key, oldMap.get(key));
             }
         }
 
-        public String describeUndo () {
-            if(type == RemoveType.RESEARCH)
-                return "Restoring All Research Warp";
-            else if(type == RemoveType.ITEMS)
-                return "Restoring All Item Warp";
-            else
-                return "Restoring All Warp";
+        public String describeUndo() {
+            if (type == RemoveType.RESEARCH) return "Restoring All Research Warp";
+            else if (type == RemoveType.ITEMS) return "Restoring All Item Warp";
+            else return "Restoring All Warp";
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 

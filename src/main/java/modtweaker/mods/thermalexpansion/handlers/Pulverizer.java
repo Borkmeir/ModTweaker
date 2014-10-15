@@ -1,6 +1,5 @@
 package modtweaker.mods.thermalexpansion.handlers;
 
-import static modtweaker.helpers.InputHelper.toObjects;
 import static modtweaker.helpers.InputHelper.toStack;
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
@@ -39,27 +38,27 @@ public class Pulverizer {
             secondaryChance = chance;
         }
 
-        public void apply(){
+        public void apply() {
             applied = PulverizerManager.addRecipe(energy, input, output, secondary, secondaryChance);
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return input != null && applied;
         }
 
-        public String describe () {
+        public String describe() {
             return "Adding Pulverizer Recipe using " + input.getDisplayName();
         }
 
-        public void undo(){
+        public void undo() {
             PulverizerManager.removeRecipe(input);
         }
 
-        public String describeUndo () {
+        public String describeUndo() {
             return "Removing Pulverizer Recipe using " + input.getDisplayName();
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 
@@ -80,28 +79,28 @@ public class Pulverizer {
             input = inp;
         }
 
-        public void apply(){
+        public void apply() {
             removed = PulverizerManager.getRecipe(input);
             PulverizerManager.removeRecipe(input);
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return removed != null;
         }
 
-        public String describe () {
+        public String describe() {
             return "Removing Pulverizer Recipe using " + input.getDisplayName();
         }
 
-        public void undo(){
+        public void undo() {
             PulverizerManager.addRecipe(removed.getEnergy(), removed.getInput(), removed.getPrimaryOutput(), removed.getSecondaryOutput(), removed.getSecondaryOutputChance());
         }
 
-        public String describeUndo () {
+        public String describeUndo() {
             return "Restoring Pulverizer Recipe using " + input.getDisplayName();
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 

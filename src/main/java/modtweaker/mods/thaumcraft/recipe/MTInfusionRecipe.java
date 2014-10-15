@@ -13,6 +13,7 @@ import thaumcraft.api.crafting.InfusionRecipe;
 public class MTInfusionRecipe extends InfusionRecipe {
     private final boolean fuzzyCentre;
     private final boolean[] fuzzyRecipe;
+
     public MTInfusionRecipe(String research, Object output, int inst, AspectList aspects2, ItemStack input, ItemStack[] recipe, boolean fuzzyCentre, boolean[] fuzzyRecipe) {
         super(research, output, inst, aspects2, input, recipe);
         this.fuzzyCentre = fuzzyCentre;
@@ -38,8 +39,8 @@ public class MTInfusionRecipe extends InfusionRecipe {
         for (ItemStack is : input) {
             ii.add(is.copy());
         }
-        
-        for(int j = 0; j < getComponents().length; j++) {
+
+        for (int j = 0; j < getComponents().length; j++) {
             ItemStack comp = getComponents()[j];
             boolean b = false;
             for (int a = 0; a < ii.size(); a++) {

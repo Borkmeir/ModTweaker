@@ -12,7 +12,7 @@ public class ReflectionHelper {
             constructor.setAccessible(true);
             return constructor;
         } catch (Exception ex) {}
-        
+
         return null;
     }
 

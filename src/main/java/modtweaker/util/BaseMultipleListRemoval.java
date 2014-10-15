@@ -9,20 +9,20 @@ public abstract class BaseMultipleListRemoval implements IUndoableAction {
     public static enum Position {
         ALL, FIRST, LAST;
     }
-    
+
     protected final Position pos;
     protected final String description;
     protected final List list;
     protected final Object search;
     protected ArrayList<Object> recipes;
-    
+
     public BaseMultipleListRemoval(String description, List list, Object search, Position pos) {
         this.pos = pos;
         this.description = description;
         this.list = list;
         this.search = search;
     }
-    
+
     //Return whether the items are equal or not
     protected abstract boolean isEqual(Object recipe, Object search);
 
@@ -30,24 +30,24 @@ public abstract class BaseMultipleListRemoval implements IUndoableAction {
     public void apply() {
         //Create a new list
         recipes = new ArrayList();
-        for(Object o: list) {
-            if(isEqual(o, search)) {
+        for (Object o : list) {
+            if (isEqual(o, search)) {
                 //If we want the last position, reset the array
-                if(pos == Position.LAST) {
+                if (pos == Position.LAST) {
                     recipes = new ArrayList();
                 }
-                
+
                 recipes.add(o);
-                
+
                 //If we want the first position, exit the loop
-                if(pos == Position.FIRST) {
+                if (pos == Position.FIRST) {
                     break;
                 }
             }
         }
-        
+
         //Remove all the recipes that were considered valid for removal
-        for(Object o: recipes) {
+        for (Object o : recipes) {
             list.remove(o);
         }
     }
@@ -59,11 +59,11 @@ public abstract class BaseMultipleListRemoval implements IUndoableAction {
 
     @Override
     public void undo() {
-        for(Object o: recipes) {
+        for (Object o : recipes) {
             list.add(o);
         }
     }
-    
+
     public abstract String getRecipeInfo();
 
     @Override

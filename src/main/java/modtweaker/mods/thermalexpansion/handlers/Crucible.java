@@ -1,5 +1,8 @@
 package modtweaker.mods.thermalexpansion.handlers;
 
+import static modtweaker.helpers.InputHelper.toFluid;
+import static modtweaker.helpers.InputHelper.toStack;
+import static modtweaker.mods.thermalexpansion.ThermalHelper.removeCrucibleRecipe;
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
@@ -10,10 +13,6 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import thermalexpansion.util.crafting.CrucibleManager;
 import thermalexpansion.util.crafting.CrucibleManager.RecipeCrucible;
-
-import static modtweaker.helpers.InputHelper.toStack;
-import static modtweaker.helpers.InputHelper.toFluid;
-import static modtweaker.mods.thermalexpansion.ThermalHelper.removeCrucibleRecipe;
 
 @ZenClass("mods.thermalexpansion.Crucible")
 public class Crucible {
@@ -34,27 +33,27 @@ public class Crucible {
             output = out;
         }
 
-        public void apply(){
+        public void apply() {
             applied = CrucibleManager.addRecipe(energy, input, output);
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return input != null && applied;
         }
 
-        public String describe () {
+        public String describe() {
             return "Adding TE Magma Crucible Recipe using " + input.getDisplayName();
         }
 
-        public void undo(){
+        public void undo() {
             removeCrucibleRecipe(input);
         }
 
-        public String describeUndo () {
+        public String describeUndo() {
             return "Removing TE Magma Crucible Recipe using " + input.getDisplayName();
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 
@@ -75,28 +74,28 @@ public class Crucible {
             input = inp;
         }
 
-        public void apply(){
+        public void apply() {
             removed = CrucibleManager.getRecipe(input);
             removeCrucibleRecipe(input);
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return removed != null;
         }
 
-        public String describe () {
+        public String describe() {
             return "Removing TE Magma Crucible Recipe using " + input.getDisplayName();
         }
 
-        public void undo(){
+        public void undo() {
             CrucibleManager.addRecipe(removed.getEnergy(), removed.getInput(), removed.getOutput());
         }
 
-        public String describeUndo () {
+        public String describeUndo() {
             return "Restoring TE Magma Crucible Recipe using " + input.getDisplayName();
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 

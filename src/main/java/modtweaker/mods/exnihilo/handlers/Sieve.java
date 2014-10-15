@@ -46,12 +46,12 @@ public class Sieve {
     public static void removeRecipe(IItemStack output) {
         MineTweakerAPI.apply(new Remove(toStack(output), Position.ALL));
     }
-    
+
     @ZenMethod
     public static void removeFirst(IItemStack output) {
         MineTweakerAPI.apply(new Remove(toStack(output), Position.FIRST));
     }
-    
+
     @ZenMethod
     public static void removeLast(IItemStack output) {
         MineTweakerAPI.apply(new Remove(toStack(output), Position.LAST));

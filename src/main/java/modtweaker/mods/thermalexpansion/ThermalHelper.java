@@ -18,7 +18,7 @@ public class ThermalHelper {
     private static Map<List, RecipeSmelter> smelter;
     public static Set<ComparableItemStackSafe> smelterValid;
     private static Map crucible;
-    
+
     private static Map<List, RecipeTransposer> transposerFill;
     private static Map<ComparableItemStackSafe, RecipeTransposer> transposerEmpty;
     public static Set<ComparableItemStackSafe> transposerValid;
@@ -32,7 +32,7 @@ public class ThermalHelper {
             transposerRecipe = getConstructor("thermalexpansion.util.crafting.TransposerManager$RecipeTransposer", ItemStack.class, ItemStack.class, FluidStack.class, int.class, int.class);
         } catch (Exception e) {}
     }
-    
+
     /** Need to perform this reflection on the fly as the map is ALWAYS changing, thanks to the way that te handles stuff */
     public static Map<List, RecipeSmelter> getSmelterMap() {
         try {
@@ -42,7 +42,7 @@ public class ThermalHelper {
 
         return smelter;
     }
-    
+
     public static Map<List, RecipeTransposer> getFillMap() {
         try {
             transposerFill = getStaticObject(Class.forName("thermalexpansion.util.crafting.TransposerManager"), "recipeMapFill");
@@ -51,7 +51,7 @@ public class ThermalHelper {
 
         return transposerFill;
     }
-    
+
     public static Map<ComparableItemStackSafe, RecipeTransposer> getExtractMap() {
         try {
             transposerEmpty = getStaticObject(Class.forName("thermalexpansion.util.crafting.TransposerManager"), "recipeMapExtraction");
@@ -65,7 +65,7 @@ public class ThermalHelper {
         try {
             crucible = getStaticObject(Class.forName("thermalexpansion.util.crafting.CrucibleManager"), "recipeMap");
         } catch (Exception e) {}
-        
+
         return crucible.remove(new ComparableItemStackSafe(input)) != null;
     }
 

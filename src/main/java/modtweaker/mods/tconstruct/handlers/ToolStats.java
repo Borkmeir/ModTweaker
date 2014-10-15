@@ -17,7 +17,7 @@ public class ToolStats {
     @ZenMethod
     public static void set(String material, @Optional String name, int level, int durability, int speed, int damage, double handle, int reinforced, double stonebound, String style, String ability) {
         if (name == null) name = material + " ";
-        MineTweakerAPI.apply(new SetToolStats(material, "", new ToolMaterial(material, name, level, durability, speed, damage, (float)handle, reinforced, (float)stonebound, style, ability)));
+        MineTweakerAPI.apply(new SetToolStats(material, "", new ToolMaterial(material, name, level, durability, speed, damage, (float) handle, reinforced, (float) stonebound, style, ability)));
     }
 
     @ZenMethod

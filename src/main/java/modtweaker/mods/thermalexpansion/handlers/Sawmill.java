@@ -1,6 +1,5 @@
 package modtweaker.mods.thermalexpansion.handlers;
 
-import static modtweaker.helpers.InputHelper.toObjects;
 import static modtweaker.helpers.InputHelper.toStack;
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
@@ -39,27 +38,27 @@ public class Sawmill {
             secondaryChance = chance;
         }
 
-        public void apply(){
+        public void apply() {
             applied = SawmillManager.addRecipe(energy, input, output, secondary, secondaryChance);
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return input != null && applied;
         }
 
-        public String describe () {
+        public String describe() {
             return "Adding Sawmill Recipe using " + input.getDisplayName();
         }
 
-        public void undo(){
+        public void undo() {
             SawmillManager.removeRecipe(input);
         }
 
-        public String describeUndo () {
+        public String describeUndo() {
             return "Removing Sawmill Recipe using " + input.getDisplayName();
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 
@@ -80,28 +79,28 @@ public class Sawmill {
             input = inp;
         }
 
-        public void apply(){
+        public void apply() {
             removed = SawmillManager.getRecipe(input);
             SawmillManager.removeRecipe(input);
         }
 
-        public boolean canUndo () {
+        public boolean canUndo() {
             return removed != null;
         }
 
-        public String describe () {
+        public String describe() {
             return "Removing Sawmill Recipe using " + input.getDisplayName();
         }
 
-        public void undo(){
+        public void undo() {
             SawmillManager.addRecipe(removed.getEnergy(), removed.getInput(), removed.getPrimaryOutput(), removed.getSecondaryOutput(), removed.getSecondaryOutputChance());
         }
 
-        public String describeUndo () {
+        public String describeUndo() {
             return "Restoring Sawmill Recipe using " + input.getDisplayName();
         }
 
-        public Object getOverrideKey(){
+        public Object getOverrideKey() {
             return null;
         }
 

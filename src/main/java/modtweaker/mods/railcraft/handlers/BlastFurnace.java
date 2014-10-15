@@ -52,7 +52,7 @@ public class BlastFurnace {
                     }
                 }
             }
-                        
+
             RailcraftHelper.furnace.remove(recipe);
         }
 
