@@ -28,7 +28,7 @@ public class AddPrereq implements IUndoableAction {
                 newPrereqs[x] = oldPrereqs[x];
             }
             newPrereqs[oldPrereqs.length] = prereq;
-            ResearchCategories.researchCategories.get(tab).research.get(key).setParents(prereq);
+            ResearchCategories.researchCategories.get(tab).research.get(key).setParents(newPrereqs);
         } else {
             oldPrereqs = ResearchCategories.researchCategories.get(tab).research.get(key).parentsHidden;
             if (oldPrereqs == null) oldPrereqs = new String[0];
@@ -37,7 +37,7 @@ public class AddPrereq implements IUndoableAction {
                 newPrereqs[x] = oldPrereqs[x];
             }
             newPrereqs[oldPrereqs.length] = prereq;
-            ResearchCategories.researchCategories.get(tab).research.get(key).setParentsHidden(prereq);
+            ResearchCategories.researchCategories.get(tab).research.get(key).setParentsHidden(newPrereqs);
         }
     }
 
