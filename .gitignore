@@ -16,3 +16,4 @@ src/api/resources/*
 run/
 .metadata/
 lib/src/
+/.nb-gradle/private/
