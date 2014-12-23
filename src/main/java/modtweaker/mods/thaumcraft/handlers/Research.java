@@ -3,6 +3,7 @@ package modtweaker.mods.thaumcraft.handlers;
 import static modtweaker.helpers.InputHelper.toStack;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
+import minetweaker.api.player.IPlayer;
 import modtweaker.mods.thaumcraft.ThaumcraftHelper;
 import modtweaker.mods.thaumcraft.research.AddPage;
 import modtweaker.mods.thaumcraft.research.AddPrereq;
@@ -25,6 +26,8 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage.PageType;
 
@@ -184,6 +187,11 @@ public class Research {
     public static void moveResearch(String key, String destination, int x, int y) {
         MineTweakerAPI.apply(new MoveResearch(key, destination, x, y));
     }
+	
+	@ZenMethod
+	public static boolean hasResearched(IPlayer player, String key) {
+		return ThaumcraftApiHelper.isResearchComplete(player.getName(), key);
+	}
 
     public static enum SetType {
         AUTO, ROUND, SPIKE, SECONDARY, STUB, VIRTUAL, CONCEAL
